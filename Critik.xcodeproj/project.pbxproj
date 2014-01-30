@@ -1,0 +1,517 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6F12E3421892FEE40030AE4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3411892FEE40030AE4C /* Foundation.framework */; };
+		6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3431892FEE40030AE4C /* CoreGraphics.framework */; };
+		6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3451892FEE40030AE4C /* UIKit.framework */; };
+		6F12E3481892FEE40030AE4C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3471892FEE40030AE4C /* CoreData.framework */; };
+		6F12E34E1892FEE40030AE4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E34C1892FEE40030AE4C /* InfoPlist.strings */; };
+		6F12E3501892FEE40030AE4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E34F1892FEE40030AE4C /* main.m */; };
+		6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E3531892FEE40030AE4C /* AppDelegate.m */; };
+		6F12E3571892FEE40030AE4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E3551892FEE40030AE4C /* Main.storyboard */; };
+		6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */; };
+		6F12E35D1892FEE40030AE4C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E35C1892FEE40030AE4C /* MasterViewController.m */; };
+		6F12E3601892FEE40030AE4C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E35F1892FEE40030AE4C /* DetailViewController.m */; };
+		6F12E3621892FEE40030AE4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E3611892FEE40030AE4C /* Images.xcassets */; };
+		6F12E3691892FEE40030AE4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3681892FEE40030AE4C /* XCTest.framework */; };
+		6F12E36A1892FEE40030AE4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3411892FEE40030AE4C /* Foundation.framework */; };
+		6F12E36B1892FEE40030AE4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3451892FEE40030AE4C /* UIKit.framework */; };
+		6F12E36C1892FEE40030AE4C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3471892FEE40030AE4C /* CoreData.framework */; };
+		6F12E3741892FEE40030AE4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E3721892FEE40030AE4C /* InfoPlist.strings */; };
+		6F12E3761892FEE40030AE4C /* CritikTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E3751892FEE40030AE4C /* CritikTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6F12E36D1892FEE40030AE4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F12E3361892FEE40030AE4C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F12E33D1892FEE40030AE4C;
+			remoteInfo = Critik;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6F12E33E1892FEE40030AE4C /* Critik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Critik.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F12E3411892FEE40030AE4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6F12E3431892FEE40030AE4C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6F12E3451892FEE40030AE4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6F12E3471892FEE40030AE4C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6F12E34B1892FEE40030AE4C /* Critik-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Critik-Info.plist"; sourceTree = "<group>"; };
+		6F12E34D1892FEE40030AE4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6F12E34F1892FEE40030AE4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6F12E3511892FEE40030AE4C /* Critik-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Critik-Prefix.pch"; sourceTree = "<group>"; };
+		6F12E3521892FEE40030AE4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6F12E3531892FEE40030AE4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6F12E3561892FEE40030AE4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6F12E3591892FEE40030AE4C /* Critik.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Critik.xcdatamodel; sourceTree = "<group>"; };
+		6F12E35B1892FEE40030AE4C /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		6F12E35C1892FEE40030AE4C /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		6F12E35E1892FEE40030AE4C /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		6F12E35F1892FEE40030AE4C /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		6F12E3611892FEE40030AE4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6F12E3671892FEE40030AE4C /* CritikTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CritikTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F12E3681892FEE40030AE4C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6F12E3711892FEE40030AE4C /* CritikTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CritikTests-Info.plist"; sourceTree = "<group>"; };
+		6F12E3731892FEE40030AE4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6F12E3751892FEE40030AE4C /* CritikTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CritikTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6F12E33B1892FEE40030AE4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */,
+				6F12E3481892FEE40030AE4C /* CoreData.framework in Frameworks */,
+				6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */,
+				6F12E3421892FEE40030AE4C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F12E3641892FEE40030AE4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F12E3691892FEE40030AE4C /* XCTest.framework in Frameworks */,
+				6F12E36C1892FEE40030AE4C /* CoreData.framework in Frameworks */,
+				6F12E36B1892FEE40030AE4C /* UIKit.framework in Frameworks */,
+				6F12E36A1892FEE40030AE4C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6F12E3351892FEE40030AE4C = {
+			isa = PBXGroup;
+			children = (
+				6F12E3491892FEE40030AE4C /* Critik */,
+				6F12E36F1892FEE40030AE4C /* CritikTests */,
+				6F12E3401892FEE40030AE4C /* Frameworks */,
+				6F12E33F1892FEE40030AE4C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6F12E33F1892FEE40030AE4C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6F12E33E1892FEE40030AE4C /* Critik.app */,
+				6F12E3671892FEE40030AE4C /* CritikTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6F12E3401892FEE40030AE4C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F12E3411892FEE40030AE4C /* Foundation.framework */,
+				6F12E3431892FEE40030AE4C /* CoreGraphics.framework */,
+				6F12E3451892FEE40030AE4C /* UIKit.framework */,
+				6F12E3471892FEE40030AE4C /* CoreData.framework */,
+				6F12E3681892FEE40030AE4C /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F12E3491892FEE40030AE4C /* Critik */ = {
+			isa = PBXGroup;
+			children = (
+				6F12E3521892FEE40030AE4C /* AppDelegate.h */,
+				6F12E3531892FEE40030AE4C /* AppDelegate.m */,
+				6F12E3551892FEE40030AE4C /* Main.storyboard */,
+				6F12E35B1892FEE40030AE4C /* MasterViewController.h */,
+				6F12E35C1892FEE40030AE4C /* MasterViewController.m */,
+				6F12E35E1892FEE40030AE4C /* DetailViewController.h */,
+				6F12E35F1892FEE40030AE4C /* DetailViewController.m */,
+				6F12E3611892FEE40030AE4C /* Images.xcassets */,
+				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
+				6F12E34A1892FEE40030AE4C /* Supporting Files */,
+			);
+			path = Critik;
+			sourceTree = "<group>";
+		};
+		6F12E34A1892FEE40030AE4C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6F12E34B1892FEE40030AE4C /* Critik-Info.plist */,
+				6F12E34C1892FEE40030AE4C /* InfoPlist.strings */,
+				6F12E34F1892FEE40030AE4C /* main.m */,
+				6F12E3511892FEE40030AE4C /* Critik-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6F12E36F1892FEE40030AE4C /* CritikTests */ = {
+			isa = PBXGroup;
+			children = (
+				6F12E3751892FEE40030AE4C /* CritikTests.m */,
+				6F12E3701892FEE40030AE4C /* Supporting Files */,
+			);
+			path = CritikTests;
+			sourceTree = "<group>";
+		};
+		6F12E3701892FEE40030AE4C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6F12E3711892FEE40030AE4C /* CritikTests-Info.plist */,
+				6F12E3721892FEE40030AE4C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6F12E33D1892FEE40030AE4C /* Critik */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F12E3791892FEE40030AE4C /* Build configuration list for PBXNativeTarget "Critik" */;
+			buildPhases = (
+				6F12E33A1892FEE40030AE4C /* Sources */,
+				6F12E33B1892FEE40030AE4C /* Frameworks */,
+				6F12E33C1892FEE40030AE4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Critik;
+			productName = Critik;
+			productReference = 6F12E33E1892FEE40030AE4C /* Critik.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6F12E3661892FEE40030AE4C /* CritikTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F12E37C1892FEE40030AE4C /* Build configuration list for PBXNativeTarget "CritikTests" */;
+			buildPhases = (
+				6F12E3631892FEE40030AE4C /* Sources */,
+				6F12E3641892FEE40030AE4C /* Frameworks */,
+				6F12E3651892FEE40030AE4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6F12E36E1892FEE40030AE4C /* PBXTargetDependency */,
+			);
+			name = CritikTests;
+			productName = CritikTests;
+			productReference = 6F12E3671892FEE40030AE4C /* CritikTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6F12E3361892FEE40030AE4C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = RedVelvet;
+				TargetAttributes = {
+					6F12E33D1892FEE40030AE4C = {
+						DevelopmentTeam = 583N2DJ8B2;
+					};
+					6F12E3661892FEE40030AE4C = {
+						TestTargetID = 6F12E33D1892FEE40030AE4C;
+					};
+				};
+			};
+			buildConfigurationList = 6F12E3391892FEE40030AE4C /* Build configuration list for PBXProject "Critik" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6F12E3351892FEE40030AE4C;
+			productRefGroup = 6F12E33F1892FEE40030AE4C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6F12E33D1892FEE40030AE4C /* Critik */,
+				6F12E3661892FEE40030AE4C /* CritikTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6F12E33C1892FEE40030AE4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F12E3621892FEE40030AE4C /* Images.xcassets in Resources */,
+				6F12E34E1892FEE40030AE4C /* InfoPlist.strings in Resources */,
+				6F12E3571892FEE40030AE4C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F12E3651892FEE40030AE4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F12E3741892FEE40030AE4C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6F12E33A1892FEE40030AE4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F12E3601892FEE40030AE4C /* DetailViewController.m in Sources */,
+				6F12E35D1892FEE40030AE4C /* MasterViewController.m in Sources */,
+				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
+				6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */,
+				6F12E3501892FEE40030AE4C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F12E3631892FEE40030AE4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F12E3761892FEE40030AE4C /* CritikTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6F12E36E1892FEE40030AE4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6F12E33D1892FEE40030AE4C /* Critik */;
+			targetProxy = 6F12E36D1892FEE40030AE4C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6F12E34C1892FEE40030AE4C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F12E34D1892FEE40030AE4C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6F12E3551892FEE40030AE4C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F12E3561892FEE40030AE4C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6F12E3721892FEE40030AE4C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F12E3731892FEE40030AE4C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6F12E3771892FEE40030AE4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		6F12E3781892FEE40030AE4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6F12E37A1892FEE40030AE4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
+				INFOPLIST_FILE = "Critik/Critik-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6F12E37B1892FEE40030AE4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
+				INFOPLIST_FILE = "Critik/Critik-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6F12E37D1892FEE40030AE4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Critik.app/Critik";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CritikTests/CritikTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		6F12E37E1892FEE40030AE4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Critik.app/Critik";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
+				INFOPLIST_FILE = "CritikTests/CritikTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F12E3391892FEE40030AE4C /* Build configuration list for PBXProject "Critik" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F12E3771892FEE40030AE4C /* Debug */,
+				6F12E3781892FEE40030AE4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6F12E3791892FEE40030AE4C /* Build configuration list for PBXNativeTarget "Critik" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F12E37A1892FEE40030AE4C /* Debug */,
+				6F12E37B1892FEE40030AE4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6F12E37C1892FEE40030AE4C /* Build configuration list for PBXNativeTarget "CritikTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F12E37D1892FEE40030AE4C /* Debug */,
+				6F12E37E1892FEE40030AE4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6F12E3591892FEE40030AE4C /* Critik.xcdatamodel */,
+			);
+			currentVersion = 6F12E3591892FEE40030AE4C /* Critik.xcdatamodel */;
+			path = Critik.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 6F12E3361892FEE40030AE4C /* Project object */;
+}

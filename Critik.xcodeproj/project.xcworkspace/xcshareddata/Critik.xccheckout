@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8A50F26B-DCCB-4B5F-A099-D13AA9199AB2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Critik</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C7CDFA0A-970A-4CD0-A627-D1C136906200</key>
+		<string>https://github.com/RedVelvet/PresentationFeedbackProject.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Project/Critik/Critik.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C7CDFA0A-970A-4CD0-A627-D1C136906200</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/RedVelvet/PresentationFeedbackProject.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C7CDFA0A-970A-4CD0-A627-D1C136906200</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C7CDFA0A-970A-4CD0-A627-D1C136906200</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PresentationFeedbackProject</string>
+		</dict>
+	</array>
+</dict>
+</plist>
