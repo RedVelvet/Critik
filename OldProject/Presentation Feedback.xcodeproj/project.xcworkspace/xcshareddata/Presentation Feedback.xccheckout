@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>FC3EFA37-0A45-45DA-BFF8-E79D24E6D4C5</string>
+	<string>28A3D13C-9F46-40FE-A805-3E08B6DEA6FD</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Presentation Feedback</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C7CDFA0A-970A-4CD0-A627-D1C136906200</key>
-		<string>https://github.com/RedVelvet/PresentationFeedbackProject.git</string>
+		<key>DF3FDB43-3533-4518-A671-43A8FE4463D7</key>
+		<string>https://github.com/RedVelvet/Critik.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Old Project/Presentation Feedback.xcodeproj/project.xcworkspace</string>
+	<string>OldProject/Presentation Feedback.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C7CDFA0A-970A-4CD0-A627-D1C136906200</key>
+		<key>DF3FDB43-3533-4518-A671-43A8FE4463D7</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/RedVelvet/PresentationFeedbackProject.git</string>
+	<string>https://github.com/RedVelvet/Critik.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C7CDFA0A-970A-4CD0-A627-D1C136906200</string>
+	<string>DF3FDB43-3533-4518-A671-43A8FE4463D7</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C7CDFA0A-970A-4CD0-A627-D1C136906200</string>
+			<string>DF3FDB43-3533-4518-A671-43A8FE4463D7</string>
 			<key>IDESourceControlWCCName</key>
-			<string>PresentationFeedbackProject</string>
+			<string>Critik</string>
 		</dict>
 	</array>
 </dict>
