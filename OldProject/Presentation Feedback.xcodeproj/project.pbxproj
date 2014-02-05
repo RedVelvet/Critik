@@ -354,11 +354,6 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Gautham raaz";
-				TargetAttributes = {
-					40EFD40817A5D3ED00D85A3C = {
-						DevelopmentTeam = 583N2DJ8B2;
-					};
-				};
 			};
 			buildConfigurationList = 40EFD40417A5D3ED00D85A3C /* Build configuration list for PBXProject "Presentation Feedback" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -515,7 +510,7 @@
 		40EFD42D17A5D3ED00D85A3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,7 +528,7 @@
 		40EFD42E17A5D3ED00D85A3C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
