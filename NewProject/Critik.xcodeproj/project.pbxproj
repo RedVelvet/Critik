@@ -61,6 +61,7 @@
 		6F12E3711892FEE40030AE4C /* CritikTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CritikTests-Info.plist"; sourceTree = "<group>"; };
 		6F12E3731892FEE40030AE4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6F12E3751892FEE40030AE4C /* CritikTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CritikTests.m; sourceTree = "<group>"; };
+		6F8F7F1B18AABA810002609A /* Critik-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Critik-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +124,7 @@
 		6F12E3491892FEE40030AE4C /* Critik */ = {
 			isa = PBXGroup;
 			children = (
+				6F8F7F1B18AABA810002609A /* Critik-Prefix.pch */,
 				6F12E3521892FEE40030AE4C /* AppDelegate.h */,
 				6F12E3531892FEE40030AE4C /* AppDelegate.m */,
 				6F12E3551892FEE40030AE4C /* Main.storyboard */,
@@ -478,6 +480,7 @@
 				6F12E37B1892FEE40030AE4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6F12E37C1892FEE40030AE4C /* Build configuration list for PBXNativeTarget "CritikTests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +489,7 @@
 				6F12E37E1892FEE40030AE4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
