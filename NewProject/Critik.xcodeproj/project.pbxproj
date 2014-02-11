@@ -213,6 +213,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = RedVelvet;
 				TargetAttributes = {
+					6F12E33D1892FEE40030AE4C = {
+						DevelopmentTeam = 583N2DJ8B2;
+					};
 					6F12E3661892FEE40030AE4C = {
 						TestTargetID = 6F12E33D1892FEE40030AE4C;
 					};
@@ -396,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
 				INFOPLIST_FILE = "Critik/Critik-Info.plist";
@@ -409,6 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
 				INFOPLIST_FILE = "Critik/Critik-Info.plist";
@@ -478,6 +483,7 @@
 				6F12E37B1892FEE40030AE4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6F12E37C1892FEE40030AE4C /* Build configuration list for PBXNativeTarget "CritikTests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +492,7 @@
 				6F12E37E1892FEE40030AE4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
