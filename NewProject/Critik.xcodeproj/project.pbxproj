@@ -123,6 +123,7 @@
 		6F12E3491892FEE40030AE4C /* Critik */ = {
 			isa = PBXGroup;
 			children = (
+				6F4EE02F18ABEF3300FABCF2 /* Images */,
 				6F12E3521892FEE40030AE4C /* AppDelegate.h */,
 				6F12E3531892FEE40030AE4C /* AppDelegate.m */,
 				6F12E3551892FEE40030AE4C /* Main.storyboard */,
@@ -164,6 +165,13 @@
 				6F12E3721892FEE40030AE4C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6F4EE02F18ABEF3300FABCF2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
