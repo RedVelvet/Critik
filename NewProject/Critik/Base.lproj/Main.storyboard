@@ -31,15 +31,37 @@
                     <view key="view" contentMode="scaleToFill" id="yl5-b8-EQV">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6h-YL-EFN">
+                                <rect key="frame" x="475" y="329" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Forms">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Rxg-Hu-bas" kind="push" id="PTH-ZW-u2P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqJ-pK-JdA">
+                                <rect key="frame" x="454" y="409" width="117" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Evaluate Student">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="x7O-YG-SFz" kind="push" id="T4r-pR-DaS"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="odY-Kx-fpT"/>
+                    <navigationItem key="navigationItem" title="Home" id="odY-Kx-fpT"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ced-3P-v6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="624" y="-1259"/>
+            <point key="canvasLocation" x="568" y="-1353"/>
         </scene>
         <!--View Controller - Choose Speech-->
         <scene sceneID="DnF-9P-e65">
@@ -61,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="2960" y="-327"/>
         </scene>
-        <!--View Controller - Edit Forms-->
+        <!--View Controller - Edit Forms-Choose Speech-->
         <scene sceneID="64E-la-zG1">
             <objects>
-                <viewController title="Edit Forms" id="Rxg-Hu-bas" sceneMemberID="viewController">
+                <viewController title="Edit Forms-Choose Speech" id="Rxg-Hu-bas" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ezj-Tj-nNn"/>
                         <viewControllerLayoutGuide type="bottom" id="bSO-eO-Cjf"/>
@@ -75,6 +97,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <navigationItem key="navigationItem" id="vv9-9i-dbk"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVi-4o-KWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,6 +118,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <navigationItem key="navigationItem" id="kfi-Ep-YZC"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eo6-lt-04b" userLabel="First Responder" sceneMemberID="firstResponder"/>

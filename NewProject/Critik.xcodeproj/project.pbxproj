@@ -16,8 +16,6 @@
 		6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E3531892FEE40030AE4C /* AppDelegate.m */; };
 		6F12E3571892FEE40030AE4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E3551892FEE40030AE4C /* Main.storyboard */; };
 		6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */; };
-		6F12E35D1892FEE40030AE4C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E35C1892FEE40030AE4C /* MasterViewController.m */; };
-		6F12E3601892FEE40030AE4C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E35F1892FEE40030AE4C /* DetailViewController.m */; };
 		6F12E3621892FEE40030AE4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E3611892FEE40030AE4C /* Images.xcassets */; };
 		6F12E3691892FEE40030AE4C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3681892FEE40030AE4C /* XCTest.framework */; };
 		6F12E36A1892FEE40030AE4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3411892FEE40030AE4C /* Foundation.framework */; };
@@ -25,6 +23,9 @@
 		6F12E36C1892FEE40030AE4C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3471892FEE40030AE4C /* CoreData.framework */; };
 		6F12E3741892FEE40030AE4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E3721892FEE40030AE4C /* InfoPlist.strings */; };
 		6F12E3761892FEE40030AE4C /* CritikTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E3751892FEE40030AE4C /* CritikTests.m */; };
+		6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03118ABF69F00FABCF2 /* HomeVC.m */; };
+		6F4EE03518ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03418ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m */; };
+		6F4EE03818ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,16 +52,18 @@
 		6F12E3531892FEE40030AE4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6F12E3561892FEE40030AE4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6F12E3591892FEE40030AE4C /* Critik.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Critik.xcdatamodel; sourceTree = "<group>"; };
-		6F12E35B1892FEE40030AE4C /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		6F12E35C1892FEE40030AE4C /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		6F12E35E1892FEE40030AE4C /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		6F12E35F1892FEE40030AE4C /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		6F12E3611892FEE40030AE4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6F12E3671892FEE40030AE4C /* CritikTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CritikTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F12E3681892FEE40030AE4C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6F12E3711892FEE40030AE4C /* CritikTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CritikTests-Info.plist"; sourceTree = "<group>"; };
 		6F12E3731892FEE40030AE4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6F12E3751892FEE40030AE4C /* CritikTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CritikTests.m; sourceTree = "<group>"; };
+		6F4EE03018ABF69F00FABCF2 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
+		6F4EE03118ABF69F00FABCF2 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
+		6F4EE03318ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditForms_ChooseSpeechVC.h; sourceTree = "<group>"; };
+		6F4EE03418ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditForms_ChooseSpeechVC.m; sourceTree = "<group>"; };
+		6F4EE03618ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Evaluate_ChooseSpeechVC.h; sourceTree = "<group>"; };
+		6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Evaluate_ChooseSpeechVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,10 +130,12 @@
 				6F12E3521892FEE40030AE4C /* AppDelegate.h */,
 				6F12E3531892FEE40030AE4C /* AppDelegate.m */,
 				6F12E3551892FEE40030AE4C /* Main.storyboard */,
-				6F12E35B1892FEE40030AE4C /* MasterViewController.h */,
-				6F12E35C1892FEE40030AE4C /* MasterViewController.m */,
-				6F12E35E1892FEE40030AE4C /* DetailViewController.h */,
-				6F12E35F1892FEE40030AE4C /* DetailViewController.m */,
+				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
+				6F4EE03118ABF69F00FABCF2 /* HomeVC.m */,
+				6F4EE03318ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.h */,
+				6F4EE03418ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m */,
+				6F4EE03618ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.h */,
+				6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */,
 				6F12E3611892FEE40030AE4C /* Images.xcassets */,
 				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
 				6F12E34A1892FEE40030AE4C /* Supporting Files */,
@@ -274,10 +279,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F12E3601892FEE40030AE4C /* DetailViewController.m in Sources */,
-				6F12E35D1892FEE40030AE4C /* MasterViewController.m in Sources */,
+				6F4EE03518ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m in Sources */,
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
+				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
 				6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */,
+				6F4EE03818ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m in Sources */,
 				6F12E3501892FEE40030AE4C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
