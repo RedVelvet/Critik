@@ -11,7 +11,8 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0KY-G3-ZY6">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0039215686274509803" green="0.43529411764705883" blue="0.32156862745098036" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.086274512110000007" green="0.44705885649999999" blue="0.2823529541" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.52389370437956206" blue="0.40227550396215317" alpha="1" colorSpace="deviceRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -24,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-608" y="-1259"/>
         </scene>
-        <!--View Controller - Home-->
+        <!--HomeVC - Home-->
         <scene sceneID="Oei-ux-tsJ">
             <objects>
-                <viewController title="Home" id="Gas-Ke-rRf" sceneMemberID="viewController">
+                <viewController title="Home" id="Gas-Ke-rRf" customClass="HomeVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GTZ-tf-uRx"/>
                         <viewControllerLayoutGuide type="bottom" id="Ne1-fr-GW1"/>
@@ -36,41 +37,51 @@
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Home-Landscape.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ibn-rb-RO2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Home-Landscape.png" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-J9-Joe">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfA-Po-mPi">
-                                <rect key="frame" x="0.0" y="163" width="1024" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRI-AG-eHA">
+                                <rect key="frame" x="0.0" y="207" width="1024" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.43529411759999997" blue="0.32156862749999998" alpha="1" colorSpace="deviceRGB"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Edit Forms">
+                                <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Evaluate Students">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTC-3k-ifk">
-                                <rect key="frame" x="0.0" y="221" width="1024" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7w-us-iza">
+                                <rect key="frame" x="0.0" y="147" width="1024" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.43921571969985962" blue="0.33725491166114807" alpha="1" colorSpace="deviceRGB"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Evaluate Students">
+                                <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Edit Forms">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Rxg-Hu-bas" kind="push" id="lrr-ot-2Ku"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select an option below to get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rm3-Vf-kTq">
+                                <rect key="frame" x="252" y="69" width="520" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="odY-Kx-fpT"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ced-3P-v6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="566" y="-1259"/>
+            <point key="canvasLocation" x="609" y="-1271"/>
         </scene>
         <!--View Controller - Evaluate Students - Choose Section-->
         <scene sceneID="DnF-9P-e65">
@@ -101,13 +112,13 @@
                         <viewControllerLayoutGuide type="bottom" id="Gj9-GN-AXs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="e8f-6F-kTc">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Choose Speech" id="vv9-9i-dbk">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="yEX-YR-grI">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="yEX-YR-grI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="BackHome:" destination="Rxg-Hu-bas" id="kR8-yc-flK"/>
