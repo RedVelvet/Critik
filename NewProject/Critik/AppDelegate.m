@@ -26,6 +26,10 @@
 //    UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
 //    MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
 //    controller.managedObjectContext = self.managedObjectContext;
+    
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];//sets content color of status bar
+    sleep(2);//Allows for splash screen to appear longer
     return YES;
 }
 
