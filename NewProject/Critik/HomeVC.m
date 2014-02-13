@@ -18,7 +18,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        //self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Home-Landscape.png"]];
+        UIColor *color = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Home-Landscape.png"]];
+        self.view.backgroundColor = color;
+        
+        
     }
     return self;
 }

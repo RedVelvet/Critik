@@ -10,4 +10,6 @@
 
 @interface EditForms_ChooseSpeechVC : UIViewController
 
+- (IBAction)BackHome:(id)sender;
+
 @end

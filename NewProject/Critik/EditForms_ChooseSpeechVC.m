@@ -35,4 +35,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)BackHome:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

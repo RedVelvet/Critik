@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="iaC-3o-S66">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="iaC-3o-S66">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -11,7 +11,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0KY-G3-ZY6">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0039215688589999999" green="0.43137258290000002" blue="0.33333334329999997" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="barTintColor" red="0.0039215686274509803" green="0.43529411764705883" blue="0.32156862745098036" alpha="1" colorSpace="deviceRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -28,29 +28,38 @@
         <scene sceneID="Oei-ux-tsJ">
             <objects>
                 <viewController title="Home" id="Gas-Ke-rRf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GTZ-tf-uRx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ne1-fr-GW1"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yl5-b8-EQV">
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="O6h-YL-EFN">
-                                <rect key="frame" x="475" y="329" width="75" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Home-Landscape.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ibn-rb-RO2">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfA-Po-mPi">
+                                <rect key="frame" x="0.0" y="163" width="1024" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.43529411759999997" blue="0.32156862749999998" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Edit Forms">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="Rxg-Hu-bas" kind="push" id="PTH-ZW-u2P"/>
-                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vqJ-pK-JdA">
-                                <rect key="frame" x="454" y="409" width="117" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTC-3k-ifk">
+                                <rect key="frame" x="0.0" y="221" width="1024" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Evaluate Student">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.43921571969985962" blue="0.33725491166114807" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Evaluate Students">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="x7O-YG-SFz" kind="push" id="T4r-pR-DaS"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -67,6 +76,10 @@
         <scene sceneID="DnF-9P-e65">
             <objects>
                 <viewController title="Evaluate Students - Choose Section" id="QBl-XP-hdc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uAU-dt-7dq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yoc-Zu-zHk"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mjG-3U-yI3">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -79,17 +92,28 @@
             </objects>
             <point key="canvasLocation" x="2960" y="-327"/>
         </scene>
-        <!--View Controller - Edit Forms - Choose Speech-->
+        <!--Edit Forms Choose SpeechVC - Edit Forms - Choose Speech-->
         <scene sceneID="64E-la-zG1">
             <objects>
-                <viewController title="Edit Forms - Choose Speech" id="Rxg-Hu-bas" sceneMemberID="viewController">
+                <viewController title="Edit Forms - Choose Speech" id="Rxg-Hu-bas" customClass="EditForms_ChooseSpeechVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y7H-d2-B8u"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gj9-GN-AXs"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="e8f-6F-kTc">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="vv9-9i-dbk"/>
+                    <navigationItem key="navigationItem" title="Choose Speech" id="vv9-9i-dbk">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="yEX-YR-grI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="BackHome:" destination="Rxg-Hu-bas" id="kR8-yc-flK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVi-4o-KWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,8 +124,12 @@
         <scene sceneID="voi-XA-oGT">
             <objects>
                 <viewController title="Evaluate Students - Choose Speech" id="x7O-YG-SFz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nMw-8S-tLO"/>
+                        <viewControllerLayoutGuide type="bottom" id="h40-Yl-OQb"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="W2E-8o-90F">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -117,6 +145,10 @@
         <scene sceneID="QGD-TS-qm7">
             <objects>
                 <viewController title="Edit Forms - Choose Section" id="l7O-Uj-m6N" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cQf-DO-25t"/>
+                        <viewControllerLayoutGuide type="bottom" id="Sxf-oz-iGA"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="h5d-LO-84G">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -133,6 +165,10 @@
         <scene sceneID="Kvb-sg-zZv">
             <objects>
                 <viewController title="Choose Section" id="DKS-Vb-Wch" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rhx-ub-SSP"/>
+                        <viewControllerLayoutGuide type="bottom" id="mXE-Ch-DE7"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Abl-IB-Atc">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -149,6 +185,10 @@
         <scene sceneID="QRL-IU-Vjt">
             <objects>
                 <viewController title="Choose Section" id="CLF-tK-YHC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uKf-RM-VKY"/>
+                        <viewControllerLayoutGuide type="bottom" id="rMa-Fq-VdB"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="i2M-h4-Xza">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -162,7 +202,10 @@
             <point key="canvasLocation" x="4140" y="-1271"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.23137256503105164" green="0.65882354974746704" blue="0.95686280727386475" alpha="1" colorSpace="deviceRGB"/>
+    <resources>
+        <image name="Home-Landscape.png" width="2048" height="1536"/>
+    </resources>
+    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>
