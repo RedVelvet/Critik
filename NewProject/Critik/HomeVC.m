@@ -19,18 +19,14 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        
     }
     return self;
 }
-
-
 
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	// Do any additional setup after loading the view.
 }
 
