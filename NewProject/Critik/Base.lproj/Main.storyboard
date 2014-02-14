@@ -4,10 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Critik Nav Controller-->
         <scene sceneID="Vht-La-290">
             <objects>
-                <navigationController definesPresentationContext="YES" id="iaC-3o-S66" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="iaC-3o-S66" customClass="CritikNavController" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0KY-G3-ZY6">
                         <autoresizingMask key="autoresizingMask"/>
@@ -107,7 +108,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="viG-mJ-JFh" kind="push" id="4ea-bl-SU3"/>
+                                    <segue destination="MWX-BP-m4D" kind="push" id="Mpf-AD-Gd2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J78-Os-9ST">
@@ -120,7 +121,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BGc-BB-biz" kind="push" id="xOT-zE-Flj"/>
+                                    <segue destination="BGc-BB-biz" kind="push" id="XOh-qI-zO1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ao1-r3-9v1">
@@ -155,29 +156,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVi-4o-KWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1788" y="-1743"/>
-        </scene>
-        <!--View Controller - Edit Forms - Choose Section-->
-        <scene sceneID="QGD-TS-qm7">
-            <objects>
-                <viewController title="Edit Forms - Choose Section" id="l7O-Uj-m6N" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cQf-DO-25t"/>
-                        <viewControllerLayoutGuide type="bottom" id="Sxf-oz-iGA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="h5d-LO-84G">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Informative" id="ufm-JD-d9f">
-                        <barButtonItem key="backBarButtonItem" title="Speech" id="QhL-qo-Ycy"/>
-                    </navigationItem>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EiQ-Ku-sm9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3056" y="-2721"/>
         </scene>
         <!--Edit Forms Choose SpeechVC - Evaluate Students - Choose Speech-->
         <scene sceneID="96N-UW-lbW">
@@ -259,7 +237,7 @@
                         <viewControllerLayoutGuide type="bottom" id="1VK-6A-CU6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1pv-hX-xj6">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -276,7 +254,6 @@
         <!--View Controller - Edit Forms - Informative-->
         <scene sceneID="iDz-JB-hgJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DQ2-mP-SXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Edit Forms - Informative" id="BGc-BB-biz" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="msQ-fR-Oj6"/>
@@ -295,13 +272,13 @@
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DQ2-mP-SXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3056" y="-3619"/>
+            <point key="canvasLocation" x="3056" y="-3693"/>
         </scene>
         <!--View Controller - Edit Forms - Interpersonal-->
         <scene sceneID="uVS-d2-uCV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z8b-gx-ezr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Edit Forms - Interpersonal" id="vie-RT-TuP" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JI5-QH-lE8"/>
@@ -318,31 +295,9 @@
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z8b-gx-ezr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3056" y="-1751"/>
-        </scene>
-        <!--View Controller - Edit Forms - Choose Section-->
-        <scene sceneID="QN9-2b-T2S">
-            <objects>
-                <viewController title="Edit Forms - Choose Section" id="viG-mJ-JFh" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uVe-5T-Wo9"/>
-                        <viewControllerLayoutGuide type="bottom" id="Lx3-X9-XYG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Yug-PQ-DBA">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Persuasive" id="NKf-pi-AcB">
-                        <barButtonItem key="backBarButtonItem" title="Section" id="nV1-RM-eso"/>
-                    </navigationItem>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fdC-t3-5n4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3056" y="-2721"/>
         </scene>
         <!--View Controller - Edit Forms - Persuasive-->
         <scene sceneID="qfs-2Y-lgQ">
@@ -370,7 +325,6 @@
         <!--View Controller - Edit Forms - Informative-->
         <scene sceneID="Wai-6i-CPe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="doI-Ps-4GM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Edit Forms - Informative" id="6JC-vj-lrT" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="USw-Xz-zBq"/>
@@ -387,13 +341,13 @@
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="doI-Ps-4GM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3056" y="-799"/>
         </scene>
         <!--View Controller - Edit Forms - Interpersonal-->
         <scene sceneID="dSB-RK-PGD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uZm-7N-e6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Edit Forms - Interpersonal" id="Jto-OQ-03f" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="68l-9b-68a"/>
@@ -410,6 +364,7 @@
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uZm-7N-e6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3056" y="1069"/>
         </scene>

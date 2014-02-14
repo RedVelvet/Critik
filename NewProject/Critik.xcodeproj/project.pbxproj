@@ -48,6 +48,7 @@
 		6F4EE03818ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */; };
 		6F4EE03B18AC8CD300FABCF2 /* Home-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE03918AC8CD300FABCF2 /* Home-Landscape.png */; };
 		6F4EE03C18AC8CD300FABCF2 /* Home@2x-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE03A18AC8CD300FABCF2 /* Home@2x-Landscape.png */; };
+		6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Evaluate_ChooseSpeechVC.m; sourceTree = "<group>"; };
 		6F4EE03918AC8CD300FABCF2 /* Home-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home-Landscape.png"; sourceTree = "<group>"; };
 		6F4EE03A18AC8CD300FABCF2 /* Home@2x-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home@2x-Landscape.png"; sourceTree = "<group>"; };
+		6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CritikNavController.h; sourceTree = "<group>"; };
+		6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CritikNavController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,10 +217,11 @@
 		6F12E3491892FEE40030AE4C /* Critik */ = {
 			isa = PBXGroup;
 			children = (
-				6F4EE02F18ABEF3300FABCF2 /* Images */,
 				6F12E3521892FEE40030AE4C /* AppDelegate.h */,
 				6F12E3531892FEE40030AE4C /* AppDelegate.m */,
 				6F12E3551892FEE40030AE4C /* Main.storyboard */,
+				6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */,
+				6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */,
 				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
 				6F4EE03118ABF69F00FABCF2 /* HomeVC.m */,
 				6F4EE03318ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.h */,
@@ -226,6 +230,7 @@
 				6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */,
 				6F12E3611892FEE40030AE4C /* Images.xcassets */,
 				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
+				6F4EE02F18ABEF3300FABCF2 /* Images */,
 				6F12E34A1892FEE40030AE4C /* Supporting Files */,
 			);
 			path = Critik;
@@ -263,12 +268,20 @@
 		6F4EE02F18ABEF3300FABCF2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				6F4EE03918AC8CD300FABCF2 /* Home-Landscape.png */,
-				6F4EE03A18AC8CD300FABCF2 /* Home@2x-Landscape.png */,
+				6F4EE08A18ADAF6B00FABCF2 /* Home */,
 				1F98BAED18ABFB1F00AF50C7 /* Icon */,
 				1F98BAE418ABFB0B00AF50C7 /* Splash */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		6F4EE08A18ADAF6B00FABCF2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6F4EE03918AC8CD300FABCF2 /* Home-Landscape.png */,
+				6F4EE03A18AC8CD300FABCF2 /* Home@2x-Landscape.png */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F4EE03518ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m in Sources */,
+				6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */,
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
 				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
 				6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */,

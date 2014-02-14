@@ -1,36 +1,36 @@
 //
-//  HomeVC.m
+//  CritikNavController.m
 //  Critik
 //
-//  Created by Dalton Decker on 2/12/14.
+//  Created by Dalton Decker on 2/13/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
-#import "HomeVC.h"
+#import "CritikNavController.h"
 
-@interface HomeVC ()
+@interface CritikNavController ()
 
 @end
 
-@implementation HomeVC
+@implementation CritikNavController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
-        
+        // Custom initialization
     }
     return self;
 }
 
-
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	// Do any additional setup after loading the view.
 }
 
