@@ -14,6 +14,10 @@
 
 @implementation EditForms_ChooseSpeechVC
 
+//@synthesize managedObjectContext = _managedObjectContext;
+//@synthesize managedObjectModel = _managedObjectModel;
+//@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,6 +29,10 @@
 
 - (void)viewDidLoad
 {
+//    AppDelegate * appdelegate = [[UIApplication sharedApplication]delegate];
+//    _managedObjectContext = [appdelegate managedObjectContext];
+    
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -35,5 +43,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)addSection{
+    
+}
 
 @end

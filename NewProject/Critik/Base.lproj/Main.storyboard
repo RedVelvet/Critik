@@ -10,9 +10,8 @@
                 <navigationController definesPresentationContext="YES" id="iaC-3o-S66" customClass="CritikNavController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0KY-G3-ZY6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="NavBar.png" id="0KY-G3-ZY6">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.52389370437956206" blue="0.40227550396215317" alpha="1" colorSpace="deviceRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -37,7 +36,7 @@
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Home-Landscape.png" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-J9-Joe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Home@2x-Landscape.png" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-J9-Joe">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -46,7 +45,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Evaluate Students">
+                                <state key="normal" title="Evaluate" backgroundImage="NavButton-Selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -59,7 +58,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Edit">
+                                <state key="normal" title="Edit" backgroundImage="NavButton-Selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -118,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C3I-K2-aOC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3043" y="-3788"/>
+            <point key="canvasLocation" x="3051" y="-3588"/>
         </scene>
         <!--Edit Forms Choose SpeechVC - Edit Forms - Choose Speech-->
         <scene sceneID="64E-la-zG1">
@@ -1957,7 +1956,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Home-Landscape.png" width="2048" height="1536"/>
+        <image name="Home@2x-Landscape.png" width="2048" height="1536"/>
+        <image name="NavBar.png" width="2050" height="66"/>
+        <image name="NavButton-Selected.png" width="1024" height="52"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
