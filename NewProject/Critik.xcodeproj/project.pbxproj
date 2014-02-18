@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F0EAB5E18B31ABC005A585F /* EditSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EAB5D18B31ABC005A585F /* EditSection.m */; };
+		1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */; };
 		6F12E3421892FEE40030AE4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3411892FEE40030AE4C /* Foundation.framework */; };
 		6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3431892FEE40030AE4C /* CoreGraphics.framework */; };
 		6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3451892FEE40030AE4C /* UIKit.framework */; };
@@ -25,8 +25,6 @@
 		6F12E3741892FEE40030AE4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E3721892FEE40030AE4C /* InfoPlist.strings */; };
 		6F12E3761892FEE40030AE4C /* CritikTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E3751892FEE40030AE4C /* CritikTests.m */; };
 		6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03118ABF69F00FABCF2 /* HomeVC.m */; };
-		6F4EE03518ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03418ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m */; };
-		6F4EE03818ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */; };
 		6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */; };
 		6F4EE0FE18B1721B00FABCF2 /* NavButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */; };
 		6F4EE0FF18B1721B00FABCF2 /* NavButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0E718B1721B00FABCF2 /* NavButton.png */; };
@@ -74,8 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F0EAB5C18B31ABC005A585F /* EditSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditSection.h; path = Critik/EditSection.h; sourceTree = "<group>"; };
-		1F0EAB5D18B31ABC005A585F /* EditSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditSection.m; path = Critik/EditSection.m; sourceTree = "<group>"; };
+		1F203F9E18B3F0F9007C9F7E /* EditSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSectionVC.h; sourceTree = "<group>"; };
+		1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSectionVC.m; sourceTree = "<group>"; };
 		6F12E33E1892FEE40030AE4C /* Critik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Critik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F12E3411892FEE40030AE4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F12E3431892FEE40030AE4C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -97,10 +95,6 @@
 		6F12E3751892FEE40030AE4C /* CritikTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CritikTests.m; sourceTree = "<group>"; };
 		6F4EE03018ABF69F00FABCF2 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		6F4EE03118ABF69F00FABCF2 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
-		6F4EE03318ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditForms_ChooseSpeechVC.h; sourceTree = "<group>"; };
-		6F4EE03418ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditForms_ChooseSpeechVC.m; sourceTree = "<group>"; };
-		6F4EE03618ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Evaluate_ChooseSpeechVC.h; sourceTree = "<group>"; };
-		6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Evaluate_ChooseSpeechVC.m; sourceTree = "<group>"; };
 		6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CritikNavController.h; sourceTree = "<group>"; };
 		6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CritikNavController.m; sourceTree = "<group>"; };
 		6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavButton-Selected.png"; sourceTree = "<group>"; };
@@ -212,16 +206,12 @@
 				6F12E3521892FEE40030AE4C /* AppDelegate.h */,
 				6F12E3531892FEE40030AE4C /* AppDelegate.m */,
 				6F12E3551892FEE40030AE4C /* Main.storyboard */,
-				1F0EAB5C18B31ABC005A585F /* EditSection.h */,
-				1F0EAB5D18B31ABC005A585F /* EditSection.m */,
+				1F203F9E18B3F0F9007C9F7E /* EditSectionVC.h */,
+				1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */,
 				6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */,
 				6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */,
 				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
 				6F4EE03118ABF69F00FABCF2 /* HomeVC.m */,
-				6F4EE03318ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.h */,
-				6F4EE03418ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m */,
-				6F4EE03618ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.h */,
-				6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */,
 				6F12E3611892FEE40030AE4C /* Images.xcassets */,
 				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
 				6F4EE13918B2968500FABCF2 /* Core Data Classes */,
@@ -475,12 +465,10 @@
 			files = (
 				6F4EE11D18B2965300FABCF2 /* Speech.m in Sources */,
 				6F4EE12318B2965300FABCF2 /* StudentPreDefinedComments.m in Sources */,
-				6F4EE03518ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m in Sources */,
 				6F4EE12C18B2965300FABCF2 /* Module.m in Sources */,
 				6F4EE11A18B2965300FABCF2 /* Section.m in Sources */,
 				6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */,
 				6F4EE12618B2965300FABCF2 /* StudentQuickGrade.m in Sources */,
-				1F0EAB5E18B31ABC005A585F /* EditSection.m in Sources */,
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
 				6F4EE12918B2965300FABCF2 /* WrittenComments.m in Sources */,
 				6F4EE13218B2965300FABCF2 /* StudentSpeech.m in Sources */,
@@ -490,8 +478,8 @@
 				6F4EE12018B2965300FABCF2 /* Student.m in Sources */,
 				6F4EE12F18B2965300FABCF2 /* PreDefinedComments.m in Sources */,
 				6F4EE13818B2965400FABCF2 /* SpeechModule.m in Sources */,
-				6F4EE03818ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m in Sources */,
 				6F12E3501892FEE40030AE4C /* main.m in Sources */,
+				1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
