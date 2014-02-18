@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0EAB5E18B31ABC005A585F /* EditSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0EAB5D18B31ABC005A585F /* EditSection.m */; };
 		6F12E3421892FEE40030AE4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3411892FEE40030AE4C /* Foundation.framework */; };
 		6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3431892FEE40030AE4C /* CoreGraphics.framework */; };
 		6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3451892FEE40030AE4C /* UIKit.framework */; };
@@ -73,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F0EAB5C18B31ABC005A585F /* EditSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditSection.h; path = Critik/EditSection.h; sourceTree = "<group>"; };
+		1F0EAB5D18B31ABC005A585F /* EditSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditSection.m; path = Critik/EditSection.m; sourceTree = "<group>"; };
 		6F12E33E1892FEE40030AE4C /* Critik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Critik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F12E3411892FEE40030AE4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F12E3431892FEE40030AE4C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -209,6 +212,8 @@
 				6F12E3521892FEE40030AE4C /* AppDelegate.h */,
 				6F12E3531892FEE40030AE4C /* AppDelegate.m */,
 				6F12E3551892FEE40030AE4C /* Main.storyboard */,
+				1F0EAB5C18B31ABC005A585F /* EditSection.h */,
+				1F0EAB5D18B31ABC005A585F /* EditSection.m */,
 				6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */,
 				6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */,
 				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
@@ -475,6 +480,7 @@
 				6F4EE11A18B2965300FABCF2 /* Section.m in Sources */,
 				6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */,
 				6F4EE12618B2965300FABCF2 /* StudentQuickGrade.m in Sources */,
+				1F0EAB5E18B31ABC005A585F /* EditSection.m in Sources */,
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
 				6F4EE12918B2965300FABCF2 /* WrittenComments.m in Sources */,
 				6F4EE13218B2965300FABCF2 /* StudentSpeech.m in Sources */,
