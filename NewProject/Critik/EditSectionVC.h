@@ -10,6 +10,7 @@
 
 @interface EditSectionVC : UIViewController
 
-
+@property (weak, nonatomic) IBOutlet UITableView *sectionTableView;
+@property (strong, nonatomic) NSMutableArray *sections;
 
 @end
