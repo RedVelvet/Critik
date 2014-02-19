@@ -1,18 +1,18 @@
 //
-//  Evaluate_ChooseSpeechVC.m
+//  EvaluateStudentSelectVC.m
 //  Critik
 //
-//  Created by Dalton Decker on 2/12/14.
+//  Created by Dalton Decker on 2/18/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
-#import "Evaluate_ChooseSpeechVC.h"
+#import "EvaluateStudentSelectVC.h"
 
-@interface Evaluate_ChooseSpeechVC ()
+@interface EvaluateStudentSelectVC ()
 
 @end
 
-@implementation Evaluate_ChooseSpeechVC
+@implementation EvaluateStudentSelectVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

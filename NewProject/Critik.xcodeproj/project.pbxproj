@@ -24,8 +24,6 @@
 		6F12E3741892FEE40030AE4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E3721892FEE40030AE4C /* InfoPlist.strings */; };
 		6F12E3761892FEE40030AE4C /* CritikTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E3751892FEE40030AE4C /* CritikTests.m */; };
 		6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03118ABF69F00FABCF2 /* HomeVC.m */; };
-		6F4EE03518ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03418ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m */; };
-		6F4EE03818ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */; };
 		6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */; };
 		6F4EE0FE18B1721B00FABCF2 /* NavButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */; };
 		6F4EE0FF18B1721B00FABCF2 /* NavButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0E718B1721B00FABCF2 /* NavButton.png */; };
@@ -48,7 +46,6 @@
 		6F4EE11018B1721B00FABCF2 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0FB18B1721B00FABCF2 /* iTunesArtwork.png */; };
 		6F4EE11118B1721B00FABCF2 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0FC18B1721B00FABCF2 /* iTunesArtwork@2x.png */; };
 		6F4EE11318B1791300FABCF2 /* Home@2x-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */; };
-		6F4EE11718B186CE00FABCF2 /* NavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE11618B186CE00FABCF2 /* NavBar.png */; };
 		6F4EE11A18B2965300FABCF2 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE11918B2965300FABCF2 /* Section.m */; };
 		6F4EE11D18B2965300FABCF2 /* Speech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE11C18B2965300FABCF2 /* Speech.m */; };
 		6F4EE12018B2965300FABCF2 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE11F18B2965300FABCF2 /* Student.m */; };
@@ -60,6 +57,8 @@
 		6F4EE13218B2965300FABCF2 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13118B2965300FABCF2 /* StudentSpeech.m */; };
 		6F4EE13518B2965300FABCF2 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13418B2965300FABCF2 /* QuickGrade.m */; };
 		6F4EE13818B2965400FABCF2 /* SpeechModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13718B2965400FABCF2 /* SpeechModule.m */; };
+		6F4EE13B18B3B59100FABCF2 /* NavBar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE13A18B3B59100FABCF2 /* NavBar.jpg */; };
+		6F4EE13E18B3F09800FABCF2 /* EvaluateStudentSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13D18B3F09800FABCF2 /* EvaluateStudentSelectVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,10 +93,6 @@
 		6F12E3751892FEE40030AE4C /* CritikTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CritikTests.m; sourceTree = "<group>"; };
 		6F4EE03018ABF69F00FABCF2 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		6F4EE03118ABF69F00FABCF2 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
-		6F4EE03318ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditForms_ChooseSpeechVC.h; sourceTree = "<group>"; };
-		6F4EE03418ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditForms_ChooseSpeechVC.m; sourceTree = "<group>"; };
-		6F4EE03618ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Evaluate_ChooseSpeechVC.h; sourceTree = "<group>"; };
-		6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Evaluate_ChooseSpeechVC.m; sourceTree = "<group>"; };
 		6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CritikNavController.h; sourceTree = "<group>"; };
 		6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CritikNavController.m; sourceTree = "<group>"; };
 		6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavButton-Selected.png"; sourceTree = "<group>"; };
@@ -121,7 +116,6 @@
 		6F4EE0FB18B1721B00FABCF2 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		6F4EE0FC18B1721B00FABCF2 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home@2x-Landscape.png"; sourceTree = "<group>"; };
-		6F4EE11618B186CE00FABCF2 /* NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBar.png; sourceTree = "<group>"; };
 		6F4EE11818B2965300FABCF2 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
 		6F4EE11918B2965300FABCF2 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
 		6F4EE11B18B2965300FABCF2 /* Speech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speech.h; sourceTree = "<group>"; };
@@ -144,6 +138,9 @@
 		6F4EE13418B2965300FABCF2 /* QuickGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickGrade.m; sourceTree = "<group>"; };
 		6F4EE13618B2965400FABCF2 /* SpeechModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechModule.h; sourceTree = "<group>"; };
 		6F4EE13718B2965400FABCF2 /* SpeechModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechModule.m; sourceTree = "<group>"; };
+		6F4EE13A18B3B59100FABCF2 /* NavBar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NavBar.jpg; sourceTree = "<group>"; };
+		6F4EE13C18B3F09800FABCF2 /* EvaluateStudentSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateStudentSelectVC.h; sourceTree = "<group>"; };
+		6F4EE13D18B3F09800FABCF2 /* EvaluateStudentSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateStudentSelectVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,15 +210,13 @@
 				6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */,
 				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
 				6F4EE03118ABF69F00FABCF2 /* HomeVC.m */,
-				6F4EE03318ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.h */,
-				6F4EE03418ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m */,
-				6F4EE03618ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.h */,
-				6F4EE03718ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m */,
 				6F12E3611892FEE40030AE4C /* Images.xcassets */,
 				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
 				6F4EE13918B2968500FABCF2 /* Core Data Classes */,
 				6F4EE02F18ABEF3300FABCF2 /* Images */,
 				6F12E34A1892FEE40030AE4C /* Supporting Files */,
+				6F4EE13C18B3F09800FABCF2 /* EvaluateStudentSelectVC.h */,
+				6F4EE13D18B3F09800FABCF2 /* EvaluateStudentSelectVC.m */,
 			);
 			path = Critik;
 			sourceTree = "<group>";
@@ -268,7 +263,7 @@
 		6F4EE0E418B1721B00FABCF2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				6F4EE11618B186CE00FABCF2 /* NavBar.png */,
+				6F4EE13A18B3B59100FABCF2 /* NavBar.jpg */,
 				6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */,
 				6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */,
 				6F4EE0E718B1721B00FABCF2 /* NavButton.png */,
@@ -449,7 +444,7 @@
 				6F4EE10318B1721B00FABCF2 /* Icon-40@2x.png in Resources */,
 				6F4EE10918B1721B00FABCF2 /* Icon-76@2x.png in Resources */,
 				6F4EE10518B1721B00FABCF2 /* Icon-60@2x.png in Resources */,
-				6F4EE11718B186CE00FABCF2 /* NavBar.png in Resources */,
+				6F4EE13B18B3B59100FABCF2 /* NavBar.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,10 +465,10 @@
 			files = (
 				6F4EE11D18B2965300FABCF2 /* Speech.m in Sources */,
 				6F4EE12318B2965300FABCF2 /* StudentPreDefinedComments.m in Sources */,
-				6F4EE03518ABF78A00FABCF2 /* EditForms_ChooseSpeechVC.m in Sources */,
 				6F4EE12C18B2965300FABCF2 /* Module.m in Sources */,
 				6F4EE11A18B2965300FABCF2 /* Section.m in Sources */,
 				6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */,
+				6F4EE13E18B3F09800FABCF2 /* EvaluateStudentSelectVC.m in Sources */,
 				6F4EE12618B2965300FABCF2 /* StudentQuickGrade.m in Sources */,
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
 				6F4EE12918B2965300FABCF2 /* WrittenComments.m in Sources */,
@@ -484,7 +479,6 @@
 				6F4EE12018B2965300FABCF2 /* Student.m in Sources */,
 				6F4EE12F18B2965300FABCF2 /* PreDefinedComments.m in Sources */,
 				6F4EE13818B2965400FABCF2 /* SpeechModule.m in Sources */,
-				6F4EE03818ABF7A200FABCF2 /* Evaluate_ChooseSpeechVC.m in Sources */,
 				6F12E3501892FEE40030AE4C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
