@@ -59,6 +59,7 @@
 		6F4EE13818B2965400FABCF2 /* SpeechModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13718B2965400FABCF2 /* SpeechModule.m */; };
 		6F4EE13B18B3B59100FABCF2 /* NavBar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE13A18B3B59100FABCF2 /* NavBar.jpg */; };
 		6F4EE13E18B3F09800FABCF2 /* EvaluateStudentSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13D18B3F09800FABCF2 /* EvaluateStudentSelectVC.m */; };
+		6F4EE14018B450A100FABCF2 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE13F18B450A100FABCF2 /* Default-Landscape.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,7 @@
 		6F4EE13A18B3B59100FABCF2 /* NavBar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NavBar.jpg; sourceTree = "<group>"; };
 		6F4EE13C18B3F09800FABCF2 /* EvaluateStudentSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateStudentSelectVC.h; sourceTree = "<group>"; };
 		6F4EE13D18B3F09800FABCF2 /* EvaluateStudentSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateStudentSelectVC.m; sourceTree = "<group>"; };
+		6F4EE13F18B450A100FABCF2 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 		6F4EE0E818B1721B00FABCF2 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				6F4EE13F18B450A100FABCF2 /* Default-Landscape.png */,
 				6F4EE0E918B1721B00FABCF2 /* Default@2x-Landscape.png */,
 			);
 			path = Splash;
@@ -427,6 +430,7 @@
 				6F12E34E1892FEE40030AE4C /* InfoPlist.strings in Resources */,
 				6F4EE10F18B1721B00FABCF2 /* Icon@2x.png in Resources */,
 				6F4EE0FE18B1721B00FABCF2 /* NavButton-Selected.png in Resources */,
+				6F4EE14018B450A100FABCF2 /* Default-Landscape.png in Resources */,
 				6F12E3571892FEE40030AE4C /* Main.storyboard in Resources */,
 				6F4EE10418B1721B00FABCF2 /* Icon-60.png in Resources */,
 				6F4EE11018B1721B00FABCF2 /* iTunesArtwork.png in Resources */,
