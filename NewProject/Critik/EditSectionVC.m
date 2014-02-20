@@ -9,12 +9,13 @@
 #import "EditSectionVC.h"
 #import "AddSectionVC.h"
 
+
 @interface EditSectionVC ()
 
 @end
 
 @implementation EditSectionVC
-@synthesize sections;
+@synthesize sections, students, students1, students2, students3, managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,10 +30,79 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
+    // Core Data Stuff
+    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    sections = [[NSArray alloc]init];
+    sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    int size = [sections count];
+    NSLog(@"there are %d objects in the array", size);
     //Instantiate NSMutableArray
-    sections = [[NSMutableArray alloc]initWithObjects:@"Section 1",@"Section 2", @"Section 3", nil];
+//    sections = [[NSMutableArray alloc]initWithObjects:@"Section 1",@"Section 2", @"Section 3", nil];
+    students = [[NSMutableArray alloc]init];
+    students1 = [[NSMutableArray alloc]initWithObjects:@"Student 1",@"Student 1", @"Student 1", nil];
+    students2 = [[NSMutableArray alloc]initWithObjects:@"Student 2",@"Student 2", @"Student 2", nil];
+    students3 = [[NSMutableArray alloc]initWithObjects:@"Student 3",@"Student 3", @"Student 3", nil];
+    if ([sections count] == 0) {
+        self.sectionLabel.text = @"Add a section";
+    }
+    
+    UIView *pickerView = (UIPickerView*)[self.view viewWithTag:1000];
+    
+        
+        
+}
+
+-(void) viewDidAppear:(BOOL)animated{
     
     
+    
+    [self.studentTableView reloadData];
+}
+
+#pragma mark - Picker View data source
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    
+    return [sections count];
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    
+    Section * section = [sections objectAtIndex:row];
+    return section.sectionName;
+    
+}
+
+#pragma mark - Picker View delegate methods
+
+-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if(row == 0 )
+    {
+        self.students = students1;
+    }
+    else if (row == 1)
+    {
+        students = students2;
+    }
+    else
+    {
+        students = students3;
+    }
+    [self.studentTableView reloadData];
+    NSLog(@"Row : %d  Component : %d", row, component);
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,7 +123,7 @@
 {
     // Return the number of rows in the section.
     
-    return [sections count];
+    return [students count];
     
 }
 
@@ -61,42 +131,100 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    //[sectionTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [self.studentTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = [sections objectAtIndex:indexPath.row];
+    if([students count] != 0){
+        cell.backgroundColor = [UIColor colorWithRed:35.0/255.0 green:100.0/255.0 blue:30.0/255.0 alpha:1.0];
+        cell.textLabel.textColor = [UIColor whiteColor];
+    }
+    else{
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+    }
+    cell.textLabel.text = [self.students objectAtIndex:indexPath.row];
     
     return cell;
 }
 
-// called after 'Save' is tapped on the AddSectionVC
-- (IBAction)unwindToTableViewController:(UIStoryboardSegue *)sender
-{
-    AddSectionVC *addSectionVC = (AddSectionVC *)sender.sourceViewController;
-    NSString *sectionName = addSectionVC.sectionTextField.text;
-    
-    // If NOT blank adn NOT whitespace
-    if(![sectionName length] == 0 && ![[sectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
-        
-        // Add it to the top of the data source
-        [sections insertObject:sectionName atIndex:0];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        
-        //Insert it into the tableview
-        [self.sectionTableView beginUpdates];
-        [self.sectionTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.sectionTableView endUpdates];
-    }
-}
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    stuName = [studentsArray objectAtIndex:indexPath.row];
-    //    stuID = [studentIDArray objectAtIndex:indexPath.row];
-    //    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    // Return the number of sections.
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    // Return the number of rows in the section.
+//    
+//    return [sections count];
+//    
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *CellIdentifier = @"Cell";
+//    
+//    //[sectionTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    
+//    cell.textLabel.text = [sections objectAtIndex:indexPath.row];
+//    
+//    return cell;
+//}
+
+// called after 'Save' is tapped on the AddSectionVC
+- (IBAction)unwindToEditSection:(UIStoryboardSegue *)sender
+{
+    AddSectionVC *addSectionVC = (AddSectionVC *)sender.sourceViewController;
+    NSString *sectionName = addSectionVC.sectionTextField.text;
+    
+    // If NOT blank and NOT whitespace
+    if(![sectionName length] == 0 && ![[sectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
+        
+        // Add it to the top of the data source
+//        [sections insertObject:sectionName atIndex:0];
+//        [sections sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+//        
+        // Add Section to Core Data
+        Section *newSection = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
+        newSection.sectionName = sectionName;
+        NSError *error;
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        [self.sectionPicker reloadAllComponents];
+        
+    }
+}
+//#pragma mark - Table view delegate
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    //    stuName = [studentsArray objectAtIndex:indexPath.row];
+//    //    stuID = [studentIDArray objectAtIndex:indexPath.row];
+//    //    [self dismissViewControllerAnimated:YES completion:nil];
+//    
+//}
+
+- (IBAction)showStudentsPressed:(id)sender {
+    
+    NSLog(@"hurray!! the button was pressed!");
+}
 @end

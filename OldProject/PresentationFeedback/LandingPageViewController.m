@@ -69,24 +69,7 @@
 	// Do any additional setup after loading the view.
 }
 
--(void) viewDidAppear:(BOOL)animated{
-    
-    if(!isBack){
-        editLabel.text = @"";
-        speechTypeLabel.text = @"";
-    }
-    else{
-        editLabel.text = modeType;
-        speechTypeLabel.text = speechType;
-    }
-    
-    [self getCompletedStudentList];
-    NSLog(@"Landingpage viewDidAppear");
-    
-    isBackFromLast = NO;
-    
-    [studentTableView reloadData];
-}
+
 
 - (void)didReceiveMemoryWarning
 {

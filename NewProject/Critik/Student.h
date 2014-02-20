@@ -2,7 +2,7 @@
 //  Student.h
 //  Critik
 //
-//  Created by Dalton Decker on 2/17/14.
+//  Created by Doug Wettlaufer on 2/19/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -16,6 +16,6 @@
 @property (nonatomic, retain) NSString * firstName;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * studentID;
-@property (nonatomic, retain) Section *sectionID;
+@property (nonatomic, retain) Section *section;
 
 @end

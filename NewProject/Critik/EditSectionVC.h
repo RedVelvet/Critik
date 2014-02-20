@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Section.h"
+#import "AppDelegate.h"
 
 @interface EditSectionVC : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITableView *sectionTableView;
-@property (strong, nonatomic) NSMutableArray *sections;
+@property (strong, nonatomic) NSArray *sections;
+@property (strong, nonatomic) NSMutableArray *students;
+@property (strong, nonatomic) NSMutableArray *students1;
+@property (strong, nonatomic) NSMutableArray *students2;
+@property (strong, nonatomic) NSMutableArray *students3;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) IBOutlet UILabel *sectionLabel;
+@property (weak, nonatomic) IBOutlet UIPickerView *sectionPicker;
+@property (weak, nonatomic) IBOutlet UITableView *studentTableView;
+- (IBAction)showStudentsPressed:(id)sender;
 
 @end

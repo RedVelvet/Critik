@@ -3,6 +3,7 @@
     <entity name="Module" representedClassName="Module" syncable="YES">
         <attribute name="moduleID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="moduleName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" syncable="YES"/>
     </entity>
     <entity name="PreDefinedComments" representedClassName="PreDefinedComments" syncable="YES">
         <attribute name="preDefComments" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,6 +19,7 @@
     <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="sectionID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="sectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Student" inverseName="section" inverseEntity="Student" syncable="YES"/>
     </entity>
     <entity name="Speech" representedClassName="Speech" syncable="YES">
         <attribute name="speechID" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,7 +34,7 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="studentID" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="sectionID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" syncable="YES"/>
+        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="students" inverseEntity="Section" syncable="YES"/>
     </entity>
     <entity name="StudentPreDefinedComments" representedClassName="StudentPreDefinedComments" syncable="YES">
         <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -60,16 +62,16 @@
         <relationship name="studentID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Module" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PreDefinedComments" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="QuickGrade" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Section" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Speech" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="SpeechModule" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Student" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="StudentPreDefinedComments" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="StudentQuickGrade" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="StudentSpeech" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="WrittenComments" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Module" positionX="0" positionY="0" width="128" height="88"/>
+        <element name="PreDefinedComments" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="QuickGrade" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Section" positionX="-335" positionY="-207" width="128" height="88"/>
+        <element name="Speech" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="SpeechModule" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Student" positionX="-81" positionY="-297" width="128" height="103"/>
+        <element name="StudentPreDefinedComments" positionX="198" positionY="-297" width="128" height="120"/>
+        <element name="StudentQuickGrade" positionX="223" positionY="57" width="128" height="105"/>
+        <element name="StudentSpeech" positionX="-299" positionY="72" width="128" height="105"/>
+        <element name="WrittenComments" positionX="205" positionY="-126" width="128" height="105"/>
     </elements>
 </model>
