@@ -8,7 +8,7 @@
 
 #import "EditSectionVC.h"
 #import "AddSectionVC.h"
-
+#import "AddStudentVC.h"
 
 @interface EditSectionVC ()
 
@@ -45,13 +45,17 @@
     int size = [sections count];
     NSLog(@"there are %d objects in the array", size);
     //Instantiate NSMutableArray
-//    sections = [[NSMutableArray alloc]initWithObjects:@"Section 1",@"Section 2", @"Section 3", nil];
+
     students = [[NSMutableArray alloc]init];
     students1 = [[NSMutableArray alloc]initWithObjects:@"Student 1",@"Student 1", @"Student 1", nil];
     students2 = [[NSMutableArray alloc]initWithObjects:@"Student 2",@"Student 2", @"Student 2", nil];
     students3 = [[NSMutableArray alloc]initWithObjects:@"Student 3",@"Student 3", @"Student 3", nil];
     if ([sections count] == 0) {
         self.sectionLabel.text = @"Add a section";
+    }
+    else
+    {
+//        sections = [sections sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     }
     
     UIView *pickerView = (UIPickerView*)[self.view viewWithTag:1000];
@@ -148,6 +152,46 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Get the managedObjectContext from the AppDelegate (for use in CoreData Applications)
+    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = appdelegate.managedObjectContext;
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        // Delete the row from the data source
+//        
+//        YourObject *object = [self.dataSourceArray objectAtIndex:indexPath.row];
+//        [self.dataSourceArray removeObjectAtIndex:indexPath.row];
+//        // You might want to delete the object from your Data Store if you’re using CoreData
+//        [context deleteObject:pairToDelete];
+//        NSError *error;
+//        [context save:&error];
+//        // Animate the deletion
+//        [tableView deleteRowsAtIndexPaths:[NSArrayarrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        
+//        // Additional code to configure the Edit Button, if any
+//        if (self.dataSourceArray.count == 0) {
+//            self.editButton.enabled = NO;
+//            self.editButton.titleLabel.text = @”Edit”;
+//        }
+//    }
+//    elseif (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        YourObject *newObject = [NSEntityDescription insertNewObjectForEntityForName:@"Header" inManagedObjectContext:context];
+//        newObject.value = @”value”;
+//        [context save:&error];
+//        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]withRowAnimation:UITableViewRowAnimationFade];
+//        if (self.dataSourceArray.count > 0) {
+//            self.editButton.enabled = YES;
+//        }
+//    }
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -156,32 +200,6 @@
     
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    // Return the number of sections.
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    // Return the number of rows in the section.
-//    
-//    return [sections count];
-//    
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *CellIdentifier = @"Cell";
-//    
-//    //[sectionTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    
-//    cell.textLabel.text = [sections objectAtIndex:indexPath.row];
-//    
-//    return cell;
-//}
 
 // called after 'Save' is tapped on the AddSectionVC
 - (IBAction)unwindToEditSection:(UIStoryboardSegue *)sender
@@ -191,11 +209,7 @@
     
     // If NOT blank and NOT whitespace
     if(![sectionName length] == 0 && ![[sectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
-        
-        // Add it to the top of the data source
-//        [sections insertObject:sectionName atIndex:0];
-//        [sections sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-//        
+
         // Add Section to Core Data
         Section *newSection = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
         newSection.sectionName = sectionName;
@@ -208,10 +222,37 @@
         [fetchRequest setEntity:entity];
         
         sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        
+        sections = [sections sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
         [self.sectionPicker reloadAllComponents];
         
     }
+}
+- (IBAction)unwindToTableView:(UIStoryboardSegue *)sender
+{
+    AddStudentVC *addStudentVC = (AddStudentVC *)sender.sourceViewController;
+    NSString *firstName = addStudentVC.studentFirstNameTF.text;
+    NSString *lastName = addStudentVC.studentLastNameTF.text;
+    NSString *sNum = addStudentVC.sNumTF.text;
+//
+//    // If NOT blank and NOT whitespace
+//    if(![sectionName length] == 0 && ![[sectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
+//        
+//        // Add Section to Core Data
+//        Section *newSection = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
+//        newSection.sectionName = sectionName;
+//        NSError *error;
+//        if (![managedObjectContext save:&error]) {
+//            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//        }
+//        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+//        [fetchRequest setEntity:entity];
+//        
+//        sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+//        sections = [sections sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+//        [self.sectionPicker reloadAllComponents];
+//        
+//    }
 }
 //#pragma mark - Table view delegate
 //

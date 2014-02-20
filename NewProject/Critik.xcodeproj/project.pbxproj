@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */; };
+		1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1B8118B5C1820015026A /* AddStudentVC.m */; };
 		1F859AD818B5B0B80092F8E5 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F859AD718B5B0B80092F8E5 /* Section.m */; };
 		1F859ADB18B5B0B80092F8E5 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F859ADA18B5B0B80092F8E5 /* Student.m */; };
 		1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A516118B46616009A1253 /* AddSectionVC.m */; };
@@ -75,6 +76,8 @@
 /* Begin PBXFileReference section */
 		1F203F9E18B3F0F9007C9F7E /* EditSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSectionVC.h; sourceTree = "<group>"; };
 		1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSectionVC.m; sourceTree = "<group>"; };
+		1F4F1B8018B5C1820015026A /* AddStudentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStudentVC.h; sourceTree = "<group>"; };
+		1F4F1B8118B5C1820015026A /* AddStudentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStudentVC.m; sourceTree = "<group>"; };
 		1F859AD618B5B0B80092F8E5 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Section.h; path = Critik/Section.h; sourceTree = "<group>"; };
 		1F859AD718B5B0B80092F8E5 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Section.m; path = Critik/Section.m; sourceTree = "<group>"; };
 		1F859AD918B5B0B80092F8E5 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Student.h; path = Critik/Student.h; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				6F12E3521892FEE40030AE4C /* AppDelegate.h */,
 				6F12E3531892FEE40030AE4C /* AppDelegate.m */,
 				6F12E3551892FEE40030AE4C /* Main.storyboard */,
+				1F4F1B8018B5C1820015026A /* AddStudentVC.h */,
+				1F4F1B8118B5C1820015026A /* AddStudentVC.m */,
 				1F203F9E18B3F0F9007C9F7E /* EditSectionVC.h */,
 				1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */,
 				1F9A516018B46616009A1253 /* AddSectionVC.h */,
@@ -481,6 +486,7 @@
 				1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */,
 				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
 				6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */,
+				1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */,
 				6F4EE12F18B2965300FABCF2 /* PreDefinedComments.m in Sources */,
 				6F4EE13818B2965400FABCF2 /* SpeechModule.m in Sources */,
 				6F12E3501892FEE40030AE4C /* main.m in Sources */,
