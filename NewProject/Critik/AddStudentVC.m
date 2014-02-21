@@ -36,6 +36,5 @@
 }
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    self.view.superview.bounds = CGRectMake(0, 0, 450, 400);
 }
 @end

@@ -93,6 +93,8 @@
 
 -(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    // Section *temp = [self.sections objectAtIndex: row]
+    //NSArray *students = temp.sections
     if(row == 0 )
     {
         self.students = students1;
@@ -222,7 +224,7 @@
         [fetchRequest setEntity:entity];
         
         sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        sections = [sections sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+//        sections = [sections sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
         [self.sectionPicker reloadAllComponents];
         
     }

@@ -2049,7 +2049,7 @@
         <!--Add StudentVC-->
         <scene sceneID="CqO-f9-7vA">
             <objects>
-                <viewController modalPresentationStyle="formSheet" id="yvP-zq-fz7" customClass="AddStudentVC" sceneMemberID="viewController">
+                <viewController id="yvP-zq-fz7" customClass="AddStudentVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rjs-Hl-vTo"/>
                         <viewControllerLayoutGuide type="bottom" id="1fs-hg-RHo"/>
@@ -2127,6 +2127,7 @@
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="sNumTF" destination="FyG-VL-WvC" id="qKt-bt-p9P"/>
                         <outlet property="studentFirstNameTF" destination="aLD-ch-nlM" id="uFi-5O-ZGk"/>
