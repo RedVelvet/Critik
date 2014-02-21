@@ -1,18 +1,18 @@
 //
-//  Evaluate_ChooseSpeechVC.m
+//  AddStudentVC.m
 //  Critik
 //
-//  Created by Dalton Decker on 2/12/14.
+//  Created by Doug Wettlaufer on 2/19/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
-#import "Evaluate_ChooseSpeechVC.h"
+#import "AddStudentVC.h"
 
-@interface Evaluate_ChooseSpeechVC ()
+@interface AddStudentVC ()
 
 @end
 
-@implementation Evaluate_ChooseSpeechVC
+@implementation AddStudentVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,5 +34,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+}
 @end
