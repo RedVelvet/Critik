@@ -93,8 +93,9 @@
 
 -(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    // Section *temp = [self.sections objectAtIndex: row]
-    //NSArray *students = temp.sections
+    Section *temp = [self.sections objectAtIndex: row];
+    NSSet *students = temp.students;
+    
     if(row == 0 )
     {
         self.students = students1;

@@ -61,6 +61,7 @@
 		6F4EE13218B2965300FABCF2 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13118B2965300FABCF2 /* StudentSpeech.m */; };
 		6F4EE13518B2965300FABCF2 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13418B2965300FABCF2 /* QuickGrade.m */; };
 		6F4EE13818B2965400FABCF2 /* SpeechModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13718B2965400FABCF2 /* SpeechModule.m */; };
+		6FC20C5718B6FA3100874174 /* InformativeSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,8 @@
 		6F4EE13418B2965300FABCF2 /* QuickGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickGrade.m; sourceTree = "<group>"; };
 		6F4EE13618B2965400FABCF2 /* SpeechModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechModule.h; sourceTree = "<group>"; };
 		6F4EE13718B2965400FABCF2 /* SpeechModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechModule.m; sourceTree = "<group>"; };
+		6FC20C5518B6FA3100874174 /* InformativeSectionSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformativeSectionSelectVC.h; sourceTree = "<group>"; };
+		6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformativeSectionSelectVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,8 @@
 				6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */,
 				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
 				6F4EE03118ABF69F00FABCF2 /* HomeVC.m */,
+				6FC20C5518B6FA3100874174 /* InformativeSectionSelectVC.h */,
+				6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */,
 				6F12E3611892FEE40030AE4C /* Images.xcassets */,
 				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
 				6F4EE13918B2968500FABCF2 /* Core Data Classes */,
@@ -482,6 +487,7 @@
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
 				6F4EE12918B2965300FABCF2 /* WrittenComments.m in Sources */,
 				6F4EE13218B2965300FABCF2 /* StudentSpeech.m in Sources */,
+				6FC20C5718B6FA3100874174 /* InformativeSectionSelectVC.m in Sources */,
 				6F4EE13518B2965300FABCF2 /* QuickGrade.m in Sources */,
 				1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */,
 				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
