@@ -61,6 +61,9 @@
 		6F4EE13218B2965300FABCF2 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13118B2965300FABCF2 /* StudentSpeech.m */; };
 		6F4EE13518B2965300FABCF2 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13418B2965300FABCF2 /* QuickGrade.m */; };
 		6F4EE13818B2965400FABCF2 /* SpeechModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13718B2965400FABCF2 /* SpeechModule.m */; };
+		6FAD860918B83632001C8F54 /* PopOverNavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD860818B83632001C8F54 /* PopOverNavBar.png */; };
+		6FAD860C18B83A43001C8F54 /* PersuasiveSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD860B18B83A43001C8F54 /* PersuasiveSectionSelectVC.m */; };
+		6FAD860F18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD860E18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m */; };
 		6FC20C5718B6FA3100874174 /* InformativeSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +151,11 @@
 		6F4EE13418B2965300FABCF2 /* QuickGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickGrade.m; sourceTree = "<group>"; };
 		6F4EE13618B2965400FABCF2 /* SpeechModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechModule.h; sourceTree = "<group>"; };
 		6F4EE13718B2965400FABCF2 /* SpeechModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechModule.m; sourceTree = "<group>"; };
+		6FAD860818B83632001C8F54 /* PopOverNavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PopOverNavBar.png; sourceTree = "<group>"; };
+		6FAD860A18B83A43001C8F54 /* PersuasiveSectionSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersuasiveSectionSelectVC.h; sourceTree = "<group>"; };
+		6FAD860B18B83A43001C8F54 /* PersuasiveSectionSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersuasiveSectionSelectVC.m; sourceTree = "<group>"; };
+		6FAD860D18B83BF5001C8F54 /* InterpersonalSectionSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterpersonalSectionSelectVC.h; sourceTree = "<group>"; };
+		6FAD860E18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterpersonalSectionSelectVC.m; sourceTree = "<group>"; };
 		6FC20C5518B6FA3100874174 /* InformativeSectionSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformativeSectionSelectVC.h; sourceTree = "<group>"; };
 		6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformativeSectionSelectVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,8 +233,7 @@
 				6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */,
 				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
 				6F4EE03118ABF69F00FABCF2 /* HomeVC.m */,
-				6FC20C5518B6FA3100874174 /* InformativeSectionSelectVC.h */,
-				6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */,
+				6FAD861018B83C00001C8F54 /* Evaluate View Controllers */,
 				6F12E3611892FEE40030AE4C /* Images.xcassets */,
 				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
 				6F4EE13918B2968500FABCF2 /* Core Data Classes */,
@@ -278,6 +285,7 @@
 		6F4EE0E418B1721B00FABCF2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6FAD860818B83632001C8F54 /* PopOverNavBar.png */,
 				6F4EE11618B186CE00FABCF2 /* NavBar.png */,
 				6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */,
 				6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */,
@@ -354,6 +362,19 @@
 			);
 			name = "Core Data Classes";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		6FAD861018B83C00001C8F54 /* Evaluate View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6FC20C5518B6FA3100874174 /* InformativeSectionSelectVC.h */,
+				6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */,
+				6FAD860A18B83A43001C8F54 /* PersuasiveSectionSelectVC.h */,
+				6FAD860B18B83A43001C8F54 /* PersuasiveSectionSelectVC.m */,
+				6FAD860D18B83BF5001C8F54 /* InterpersonalSectionSelectVC.h */,
+				6FAD860E18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m */,
+			);
+			name = "Evaluate View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,6 +475,7 @@
 				6F4EE10A18B1721B00FABCF2 /* Icon-Small-50.png in Resources */,
 				6F4EE10618B1721B00FABCF2 /* Icon-72.png in Resources */,
 				6F4EE11118B1721B00FABCF2 /* iTunesArtwork@2x.png in Resources */,
+				6FAD860918B83632001C8F54 /* PopOverNavBar.png in Resources */,
 				6F4EE11318B1791300FABCF2 /* Home@2x-Landscape.png in Resources */,
 				6F4EE10218B1721B00FABCF2 /* Icon-40.png in Resources */,
 				6F4EE10318B1721B00FABCF2 /* Icon-40@2x.png in Resources */,
@@ -479,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F4EE11D18B2965300FABCF2 /* Speech.m in Sources */,
+				6FAD860C18B83A43001C8F54 /* PersuasiveSectionSelectVC.m in Sources */,
 				1F859AD818B5B0B80092F8E5 /* Section.m in Sources */,
 				6F4EE12318B2965300FABCF2 /* StudentPreDefinedComments.m in Sources */,
 				6F4EE12C18B2965300FABCF2 /* Module.m in Sources */,
@@ -486,6 +509,7 @@
 				6F4EE12618B2965300FABCF2 /* StudentQuickGrade.m in Sources */,
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
 				6F4EE12918B2965300FABCF2 /* WrittenComments.m in Sources */,
+				6FAD860F18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m in Sources */,
 				6F4EE13218B2965300FABCF2 /* StudentSpeech.m in Sources */,
 				6FC20C5718B6FA3100874174 /* InformativeSectionSelectVC.m in Sources */,
 				6F4EE13518B2965300FABCF2 /* QuickGrade.m in Sources */,

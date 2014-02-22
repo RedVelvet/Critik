@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad
 {
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"PopOverNavBar.png"] forBarMetrics:UIBarMetricsDefault];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

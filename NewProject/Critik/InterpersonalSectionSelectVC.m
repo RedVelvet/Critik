@@ -1,20 +1,20 @@
 //
-//  InformativeSectionSelectVC.m
+//  InterpersonalSectionSelectVC.m
 //  Critik
 //
-//  Created by Dalton Decker on 2/19/14.
+//  Created by Dalton Decker on 2/21/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
-#import "InformativeSectionSelectVC.h"
+#import "InterpersonalSectionSelectVC.h"
 
-@interface InformativeSectionSelectVC ()
+@interface InterpersonalSectionSelectVC()
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
 
-@implementation InformativeSectionSelectVC
+@implementation InterpersonalSectionSelectVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -87,9 +87,9 @@
     Section * temp = [self.sections objectAtIndex:row];
     NSSet * set = temp.students;
     self.students = [NSArray arrayWithArray:[set allObjects]];
-//    Student * student = [[Student alloc]init];
-//    student.firstName = @"Dalton";
-//    self.students = [NSArray arrayWithObject:student];
+    //    Student * student = [[Student alloc]init];
+    //    student.firstName = @"Dalton";
+    //    self.students = [NSArray arrayWithObject:student];
     [self.StudentTable reloadData];
 }
 
@@ -124,9 +124,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     [self performSegueWithIdentifier:@"Evaluate - Informative" sender:[self.StudentTable cellForRowAtIndexPath:indexPath]];
     
 }
 
 @end
+
