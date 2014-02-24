@@ -15,7 +15,7 @@
 @end
 
 @implementation EditSectionVC
-@synthesize sections, students, students1, students2, students3, managedObjectContext;
+@synthesize sections, students, managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,21 +46,21 @@
     NSLog(@"there are %d objects in the array", size);
     //Instantiate NSMutableArray
 
-    students = [[NSMutableArray alloc]init];
-    students1 = [[NSMutableArray alloc]initWithObjects:@"Student 1",@"Student 1", @"Student 1", nil];
-    students2 = [[NSMutableArray alloc]initWithObjects:@"Student 2",@"Student 2", @"Student 2", nil];
-    students3 = [[NSMutableArray alloc]initWithObjects:@"Student 3",@"Student 3", @"Student 3", nil];
+    students = [[NSArray alloc]init];
+    
     if ([sections count] == 0) {
         self.sectionLabel.text = @"Add a section";
     }
     else
     {
-//        sections = [sections sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
+        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+        sections = [sections sortedArrayUsingDescriptors:descriptors];
     }
     
     UIView *pickerView = (UIPickerView*)[self.view viewWithTag:1000];
     
-        
+    
         
 }
 
@@ -85,6 +85,7 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
     Section * section = [sections objectAtIndex:row];
+    self.currSection = section;
     return section.sectionName;
     
 }
@@ -94,19 +95,8 @@
 -(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     // Section *temp = [self.sections objectAtIndex: row]
-    //NSArray *students = temp.sections
-    if(row == 0 )
-    {
-        self.students = students1;
-    }
-    else if (row == 1)
-    {
-        students = students2;
-    }
-    else
-    {
-        students = students3;
-    }
+    students = [self.currSection.students allObjects];
+    
     [self.studentTableView reloadData];
     NSLog(@"Row : %d  Component : %d", row, component);
 }
@@ -202,6 +192,7 @@
     
 }
 
+#pragma mark - Unwind
 
 // called after 'Save' is tapped on the AddSectionVC
 - (IBAction)unwindToEditSection:(UIStoryboardSegue *)sender
@@ -224,37 +215,45 @@
         [fetchRequest setEntity:entity];
         
         sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-//        sections = [sections sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
+        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+        sections = [sections sortedArrayUsingDescriptors:descriptors];
         [self.sectionPicker reloadAllComponents];
         
     }
 }
+
+
+
 - (IBAction)unwindToTableView:(UIStoryboardSegue *)sender
 {
     AddStudentVC *addStudentVC = (AddStudentVC *)sender.sourceViewController;
     NSString *firstName = addStudentVC.studentFirstNameTF.text;
     NSString *lastName = addStudentVC.studentLastNameTF.text;
     NSString *sNum = addStudentVC.sNumTF.text;
-//
-//    // If NOT blank and NOT whitespace
-//    if(![sectionName length] == 0 && ![[sectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
-//        
-//        // Add Section to Core Data
-//        Section *newSection = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
-//        newSection.sectionName = sectionName;
-//        NSError *error;
-//        if (![managedObjectContext save:&error]) {
-//            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-//        }
-//        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
-//        [fetchRequest setEntity:entity];
-//        
-//        sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-//        sections = [sections sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-//        [self.sectionPicker reloadAllComponents];
-//        
-//    }
+    NSLog(@"--- Unwind to Tableview");
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+
+    // If NOT blank and NOT whitespace
+    if(![firstName length] == 0 && ![[firstName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
+       && ![lastName length] == 0 && ![[lastName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
+       && ![sNum length] == 0 && ![[sNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
+        
+        // Add Student to Core Data
+        Student *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:managedObjectContext];
+        newStudent.firstName = firstName;
+        newStudent.lastName = lastName;
+        newStudent.studentID = sNum;
+        NSError *error;
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:managedObjectContext];
+        [fetchRequest setEntity:entity];
+        [self.currSection addStudentsObject:newStudent];
+        
+    }
 }
 //#pragma mark - Table view delegate
 //
@@ -269,5 +268,6 @@
 - (IBAction)showStudentsPressed:(id)sender {
     
     NSLog(@"hurray!! the button was pressed!");
+    NSLog(@"%@",self.currSection.sectionName);
 }
 @end
