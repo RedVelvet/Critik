@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad
 {
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"PopOverNavBar.png"] forBarMetrics:UIBarMetricsDefault];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -34,7 +35,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-}
+//- (void)viewWillLayoutSubviews{
+//    [super viewWillLayoutSubviews];
+//}
 @end
