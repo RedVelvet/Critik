@@ -87,9 +87,7 @@
     Section * temp = [self.sections objectAtIndex:row];
     NSSet * set = temp.students;
     self.students = [NSArray arrayWithArray:[set allObjects]];
-//    Student * student = [[Student alloc]init];
-//    student.firstName = @"Dalton";
-//    self.students = [NSArray arrayWithObject:student];
+    
     [self.StudentTable reloadData];
 }
 
