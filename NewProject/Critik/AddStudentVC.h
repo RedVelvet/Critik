@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *studentFirstNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *studentLastNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *sNumTF;
+@property (weak, nonatomic) IBOutlet UIButton *uploadRoster;
 
 @end
