@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
-
+#import <DropboxSDK/DropboxSDK.h>
+#define APP_KEY     @"mztj0bxcu9ql5kv"
+#define APP_SECRET  @"fzcocobu80y1zux"
 
 @implementation AppDelegate
 
@@ -27,10 +28,30 @@
 //    UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
 //    MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
 //    controller.managedObjectContext = self.managedObjectContext;
+   
     
-
+    // Initialize Dropbox session
+    DBSession* dbSession = [[DBSession alloc]
+                            initWithAppKey:APP_KEY
+                            appSecret:APP_SECRET
+                            root:kDBRootDropbox];
+    [DBSession setSharedSession:dbSession];
+    
     sleep(2);//Allows for splash screen to appear longer
     return YES;
+}
+
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    if ([[DBSession sharedSession] handleOpenURL:url]) {
+        if ([[DBSession sharedSession] isLinked]) {
+            NSLog(@"App linked successfully!");
+            // At this point you can start making API calls
+        }
+        return YES;
+    }
+    // Add whatever other url handling code your app requires here
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -141,6 +162,7 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
+        [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }    

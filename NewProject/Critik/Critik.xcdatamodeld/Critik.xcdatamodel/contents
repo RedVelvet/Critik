@@ -1,75 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Module" syncable="YES">
+    <entity name="Module" representedClassName="Module" syncable="YES">
         <attribute name="moduleID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="moduleName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" syncable="YES"/>
     </entity>
-    <entity name="PreDefinedComments" syncable="YES">
+    <entity name="PreDefinedComments" representedClassName="PreDefinedComments" syncable="YES">
         <attribute name="preDefComments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="preDefID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="moduleID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" syncable="YES"/>
     </entity>
-    <entity name="QuickGrade" syncable="YES">
+    <entity name="QuickGrade" representedClassName="QuickGrade" syncable="YES">
         <attribute name="isActive" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="quickGradeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quickGradeID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="moduleID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" syncable="YES"/>
     </entity>
-    <entity name="Section" syncable="YES">
+    <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="sectionID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="sectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="students" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Student" inverseName="section" inverseEntity="Student" syncable="YES"/>
     </entity>
-    <entity name="Speech" syncable="YES">
+    <entity name="Speech" representedClassName="Speech" syncable="YES">
         <attribute name="speechID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="speechType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="SpeechModule" syncable="YES">
+    <entity name="SpeechModule" representedClassName="SpeechModule" syncable="YES">
         <attribute name="modulePoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="moduleID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" syncable="YES"/>
         <relationship name="speechID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Speech" syncable="YES"/>
     </entity>
-    <entity name="Student" syncable="YES">
+    <entity name="Student" representedClassName="Student" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="studentID" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="sectionID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" syncable="YES"/>
+        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="students" inverseEntity="Section" syncable="YES"/>
     </entity>
-    <entity name="StudentPreDefinedComments" syncable="YES">
+    <entity name="StudentPreDefinedComments" representedClassName="StudentPreDefinedComments" syncable="YES">
         <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="moduleID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" syncable="YES"/>
         <relationship name="preDefID" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PreDefinedComments" syncable="YES"/>
         <relationship name="speechID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Speech" syncable="YES"/>
         <relationship name="studentID" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" syncable="YES"/>
     </entity>
-    <entity name="StudentQuickGrade" syncable="YES">
+    <entity name="StudentQuickGrade" representedClassName="StudentQuickGrade" syncable="YES">
         <attribute name="quickGradeValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="moduleID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" syncable="YES"/>
         <relationship name="speechID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Speech" syncable="YES"/>
         <relationship name="studentID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" syncable="YES"/>
     </entity>
-    <entity name="StudentSpeech" syncable="YES">
+    <entity name="StudentSpeech" representedClassName="StudentSpeech" syncable="YES">
         <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="totalPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="speechID" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Speech" syncable="YES"/>
         <relationship name="studentID" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" syncable="YES"/>
     </entity>
-    <entity name="WrittenComments" syncable="YES">
+    <entity name="WrittenComments" representedClassName="WrittenComments" syncable="YES">
         <attribute name="writtenComments" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="moduleID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" syncable="YES"/>
         <relationship name="speechID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Speech" syncable="YES"/>
         <relationship name="studentID" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Student" positionX="160" positionY="192" width="128" height="103"/>
-        <element name="Section" positionX="396" positionY="296" width="128" height="73"/>
-        <element name="Module" positionX="621" positionY="-10" width="128" height="73"/>
-        <element name="Speech" positionX="954" positionY="45" width="128" height="73"/>
-        <element name="WrittenComments" positionX="547" positionY="189" width="128" height="103"/>
-        <element name="PreDefinedComments" positionX="603" positionY="-286" width="198" height="88"/>
-        <element name="QuickGrade" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="StudentQuickGrade" positionX="432" positionY="45" width="128" height="105"/>
-        <element name="StudentSpeech" positionX="468" positionY="-112" width="128" height="103"/>
-        <element name="StudentPreDefinedComments" positionX="198" positionY="-226" width="234" height="118"/>
-        <element name="SpeechModule" positionX="873" positionY="-108" width="128" height="88"/>
+        <element name="Module" positionX="0" positionY="0" width="128" height="88"/>
+        <element name="PreDefinedComments" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="QuickGrade" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Section" positionX="-335" positionY="-207" width="128" height="88"/>
+        <element name="Speech" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="SpeechModule" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Student" positionX="-81" positionY="-297" width="128" height="103"/>
+        <element name="StudentPreDefinedComments" positionX="198" positionY="-297" width="128" height="120"/>
+        <element name="StudentQuickGrade" positionX="223" positionY="57" width="128" height="105"/>
+        <element name="StudentSpeech" positionX="-299" positionY="72" width="128" height="105"/>
+        <element name="WrittenComments" positionX="205" positionY="-126" width="128" height="105"/>
     </elements>
 </model>
