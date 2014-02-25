@@ -12,6 +12,7 @@
 		1F859AD818B5B0B80092F8E5 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F859AD718B5B0B80092F8E5 /* Section.m */; };
 		1F859ADB18B5B0B80092F8E5 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F859ADA18B5B0B80092F8E5 /* Student.m */; };
 		1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A516118B46616009A1253 /* AddSectionVC.m */; };
+		1FC38DBA18BC29F600C9610F /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FC38DB918BC29F600C9610F /* DropboxSDK.framework */; };
 		6F12E3421892FEE40030AE4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3411892FEE40030AE4C /* Foundation.framework */; };
 		6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3431892FEE40030AE4C /* CoreGraphics.framework */; };
 		6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3451892FEE40030AE4C /* UIKit.framework */; };
@@ -88,6 +89,8 @@
 		1F859ADA18B5B0B80092F8E5 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = Critik/Student.m; sourceTree = "<group>"; };
 		1F9A516018B46616009A1253 /* AddSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSectionVC.h; sourceTree = "<group>"; };
 		1F9A516118B46616009A1253 /* AddSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSectionVC.m; sourceTree = "<group>"; };
+		1FC38DB918BC29F600C9610F /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		1FC38DBB18BC35DD00C9610F /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dropbox.framework; path = "../../../../../../../../Downloads/dropbox-ios-sync-sdk-2.1.0/Dropbox.framework"; sourceTree = "<group>"; };
 		6F12E33E1892FEE40030AE4C /* Critik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Critik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F12E3411892FEE40030AE4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F12E3431892FEE40030AE4C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -165,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FC38DBA18BC29F600C9610F /* DropboxSDK.framework in Frameworks */,
 				6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */,
 				6F12E3481892FEE40030AE4C /* CoreData.framework in Frameworks */,
 				6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */,
@@ -208,6 +212,8 @@
 		6F12E3401892FEE40030AE4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FC38DBB18BC35DD00C9610F /* Dropbox.framework */,
+				1FC38DB918BC29F600C9610F /* DropboxSDK.framework */,
 				6F12E3411892FEE40030AE4C /* Foundation.framework */,
 				6F12E3431892FEE40030AE4C /* CoreGraphics.framework */,
 				6F12E3451892FEE40030AE4C /* UIKit.framework */,
@@ -651,6 +657,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Volumes/Macintosh\\ HD/Users/dougwettlaufer/Dropbox/Dropbox/School/College/Senior\\ Year/SoftwareengineeringII/Critik/NewProject",
+					"/Volumes/Macintosh\\ HD/Users/dougwettlaufer/Downloads/dropbox-ios-sync-sdk-2.1.0",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
 				INFOPLIST_FILE = "Critik/Critik-Info.plist";
@@ -665,6 +676,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Volumes/Macintosh\\ HD/Users/dougwettlaufer/Dropbox/Dropbox/School/College/Senior\\ Year/SoftwareengineeringII/Critik/NewProject",
+					"/Volumes/Macintosh\\ HD/Users/dougwettlaufer/Downloads/dropbox-ios-sync-sdk-2.1.0",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
 				INFOPLIST_FILE = "Critik/Critik-Info.plist";
