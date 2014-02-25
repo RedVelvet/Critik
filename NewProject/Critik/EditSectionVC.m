@@ -97,20 +97,20 @@
     Section *temp = [self.sections objectAtIndex: row];
     NSSet *students = temp.students;
     
-    if(row == 0 )
-    {
-        self.students = students1;
-    }
-    else if (row == 1)
-    {
-        students = students2;
-    }
-    else
-    {
-        students = students3;
-    }
-    [self.studentTableView reloadData];
-    NSLog(@"Row : %d  Component : %d", row, component);
+//    if(row == 0 )
+//    {
+//        self.students = students1;
+//    }
+//    else if (row == 1)
+//    {
+//        students = students2;
+//    }
+//    else
+//    {
+//        students = students3;
+//    }
+//    [self.studentTableView reloadData];
+//    NSLog(@"Row : %d  Component : %d", row, component);
 }
 
 - (void)didReceiveMemoryWarning
