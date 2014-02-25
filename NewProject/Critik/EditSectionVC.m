@@ -94,15 +94,23 @@
 
 -(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    // Students array is the current section's NSSet of students
-    self.students = [NSMutableArray arrayWithArray:[self.currSection.students allObjects]];
+    Section *temp = [self.sections objectAtIndex: row];
+    NSSet *students = temp.students;
     
-    // Sort the array by last name
-    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
-    NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-    self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
-    [self.studentTableView reloadData];
-    NSLog(@"Row : %d  Component : %d", row, component);
+//    if(row == 0 )
+//    {
+//        self.students = students1;
+//    }
+//    else if (row == 1)
+//    {
+//        students = students2;
+//    }
+//    else
+//    {
+//        students = students3;
+//    }
+//    [self.studentTableView reloadData];
+//    NSLog(@"Row : %d  Component : %d", row, component);
 }
 
 - (void)didReceiveMemoryWarning
