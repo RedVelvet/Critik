@@ -10,16 +10,25 @@
 #import "Section.h"
 #import "AppDelegate.h"
 #import "Student.h"
+#import <DropboxSDK/DropboxSDK.h>
 
 @interface EditSectionVC : UIViewController
 
 @property (strong, nonatomic) NSArray *sections;
-@property (strong, nonatomic) NSArray *students;
+@property (strong, nonatomic) NSMutableArray *students;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) Section *currSection;
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel;
 @property (weak, nonatomic) IBOutlet UIPickerView *sectionPicker;
 @property (weak, nonatomic) IBOutlet UITableView *studentTableView;
-- (IBAction)showStudentsPressed:(id)sender;
+@property (nonatomic, readonly) DBRestClient *restClient;
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
+              from:(NSString*)srcPath metadata:(DBMetadata*)metadata;
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error;
+- (void)downloadFile;
+- (IBAction)addStudentPressed:(id)sender;
+- (IBAction)deleteSectionPressed:(id)sender;
 
 @end

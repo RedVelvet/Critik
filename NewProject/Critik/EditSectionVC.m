@@ -15,7 +15,7 @@
 @end
 
 @implementation EditSectionVC
-@synthesize sections, students, managedObjectContext;
+@synthesize sections, students, managedObjectContext, restClient;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,7 +46,7 @@
     NSLog(@"there are %d objects in the array", size);
     //Instantiate NSMutableArray
 
-    students = [[NSArray alloc]init];
+    students = [[NSMutableArray alloc]init];
     
     if ([sections count] == 0) {
         self.sectionLabel.text = @"Add a section";
@@ -94,9 +94,13 @@
 
 -(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    // Section *temp = [self.sections objectAtIndex: row]
-    students = [self.currSection.students allObjects];
+    // Students array is the current section's NSSet of students
+    self.students = [NSMutableArray arrayWithArray:[self.currSection.students allObjects]];
     
+    // Sort the array by last name
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+    NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+    self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
     [self.studentTableView reloadData];
     NSLog(@"Row : %d  Component : %d", row, component);
 }
@@ -118,8 +122,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    
-    return [students count];
+    return [self.students count];
     
 }
 
@@ -129,7 +132,10 @@
     
     [self.studentTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+    
+   cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    
     
     if([students count] != 0){
         cell.backgroundColor = [UIColor colorWithRed:35.0/255.0 green:100.0/255.0 blue:30.0/255.0 alpha:1.0];
@@ -139,8 +145,9 @@
         cell.backgroundColor = [UIColor whiteColor];
         cell.textLabel.textColor = [UIColor blackColor];
     }
-    cell.textLabel.text = [self.students objectAtIndex:indexPath.row];
-    
+    Student *tempStudent = [self.students objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", tempStudent.firstName, tempStudent.lastName];
+    cell.detailTextLabel.text = tempStudent.studentID; // FOR DEBUGGING PURPOSES
     return cell;
 }
 
@@ -151,37 +158,27 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Get the managedObjectContext from the AppDelegate (for use in CoreData Applications)
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = appdelegate.managedObjectContext;
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        // Delete the row from the data source
-//        
-//        YourObject *object = [self.dataSourceArray objectAtIndex:indexPath.row];
-//        [self.dataSourceArray removeObjectAtIndex:indexPath.row];
-//        // You might want to delete the object from your Data Store if you’re using CoreData
-//        [context deleteObject:pairToDelete];
-//        NSError *error;
-//        [context save:&error];
-//        // Animate the deletion
-//        [tableView deleteRowsAtIndexPaths:[NSArrayarrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        
-//        // Additional code to configure the Edit Button, if any
-//        if (self.dataSourceArray.count == 0) {
-//            self.editButton.enabled = NO;
-//            self.editButton.titleLabel.text = @”Edit”;
-//        }
-//    }
-//    elseif (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        YourObject *newObject = [NSEntityDescription insertNewObjectForEntityForName:@"Header" inManagedObjectContext:context];
-//        newObject.value = @”value”;
-//        [context save:&error];
-//        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]withRowAnimation:UITableViewRowAnimationFade];
-//        if (self.dataSourceArray.count > 0) {
-//            self.editButton.enabled = YES;
-//        }
-//    }
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        Student *studentToDelete = [self.students objectAtIndex:indexPath.row];
+        [self.students removeObjectAtIndex:indexPath.row];
+        
+        //Remove student from section
+        [studentToDelete.section removeStudentsObject:studentToDelete];
+        
+        // You might want to delete the object from your Data Store if you’re using CoreData
+        [managedObjectContext deleteObject:studentToDelete];
+        NSError *error;
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+        }
+        
+        // Animate the deletion
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+       
+    }
+
 }
 
 #pragma mark - Table view delegate
@@ -203,35 +200,58 @@
     // If NOT blank and NOT whitespace
     if(![sectionName length] == 0 && ![[sectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
 
-        // Add Section to Core Data
-        Section *newSection = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
-        newSection.sectionName = sectionName;
-        NSError *error;
-        if (![managedObjectContext save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        }
+        // Check if there is already a student with the new id
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
         [fetchRequest setEntity:entity];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sectionName like %@)", sectionName];
+        [fetchRequest setPredicate:predicate];
+        NSError *error;
+        NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
+        NSLog(@"Count %d", count);
         
-        sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
-        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-        sections = [sections sortedArrayUsingDescriptors:descriptors];
-        [self.sectionPicker reloadAllComponents];
+        if(count == 0)
+        {
+
+            // Add Section to Core Data
+            Section *newSection = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
+            newSection.sectionName = sectionName;
+            
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+            [fetchRequest setEntity:entity];
+            
+            sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+            NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
+            NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+            sections = [sections sortedArrayUsingDescriptors:descriptors];
+            [self.sectionPicker reloadAllComponents];
+        }
+        else{
+            NSLog(@"Section already exists");
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Error"
+                                  message: @"A section with this name already exists"
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
         
     }
 }
 
 
-
+// called after 'Save' is tapped on the AddStudentVC
 - (IBAction)unwindToTableView:(UIStoryboardSegue *)sender
 {
     AddStudentVC *addStudentVC = (AddStudentVC *)sender.sourceViewController;
     NSString *firstName = addStudentVC.studentFirstNameTF.text;
     NSString *lastName = addStudentVC.studentLastNameTF.text;
     NSString *sNum = addStudentVC.sNumTF.text;
-    NSLog(@"--- Unwind to Tableview");
     [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
 
     // If NOT blank and NOT whitespace
@@ -239,35 +259,244 @@
        && ![lastName length] == 0 && ![[lastName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
        && ![sNum length] == 0 && ![[sNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
         
-        // Add Student to Core Data
-        Student *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:managedObjectContext];
-        newStudent.firstName = firstName;
-        newStudent.lastName = lastName;
-        newStudent.studentID = sNum;
-        NSError *error;
-        if (![managedObjectContext save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        }
+        // Check if there is already a student with the new id
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:managedObjectContext];
         [fetchRequest setEntity:entity];
-        [self.currSection addStudentsObject:newStudent];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(studentID like %@)", sNum];
+        [fetchRequest setPredicate:predicate];
+        NSError *error;
+        NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
+        NSLog(@"Count %d", count);
+        
+        if(count == 0)
+        {
+            // Add Student to Core Data
+            Student *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:managedObjectContext];
+            newStudent.firstName = firstName;
+            newStudent.lastName = lastName;
+            newStudent.studentID = sNum;
+            newStudent.section = self.currSection;
+            
+            // Add Student to current section
+            [self.currSection addStudentsObject:newStudent];
+            
+            // Save context
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+            [self.studentTableView reloadData];
+        }
+        else
+        {
+            NSLog(@"Student already exists");
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Error"
+                                  message: @"A student with this id already exists"
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
         
     }
 }
-//#pragma mark - Table view delegate
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    //    stuName = [studentsArray objectAtIndex:indexPath.row];
-//    //    stuID = [studentIDArray objectAtIndex:indexPath.row];
-//    //    [self dismissViewControllerAnimated:YES completion:nil];
-//    
-//}
 
-- (IBAction)showStudentsPressed:(id)sender {
+// called after 'Upload Roster' is tapped on the AddStudentVC
+- (IBAction)unwindToEditSectionForRosterUpload:(UIStoryboardSegue *)sender
+{
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+//    [self downloadFile];
+    [self addStudentsToSectionFromRoster];
+}
+
+#pragma mark - Buttons
+- (IBAction)addStudentPressed:(id)sender {
     
     NSLog(@"hurray!! the button was pressed!");
     NSLog(@"%@",self.currSection.sectionName);
 }
+
+- (IBAction)deleteSectionPressed:(id)sender{
+    
+    NSLog(@"%@", self.currSection.sectionName);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure want to delete section" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
+    [alert show];
+    [alert setTag:1];
+}
+
+#pragma mark - Utility methods
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (alertView.tag == 1) {
+        
+        if (buttonIndex==0) {
+            
+        }
+        else
+        {
+            // Okay was pressed so delete the section, this will cascade to all students in the section
+            [managedObjectContext deleteObject:self.currSection];
+            NSError *error;
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+            }
+            [self.sectionPicker reloadAllComponents];
+            [self.studentTableView reloadData];
+        }
+    }
+}
+
+-(void) addStudentsToSectionFromRoster
+{
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    
+    NSString *localPath = [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.csv", self.currSection.sectionName]];
+    
+    // LOCAL TEST PATH /Volumes/Macintosh HD/Users/dougwettlaufer/Library/Application Support/iPhone Simulator/7.0.3/Applications/FF66739D-1276-4074-A567-C23D7F2BF65D
+    
+    NSStringEncoding encoding;
+    NSError *error;
+    NSString *fileContents = [[NSString alloc] initWithContentsOfFile:localPath usedEncoding:&encoding error:&error];
+    
+    // Remove tab characters
+    [fileContents stringByReplacingOccurrencesOfString:@"\t" withString:@" "];
+    // Array of arrays (file lines)
+    NSArray *fileArray = [fileContents componentsSeparatedByString:@"\n"];
+
+
+    NSMutableArray *studentArray = [[NSMutableArray alloc]init];
+    
+    // Start at index 2 because the first two lines are not of interest to us
+    for (int i = 2; i < [fileArray count]-1; i++) {
+  
+        // Split line on commas
+        NSArray *lineItem = [[fileArray objectAtIndex:i] componentsSeparatedByString:@","];
+        studentArray = [NSMutableArray arrayWithArray:lineItem];
+        
+        NSString *firstName = [studentArray objectAtIndex:3];
+        NSString *lastName = [studentArray objectAtIndex:2];
+        NSString *sNum = [studentArray objectAtIndex:1];
+        
+        NSLog(@"S#: %@ \nLast name: %@ \nFirst name: %@", [studentArray objectAtIndex:1], [studentArray objectAtIndex:2], [studentArray objectAtIndex:3]);
+        
+        // Save unique students to core data
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:managedObjectContext];
+        [fetchRequest setEntity:entity];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(studentID like %@)", sNum];
+        [fetchRequest setPredicate:predicate];
+        NSError *error;
+        NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
+        NSLog(@"Count %d", count);
+        
+        if(count == 0)
+        {
+            // Add Student to Core Data
+            Student *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:managedObjectContext];
+            newStudent.firstName = firstName;
+            newStudent.lastName = lastName;
+            newStudent.studentID = sNum;
+            newStudent.section = self.currSection;
+            
+            // Add Student to current section
+            [self.currSection addStudentsObject:newStudent];
+            
+            // Save context
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+        }
+        else{
+            NSLog(@"Student with s# %@ could not be added", sNum);
+        }
+
+    }
+
+    
+}
+
+
+#pragma mark - DropBox methods
+
+- (DBRestClient *)restClient {
+    if (!restClient) {
+        restClient =
+        [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        restClient.delegate = self;
+    }
+    return restClient;
+}
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
+              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
+    
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
+    
+    NSLog(@"File upload failed with error - %@", error);
+}
+
+
+- (void)loadfiles:(id)sender {
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:self];
+    }
+    
+    [[self restClient] loadMetadata:@"/"];
+}
+
+
+- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata {
+    if (metadata.isDirectory) {
+        NSLog(@"Folder '%@' contains:", metadata.path);
+        for (DBMetadata *file in metadata.contents) {
+            NSLog(@"	%@", file.filename);
+        }
+    }
+}
+
+- (void)restClient:(DBRestClient *)client
+loadMetadataFailedWithError:(NSError *)error {
+    
+    NSLog(@"Error loading metadata: %@", error);
+}
+
+
+-(void)downloadFile {
+    
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:self];
+        // App hasn't been linked so create folder '/Apps/Critik'
+    }
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex:0];
+    NSString *localPath = [docDir stringByAppendingString:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName]];
+    
+    [[self restClient] loadFile:[NSString stringWithFormat:@"/Apps/Critik/%@.csv",self.currSection.sectionName] intoPath:localPath];
+    
+    
+}
+- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath {
+    
+    NSLog(@"File loaded into path: %@", localPath);
+    
+    [self addStudentsToSectionFromRoster];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been downloaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
+    NSLog(@"There was an error loading the file - %@", error);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Failed to download file. Please try again." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+}
+
 @end
