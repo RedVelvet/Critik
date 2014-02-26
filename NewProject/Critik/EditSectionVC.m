@@ -311,7 +311,7 @@
     [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
         [self downloadFile];
     }];
-    [self downloadFile];
+
     //[self addStudentsToSectionFromRoster];
 }
 
@@ -428,8 +428,7 @@
 
 - (DBRestClient *)restClient {
     if (!restClient) {
-        restClient =
-        [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
         restClient.delegate = self;
     }
     return restClient;
@@ -447,17 +446,18 @@
 }
 
 
-- (void)loadfiles:(id)sender
+- (void)loadfile:(id)sender
 {
     if (![[DBSession sharedSession] isLinked]) {
             [[DBSession sharedSession] linkFromController:self];
     }
-    
+    NSLog(@"loadFiles");
     [[self restClient] loadMetadata:@"/"];
 }
 
 
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata {
+    NSLog(@"loadedMetadata");
     if (metadata.isDirectory) {
         NSLog(@"Folder '%@' contains:", metadata.path);
         for (DBMetadata *file in metadata.contents) {
@@ -466,8 +466,7 @@
     }
 }
 
-- (void)restClient:(DBRestClient *)client
-loadMetadataFailedWithError:(NSError *)error {
+- (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error {
     
     NSLog(@"Error loading metadata: %@", error);
 }
@@ -477,7 +476,7 @@ loadMetadataFailedWithError:(NSError *)error {
     
     if (![[DBSession sharedSession] isLinked]) {
         [[DBSession sharedSession] linkFromController:self];
-        // App hasn't been linked so create folder '/Apps/Critik'
+        
     }
     
     
