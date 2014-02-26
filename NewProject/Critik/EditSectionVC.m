@@ -47,7 +47,7 @@
     //Instantiate NSMutableArray
     
     students = [[NSMutableArray alloc]init];
-
+    
     if ([sections count] == 0) {
         self.sectionLabel.text = @"Add a section";
     }
@@ -305,13 +305,13 @@
 // called after 'Upload Roster' is tapped on the AddStudentVC
 - (IBAction)unwindToEditSectionForRosterUpload:(UIStoryboardSegue *)sender
 {
-//    [viewController1 dismissViewControllerAnimated:YES completion:^{
-//        [self presentViewController:viewController2 animated:YES completion:NULL];
-//    }];
+    //    [viewController1 dismissViewControllerAnimated:YES completion:^{
+    //        [self presentViewController:viewController2 animated:YES completion:NULL];
+    //    }];
     [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
         [self downloadFile];
     }];
-
+    
     //[self addStudentsToSectionFromRoster];
 }
 
@@ -449,7 +449,7 @@
 - (void)loadfile:(id)sender
 {
     if (![[DBSession sharedSession] isLinked]) {
-            [[DBSession sharedSession] linkFromController:self];
+        [[DBSession sharedSession] linkFromController:self];
     }
     NSLog(@"loadFiles");
     [[self restClient] loadMetadata:@"/"];
