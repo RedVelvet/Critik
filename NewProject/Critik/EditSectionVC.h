@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *sectionPicker;
 @property (weak, nonatomic) IBOutlet UITableView *studentTableView;
 @property (nonatomic, readonly) DBRestClient *restClient;
-
+@property (strong, nonatomic) UIPopoverController *addSectionPopover;
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
               from:(NSString*)srcPath metadata:(DBMetadata*)metadata;
 

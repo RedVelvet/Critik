@@ -62,6 +62,7 @@
     
     
     
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -315,6 +316,7 @@
     //[self addStudentsToSectionFromRoster];
 }
 
+
 #pragma mark - Buttons
 - (IBAction)addStudentPressed:(id)sender {
     
@@ -422,6 +424,23 @@
     }
     
     
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"addSectionPopover"]) {
+        if (self.addSectionPopover == nil) {
+            return YES;
+        }
+        return NO;
+    }
+    return YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"addSectionPopover"]) {
+        // Assign popover instance so we can dismiss it later
+        self.addSectionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    }
 }
 
 #pragma mark - DropBox methods

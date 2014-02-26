@@ -152,7 +152,7 @@
                         <barButtonItem key="backBarButtonItem" title="Edit Selection" id="AG6-k6-o8V"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Rb3-F3-3Fe">
                             <connections>
-                                <segue destination="DU5-oa-Wc5" kind="popover" popoverAnchorBarButtonItem="Rb3-F3-3Fe" id="kd0-Pz-1qs">
+                                <segue destination="DU5-oa-Wc5" kind="popover" identifier="addSectionPopover" popoverAnchorBarButtonItem="Rb3-F3-3Fe" id="kd0-Pz-1qs">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -203,8 +203,9 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lac-Yb-Ih7">
                                 <rect key="frame" x="159" y="110" width="263" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Section Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wr1-XA-Eyr">
                                 <rect key="frame" x="28" y="114" width="113" height="21"/>
