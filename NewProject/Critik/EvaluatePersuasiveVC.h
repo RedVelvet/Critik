@@ -11,7 +11,8 @@
 
 @interface EvaluatePersuasiveVC : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITableView *SpeechSections;
+@property (weak, nonatomic) IBOutlet UITableView *SpeechSectionsTable;
 @property Student * currentStudent;
+@property NSArray * SpeechSections;
 
 @end

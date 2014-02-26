@@ -11,8 +11,8 @@
 
 @interface EvaluateInformativeVC : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITableView *SpeechSections;
+@property (weak, nonatomic) IBOutlet UITableView *SpeechSectionsTable;
 @property Student * currentStudent;
-@property NSArray * sections; 
+@property NSArray * SpeechSections;
 
 @end
