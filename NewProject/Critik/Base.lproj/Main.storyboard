@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="iaC-3o-S66">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="iaC-3o-S66">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -128,11 +128,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                    <action selector="showStudentsPressed:" destination="EZl-q0-CYv" eventType="touchUpInside" id="a75-Hk-oKe"/>
-                                    <segue destination="yvP-zq-fz7" kind="push" id="nVo-Vz-Unp"/>
-=======
                                     <action selector="addStudentPressed:" destination="EZl-q0-CYv" eventType="touchUpInside" id="b6h-jJ-IQ4"/>
                                     <segue destination="yvP-zq-fz7" kind="modal" modalPresentationStyle="formSheet" id="nVo-Vz-Unp"/>
                                 </connections>
@@ -146,10 +141,6 @@
                                 </state>
                                 <connections>
                                     <action selector="deleteSectionPressed:" destination="EZl-q0-CYv" eventType="touchUpInside" id="Lfc-Rs-keK"/>
->>>>>>> 183794912b0d80ef4bf40cf0c20dc6625c0e1d17
-=======
-                                    <action selector="showStudentsPressed:" destination="EZl-q0-CYv" eventType="touchUpInside" id="a75-Hk-oKe"/>
->>>>>>> origin/ElBranchoDeSectionO
                                 </connections>
                             </button>
                         </subviews>
@@ -161,7 +152,7 @@
                         <barButtonItem key="backBarButtonItem" title="Edit Selection" id="AG6-k6-o8V"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Rb3-F3-3Fe">
                             <connections>
-                                <segue destination="IrJ-Kc-OkN" kind="popover" popoverAnchorBarButtonItem="Rb3-F3-3Fe" id="Yxi-oy-TO1">
+                                <segue destination="DU5-oa-Wc5" kind="popover" popoverAnchorBarButtonItem="Rb3-F3-3Fe" id="kd0-Pz-1qs">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -237,7 +228,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAh-dT-Bot" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4KQ-Fu-TeB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4542" y="-4646"/>
+            <point key="canvasLocation" x="3942" y="-4164"/>
         </scene>
         <!--Edit Forms Choose SpeechVC - Edit Forms - Choose Speech-->
         <scene sceneID="64E-la-zG1">
@@ -2120,27 +2111,11 @@
                         <viewControllerLayoutGuide type="bottom" id="1fs-hg-RHo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5pv-yV-BUW">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwt-cO-xmz">
-                                <rect key="frame" x="0.0" y="9" width="1024" height="44"/>
-=======
                         <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwt-cO-xmz">
                                 <rect key="frame" x="0.0" y="9" width="540" height="44"/>
->>>>>>> 183794912b0d80ef4bf40cf0c20dc6625c0e1d17
-=======
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwt-cO-xmz">
-                                <rect key="frame" x="0.0" y="9" width="1024" height="44"/>
->>>>>>> origin/ElBranchoDeSectionO
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Add Student" id="kh9-n7-v0y">
@@ -2198,12 +2173,9 @@
                                 <state key="normal" title="Upload Roster">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-<<<<<<< HEAD
-=======
                                 <connections>
                                     <segue destination="abz-ue-6Mi" kind="unwind" unwindAction="unwindToEditSectionForRosterUpload:" id="Ez4-TN-UUV"/>
                                 </connections>
->>>>>>> 183794912b0d80ef4bf40cf0c20dc6625c0e1d17
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -2216,10 +2188,7 @@
                         <outlet property="sNumTF" destination="FyG-VL-WvC" id="qKt-bt-p9P"/>
                         <outlet property="studentFirstNameTF" destination="aLD-ch-nlM" id="uFi-5O-ZGk"/>
                         <outlet property="studentLastNameTF" destination="p19-Rw-9Yv" id="7tP-lS-Jd6"/>
-<<<<<<< HEAD
-=======
                         <outlet property="uploadRoster" destination="TL0-Th-SV2" id="Z0U-9f-c9n"/>
->>>>>>> 183794912b0d80ef4bf40cf0c20dc6625c0e1d17
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qeV-2e-sam" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2236,11 +2205,11 @@
                         <viewControllerLayoutGuide type="bottom" id="8do-Tj-9MG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YPh-ay-Gb5">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="450"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" backIndicatorImage="PopOverNavBar.png" translatesAutoresizingMaskIntoConstraints="NO" id="KFt-8l-zC7">
-                                <rect key="frame" x="0.0" y="9" width="450" height="44"/>
+                                <rect key="frame" x="0.0" y="9" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Add Student" id="ggd-d4-vxK">
@@ -2298,7 +2267,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="DJj-3h-leG"/>
@@ -2311,7 +2279,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QB5-dj-auB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Iep-SP-cuM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4542" y="-3946"/>
+            <point key="canvasLocation" x="4676" y="-3864"/>
         </scene>
         <!--Add SectionVC-->
         <scene sceneID="lla-Fp-dao">
@@ -2322,11 +2290,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Tbk-Xf-SPh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XYm-CK-Ib0">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="450"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" backIndicatorImage="PopOverNavBar.png" translatesAutoresizingMaskIntoConstraints="NO" id="qDq-uX-ZYZ">
-                                <rect key="frame" x="0.0" y="9" width="450" height="44"/>
+                                <rect key="frame" x="0.0" y="9" width="250" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Select option" id="tQA-QL-vAv">
@@ -2365,7 +2333,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -2388,4 +2355,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="kd0-Pz-1qs"/>
+    </inferredMetricsTieBreakers>
 </document>
