@@ -14,7 +14,7 @@
 
 @interface EditSectionVC : UIViewController
 
-@property (strong, nonatomic) NSArray *sections;
+@property (strong, nonatomic) NSMutableArray *sections;
 @property (strong, nonatomic) NSMutableArray *students;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) Section *currSection;
