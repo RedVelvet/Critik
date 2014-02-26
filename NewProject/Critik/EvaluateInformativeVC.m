@@ -18,20 +18,25 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.currentStudent = [[Student alloc]init];
-        self.sections = [NSArray arrayWithObjects:@"Introduction", @"Organization",@"Reasoning and Evidence",@"Presentation Aid",@"Voice and Language",@"Physical Delivery",@"Conclusion",nil];
+        
+        
         
     }
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.SpeechSections reloadData];
+    
+    self.currentStudent = [[Student alloc]init];
+    self.SpeechSections = [NSArray arrayWithObjects: @"Introduction",@"Organization",@"Reasoning and Evidence",@"Presentation Aid",@"Voice and Language",@"Physical Delivery",@"Conclusion",nil];
+    [self.SpeechSectionsTable reloadData];
     
 	// Do any additional setup after loading the view.
    // NSLog(self.currentStudent.firstName);
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,11 +68,17 @@
     
     if(!cell)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+
+    
+    UIView * selectedBackgroundView = [[UIView alloc]init];
+    [selectedBackgroundView setBackgroundColor:[UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0]]; // set color here
+    cell.selectedBackgroundView = selectedBackgroundView;
     
     cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
     cell.textLabel.textColor = [UIColor whiteColor];
     
-    cell.textLabel.text = [self.sections objectAtIndex:indexPath.row];
+    NSString *cellTitle = [self.SpeechSections objectAtIndex:indexPath.row];
+    cell.textLabel.text = cellTitle;
     
     return cell;
 }

@@ -48,8 +48,29 @@
     
     self.sections = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
+    // Query on managedObjectContext With Generated fetchRequest
+    
+    self.sections = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+    if([self.sections count] >1){
+        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
+        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+        self.sections = [NSMutableArray arrayWithArray:[self.sections sortedArrayUsingDescriptors:descriptors]];
+    }
+    
+    //Fills the students table with the first section data of the pickerview
+    Section * temp = [self.sections objectAtIndex:0];
+    NSSet * set = temp.students;
+    self.students = [NSMutableArray arrayWithArray:[set allObjects]];
+    
+    //Sorts students table by Last Name
+    if([self.students count] >1){
+        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+        self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
+    }
+    
     [self.SectionPicker reloadAllComponents];
-}
+    [self.StudentTable reloadData];}
 
 -(void) viewDidUnload
 {
