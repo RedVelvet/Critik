@@ -62,6 +62,9 @@
 		6F4EE13518B2965300FABCF2 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13418B2965300FABCF2 /* QuickGrade.m */; };
 		6F4EE13818B2965400FABCF2 /* SpeechModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE13718B2965400FABCF2 /* SpeechModule.m */; };
 		6F5479FA18BD2F1400353383 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5479F918BD2F1400353383 /* DropboxSDK.framework */; };
+		6FAC13F918BD7686005A5841 /* EvaluateInformativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAC13F818BD7686005A5841 /* EvaluateInformativeVC.m */; };
+		6FAC13FC18BD769D005A5841 /* EvaluatePersuasiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAC13FB18BD769D005A5841 /* EvaluatePersuasiveVC.m */; };
+		6FAC13FF18BD76AF005A5841 /* EvaluateInterpersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAC13FE18BD76AF005A5841 /* EvaluateInterpersonalVC.m */; };
 		6FAD860918B83632001C8F54 /* PopOverNavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD860818B83632001C8F54 /* PopOverNavBar.png */; };
 		6FAD860C18B83A43001C8F54 /* PersuasiveSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD860B18B83A43001C8F54 /* PersuasiveSectionSelectVC.m */; };
 		6FAD860F18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD860E18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m */; };
@@ -153,6 +156,12 @@
 		6F4EE13618B2965400FABCF2 /* SpeechModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechModule.h; sourceTree = "<group>"; };
 		6F4EE13718B2965400FABCF2 /* SpeechModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechModule.m; sourceTree = "<group>"; };
 		6F5479F918BD2F1400353383 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		6FAC13F718BD7686005A5841 /* EvaluateInformativeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateInformativeVC.h; sourceTree = "<group>"; };
+		6FAC13F818BD7686005A5841 /* EvaluateInformativeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateInformativeVC.m; sourceTree = "<group>"; };
+		6FAC13FA18BD769D005A5841 /* EvaluatePersuasiveVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluatePersuasiveVC.h; sourceTree = "<group>"; };
+		6FAC13FB18BD769D005A5841 /* EvaluatePersuasiveVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluatePersuasiveVC.m; sourceTree = "<group>"; };
+		6FAC13FD18BD76AF005A5841 /* EvaluateInterpersonalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateInterpersonalVC.h; sourceTree = "<group>"; };
+		6FAC13FE18BD76AF005A5841 /* EvaluateInterpersonalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluateInterpersonalVC.m; sourceTree = "<group>"; };
 		6FAD860818B83632001C8F54 /* PopOverNavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PopOverNavBar.png; sourceTree = "<group>"; };
 		6FAD860A18B83A43001C8F54 /* PersuasiveSectionSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersuasiveSectionSelectVC.h; sourceTree = "<group>"; };
 		6FAD860B18B83A43001C8F54 /* PersuasiveSectionSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersuasiveSectionSelectVC.m; sourceTree = "<group>"; };
@@ -377,6 +386,12 @@
 				6FAD860B18B83A43001C8F54 /* PersuasiveSectionSelectVC.m */,
 				6FAD860D18B83BF5001C8F54 /* InterpersonalSectionSelectVC.h */,
 				6FAD860E18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m */,
+				6FAC13F718BD7686005A5841 /* EvaluateInformativeVC.h */,
+				6FAC13F818BD7686005A5841 /* EvaluateInformativeVC.m */,
+				6FAC13FA18BD769D005A5841 /* EvaluatePersuasiveVC.h */,
+				6FAC13FB18BD769D005A5841 /* EvaluatePersuasiveVC.m */,
+				6FAC13FD18BD76AF005A5841 /* EvaluateInterpersonalVC.h */,
+				6FAC13FE18BD76AF005A5841 /* EvaluateInterpersonalVC.m */,
 			);
 			name = "Evaluate View Controllers";
 			sourceTree = "<group>";
@@ -506,6 +521,7 @@
 			files = (
 				6F4EE11D18B2965300FABCF2 /* Speech.m in Sources */,
 				6FAD860C18B83A43001C8F54 /* PersuasiveSectionSelectVC.m in Sources */,
+				6FAC13FF18BD76AF005A5841 /* EvaluateInterpersonalVC.m in Sources */,
 				1F859AD818B5B0B80092F8E5 /* Section.m in Sources */,
 				6F4EE12318B2965300FABCF2 /* StudentPreDefinedComments.m in Sources */,
 				6F4EE12C18B2965300FABCF2 /* Module.m in Sources */,
@@ -520,8 +536,10 @@
 				1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */,
 				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
 				6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */,
+				6FAC13FC18BD769D005A5841 /* EvaluatePersuasiveVC.m in Sources */,
 				1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */,
 				6F4EE12F18B2965300FABCF2 /* PreDefinedComments.m in Sources */,
+				6FAC13F918BD7686005A5841 /* EvaluateInformativeVC.m in Sources */,
 				6F4EE13818B2965400FABCF2 /* SpeechModule.m in Sources */,
 				6F12E3501892FEE40030AE4C /* main.m in Sources */,
 				1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */,
