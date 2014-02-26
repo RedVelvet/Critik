@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
+    
     // Core Data Stuff
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
@@ -39,15 +39,15 @@
                                    entityForName:@"Section" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     NSError *error;
-    sections = [[NSArray alloc]init];
-    sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    sections = [[NSMutableArray alloc]init];
+    sections = [NSMutableArray arrayWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
     
     int size = [sections count];
     NSLog(@"there are %d objects in the array", size);
     //Instantiate NSMutableArray
-
-    students = [[NSMutableArray alloc]init];
     
+    students = [[NSMutableArray alloc]init];
+
     if ([sections count] == 0) {
         self.sectionLabel.text = @"Add a section";
     }
@@ -55,13 +55,13 @@
     {
         NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
         NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-        sections = [sections sortedArrayUsingDescriptors:descriptors];
+        sections = [NSMutableArray arrayWithArray:[sections sortedArrayUsingDescriptors:descriptors]];
     }
     
     UIView *pickerView = (UIPickerView*)[self.view viewWithTag:1000];
     
     
-        
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -94,23 +94,15 @@
 
 -(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    Section *temp = [self.sections objectAtIndex: row];
-    NSSet *students = temp.students;
+    // Students array is the current section's NSSet of students
+    self.students = [NSMutableArray arrayWithArray:[self.currSection.students allObjects]];
     
-//    if(row == 0 )
-//    {
-//        self.students = students1;
-//    }
-//    else if (row == 1)
-//    {
-//        students = students2;
-//    }
-//    else
-//    {
-//        students = students3;
-//    }
-//    [self.studentTableView reloadData];
-//    NSLog(@"Row : %d  Component : %d", row, component);
+    // Sort the array by last name
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+    NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+    self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
+    [self.studentTableView reloadData];
+    NSLog(@"Row : %d  Component : %d", row, component);
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,7 +134,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
     
-   cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
     
     if([students count] != 0){
@@ -184,9 +176,9 @@
         
         // Animate the deletion
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-       
+        
     }
-
+    
 }
 
 #pragma mark - Table view delegate
@@ -207,7 +199,7 @@
     
     // If NOT blank and NOT whitespace
     if(![sectionName length] == 0 && ![[sectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
-
+        
         // Check if there is already a student with the new id
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
@@ -220,7 +212,7 @@
         
         if(count == 0)
         {
-
+            
             // Add Section to Core Data
             Section *newSection = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
             newSection.sectionName = sectionName;
@@ -232,10 +224,10 @@
             NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
             [fetchRequest setEntity:entity];
             
-            sections = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+            sections = [NSMutableArray arrayWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
             NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
             NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-            sections = [sections sortedArrayUsingDescriptors:descriptors];
+            sections = [NSMutableArray arrayWithArray: [sections sortedArrayUsingDescriptors:descriptors]];
             [self.sectionPicker reloadAllComponents];
         }
         else{
@@ -261,7 +253,7 @@
     NSString *lastName = addStudentVC.studentLastNameTF.text;
     NSString *sNum = addStudentVC.sNumTF.text;
     [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
-
+    
     // If NOT blank and NOT whitespace
     if(![firstName length] == 0 && ![[firstName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
        && ![lastName length] == 0 && ![[lastName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
@@ -314,7 +306,7 @@
 - (IBAction)unwindToEditSectionForRosterUpload:(UIStoryboardSegue *)sender
 {
     [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
-//    [self downloadFile];
+    //    [self downloadFile];
     [self addStudentsToSectionFromRoster];
 }
 
@@ -344,6 +336,7 @@
         else
         {
             // Okay was pressed so delete the section, this will cascade to all students in the section
+            [self.sections removeObject:self.currSection];
             [managedObjectContext deleteObject:self.currSection];
             NSError *error;
             if (![managedObjectContext save:&error]) {
@@ -373,13 +366,13 @@
     [fileContents stringByReplacingOccurrencesOfString:@"\t" withString:@" "];
     // Array of arrays (file lines)
     NSArray *fileArray = [fileContents componentsSeparatedByString:@"\n"];
-
-
+    
+    
     NSMutableArray *studentArray = [[NSMutableArray alloc]init];
     
     // Start at index 2 because the first two lines are not of interest to us
     for (int i = 2; i < [fileArray count]-1; i++) {
-  
+        
         // Split line on commas
         NSArray *lineItem = [[fileArray objectAtIndex:i] componentsSeparatedByString:@","];
         studentArray = [NSMutableArray arrayWithArray:lineItem];
@@ -420,9 +413,9 @@
         else{
             NSLog(@"Student with s# %@ could not be added", sNum);
         }
-
+        
     }
-
+    
     
 }
 
