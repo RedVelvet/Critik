@@ -34,7 +34,7 @@
     DBSession* dbSession = [[DBSession alloc]
                             initWithAppKey:APP_KEY
                             appSecret:APP_SECRET
-                            root:kDBRootDropbox];
+                            root:kDBRootAppFolder];
     [DBSession setSharedSession:dbSession];
     
     sleep(2);//Allows for splash screen to appear longer

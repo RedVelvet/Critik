@@ -20,8 +20,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.sections = [[NSArray alloc]init];
-        self.students = [[NSArray alloc]init];
+        self.sections = [[NSMutableArray alloc]init];
+        self.students = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -45,15 +45,26 @@
     
     // Query on managedObjectContext With Generated fetchRequest
     
-    self.sections = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    [self.SectionPicker reloadAllComponents];
+    self.sections = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+    if([self.sections count] >1){
+        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
+        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+        self.sections = [NSMutableArray arrayWithArray:[self.sections sortedArrayUsingDescriptors:descriptors]];
+    }
     
     //Fills the students table with the first section data of the pickerview
     Section * temp = [self.sections objectAtIndex:0];
     NSSet * set = temp.students;
-    self.students = [NSArray arrayWithArray:[set allObjects]];
+    self.students = [NSMutableArray arrayWithArray:[set allObjects]];
     
+    //Sorts students table by Last Name
+    if([self.students count] >1){
+        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+        self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
+    }
+    
+    [self.SectionPicker reloadAllComponents];
     [self.StudentTable reloadData];
 }
 
@@ -114,6 +125,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
+    cell.textLabel.textColor = [UIColor whiteColor];
     
     if(!cell)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];

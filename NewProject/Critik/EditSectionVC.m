@@ -306,8 +306,8 @@
 - (IBAction)unwindToEditSectionForRosterUpload:(UIStoryboardSegue *)sender
 {
     [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
-    //    [self downloadFile];
-    [self addStudentsToSectionFromRoster];
+    [self downloadFile];
+    //[self addStudentsToSectionFromRoster];
 }
 
 #pragma mark - Buttons
@@ -419,7 +419,6 @@
     
 }
 
-
 #pragma mark - DropBox methods
 
 - (DBRestClient *)restClient {
@@ -443,12 +442,13 @@
 }
 
 
-- (void)loadfiles:(id)sender {
+- (void)loadfiles:(id)sender
+{
     if (![[DBSession sharedSession] isLinked]) {
-        [[DBSession sharedSession] linkFromController:self];
+            [[DBSession sharedSession] linkFromController:self];
     }
     
-    [[self restClient] loadMetadata:@"/"];
+    [[self restClient] loadMetadata:@"auto"];
 }
 
 
@@ -480,7 +480,7 @@ loadMetadataFailedWithError:(NSError *)error {
     NSString *docDir = [paths objectAtIndex:0];
     NSString *localPath = [docDir stringByAppendingString:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName]];
     
-    [[self restClient] loadFile:[NSString stringWithFormat:@"/Apps/Critik/%@.csv",self.currSection.sectionName] intoPath:localPath];
+    [[self restClient] loadFile:[NSString stringWithFormat:@"auto/%@.csv",self.currSection.sectionName] intoPath:localPath];
     
     
 }

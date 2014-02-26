@@ -15,8 +15,8 @@
 
 @interface InformativeSectionSelectVC : UIViewController
 
-@property NSArray * sections;
-@property NSArray * students;
+@property NSMutableArray * sections;
+@property NSMutableArray * students;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *SectionPicker;
 @property (weak, nonatomic) IBOutlet UITableView *StudentTable;

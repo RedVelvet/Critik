@@ -26,6 +26,7 @@
       "idiom" : "ipad",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
+      "filename" : "Default-Landscape.png",
       "scale" : "2x"
     }
   ],
