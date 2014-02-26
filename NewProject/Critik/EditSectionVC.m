@@ -305,7 +305,12 @@
 // called after 'Upload Roster' is tapped on the AddStudentVC
 - (IBAction)unwindToEditSectionForRosterUpload:(UIStoryboardSegue *)sender
 {
-    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+//    [viewController1 dismissViewControllerAnimated:YES completion:^{
+//        [self presentViewController:viewController2 animated:YES completion:NULL];
+//    }];
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
+        [self downloadFile];
+    }];
     [self downloadFile];
     //[self addStudentsToSectionFromRoster];
 }
@@ -448,7 +453,7 @@
             [[DBSession sharedSession] linkFromController:self];
     }
     
-    [[self restClient] loadMetadata:@"auto"];
+    [[self restClient] loadMetadata:@"/"];
 }
 
 
@@ -480,7 +485,7 @@ loadMetadataFailedWithError:(NSError *)error {
     NSString *docDir = [paths objectAtIndex:0];
     NSString *localPath = [docDir stringByAppendingString:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName]];
     
-    [[self restClient] loadFile:[NSString stringWithFormat:@"auto/%@.csv",self.currSection.sectionName] intoPath:localPath];
+    [[self restClient] loadFile:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName] intoPath:localPath];
     
     
 }
