@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Student.h"
 
 @interface EvaluatePersuasiveVC : UIViewController
+
+@property (weak, nonatomic) IBOutlet UITableView *SpeechSections;
+@property Student * currentStudent;
 
 @end

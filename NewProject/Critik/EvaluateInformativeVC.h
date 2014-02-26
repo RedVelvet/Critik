@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Student.h"
 
 @interface EvaluateInformativeVC : UIViewController
+
 @property (weak, nonatomic) IBOutlet UITableView *SpeechSections;
+@property Student * currentStudent;
+@property NSArray * sections; 
 
 @end

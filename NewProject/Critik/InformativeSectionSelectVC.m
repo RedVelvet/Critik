@@ -48,6 +48,13 @@
     self.sections = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     [self.SectionPicker reloadAllComponents];
+    
+    //Fills the students table with the first section data of the pickerview
+    Section * temp = [self.sections objectAtIndex:0];
+    NSSet * set = temp.students;
+    self.students = [NSArray arrayWithArray:[set allObjects]];
+    
+    [self.StudentTable reloadData];
 }
 
 -(void) viewDidUnload
@@ -122,8 +129,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    [self performSegueWithIdentifier:@"Evaluate - Informative" sender:[self.StudentTable cellForRowAtIndexPath:indexPath]];
+    
+    EvaluateInformativeVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"informative"];
+    //evaluateSpeech.currentStudent = [self.students objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:evaluateSpeech animated:YES];
     
 }
 

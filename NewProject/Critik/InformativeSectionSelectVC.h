@@ -10,6 +10,7 @@
 #import "Section.h"
 #import "Student.h"
 #import "AppDelegate.h"
+#import "EvaluateInformativeVC.h"
 
 
 @interface InformativeSectionSelectVC : UIViewController

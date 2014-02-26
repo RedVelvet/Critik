@@ -125,7 +125,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    [self performSegueWithIdentifier:@"Evaluate - Informative" sender:[self.StudentTable cellForRowAtIndexPath:indexPath]];
+    EvaluateInterpersonalVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"informative"];
+    //evaluateSpeech.currentStudent = [self.StudentTable indexPathForSelectedRow];
+    [self.navigationController pushViewController:evaluateSpeech animated:YES];
     
 }
 
