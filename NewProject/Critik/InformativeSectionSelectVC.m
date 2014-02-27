@@ -150,7 +150,8 @@
 {
     
     EvaluateInformativeVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"informative"];
-    //evaluateSpeech.currentStudent = [self.students objectAtIndex:indexPath.row];
+    Student * temp = [self.students objectAtIndex:indexPath.row];
+    evaluateSpeech.currentStudent = temp;
     [self.navigationController pushViewController:evaluateSpeech animated:YES];
     
 }

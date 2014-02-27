@@ -10,9 +10,14 @@
 #import "Student.h"
 
 @interface EvaluateInformativeVC : UIViewController
+@property (weak, nonatomic) IBOutlet UISegmentedControl *mySegmentedControl;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *ScrollView;
 @property (weak, nonatomic) IBOutlet UITableView *SpeechSectionsTable;
 @property Student * currentStudent;
 @property NSArray * SpeechSections;
+@property NSArray * QuickGrades;
+@property NSArray * PreDefStatements;
+@property NSArray * WrittenComments;
 
 @end

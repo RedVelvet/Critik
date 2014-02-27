@@ -53,7 +53,7 @@
         <attribute name="totalPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="speech" maxCount="1" deletionRule="Nullify" destinationEntity="Speech" inverseName="studentSpeech" inverseEntity="Speech" syncable="YES"/>
         <relationship name="speechModule" toMany="YES" deletionRule="Nullify" destinationEntity="SpeechModule" inverseName="studentSpeech" inverseEntity="SpeechModule" syncable="YES"/>
-        <relationship name="student" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="studentSpeech" inverseEntity="Student" syncable="YES"/>
+        <relationship name="student" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="studentSpeech" inverseEntity="Student" syncable="YES"/>
         <relationship name="studentPreDefinedComments" toMany="YES" deletionRule="Nullify" destinationEntity="StudentPreDefinedComments" inverseName="studentSpeech" inverseEntity="StudentPreDefinedComments" syncable="YES"/>
         <relationship name="studentQuickGrade" toMany="YES" deletionRule="Nullify" destinationEntity="StudentQuickGrade" inverseName="studentSpeech" inverseEntity="StudentQuickGrade" syncable="YES"/>
         <relationship name="writtenComments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WrittenComments" inverseName="studentSpeech" inverseEntity="WrittenComments" syncable="YES"/>
@@ -70,10 +70,10 @@
         <element name="Section" positionX="-326" positionY="-297" width="128" height="88"/>
         <element name="Speech" positionX="88" positionY="-309" width="128" height="75"/>
         <element name="SpeechModule" positionX="-144" positionY="9" width="128" height="90"/>
-        <element name="Student" positionX="-101" positionY="-364" width="128" height="103"/>
+        <element name="Student" positionX="-101" positionY="-373" width="119" height="118"/>
         <element name="StudentPreDefinedComments" positionX="196" positionY="-189" width="128" height="120"/>
         <element name="StudentQuickGrade" positionX="-389" positionY="-126" width="128" height="105"/>
-        <element name="StudentSpeech" positionX="-128" positionY="-162" width="128" height="105"/>
+        <element name="StudentSpeech" positionX="-128" positionY="-162" width="128" height="163"/>
         <element name="WrittenComments" positionX="108" positionY="48" width="128" height="105"/>
     </elements>
 </model>
