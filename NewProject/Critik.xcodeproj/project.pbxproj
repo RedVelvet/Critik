@@ -69,6 +69,7 @@
 		6FAD860C18B83A43001C8F54 /* PersuasiveSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD860B18B83A43001C8F54 /* PersuasiveSectionSelectVC.m */; };
 		6FAD860F18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD860E18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m */; };
 		6FC20C5718B6FA3100874174 /* InformativeSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */; };
+		6FED858318BFF20A0084A96A /* EditInformativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858218BFF20A0084A96A /* EditInformativeVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,8 @@
 		6FAD860E18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterpersonalSectionSelectVC.m; sourceTree = "<group>"; };
 		6FC20C5518B6FA3100874174 /* InformativeSectionSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformativeSectionSelectVC.h; sourceTree = "<group>"; };
 		6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformativeSectionSelectVC.m; sourceTree = "<group>"; };
+		6FED858118BFF20A0084A96A /* EditInformativeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformativeVC.h; sourceTree = "<group>"; };
+		6FED858218BFF20A0084A96A /* EditInformativeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformativeVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +249,7 @@
 				6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */,
 				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
 				6F4EE03118ABF69F00FABCF2 /* HomeVC.m */,
+				6FED858018BFF1620084A96A /* Edit View Controllers */,
 				6FAD861018B83C00001C8F54 /* Evaluate View Controllers */,
 				6F12E3611892FEE40030AE4C /* Images.xcassets */,
 				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
@@ -396,6 +400,15 @@
 			name = "Evaluate View Controllers";
 			sourceTree = "<group>";
 		};
+		6FED858018BFF1620084A96A /* Edit View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6FED858118BFF20A0084A96A /* EditInformativeVC.h */,
+				6FED858218BFF20A0084A96A /* EditInformativeVC.m */,
+			);
+			name = "Edit View Controllers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -536,6 +549,7 @@
 				1F677FFB18BEEEF500572D99 /* Student.m in Sources */,
 				6FAC13FC18BD769D005A5841 /* EvaluatePersuasiveVC.m in Sources */,
 				1F677FDA18BEEE1B00572D99 /* Section.m in Sources */,
+				6FED858318BFF20A0084A96A /* EditInformativeVC.m in Sources */,
 				1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */,
 				1F677FF218BEEE3F00572D99 /* Speech.m in Sources */,
 				6FAC13F918BD7686005A5841 /* EvaluateInformativeVC.m in Sources */,
