@@ -104,9 +104,15 @@
 {
     Section * temp = [self.sections objectAtIndex:row];
     NSSet * set = temp.students;
-    self.students = [NSArray arrayWithArray:[set allObjects]];
+    self.students = [NSMutableArray arrayWithArray:[set allObjects]];
     
+    // Sort the array by last name
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+    NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+    self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
     [self.StudentTable reloadData];
+    
+    NSLog(@"Row : %d  Component : %d", row, component);
 }
 
 #pragma mark - Table view data source

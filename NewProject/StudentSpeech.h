@@ -2,33 +2,47 @@
 //  StudentSpeech.h
 //  Critik
 //
-//  Created by Dalton Decker on 2/17/14.
+//  Created by Doug Wettlaufer on 2/26/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Speech, Student;
+@class Speech, SpeechModule, Student, StudentPreDefinedComments, StudentQuickGrade, WrittenComments;
 
 @interface StudentSpeech : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSNumber * totalPoints;
-@property (nonatomic, retain) NSSet *speechID;
-@property (nonatomic, retain) NSSet *studentID;
+@property (nonatomic, retain) Speech *speech;
+@property (nonatomic, retain) Student *student;
+@property (nonatomic, retain) NSSet *studentQuickGrade;
+@property (nonatomic, retain) NSSet *studentPreDefinedComments;
+@property (nonatomic, retain) NSSet *writtenComments;
+@property (nonatomic, retain) NSSet *speechModule;
 @end
 
 @interface StudentSpeech (CoreDataGeneratedAccessors)
 
-- (void)addSpeechIDObject:(Speech *)value;
-- (void)removeSpeechIDObject:(Speech *)value;
-- (void)addSpeechID:(NSSet *)values;
-- (void)removeSpeechID:(NSSet *)values;
+- (void)addStudentQuickGradeObject:(StudentQuickGrade *)value;
+- (void)removeStudentQuickGradeObject:(StudentQuickGrade *)value;
+- (void)addStudentQuickGrade:(NSSet *)values;
+- (void)removeStudentQuickGrade:(NSSet *)values;
 
-- (void)addStudentIDObject:(Student *)value;
-- (void)removeStudentIDObject:(Student *)value;
-- (void)addStudentID:(NSSet *)values;
-- (void)removeStudentID:(NSSet *)values;
+- (void)addStudentPreDefinedCommentsObject:(StudentPreDefinedComments *)value;
+- (void)removeStudentPreDefinedCommentsObject:(StudentPreDefinedComments *)value;
+- (void)addStudentPreDefinedComments:(NSSet *)values;
+- (void)removeStudentPreDefinedComments:(NSSet *)values;
+
+- (void)addWrittenCommentsObject:(WrittenComments *)value;
+- (void)removeWrittenCommentsObject:(WrittenComments *)value;
+- (void)addWrittenComments:(NSSet *)values;
+- (void)removeWrittenComments:(NSSet *)values;
+
+- (void)addSpeechModuleObject:(SpeechModule *)value;
+- (void)removeSpeechModuleObject:(SpeechModule *)value;
+- (void)addSpeechModule:(NSSet *)values;
+- (void)removeSpeechModule:(NSSet *)values;
 
 @end

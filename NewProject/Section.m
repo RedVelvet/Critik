@@ -2,7 +2,7 @@
 //  Section.m
 //  Critik
 //
-//  Created by Doug Wettlaufer on 2/19/14.
+//  Created by Doug Wettlaufer on 2/26/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -12,7 +12,6 @@
 
 @implementation Section
 
-@dynamic sectionID;
 @dynamic sectionName;
 @dynamic students;
 

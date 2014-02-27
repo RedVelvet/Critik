@@ -58,7 +58,7 @@
         sections = [NSMutableArray arrayWithArray:[sections sortedArrayUsingDescriptors:descriptors]];
     }
     
-    UIView *pickerView = (UIPickerView*)[self.view viewWithTag:1000];
+//    UIView *pickerView = (UIPickerView*)[self.view viewWithTag:1000];
     
     
     
@@ -195,12 +195,14 @@
 // called after 'Save' is tapped on the AddSectionVC
 - (IBAction)unwindToEditSection:(UIStoryboardSegue *)sender
 {
+    self.addSectionPopover = nil;
     AddSectionVC *addSectionVC = (AddSectionVC *)sender.sourceViewController;
-    NSString *sectionName = addSectionVC.sectionTextField.text;
-    
+   
+    NSString *sectionNum = addSectionVC.sectionTextField.text;
     // If NOT blank and NOT whitespace
-    if(![sectionName length] == 0 && ![[sectionName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
+    if(![sectionNum length] == 0 && ![[sectionNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
         
+        NSString *sectionName = [NSString stringWithFormat:@"Section %@", sectionNum];
         // Check if there is already a student with the new id
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
@@ -209,7 +211,7 @@
         [fetchRequest setPredicate:predicate];
         NSError *error;
         NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
-        NSLog(@"Count %d", count);
+//        NSLog(@"Count %d", count);
         
         if(count == 0)
         {
