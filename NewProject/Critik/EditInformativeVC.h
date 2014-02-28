@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DualColumnCell.h"
+#import "AppDelegate.h"
+#import "PreDefinedComments.h"
+#import "QuickGrade.h"
 
 @interface EditInformativeVC : UIViewController
+
+@property (weak, nonatomic) IBOutlet UITableView *QuickGradeTable;
+@property (weak, nonatomic) IBOutlet UIScrollView *ScrollView;
+
+@property NSArray * quickGrades;
+@property NSArray * preDefinedComments;
+
+
 
 @end

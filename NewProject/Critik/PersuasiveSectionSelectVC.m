@@ -46,10 +46,6 @@
     
     // Query on managedObjectContext With Generated fetchRequest
     
-    self.sections = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    // Query on managedObjectContext With Generated fetchRequest
-    
     self.sections = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
     if([self.sections count] >1){
         NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
@@ -70,7 +66,8 @@
     }
     
     [self.SectionPicker reloadAllComponents];
-    [self.StudentTable reloadData];}
+    [self.StudentTable reloadData];
+}
 
 -(void) viewDidUnload
 {
@@ -147,7 +144,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    EvaluatePersuasiveVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"informative"];
+    EvaluatePersuasiveVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"persuasive"];
     //evaluateSpeech.currentStudent = [self.StudentTable indexPathForSelectedRow];
     [self.navigationController pushViewController:evaluateSpeech animated:YES];
     

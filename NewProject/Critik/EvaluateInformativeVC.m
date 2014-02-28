@@ -38,9 +38,9 @@
     }
     [self.SpeechSectionsTable reloadData];
     
-    self.ScrollView = [[UIScrollView alloc]init];
-    [self.ScrollView setScrollEnabled:YES];
-    [self.ScrollView setScrollsToTop:YES];
+//    self.ScrollView = [[UIScrollView alloc]init];
+//    [self.ScrollView setScrollEnabled:YES];
+//    [self.ScrollView setScrollsToTop:YES];
     
 	// Do any additional setup after loading the view.
    NSLog(self.currentStudent.firstName);
@@ -56,7 +56,7 @@ UISegmentedControl *quickGrade = [[UISegmentedControl alloc] initWithItems:[NSAr
 //    self.mySegmentedControl.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 //    self.mySegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 //    
-    [self.view addSubview:quickGrade];
+ //   [self.view addSubview:quickGrade];
     
 
 }

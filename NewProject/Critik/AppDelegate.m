@@ -37,6 +37,8 @@
                             root:kDBRootAppFolder];
     [DBSession setSharedSession:dbSession];
     
+    
+    
     sleep(2);//Allows for splash screen to appear longer
     return YES;
 }

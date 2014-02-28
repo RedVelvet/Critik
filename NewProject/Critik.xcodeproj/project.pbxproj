@@ -70,6 +70,7 @@
 		6FAD860F18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD860E18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m */; };
 		6FC20C5718B6FA3100874174 /* InformativeSectionSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */; };
 		6FED858318BFF20A0084A96A /* EditInformativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858218BFF20A0084A96A /* EditInformativeVC.m */; };
+		6FED858618C007530084A96A /* DualColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858518C007530084A96A /* DualColumnCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,8 @@
 		6FC20C5618B6FA3100874174 /* InformativeSectionSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformativeSectionSelectVC.m; sourceTree = "<group>"; };
 		6FED858118BFF20A0084A96A /* EditInformativeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformativeVC.h; sourceTree = "<group>"; };
 		6FED858218BFF20A0084A96A /* EditInformativeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformativeVC.m; sourceTree = "<group>"; };
+		6FED858418C007530084A96A /* DualColumnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DualColumnCell.h; sourceTree = "<group>"; };
+		6FED858518C007530084A96A /* DualColumnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DualColumnCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +259,8 @@
 				6F4EE13918B2968500FABCF2 /* Core Data Classes */,
 				6F4EE02F18ABEF3300FABCF2 /* Images */,
 				6F12E34A1892FEE40030AE4C /* Supporting Files */,
+				6FED858418C007530084A96A /* DualColumnCell.h */,
+				6FED858518C007530084A96A /* DualColumnCell.m */,
 			);
 			path = Critik;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				1F677FFB18BEEEF500572D99 /* Student.m in Sources */,
 				6FAC13FC18BD769D005A5841 /* EvaluatePersuasiveVC.m in Sources */,
 				1F677FDA18BEEE1B00572D99 /* Section.m in Sources */,
+				6FED858618C007530084A96A /* DualColumnCell.m in Sources */,
 				6FED858318BFF20A0084A96A /* EditInformativeVC.m in Sources */,
 				1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */,
 				1F677FF218BEEE3F00572D99 /* Speech.m in Sources */,
