@@ -122,7 +122,8 @@
         if([self.quickGrades count]/2 > indexPath.row)
         {
         
-            QuickGrade * temp = [self.quickGrades objectAtIndex:indexPath.row];
+            QuickGrade * temp;
+            temp.quickGradeDescription = [self.quickGrades objectAtIndex:indexPath.row];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.quickGradeDescription];
         }
         
@@ -135,13 +136,15 @@
         if([self.quickGrades count]/2 < indexPath.row)
         {
             
-            QuickGrade * temp = [self.quickGrades objectAtIndex:indexPath.row];
+            QuickGrade * temp;
+            temp.quickGradeDescription= [self.quickGrades objectAtIndex:indexPath.row];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.quickGradeDescription];
         }
         
     }else{
         
-        PreDefinedComments * temp = [self.preDefinedComments objectAtIndex:indexPath.row];
+        PreDefinedComments * temp;
+        temp.preDefComments= [self.preDefinedComments objectAtIndex:indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.preDefComments];
         
         
