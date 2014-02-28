@@ -144,8 +144,8 @@
     }else{
         
         PreDefinedComments * temp;
-        temp.preDefComments= [self.preDefinedComments objectAtIndex:indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.preDefComments];
+//        temp.preDefComments= [self.preDefinedComments objectAtIndex:indexPath.row];
+//        cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.preDefComments];
         
         
     }

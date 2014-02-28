@@ -10,17 +10,13 @@
 		1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */; };
 		1F44E1E218BFFC7D0042FCB9 /* EditPersuasiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F44E1E118BFFC7D0042FCB9 /* EditPersuasiveVC.m */; };
 		1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1B8118B5C1820015026A /* AddStudentVC.m */; };
-		1F677FD718BEEE1A00572D99 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FD618BEEE1A00572D99 /* QuickGrade.m */; };
-		1F677FDA18BEEE1B00572D99 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FD918BEEE1B00572D99 /* Section.m */; };
-		1F677FDD18BEEE1B00572D99 /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FDC18BEEE1B00572D99 /* Module.m */; };
-		1F677FE018BEEE1B00572D99 /* PreDefinedComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FDF18BEEE1B00572D99 /* PreDefinedComments.m */; };
-		1F677FE618BEEE3F00572D99 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FE518BEEE3F00572D99 /* StudentSpeech.m */; };
-		1F677FE918BEEE3F00572D99 /* StudentPreDefinedComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FE818BEEE3F00572D99 /* StudentPreDefinedComments.m */; };
-		1F677FEC18BEEE3F00572D99 /* StudentQuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FEB18BEEE3F00572D99 /* StudentQuickGrade.m */; };
-		1F677FEF18BEEE3F00572D99 /* WrittenComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FEE18BEEE3F00572D99 /* WrittenComments.m */; };
-		1F677FF218BEEE3F00572D99 /* Speech.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FF118BEEE3F00572D99 /* Speech.m */; };
-		1F677FF518BEEE3F00572D99 /* SpeechModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FF418BEEE3F00572D99 /* SpeechModule.m */; };
-		1F677FFB18BEEEF500572D99 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FFA18BEEEF500572D99 /* Student.m */; };
+		1F57CD8118C126C300DE2B50 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8018C126C300DE2B50 /* QuickGrade.m */; };
+		1F57CD8718C126C400DE2B50 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8618C126C400DE2B50 /* Section.m */; };
+		1F57CD8A18C126C400DE2B50 /* Speech.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8918C126C400DE2B50 /* Speech.m */; };
+		1F57CD8D18C126C400DE2B50 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8C18C126C400DE2B50 /* Student.m */; };
+		1F57CD9018C126C400DE2B50 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8F18C126C400DE2B50 /* StudentSpeech.m */; };
+		1F57CD9318C126C400DE2B50 /* PreDefinedComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD9218C126C400DE2B50 /* PreDefinedComments.m */; };
+		1F57CD9618C127AD00DE2B50 /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD9518C127AD00DE2B50 /* Module.m */; };
 		1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A516118B46616009A1253 /* AddSectionVC.m */; };
 		6F12E3421892FEE40030AE4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3411892FEE40030AE4C /* Foundation.framework */; };
 		6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3431892FEE40030AE4C /* CoreGraphics.framework */; };
@@ -91,28 +87,20 @@
 		1F44E1E118BFFC7D0042FCB9 /* EditPersuasiveVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPersuasiveVC.m; sourceTree = "<group>"; };
 		1F4F1B8018B5C1820015026A /* AddStudentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStudentVC.h; sourceTree = "<group>"; };
 		1F4F1B8118B5C1820015026A /* AddStudentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStudentVC.m; sourceTree = "<group>"; };
-		1F677FD518BEEE1A00572D99 /* QuickGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickGrade.h; sourceTree = "<group>"; };
-		1F677FD618BEEE1A00572D99 /* QuickGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickGrade.m; sourceTree = "<group>"; };
-		1F677FD818BEEE1B00572D99 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
-		1F677FD918BEEE1B00572D99 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
-		1F677FDB18BEEE1B00572D99 /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
-		1F677FDC18BEEE1B00572D99 /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module.m; sourceTree = "<group>"; };
-		1F677FDE18BEEE1B00572D99 /* PreDefinedComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreDefinedComments.h; sourceTree = "<group>"; };
-		1F677FDF18BEEE1B00572D99 /* PreDefinedComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreDefinedComments.m; sourceTree = "<group>"; };
-		1F677FE418BEEE3F00572D99 /* StudentSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentSpeech.h; sourceTree = "<group>"; };
-		1F677FE518BEEE3F00572D99 /* StudentSpeech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentSpeech.m; sourceTree = "<group>"; };
-		1F677FE718BEEE3F00572D99 /* StudentPreDefinedComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentPreDefinedComments.h; sourceTree = "<group>"; };
-		1F677FE818BEEE3F00572D99 /* StudentPreDefinedComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentPreDefinedComments.m; sourceTree = "<group>"; };
-		1F677FEA18BEEE3F00572D99 /* StudentQuickGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentQuickGrade.h; sourceTree = "<group>"; };
-		1F677FEB18BEEE3F00572D99 /* StudentQuickGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentQuickGrade.m; sourceTree = "<group>"; };
-		1F677FED18BEEE3F00572D99 /* WrittenComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrittenComments.h; sourceTree = "<group>"; };
-		1F677FEE18BEEE3F00572D99 /* WrittenComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrittenComments.m; sourceTree = "<group>"; };
-		1F677FF018BEEE3F00572D99 /* Speech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speech.h; sourceTree = "<group>"; };
-		1F677FF118BEEE3F00572D99 /* Speech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speech.m; sourceTree = "<group>"; };
-		1F677FF318BEEE3F00572D99 /* SpeechModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechModule.h; sourceTree = "<group>"; };
-		1F677FF418BEEE3F00572D99 /* SpeechModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechModule.m; sourceTree = "<group>"; };
-		1F677FF918BEEEF500572D99 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
-		1F677FFA18BEEEF500572D99 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		1F57CD7F18C126C300DE2B50 /* QuickGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuickGrade.h; path = Critik/QuickGrade.h; sourceTree = "<group>"; };
+		1F57CD8018C126C300DE2B50 /* QuickGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuickGrade.m; path = Critik/QuickGrade.m; sourceTree = "<group>"; };
+		1F57CD8518C126C400DE2B50 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Section.h; path = Critik/Section.h; sourceTree = "<group>"; };
+		1F57CD8618C126C400DE2B50 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Section.m; path = Critik/Section.m; sourceTree = "<group>"; };
+		1F57CD8818C126C400DE2B50 /* Speech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Speech.h; path = Critik/Speech.h; sourceTree = "<group>"; };
+		1F57CD8918C126C400DE2B50 /* Speech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Speech.m; path = Critik/Speech.m; sourceTree = "<group>"; };
+		1F57CD8B18C126C400DE2B50 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Student.h; path = Critik/Student.h; sourceTree = "<group>"; };
+		1F57CD8C18C126C400DE2B50 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = Critik/Student.m; sourceTree = "<group>"; };
+		1F57CD8E18C126C400DE2B50 /* StudentSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StudentSpeech.h; path = Critik/StudentSpeech.h; sourceTree = "<group>"; };
+		1F57CD8F18C126C400DE2B50 /* StudentSpeech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudentSpeech.m; path = Critik/StudentSpeech.m; sourceTree = "<group>"; };
+		1F57CD9118C126C400DE2B50 /* PreDefinedComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreDefinedComments.h; path = Critik/PreDefinedComments.h; sourceTree = "<group>"; };
+		1F57CD9218C126C400DE2B50 /* PreDefinedComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreDefinedComments.m; path = Critik/PreDefinedComments.m; sourceTree = "<group>"; };
+		1F57CD9418C127AD00DE2B50 /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
+		1F57CD9518C127AD00DE2B50 /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module.m; sourceTree = "<group>"; };
 		1F9A516018B46616009A1253 /* AddSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSectionVC.h; sourceTree = "<group>"; };
 		1F9A516118B46616009A1253 /* AddSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSectionVC.m; sourceTree = "<group>"; };
 		6F12E33E1892FEE40030AE4C /* Critik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Critik.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,28 +352,20 @@
 		6F4EE13918B2968500FABCF2 /* Core Data Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1F677FD518BEEE1A00572D99 /* QuickGrade.h */,
-				1F677FD618BEEE1A00572D99 /* QuickGrade.m */,
-				1F677FDB18BEEE1B00572D99 /* Module.h */,
-				1F677FDC18BEEE1B00572D99 /* Module.m */,
-				1F677FDE18BEEE1B00572D99 /* PreDefinedComments.h */,
-				1F677FDF18BEEE1B00572D99 /* PreDefinedComments.m */,
-				1F677FD818BEEE1B00572D99 /* Section.h */,
-				1F677FD918BEEE1B00572D99 /* Section.m */,
-				1F677FE718BEEE3F00572D99 /* StudentPreDefinedComments.h */,
-				1F677FE818BEEE3F00572D99 /* StudentPreDefinedComments.m */,
-				1F677FEA18BEEE3F00572D99 /* StudentQuickGrade.h */,
-				1F677FEB18BEEE3F00572D99 /* StudentQuickGrade.m */,
-				1F677FED18BEEE3F00572D99 /* WrittenComments.h */,
-				1F677FEE18BEEE3F00572D99 /* WrittenComments.m */,
-				1F677FE418BEEE3F00572D99 /* StudentSpeech.h */,
-				1F677FE518BEEE3F00572D99 /* StudentSpeech.m */,
-				1F677FF018BEEE3F00572D99 /* Speech.h */,
-				1F677FF118BEEE3F00572D99 /* Speech.m */,
-				1F677FF318BEEE3F00572D99 /* SpeechModule.h */,
-				1F677FF418BEEE3F00572D99 /* SpeechModule.m */,
-				1F677FF918BEEEF500572D99 /* Student.h */,
-				1F677FFA18BEEEF500572D99 /* Student.m */,
+				1F57CD9118C126C400DE2B50 /* PreDefinedComments.h */,
+				1F57CD9218C126C400DE2B50 /* PreDefinedComments.m */,
+				1F57CD8E18C126C400DE2B50 /* StudentSpeech.h */,
+				1F57CD8F18C126C400DE2B50 /* StudentSpeech.m */,
+				1F57CD8B18C126C400DE2B50 /* Student.h */,
+				1F57CD8C18C126C400DE2B50 /* Student.m */,
+				1F57CD8818C126C400DE2B50 /* Speech.h */,
+				1F57CD8918C126C400DE2B50 /* Speech.m */,
+				1F57CD8518C126C400DE2B50 /* Section.h */,
+				1F57CD8618C126C400DE2B50 /* Section.m */,
+				1F57CD7F18C126C300DE2B50 /* QuickGrade.h */,
+				1F57CD8018C126C300DE2B50 /* QuickGrade.m */,
+				1F57CD9418C127AD00DE2B50 /* Module.h */,
+				1F57CD9518C127AD00DE2B50 /* Module.m */,
 			);
 			name = "Core Data Classes";
 			path = ..;
@@ -542,34 +522,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F677FEF18BEEE3F00572D99 /* WrittenComments.m in Sources */,
+				1F57CD8A18C126C400DE2B50 /* Speech.m in Sources */,
 				6FAD860C18B83A43001C8F54 /* PersuasiveSectionSelectVC.m in Sources */,
+				1F57CD8718C126C400DE2B50 /* Section.m in Sources */,
+				1F57CD9318C126C400DE2B50 /* PreDefinedComments.m in Sources */,
 				6FAC13FF18BD76AF005A5841 /* EvaluateInterpersonalVC.m in Sources */,
-				1F677FDD18BEEE1B00572D99 /* Module.m in Sources */,
 				6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */,
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
 				6FAD860F18B83BF5001C8F54 /* InterpersonalSectionSelectVC.m in Sources */,
-				1F677FE918BEEE3F00572D99 /* StudentPreDefinedComments.m in Sources */,
 				6FC20C5718B6FA3100874174 /* InformativeSectionSelectVC.m in Sources */,
+				1F57CD9618C127AD00DE2B50 /* Module.m in Sources */,
 				1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */,
+				1F57CD9018C126C400DE2B50 /* StudentSpeech.m in Sources */,
 				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
-				1F677FEC18BEEE3F00572D99 /* StudentQuickGrade.m in Sources */,
 				6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */,
+				1F57CD8D18C126C400DE2B50 /* Student.m in Sources */,
 				1F44E1E218BFFC7D0042FCB9 /* EditPersuasiveVC.m in Sources */,
-				1F677FF518BEEE3F00572D99 /* SpeechModule.m in Sources */,
-				1F677FFB18BEEEF500572D99 /* Student.m in Sources */,
 				6FAC13FC18BD769D005A5841 /* EvaluatePersuasiveVC.m in Sources */,
-				1F677FDA18BEEE1B00572D99 /* Section.m in Sources */,
 				6FED858618C007530084A96A /* DualColumnCell.m in Sources */,
 				6FED858318BFF20A0084A96A /* EditInformativeVC.m in Sources */,
 				1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */,
-				1F677FF218BEEE3F00572D99 /* Speech.m in Sources */,
 				6FAC13F918BD7686005A5841 /* EvaluateInformativeVC.m in Sources */,
-				1F677FD718BEEE1A00572D99 /* QuickGrade.m in Sources */,
+				1F57CD8118C126C300DE2B50 /* QuickGrade.m in Sources */,
 				6F12E3501892FEE40030AE4C /* main.m in Sources */,
 				1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */,
-				1F677FE618BEEE3F00572D99 /* StudentSpeech.m in Sources */,
-				1F677FE018BEEE1B00572D99 /* PreDefinedComments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
