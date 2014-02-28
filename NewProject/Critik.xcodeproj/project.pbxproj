@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */; };
 		1F44E1E218BFFC7D0042FCB9 /* EditPersuasiveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F44E1E118BFFC7D0042FCB9 /* EditPersuasiveVC.m */; };
+		1F44E1E518C004840042FCB9 /* QuickGradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F44E1E418C004840042FCB9 /* QuickGradeCell.m */; };
 		1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1B8118B5C1820015026A /* AddStudentVC.m */; };
 		1F677FD718BEEE1A00572D99 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FD618BEEE1A00572D99 /* QuickGrade.m */; };
 		1F677FDA18BEEE1B00572D99 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F677FD918BEEE1B00572D99 /* Section.m */; };
@@ -87,6 +88,8 @@
 		1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSectionVC.m; sourceTree = "<group>"; };
 		1F44E1E018BFFC7D0042FCB9 /* EditPersuasiveVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPersuasiveVC.h; sourceTree = "<group>"; };
 		1F44E1E118BFFC7D0042FCB9 /* EditPersuasiveVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPersuasiveVC.m; sourceTree = "<group>"; };
+		1F44E1E318C004840042FCB9 /* QuickGradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickGradeCell.h; sourceTree = "<group>"; };
+		1F44E1E418C004840042FCB9 /* QuickGradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickGradeCell.m; sourceTree = "<group>"; };
 		1F4F1B8018B5C1820015026A /* AddStudentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStudentVC.h; sourceTree = "<group>"; };
 		1F4F1B8118B5C1820015026A /* AddStudentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStudentVC.m; sourceTree = "<group>"; };
 		1F677FD518BEEE1A00572D99 /* QuickGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickGrade.h; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				1F9A516118B46616009A1253 /* AddSectionVC.m */,
 				1F44E1E018BFFC7D0042FCB9 /* EditPersuasiveVC.h */,
 				1F44E1E118BFFC7D0042FCB9 /* EditPersuasiveVC.m */,
+				1F44E1E318C004840042FCB9 /* QuickGradeCell.h */,
+				1F44E1E418C004840042FCB9 /* QuickGradeCell.m */,
 				6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */,
 				6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */,
 				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
@@ -544,6 +549,7 @@
 				1F677FDA18BEEE1B00572D99 /* Section.m in Sources */,
 				1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */,
 				1F677FF218BEEE3F00572D99 /* Speech.m in Sources */,
+				1F44E1E518C004840042FCB9 /* QuickGradeCell.m in Sources */,
 				6FAC13F918BD7686005A5841 /* EvaluateInformativeVC.m in Sources */,
 				1F677FD718BEEE1A00572D99 /* QuickGrade.m in Sources */,
 				6F12E3501892FEE40030AE4C /* main.m in Sources */,

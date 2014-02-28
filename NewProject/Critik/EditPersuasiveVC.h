@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuickGradeCell.h"
 
-@interface EditPersuasiveVC : UIViewController
+@interface EditPersuasiveVC : UIViewController{
+    UIScrollView *beingScrolled_;
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *quickTable1;
+@property (weak, nonatomic) IBOutlet UITableView *quickTable2;
+@property (weak, nonatomic) IBOutlet UIScrollView *quickGradeScrollView;
 
 @end
