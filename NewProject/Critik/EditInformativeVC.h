@@ -12,13 +12,18 @@
 #import "PreDefinedComments.h"
 #import "QuickGrade.h"
 
-@interface EditInformativeVC : UIViewController
+@interface EditInformativeVC : UIViewController <UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *SpeechSectionsTable;
 
-@property (weak, nonatomic) IBOutlet UITableView *QuickGradeTable;
-@property (weak, nonatomic) IBOutlet UIScrollView *ScrollView;
+@property (weak, nonatomic) IBOutlet UITableView *QuickGradeTable1;
+@property (weak, nonatomic) IBOutlet UITableView *QuickGradeTable2;
+
+@property (weak, nonatomic) IBOutlet UITableView *PreDefTable1;
+
 
 @property NSArray * quickGrades;
 @property NSArray * preDefinedComments;
+@property NSArray * SpeechSections;
 
 
 

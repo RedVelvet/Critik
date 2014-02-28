@@ -27,7 +27,8 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self.ScrollView setContentSize:CGSizeMake(320, 808)];
+    //[self.ScrollView setContentSize:CGSizeMake(320, 808)];
+    
 }
 
 - (void)viewDidLoad
@@ -50,16 +51,28 @@
     // Query on managedObjectContext With Generated fetchRequest
     
     if(self.quickGrades == nil){
-        self.quickGrades = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+        //self.quickGrades = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+        self.quickGrades = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4", nil];
+        
     }
     
     entity = [NSEntityDescription entityForName:@"PreDefinedComments" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     
-    if(self.preDefinedComments == nil){
-        self.preDefinedComments = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+    if([self.preDefinedComments count] == 0){
+        //self.preDefinedComments = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+        
+        self.preDefinedComments = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4", nil];
+
     }
+    if([self.SpeechSections count] == 0)
+    {
+        self.SpeechSections = [NSArray arrayWithObjects: @"Introduction",@"Organization",@"Reasoning and Evidence",@"Presentation Aid",@"Voice and Language",@"Physical Delivery",@"Conclusion",nil];
+    }
+    [self.QuickGradeTable1 reloadData];
+    [self.QuickGradeTable2 reloadData];
+    [self.SpeechSectionsTable reloadData];
 	// Do any additional setup after loading the view.
 }
 
@@ -79,69 +92,75 @@
 {
     
     // Return the number of rows in the section.
-    return 5;
+    if(tableView.tag == 0){
+        return [self.quickGrades count]/2;
+    }
+    if(tableView.tag == 1){
+        return [self.preDefinedComments count];
+    }else{
+        return [self.SpeechSections count];
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-        static NSString *CellIdentifier = @"Cell";
-
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        DualColumnCell * mycell2 = ((DualColumnCell*)cell);
-        if (cell == nil) {
-            cell = [[DualColumnCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            
-            [mycell2.column1 addTarget:self action:@selector(column1Selected:) forControlEvents:UIControlEventTouchUpInside];
-            [mycell2.column2 addTarget:self action:@selector(column1Selected:) forControlEvents:UIControlEventTouchUpInside];
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if(!cell)
+    {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.textLabel.textColor = [UIColor blackColor];
+    
+    //left QuickGrades Table
+    if(tableView.tag == 0)
+    {
+        //First half of QuickGrades is placed in the left table
+        if([self.quickGrades count]/2 > indexPath.row)
+        {
+        
+            QuickGrade * temp = [self.quickGrades objectAtIndex:indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.quickGradeDescription];
         }
-
-        // Configure the cell...
+        
+    }
     
-        QuickGrade * temp = [self.quickGrades objectAtIndex:indexPath.row];
-
-        mycell2.column1_label1.text = [NSString stringWithFormat:@"%@",temp.quickGradeDescription];;
-        mycell2.column1.tag = indexPath.row*2;
-//        mycell2.column2_label1.text = ;
-//        mycell2.column2.tag = indexPath.row*2 +1;
-        return cell;
+    //Right QuickGrades Table
+    if (tableView.tag == 1)
+    {
+        //Second half of QuickGrades is placed in the right table
+        if([self.quickGrades count]/2 < indexPath.row)
+        {
+            
+            QuickGrade * temp = [self.quickGrades objectAtIndex:indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.quickGradeDescription];
+        }
+        
+    }else{
+        
+        PreDefinedComments * temp = [self.preDefinedComments objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.preDefComments];
+        
+        
+    }
+    return cell;
     
-//    if(tableView.tag == 1){
-//        static NSString *CellIdentifier = @"Cell";
-//        
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//        DualColumnCell * mycell2 = ((DualColumnCell*)cell);
-//        if (cell == nil) {
-//            cell = [[DualColumnCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//            
-//            [mycell2.column1 addTarget:self action:@selector(column1Selected:) forControlEvents:UIControlEventTouchUpInside];
-//            [mycell2.column2 addTarget:self action:@selector(column1Selected:) forControlEvents:UIControlEventTouchUpInside];
-//        }
-//        
-//        // Configure the cell...
-//        
-//        mycell2.column1_label1.text = @"column1_label1";
-//        mycell2.column1_label2.text = @"column1_label2";
-//        mycell2.column1.tag = indexPath.row*2;
-//        mycell2.column2_label1.text = @"column2_label1";
-//        mycell2.column2_label2.text = @"column2_label2";
-//        mycell2.column2.tag = indexPath.row*2 +1;
-//        return cell;
-//        
-//    }
 }
 
-//- (void) column1Selected: (id) sender
-//{
-//    
-//    UIAlertView *alert = [[ UIAlertView alloc]
-//                          initWithTitle: @" Alert"
-//                          message: [NSString stringWithFormat: @"button %d",((UIButton *) sender).tag]
-//                          delegate: nil
-//                          cancelButtonTitle: @" OK"
-//                          otherButtonTitles: nil];
-//    [alert show] ;
-//    [alert release];
 
+//Allows QuickGrades tables scroll together
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+{
+
+    if (scrollView == self.QuickGradeTable1) {
+        self.QuickGradeTable2.contentOffset = scrollView.contentOffset;
+    } else if(scrollView == self.QuickGradeTable2){
+        self.QuickGradeTable1.contentOffset = scrollView.contentOffset;
+    }
+    
+}
 
 @end

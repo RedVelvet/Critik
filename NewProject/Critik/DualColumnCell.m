@@ -24,13 +24,13 @@
         column1.tag = 1;
         column1.autoresizingMask = 292;
         
-        //column1.backgroundColor = [UIColor redColor];
+        //column1.backgroundColor = [UIColor greenColor];
         column1.frame = CGRectMake(0, 0, self.contentView.bounds.size.width,  self.contentView.bounds.size.height);
         
         
         column1_label1 = [[UILabel alloc] initWithFrame: CGRectMake(column1.bounds.size.width*1/5,0,column1.bounds.size.width*4/5,column1.bounds.size.height/2)];
         
-        //column1_label1.backgroundColor = [UIColor redColor];
+        column1_label1.backgroundColor = [UIColor greenColor];
         [column1 addSubview:column1_label1];
         
         [self.contentView addSubview: column1];
