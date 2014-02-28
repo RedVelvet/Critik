@@ -385,7 +385,7 @@
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="RXa-Wg-JuG">
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="RXa-Wg-JuG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="704"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -421,6 +421,10 @@
                                         </cells>
                                     </tableViewSection>
                                 </sections>
+                                <connections>
+                                    <outlet property="dataSource" destination="MWX-BP-m4D" id="UX8-VH-nQ4"/>
+                                    <outlet property="delegate" destination="MWX-BP-m4D" id="drv-87-X6I"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Module Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JyK-iW-Svj">
                                 <rect key="frame" x="595" y="38" width="108" height="21"/>
@@ -456,7 +460,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tableView autoresizesSubviews="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Egq-xO-4pb">
+                            <tableView clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Egq-xO-4pb">
                                 <rect key="frame" x="676" y="125" width="284" height="239"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -465,7 +469,7 @@
                                     <outlet property="delegate" destination="MWX-BP-m4D" id="fCC-LF-WIP"/>
                                 </connections>
                             </tableView>
-                            <tableView autoresizesSubviews="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-E0-Bjk">
+                            <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-E0-Bjk">
                                 <rect key="frame" x="367" y="125" width="308" height="239"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -483,6 +487,7 @@
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="moduleTable" destination="RXa-Wg-JuG" id="o9A-04-m4z"/>
                         <outlet property="quickTable1" destination="f7c-E0-Bjk" id="2yO-Vz-oxw"/>
                         <outlet property="quickTable2" destination="Egq-xO-4pb" id="SK7-bd-4N4"/>
                     </connections>
