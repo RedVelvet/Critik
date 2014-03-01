@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * moduleName;
 @property (nonatomic, retain) NSNumber * points;
 @property (nonatomic, retain) NSString * written;
+@property (nonatomic, retain) NSNumber * orderIndex;
 @property (nonatomic, retain) NSSet *preDefinedComments;
 @property (nonatomic, retain) NSSet *quickGrade;
 @property (nonatomic, retain) Speech *speech;

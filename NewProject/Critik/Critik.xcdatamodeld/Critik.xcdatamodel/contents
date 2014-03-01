@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Module" representedClassName="Module" syncable="YES">
         <attribute name="moduleName" attributeType="String" syncable="YES"/>
+        <attribute name="orderIndex" attributeType="Integer 16" syncable="YES"/>
         <attribute name="points" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="written" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="preDefinedComments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PreDefinedComments" inverseName="module" inverseEntity="PreDefinedComments" syncable="YES"/>
