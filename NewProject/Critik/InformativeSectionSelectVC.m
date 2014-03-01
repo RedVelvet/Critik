@@ -30,6 +30,8 @@
 {
     [super viewDidLoad];
     
+//    if(self.p)
+    
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
     

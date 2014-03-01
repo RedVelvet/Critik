@@ -1,8 +1,8 @@
 //
-//  PersuasiveSectionSelectVC.h
+//  StudentSelectionVC.h
 //  Critik
 //
-//  Created by Dalton Decker on 2/21/14.
+//  Created by Dalton Decker on 3/1/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -10,12 +10,14 @@
 #import "Section.h"
 #import "Student.h"
 #import "AppDelegate.h"
+#import "StudentEvaluationVC.h"
 
+@interface StudentSelectionVC : UIViewController
 
-@interface PersuasiveSectionSelectVC : UIViewController
+@property NSMutableArray * sections;
+@property NSMutableArray * students;
 
-@property NSArray * sections;
-@property NSArray * students;
+@property NSString * currSpeech;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *SectionPicker;
 @property (weak, nonatomic) IBOutlet UITableView *StudentTable;

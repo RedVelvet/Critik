@@ -1,28 +1,26 @@
 //
-//  PersuasiveSectionSelectVC.m
+//  StudentSelectionVC.m
 //  Critik
 //
-//  Created by Dalton Decker on 2/21/14.
+//  Created by Dalton Decker on 3/1/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
-#import "PersuasiveSectionSelectVC.h"
+#import "StudentSelectionVC.h"
 
-
-@interface PersuasiveSectionSelectVC()
-
+@interface StudentSelectionVC ()
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
 
-@implementation PersuasiveSectionSelectVC
+@implementation StudentSelectionVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.sections = [[NSArray alloc]init];
-        self.students = [[NSArray alloc]init];
+        self.sections = [[NSMutableArray alloc]init];
+        self.students = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -31,7 +29,11 @@
 {
     [super viewDidLoad];
     
-    AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    self.navigationItem.title = self.currSpeech;
+    
+    
+    
+        AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
     
     
@@ -105,11 +107,15 @@
 {
     Section * temp = [self.sections objectAtIndex:row];
     NSSet * set = temp.students;
-    self.students = [NSArray arrayWithArray:[set allObjects]];
-    //    Student * student = [[Student alloc]init];
-    //    student.firstName = @"Dalton";
-    //    self.students = [NSArray arrayWithObject:student];
+    self.students = [NSMutableArray arrayWithArray:[set allObjects]];
+    
+    // Sort the array by last name
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+    NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+    self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
     [self.StudentTable reloadData];
+    
+    NSLog(@"Row : %d  Component : %d", row, component);
 }
 
 #pragma mark - Table view data source
@@ -132,6 +138,8 @@
     if(!cell)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
+    cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
+    cell.textLabel.textColor = [UIColor whiteColor];
     Student * tempStudent = [self.students objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",tempStudent.firstName, tempStudent.lastName];
     
@@ -144,9 +152,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-//    EvaluatePersuasiveVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"persuasive"];
-    //evaluateSpeech.currentStudent = [self.StudentTable indexPathForSelectedRow];
-//    [self.navigationController pushViewController:evaluateSpeech animated:YES];
+    StudentEvaluationVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"evaluation"];
+    Student * temp = [self.students objectAtIndex:indexPath.row];
+    //evaluateSpeech.currentStudent = temp;
+    NSLog(@"About to present");
+    [self.navigationController pushViewController:evaluateSpeech animated:YES];
+    NSLog(@"Presented evaluation");
     
 }
 

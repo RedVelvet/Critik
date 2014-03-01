@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DualColumnCell.h"
 #import "AppDelegate.h"
 #import "PreDefinedComments.h"
 #import "QuickGrade.h"

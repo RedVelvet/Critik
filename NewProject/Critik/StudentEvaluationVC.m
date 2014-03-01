@@ -1,18 +1,18 @@
 //
-//  EvaluateInterpersonalVC.m
+//  StudentEvaluationVC.m
 //  Critik
 //
-//  Created by Dalton Decker on 2/25/14.
+//  Created by Dalton Decker on 3/1/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
-#import "EvaluateInterpersonalVC.h"
+#import "StudentEvaluationVC.h"
 
-@interface EvaluateInterpersonalVC ()
+@interface StudentEvaluationVC ()
 
 @end
 
-@implementation EvaluateInterpersonalVC
+@implementation StudentEvaluationVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,18 +23,50 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    
+    //sets the "Introduction module as the first selected module
+    NSIndexPath * indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+    [self.ModuleTable selectRowAtIndexPath:indexPath animated:YES  scrollPosition:UITableViewScrollPositionBottom];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.currentStudent = [[Student alloc]init];
-    self.SpeechSections = [NSArray arrayWithObjects: @"Introduction",@"Organization",@"Reasoning and Evidence",@"Presentation Aid",@"Voice and Language",@"Physical Delivery",@"Conclusion",nil];
-    [self.SpeechSectionsTable reloadData];
+    if(self.currentStudent == nil)
+    {
+        self.currentStudent = [[Student alloc]init];
+    }
+    if(self.SpeechSections == nil)
+    {
+        self.SpeechSections = [NSArray arrayWithObjects: @"Introduction",@"Organization",@"Reasoning and Evidence",@"Presentation Aid",@"Voice and Language",@"Physical Delivery",@"Conclusion",nil];
+    }
+    [self.ModuleTable reloadData];
+    
+    //    self.ScrollView = [[UIScrollView alloc]init];
+    //    [self.ScrollView setScrollEnabled:YES];
+    //    [self.ScrollView setScrollsToTop:YES];
     
 	// Do any additional setup after loading the view.
-    // NSLog(self.currentStudent.firstName);
+    NSLog(self.currentStudent.firstName);
+    
+    UISegmentedControl *quickGrade = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"-", @"ok", @"+", nil]];
+    
+    //CGRect frame = [CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)];
+    
+    //    self.mySegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects: @"-", @"ok",@"+", nil]];
+    //    self.mySegmentedControl.frame = CGRectMake(500, 8, 280, 27);
+    //    self.mySegmentedControl.segmentedControlStyle = UISegmentedControlStylePlain;
+    //    self.mySegmentedControl.selectedSegmentIndex = 1;
+    //    self.mySegmentedControl.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    //    self.mySegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    //
+    //   [self.view addSubview:quickGrade];
+    
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -90,4 +122,3 @@
 }
 
 @end
-
