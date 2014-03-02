@@ -41,14 +41,14 @@
     StudentSelectionVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Selection"];
     if(sender.tag == 0)
     {
-        evaluateSpeech.currSpeech = @"informative";
+        evaluateSpeech.currSpeech = @"Informative";
         
     }
     if(sender.tag == 1){
-        evaluateSpeech.currSpeech = @"persuasive";
+        evaluateSpeech.currSpeech = @"Persuasive";
     }
     if(sender.tag == 2){
-        evaluateSpeech.currSpeech = @"interpersonal";
+        evaluateSpeech.currSpeech = @"Interpersonal";
     }
     
     [self.navigationController pushViewController:evaluateSpeech animated:YES];
