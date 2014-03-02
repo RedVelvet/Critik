@@ -39,13 +39,14 @@
                                    entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
+    // Which speech was selected
     if (self.sendingButtonTag == 13) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Persuasive"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Informative"];
         [fetchRequest setPredicate:predicate];
     }
     else if (self.sendingButtonTag == 14)
     {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Informative"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Persuasive"];
         [fetchRequest setPredicate:predicate];
     }
     else if (self.sendingButtonTag == 15)
@@ -72,7 +73,7 @@
         // Add Modules to Core Data
         Module *introModule = [NSEntityDescription insertNewObjectForEntityForName:@"Module" inManagedObjectContext:managedObjectContext];
         introModule.moduleName = @"Introduction";
-        introModule.orderIndex = 0;
+        introModule.orderIndex = [NSNumber numberWithInt:0];
         introModule.speech = newSpeech;
         
         Module *orgModule = [NSEntityDescription insertNewObjectForEntityForName:@"Module" inManagedObjectContext:managedObjectContext];
@@ -125,10 +126,13 @@
     NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
     self.modules = [NSMutableArray arrayWithArray:[self.currSpeech.modules sortedArrayUsingDescriptors:descriptors]];
 
+    // The view just opened so lets select introduction and setup the tables
     if ([self.moduleLabel.text isEqualToString:@"Module Label"]) {
         self.moduleLabel.text = @"Introduction";
         self.currModule = [self.modules objectAtIndex:0];
         self.quickGrades = [NSMutableArray arrayWithArray:[self.currModule.quickGrade allObjects]];
+        self.preDefinedComments = [NSMutableArray arrayWithArray:[self.currModule.preDefinedComments allObjects]];
+        [self.commentsTable reloadData];
         [self.quickTable1 reloadData];
         [self.quickTable2 reloadData];
     }
@@ -171,9 +175,13 @@
            
             self.currModule = [modules objectAtIndex:indexPath.row];
             self.quickGrades = [NSMutableArray arrayWithArray:[self.currModule.quickGrade allObjects]];
+            [self splitQuickGrades];
+            self.preDefinedComments = [NSMutableArray arrayWithArray:[self.currModule.preDefinedComments allObjects]];
             self.moduleLabel.text = self.currModule.moduleName;
+            self.pointTF.text = [NSString stringWithFormat:@"%@",self.currModule.points];
             [self.quickTable1 reloadData];
             [self.quickTable2 reloadData];
+            [self.commentsTable reloadData];
             NSLog(@"Module: %@", self.currModule.moduleName);
             break;
         case leftTableTag:
@@ -216,24 +224,68 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-//        Student *studentToDelete = [self.students objectAtIndex:indexPath.row];
-//        [self.students removeObjectAtIndex:indexPath.row];
-//        
-//        //Remove student from section
-//        [studentToDelete.section removeStudentsObject:studentToDelete];
-//        
-//        // You might want to delete the object from your Data Store if you’re using CoreData
-//        [managedObjectContext deleteObject:studentToDelete];
-//        NSError *error;
-//        if (![managedObjectContext save:&error]) {
-//            NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
-//        }
         
-        // Animate the deletion
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if (tableView.tag != moduleTableTag) { // can't delete from the module table
+            if (tableView.tag == leftTableTag)
+            {
+                QuickGrade *quickToDelete = [self.quickGrades1 objectAtIndex:indexPath.row];
+                NSLog(@"index: %@", quickToDelete.quickGradeDescription);
+                [self.quickGrades removeObject:quickToDelete];
+                [self.quickGrades1 removeObject:quickToDelete];
+                // Remove the comment from module
+                [quickToDelete.module removeQuickGradeObject:quickToDelete];
+                
+                // Delete the object from the data store
+                [managedObjectContext deleteObject:quickToDelete];
+                NSError *error;
+                if(![managedObjectContext save:&error])
+                {
+                    NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+                }
+                
+                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+            else if (tableView.tag == rightTableTag)
+            {
+                QuickGrade *quickToDelete = [self.quickGrades2 objectAtIndex:indexPath.row];
+                NSLog(@"index: %@", quickToDelete.quickGradeDescription);
+                [self.quickGrades removeObject:quickToDelete];
+                [self.quickGrades2 removeObject:quickToDelete];
+                
+                // Remove the comment from module
+                [quickToDelete.module removeQuickGradeObject:quickToDelete];
+                
+                // Delete the object from the data store
+                [managedObjectContext deleteObject:quickToDelete];
+                NSError *error;
+                if(![managedObjectContext save:&error])
+                {
+                    NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+                }
+                
+                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+            else
+            {
+                // Delete the row from the data source
+                PreDefinedComments *predefToDelete = [self.preDefinedComments objectAtIndex:indexPath.row];
+                [self.preDefinedComments removeObjectAtIndex:indexPath.row];
+                
+                // Remove the comment from module
+                [predefToDelete.module removePreDefinedCommentsObject:predefToDelete];
+                
+                // Delete the object from the data store
+                [managedObjectContext deleteObject:predefToDelete];
+                NSError *error;
+                if(![managedObjectContext save:&error])
+                {
+                    NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+                }
+                
+                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
         
     }
     
@@ -250,18 +302,23 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSInteger rows;
+    NSInteger rows = 0;
     if (tableView.tag == moduleTableTag)//module tableview
     {
         rows = [modules count];
     }
-    else
+    else if (tableView.tag == leftTableTag)
     {
-        // If the array has an odd length then integer division will result in 1 to few rows for the right table (quickTable2)
-        if ([quickGrades count] % 2 != 0)
-            rows = [quickGrades count]/2 + 1;
-        else
-            rows = [quickGrades count]/2;
+
+        rows = [self.quickGrades1 count];
+    }
+    else if (tableView.tag == rightTableTag)
+    {
+        rows = [self.quickGrades2 count];
+    }
+    else if (tableView.tag == commentsTableTag)
+    {
+        rows = [self.preDefinedComments count];
     }
     
     NSLog(@"Tag: %d Rows: %d", tableView.tag, rows);
@@ -287,134 +344,250 @@
         cell.textLabel.text = tempModule.moduleName;
     }
     else if (tableView.tag == leftTableTag ) {
-        // If the array has an odd length that means that the tables will not be the same size. In that case the
-        // left table will use half of the array length minus 1. The exception to this rule is when there is
-        // only one element in the array, in that case we will only use the left table.
-        if ([quickGrades count] % 2 != 0 && [quickGrades count] != 1) {
-            
-            if (indexPath.row < [quickGrades count]/2) { // array is odd so use up to n-1 rows
-                [self.quickTable1 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-                QuickGrade *tempQuickGrade = [quickGrades objectAtIndex:indexPath.row];
-                cell.textLabel.text = tempQuickGrade.quickGradeDescription;
-
-            }
-        }
-        else // the array is even or there is only one element in the array so we're clear to use all rows
-        {
-            [self.quickTable1 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            QuickGrade *tempQuickGrade = [quickGrades objectAtIndex:indexPath.row];
-            cell.textLabel.text = tempQuickGrade.quickGradeDescription;
-
-        }
+        [self.quickTable1 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        QuickGrade *tempQuickGrade = [self.quickGrades1 objectAtIndex:indexPath.row];
+        UISwitch *switchView = [[UISwitch alloc]initWithFrame:CGRectZero];
+        cell.accessoryView = switchView;
+        [switchView setOn:[tempQuickGrade.isActive boolValue]animated:NO];
         
+        // associate table tag and object with button for later use in updating isActive
+        switchView.tag = leftTableTag;
+        objc_setAssociatedObject(switchView, "obj", tempQuickGrade, OBJC_ASSOCIATION_ASSIGN);
+        [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+        cell.textLabel.text = tempQuickGrade.quickGradeDescription;
+
     }
     else if (tableView.tag == rightTableTag)
     {
         
-        if([quickGrades count] == 1) // when the array only has one object only dequeue a cell
-        {
-            [self.quickTable2 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            
-        }
-        else
-        {
-            [self.quickTable2 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-            QuickGrade *tempQuickGrade = [quickGrades objectAtIndex:[quickGrades count]/2 + indexPath.row];
-            cell.textLabel.text = tempQuickGrade.quickGradeDescription;
-        }
+        [self.quickTable2 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        QuickGrade *tempQuickGrade = [self.quickGrades2 objectAtIndex:indexPath.row];
+        UISwitch *switchView = [[UISwitch alloc]initWithFrame:CGRectZero];
+        cell.accessoryView = switchView;
+        [switchView setOn:[tempQuickGrade.isActive boolValue]animated:NO];
         
+        // associate table tag and object with button for later use in updating isActive
+        switchView.tag = leftTableTag;
+        objc_setAssociatedObject(switchView, "obj", tempQuickGrade, OBJC_ASSOCIATION_ASSIGN);
+        [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+        cell.textLabel.text = tempQuickGrade.quickGradeDescription;
+
         
     }
     else if (tableView.tag == commentsTableTag)
     {
         [self.commentsTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        PreDefinedComments *tempPredef = [preDefinedComments objectAtIndex:indexPath.row];
+        UISwitch *switchView = [[UISwitch alloc]initWithFrame:CGRectZero];
+        cell.accessoryView = switchView;
+        [switchView setOn:[tempPredef.isActive boolValue] animated:NO];
+        
+        // associate table tag and object with button for later use in updating isActive
+        switchView.tag = commentsTableTag;
+        objc_setAssociatedObject(switchView, "obj", tempPredef, OBJC_ASSOCIATION_ASSIGN);
+        [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+        cell.textLabel.text = tempPredef.comment;
     }
     
     return cell;
         
 }
 
-# pragma mark - Unwind
+# pragma mark - Popover Handling
 
-- (IBAction)unwindToQuickGrades:(UIStoryboardSegue *)sender
+- (void) dismissPopover:(NSArray *)addContentArray
 {
-    self.addQuickGradePopover = nil;
-    AddQuickGradeVC *addQuickGradeVC = (AddQuickGradeVC *)sender.sourceViewController;
+    /* Dismiss you popover here and process data */
+    NSLog(@"Popover: %@ Content: %@", [addContentArray objectAtIndex:0], [addContentArray objectAtIndex:1]);
+    [popover dismissPopoverAnimated:YES];
+    NSString *fromPopover = [addContentArray objectAtIndex:0];
+    NSString *content = [addContentArray objectAtIndex:1];
     
-    NSString *quickGradeDescription = addQuickGradeVC.quickGradeDescriptionTF.text;
-    
-    // If NOT blank and NOT whitespace
-    if(![quickGradeDescription length] == 0 && ![[quickGradeDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
+    if ([fromPopover isEqualToString:@"Add Comment"]) { // Adding a predefined comment
         
-        // Check if there is already a quickGrade in the current module
-        BOOL quickGradeExists = NO;
-        for (QuickGrade *q in quickGrades)
+        // If NOT blank and NOT whitespace
+        if(![content length] == 0 && ![[content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
         {
-            NSLog(@"Quick Grade: %@", q.quickGradeDescription);
-            if ([q.quickGradeDescription isEqualToString:quickGradeDescription]) {
-                quickGradeExists = YES;
-                break;
+            // Check if there is already a predef comment in the current module
+            BOOL predefExists = NO;
+            for (PreDefinedComments *p in preDefinedComments)
+            {
+                NSLog(@"PreDefined Comments: %@", p.comment);
+                if ([p.comment isEqualToString:content]) {
+                    predefExists = YES;
+                    break;
+                }
             }
-        }
-        
-        
-        if(!quickGradeExists)
-        {
             
-            // Add QuickGrade to Core Data
-            QuickGrade *newQuickGrade = [NSEntityDescription insertNewObjectForEntityForName:@"QuickGrade" inManagedObjectContext:managedObjectContext];
-            newQuickGrade.quickGradeDescription = quickGradeDescription;
-            newQuickGrade.module = self.currModule;
-            newQuickGrade.score = 0;
-            newQuickGrade.isActive = NO;
-            [self.currModule addQuickGradeObject:newQuickGrade];
             
-            NSError *error;
-            if (![managedObjectContext save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            if(!predefExists)
+            {
+                
+                // Add predef to Core Data
+                PreDefinedComments *newPredef = [NSEntityDescription insertNewObjectForEntityForName:@"PreDefinedComments" inManagedObjectContext:managedObjectContext];
+                newPredef.comment = content;
+                newPredef.module = self.currModule;
+
+                [self.currModule addPreDefinedCommentsObject:newPredef];
+                
+                NSError *error;
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                    NSLog(@"%@", error);
+                }
+                
+                self.preDefinedComments = [NSMutableArray arrayWithArray:[self.currModule.preDefinedComments allObjects]];
+                [self.commentsTable reloadData];
             }
-            self.quickGrades = [NSMutableArray arrayWithArray:[self.currModule.quickGrade allObjects]];
-            [self.quickTable1 reloadData];
-            [self.quickTable2 reloadData];
+            else{
+                NSLog(@"Comment already exists");
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle: @"Error"
+                                      message: @"A Comment with this name already exists"
+                                      delegate: nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+                [alert show];
+            }
+
+            
+            
         }
-        else{
-            NSLog(@"Quick Grade already exists");
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: @"Error"
-                                  message: @"A Quick Grade with this name already exists"
-                                  delegate: nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [alert show];
-        }
-        
     }
+    else if ([fromPopover isEqualToString:@"Add Quick Grade"]) // Adding a quick grade
+    {
+        // If NOT blank and NOT whitespace
+        if(![content length] == 0 && ![[content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
+        {
+            // Check if there is already a quickGrade in the current module
+            BOOL quickGradeExists = NO;
+            for (QuickGrade *q in quickGrades)
+            {
+                NSLog(@"Quick Grade: %@", q.quickGradeDescription);
+                if ([q.quickGradeDescription isEqualToString:content]) {
+                    quickGradeExists = YES;
+                    break;
+                }
+            }
+            
+            
+            if(!quickGradeExists)
+            {
+                
+                // Add QuickGrade to Core Data
+                QuickGrade *newQuickGrade = [NSEntityDescription insertNewObjectForEntityForName:@"QuickGrade" inManagedObjectContext:managedObjectContext];
+                newQuickGrade.quickGradeDescription = content;
+                newQuickGrade.module = self.currModule;
+                newQuickGrade.score = [NSNumber numberWithInt:0];
 
-}
-
-- (IBAction)unwindToPredefinedComments:(UIStoryboardSegue *)sender
-{
-    
-}
-- (void) dismissPopover:(NSObject *)yourDataToTransfer
-{ /* Dismiss you popover here and process data */
-
+                [self.currModule addQuickGradeObject:newQuickGrade];
+                
+                NSError *error;
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                }
+                self.quickGrades = [NSMutableArray arrayWithArray:[self.currModule.quickGrade allObjects]];
+                [self splitQuickGrades];
+                [self.quickTable1 reloadData];
+                [self.quickTable2 reloadData];
+            }
+            else{
+                NSLog(@"Quick Grade already exists");
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle: @"Error"
+                                      message: @"A Quick Grade with this name already exists"
+                                      delegate: nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"addToModuleSegue"]) {
-        UIStoryboardPopoverSegue *pop = (UIStoryboardPopoverSegue*)segue;
-        pop.popoverController.delegate = self;
-        AddToModuleVC *addToModuleVC = [segue destinationViewController];
+        popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+
+        AddToModuleVC *addToModuleVC = (AddToModuleVC *)popover.contentViewController;
+        
         NSInteger tag = [(UIButton *)sender tag];
+        NSLog(@"Sending button tag: %d", tag);
+        addToModuleVC.delegate = self;
+        addToModuleVC.sendingButtonTag = tag;
         
     }
 }
+
+# pragma mark - Utility
+- (void) switchChanged:(id)sender{
+    UISwitch* switchControl = sender;
+    if (switchControl.tag == leftTableTag || switchControl.tag == rightTableTag) {
+        NSManagedObject *temp = objc_getAssociatedObject(sender, "obj");
+        NSNumber *boolValue = (switchControl.on ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0]);
+        [temp setValue:boolValue forKey:@"isActive"];
+        NSLog( @"The switch is %@ for table: %d which is %@", switchControl.on ? @"ON" : @"OFF", switchControl.tag,  boolValue);
+        NSError *error = nil;
+        // Save the object to persistent store
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        }
+    } else if (switchControl.tag == commentsTableTag)
+    {
+        NSManagedObject *temp = objc_getAssociatedObject(sender, "obj");
+        NSNumber *boolValue = (switchControl.on ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0]);
+        [temp setValue:boolValue forKey:@"isActive"];
+        NSLog( @"The switch is %@ for table: %d which is %@", switchControl.on ? @"ON" : @"OFF", switchControl.tag,  boolValue);
+        NSError *error = nil;
+        // Save the object to persistent store
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        }
+    }
+    
+}
+
+- (void) splitQuickGrades
+{
+    if ([self.quickGrades count] != 1) {
+    
+        NSRange someRange;
+        
+        someRange.location = 0;
+        someRange.length = [self.quickGrades count] / 2;
+        
+        self.quickGrades1 = [NSMutableArray arrayWithArray:[self.quickGrades subarrayWithRange:someRange]];
+        
+        someRange.location = someRange.length;
+        someRange.length = [self.quickGrades count] - someRange.length;
+        
+        self.quickGrades2 = [NSMutableArray arrayWithArray:[self.quickGrades subarrayWithRange:someRange]];
+    }
+    else
+    {
+        [self.quickGrades1 addObject:[self.quickGrades objectAtIndex:0]];
+    }
+}
+- (IBAction)pointTFDidEndEditing:(id)sender {
+    NSLog(@"Points tf changed to %@", self.pointTF.text);
+    // If NOT blank and NOT whitespace
+    if(![self.pointTF.text length] == 0 && ![[self.pointTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
+    {
+        NSManagedObject *temp = self.currModule;
+        NSNumberFormatter *numValue = [[NSNumberFormatter alloc]init];
+        [numValue setNumberStyle:NSNumberFormatterNoStyle];
+        [temp setValue:[numValue numberFromString: self.pointTF.text] forKey:@"points"];
+        NSError *error = nil;
+        // Save the object to persistent store
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        }
+    }
+}
+
 
 @end

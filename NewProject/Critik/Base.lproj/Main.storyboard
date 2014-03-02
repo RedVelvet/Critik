@@ -434,6 +434,9 @@
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="pointTFDidEndEditing:" destination="MWX-BP-m4D" eventType="editingDidEnd" id="qrf-EB-aBY"/>
+                                </connections>
                             </textField>
                             <tableView clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Egq-xO-4pb">
                                 <rect key="frame" x="676" y="83" width="284" height="239"/>
@@ -462,7 +465,7 @@
                                     <outlet property="delegate" destination="MWX-BP-m4D" id="eSa-Lb-sTX"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjo-Zy-cPe">
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjo-Zy-cPe">
                                 <rect key="frame" x="830" y="630" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.062745101750000004" green="0.37254902719999999" blue="0.25490197539999998" alpha="1" colorSpace="deviceRGB"/>
@@ -471,7 +474,7 @@
                                 </state>
                                 <connections>
                                     <segue destination="y2I-2h-2x6" kind="popover" identifier="addToModuleSegue" popoverAnchorView="Bjo-Zy-cPe" id="GvU-dQ-No5">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                        <popoverArrowDirection key="popoverArrowDirection"/>
                                     </segue>
                                 </connections>
                             </button>
@@ -483,7 +486,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SyW-8y-toM">
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SyW-8y-toM">
                                 <rect key="frame" x="830" y="321" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.062745101750000004" green="0.37254902719999999" blue="0.25490197539999998" alpha="1" colorSpace="deviceRGB"/>
@@ -491,7 +494,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="rY4-za-oE4" kind="popover" popoverAnchorView="SyW-8y-toM" id="aVu-KC-iAF">
+                                    <segue destination="y2I-2h-2x6" kind="popover" identifier="addToModuleSegue" popoverAnchorView="SyW-8y-toM" id="0b9-Ty-kTk">
                                         <popoverArrowDirection key="popoverArrowDirection"/>
                                     </segue>
                                 </connections>
@@ -516,6 +519,7 @@
                         <outlet property="commentsTable" destination="Y9k-lx-ckF" id="lge-H9-R5X"/>
                         <outlet property="moduleLabel" destination="JyK-iW-Svj" id="dcL-6e-Syu"/>
                         <outlet property="moduleTable" destination="RXa-Wg-JuG" id="o9A-04-m4z"/>
+                        <outlet property="pointTF" destination="nhk-rk-qcG" id="cJ9-zj-agI"/>
                         <outlet property="quickTable1" destination="f7c-E0-Bjk" id="2yO-Vz-oxw"/>
                         <outlet property="quickTable2" destination="Egq-xO-4pb" id="SK7-bd-4N4"/>
                     </connections>
@@ -2087,67 +2091,10 @@
             </objects>
             <point key="canvasLocation" x="4272" y="2149"/>
         </scene>
-        <!--Add Quick GradeVC-->
-        <scene sceneID="dW4-pL-Tt1">
-            <objects>
-                <viewController id="rY4-za-oE4" customClass="AddQuickGradeVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="723-pv-sR8"/>
-                        <viewControllerLayoutGuide type="bottom" id="Llf-17-tyN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AeV-kF-TYG">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="250"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" backIndicatorImage="PopOverNavBar.png" translatesAutoresizingMaskIntoConstraints="NO" id="24b-Ph-Bha">
-                                <rect key="frame" x="0.0" y="9" width="450" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Add Quick Grade" id="tjM-l7-HAR">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tkJ-Te-gbC"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="save" id="ySU-N2-IQv">
-                                            <connections>
-                                                <segue destination="9lg-TX-1Z4" kind="unwind" unwindAction="unwindToQuickGrades:" id="mjF-wb-RpO"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IK1-E1-eG5">
-                                <rect key="frame" x="159" y="110" width="263" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quick Grade:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbc-DE-8LA">
-                                <rect key="frame" x="28" y="114" width="102" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="mEO-0d-dAQ"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="quickGradeDescriptionTF" destination="IK1-E1-eG5" id="ZK1-8T-SNz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="og1-Fu-6mE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="9lg-TX-1Z4" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="5584" y="-1785"/>
-        </scene>
-        <!--Add Quick GradeVC-->
+        <!--Add To ModuleVC-->
         <scene sceneID="ZOV-qG-O4X">
             <objects>
-                <viewController id="y2I-2h-2x6" customClass="AddQuickGradeVC" sceneMemberID="viewController">
+                <viewController id="y2I-2h-2x6" customClass="AddToModuleVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mpn-hY-yQI"/>
                         <viewControllerLayoutGuide type="bottom" id="oNx-o0-2Yf"/>
@@ -2161,10 +2108,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Add To Module" id="8Jh-BC-HP9">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1yU-bi-mwA"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1yU-bi-mwA">
+                                            <connections>
+                                                <action selector="cancelPopover:" destination="y2I-2h-2x6" id="qKf-fC-HGS"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="save" id="uC5-bk-bso">
                                             <connections>
-                                                <segue destination="ha6-fF-JEV" kind="unwind" unwindAction="unwindToQuickGrades:" id="F3c-V1-f8L"/>
+                                                <action selector="savePopoverContent:" destination="y2I-2h-2x6" id="hbF-gF-SAi"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2192,9 +2143,12 @@
                     <navigationItem key="navigationItem" id="6by-sH-IL4"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="addLabel" destination="RXE-pi-3u6" id="rWQ-pC-3ZS"/>
+                        <outlet property="addTF" destination="Xiu-Nz-Rsb" id="Cnx-wI-RCv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WqN-K6-UqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="ha6-fF-JEV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5626" y="-1387"/>
         </scene>
@@ -2210,4 +2164,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="0b9-Ty-kTk"/>
+    </inferredMetricsTieBreakers>
 </document>

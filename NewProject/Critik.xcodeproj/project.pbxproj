@@ -17,7 +17,6 @@
 		1F57CD9018C126C400DE2B50 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8F18C126C400DE2B50 /* StudentSpeech.m */; };
 		1F57CD9318C126C400DE2B50 /* PreDefinedComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD9218C126C400DE2B50 /* PreDefinedComments.m */; };
 		1F6A5B2218C15B65006D2C9F /* EditForms_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2118C15B64006D2C9F /* EditForms_ChooseSpeechVC.m */; };
-		1F6A5B2518C16A1F006D2C9F /* AddQuickGradeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2418C16A1F006D2C9F /* AddQuickGradeVC.m */; };
 		1F6A5B2B18C1A70E006D2C9F /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2A18C1A70E006D2C9F /* Module.m */; };
 		1F6A5B2E18C1C2A0006D2C9F /* AddToModuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2D18C1C2A0006D2C9F /* AddToModuleVC.m */; };
 		1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A516118B46616009A1253 /* AddSectionVC.m */; };
@@ -104,8 +103,6 @@
 		1F57CD9218C126C400DE2B50 /* PreDefinedComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreDefinedComments.m; path = Critik/PreDefinedComments.m; sourceTree = "<group>"; };
 		1F6A5B2018C15B64006D2C9F /* EditForms_ChooseSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditForms_ChooseSpeechVC.h; sourceTree = "<group>"; };
 		1F6A5B2118C15B64006D2C9F /* EditForms_ChooseSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditForms_ChooseSpeechVC.m; sourceTree = "<group>"; };
-		1F6A5B2318C16A1F006D2C9F /* AddQuickGradeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddQuickGradeVC.h; sourceTree = "<group>"; };
-		1F6A5B2418C16A1F006D2C9F /* AddQuickGradeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddQuickGradeVC.m; sourceTree = "<group>"; };
 		1F6A5B2918C1A70E006D2C9F /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Module.h; path = Critik/Module.h; sourceTree = "<group>"; };
 		1F6A5B2A18C1A70E006D2C9F /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Module.m; path = Critik/Module.m; sourceTree = "<group>"; };
 		1F6A5B2C18C1C2A0006D2C9F /* AddToModuleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddToModuleVC.h; sourceTree = "<group>"; };
@@ -402,8 +399,6 @@
 				1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */,
 				1F44E1E018BFFC7D0042FCB9 /* EditPersuasiveVC.h */,
 				1F44E1E118BFFC7D0042FCB9 /* EditPersuasiveVC.m */,
-				1F6A5B2318C16A1F006D2C9F /* AddQuickGradeVC.h */,
-				1F6A5B2418C16A1F006D2C9F /* AddQuickGradeVC.m */,
 				1F6A5B2018C15B64006D2C9F /* EditForms_ChooseSpeechVC.h */,
 				1F6A5B2118C15B64006D2C9F /* EditForms_ChooseSpeechVC.m */,
 				6FED858118BFF20A0084A96A /* EditInformativeVC.h */,
@@ -552,7 +547,6 @@
 				1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */,
 				1F57CD9018C126C400DE2B50 /* StudentSpeech.m in Sources */,
 				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
-				1F6A5B2518C16A1F006D2C9F /* AddQuickGradeVC.m in Sources */,
 				6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */,
 				1F57CD8D18C126C400DE2B50 /* Student.m in Sources */,
 				1F44E1E218BFFC7D0042FCB9 /* EditPersuasiveVC.m in Sources */,

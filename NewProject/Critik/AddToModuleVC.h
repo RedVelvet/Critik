@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @protocol DismissPopoverDelegate
-- (void) dismissPopover:(NSObject *)yourDataToTransfer;
+- (void) dismissPopover:(NSArray *)addContentArray;
 @end
 
 @interface AddToModuleVC : UIViewController
 
-@property (weak) id<DismissPopoverDelegate> delegate;
+@property (nonatomic, assign) id<DismissPopoverDelegate> delegate;
 @property NSInteger sendingButtonTag;
+@property (weak, nonatomic) IBOutlet UILabel *addLabel;
+@property (weak, nonatomic) IBOutlet UITextField *addTF;
+
+- (IBAction)cancelPopover:(id)sender;
+- (IBAction)savePopoverContent:(id)sender;
+
 @end
