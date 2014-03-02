@@ -17,6 +17,7 @@
 @dynamic moduleName;
 @dynamic points;
 @dynamic written;
+@dynamic orderIndex;
 @dynamic preDefinedComments;
 @dynamic quickGrade;
 @dynamic speech;
