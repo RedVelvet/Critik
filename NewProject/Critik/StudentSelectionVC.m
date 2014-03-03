@@ -9,6 +9,7 @@
 #import "StudentSelectionVC.h"
 
 @interface StudentSelectionVC ()
+
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
@@ -33,7 +34,7 @@
     
     
     
-        AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
     
     
@@ -113,9 +114,9 @@
     NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
     NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
     self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
+    
     [self.StudentTable reloadData];
     
-    NSLog(@"Row : %d  Component : %d", row, component);
 }
 
 #pragma mark - Table view data source

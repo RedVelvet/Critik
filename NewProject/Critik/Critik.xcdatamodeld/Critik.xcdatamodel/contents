@@ -44,12 +44,12 @@
         <relationship name="student" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="studentSpeech" inverseEntity="Student" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Module" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PreDefinedComments" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="QuickGrade" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Section" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Speech" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Student" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="StudentSpeech" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Module" positionX="-171" positionY="-78" width="128" height="150"/>
+        <element name="PreDefinedComments" positionX="-396" positionY="-135" width="128" height="105"/>
+        <element name="QuickGrade" positionX="-396" positionY="-18" width="128" height="105"/>
+        <element name="Section" positionX="-396" positionY="-243" width="128" height="75"/>
+        <element name="Speech" positionX="54" positionY="-45" width="128" height="75"/>
+        <element name="Student" positionX="-173" positionY="-243" width="128" height="120"/>
+        <element name="StudentSpeech" positionX="45" positionY="-246" width="128" height="120"/>
     </elements>
 </model>
