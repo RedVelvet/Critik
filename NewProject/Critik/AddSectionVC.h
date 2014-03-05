@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddSectionVC : UIViewController
-@property (weak, nonatomic) IBOutlet UITextField *sectionTextField;
+@protocol DismissPopoverDelegate
+- (void) dismissPopover:(NSArray *)addContentArray;
+@end
 
+@interface AddSectionVC : UIViewController
+
+@property (nonatomic, assign) id<DismissPopoverDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextField *sectionTextField;
+- (IBAction)cancelPopover:(id)sender;
 @end

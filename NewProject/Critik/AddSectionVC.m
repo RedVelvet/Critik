@@ -35,5 +35,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (IBAction)cancelPopover:(id)sender {
+    NSArray *data = [[NSArray alloc]init];
+    [self.delegate dismissPopover:data];
+}
 @end

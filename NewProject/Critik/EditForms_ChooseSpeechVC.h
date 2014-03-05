@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EditPersuasiveVC.h"
+#import "EditSpeechVC.h"
 @interface EditForms_ChooseSpeechVC : UIViewController
 
-- (IBAction)chooseSpeechTypePressed:(id)sender;
+
 @end

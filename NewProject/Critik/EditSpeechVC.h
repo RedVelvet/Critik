@@ -16,13 +16,14 @@
 #import "AddToModuleVC.h"
 
 
-@interface EditPersuasiveVC : UIViewController <DismissPopoverDelegate>
+@interface EditSpeechVC : UIViewController <DismissPopoverDelegate>
 {
     UIScrollView *beingScrolled_;
     UIPopoverController* popover;
 }
 - (IBAction)pointTFDidEndEditing:(id)sender;
-
+    
+@property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
 @property (weak, nonatomic) IBOutlet UITableView *quickTable1;
 @property (weak, nonatomic) IBOutlet UITableView *quickTable2;
 @property (weak, nonatomic) IBOutlet UITableView *commentsTable;

@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
-#import "EditPersuasiveVC.h"
+#import "EditSpeechVC.h"
 #define moduleTableTag 1
 #define leftTableTag 2
 #define rightTableTag 3
 #define commentsTableTag 4
-@interface EditPersuasiveVC ()
+@interface EditSpeechVC ()
 
 @end
 
-@implementation EditPersuasiveVC
+@implementation EditSpeechVC
 @synthesize managedObjectContext, modules, quickGrades, preDefinedComments;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,16 +43,19 @@
     if (self.sendingButtonTag == 13) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Informative"];
         [fetchRequest setPredicate:predicate];
+        self.navBar.title = @"Edit Forms: Informative";
     }
     else if (self.sendingButtonTag == 14)
     {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Persuasive"];
         [fetchRequest setPredicate:predicate];
+        self.navBar.title = @"Edit Forms: Persuasive";
     }
     else if (self.sendingButtonTag == 15)
     {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Interpersonal"];
         [fetchRequest setPredicate:predicate];
+        self.navBar.title = @"Edit Forms: Interpersonal";
     }
     
     
@@ -61,11 +64,26 @@
     NSLog(@"Count %d", count);
 
     
-    // persuasive speech hasn't been added yet DEBUG CODE
+    //  speech hasn't been added yet DEBUG CODE
     if(count == 0)
     {
         Speech *newSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"Speech" inManagedObjectContext:managedObjectContext];
-        newSpeech.speechType = @"Persuasive";
+        
+        switch (self.sendingButtonTag) {
+            case 13:
+                newSpeech.speechType = @"Informative";
+                break;
+            case 14:
+                newSpeech.speechType = @"Persuasive";
+                break;
+            case 15:
+                newSpeech.speechType = @"Interpersonal";
+                break;
+            default:
+                break;
+        }
+        
+        
         if (![managedObjectContext save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
@@ -130,8 +148,12 @@
     if ([self.moduleLabel.text isEqualToString:@"Module Label"]) {
         self.moduleLabel.text = @"Introduction";
         self.currModule = [self.modules objectAtIndex:0];
+        self.pointTF.text = [NSString stringWithFormat:@"%@",self.currModule.points];
         self.quickGrades = [NSMutableArray arrayWithArray:[self.currModule.quickGrade allObjects]];
         self.preDefinedComments = [NSMutableArray arrayWithArray:[self.currModule.preDefinedComments allObjects]];
+        NSIndexPath * indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+        [self splitQuickGrades];
+        [self.moduleTable selectRowAtIndexPath:indexPath animated:YES  scrollPosition:UITableViewScrollPositionBottom];
         [self.commentsTable reloadData];
         [self.quickTable1 reloadData];
         [self.quickTable2 reloadData];
@@ -144,7 +166,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+//- (void)viewDidAppear:(BOOL)animated {
+//    
+//    //sets the Introduction module as the first selected module
+//    NSIndexPath * indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.moduleTable selectRowAtIndexPath:indexPath animated:YES  scrollPosition:UITableViewScrollPositionBottom];
+//}
 
 // Magic to make the two uitableviews scroll as one
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

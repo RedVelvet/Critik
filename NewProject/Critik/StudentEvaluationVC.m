@@ -61,7 +61,7 @@
 //    [self.ScrollView setScrollsToTop:YES];
     
 	// Do any additional setup after loading the view.
-    NSLog(self.currentStudent.firstName);
+    NSLog(@"%@",self.currentStudent.firstName);
     
     //UISegmentedControl *quickGrade = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"-", @"ok", @"+", nil]];
     
