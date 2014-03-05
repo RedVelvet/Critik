@@ -11,8 +11,12 @@
 #import "AppDelegate.h"
 #import "Student.h"
 #import <DropboxSDK/DropboxSDK.h>
+#import "AddSectionVC.h"
 
-@interface EditSectionVC : UIViewController
+@interface EditSectionVC : UIViewController <DismissPopoverDelegate>
+{
+    UIPopoverController* popover;
+}
 
 @property (strong, nonatomic) NSMutableArray *sections;
 @property (strong, nonatomic) NSMutableArray *students;

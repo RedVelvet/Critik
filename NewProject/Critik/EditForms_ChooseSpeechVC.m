@@ -36,17 +36,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)chooseSpeechTypePressed:(id)sender {
 
-    //[self performSegueWithIdentifier:@"chooseSpeechSegue" sender:sender];
-}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"chooseSpeechSegue"]) {
         
-    EditPersuasiveVC *editPersuasiveVC = [segue destinationViewController];
+    EditSpeechVC *editSpeechVC = [segue destinationViewController];
     NSInteger tag = [(UIButton *)sender tag];
-    editPersuasiveVC.sendingButtonTag = tag;
+    editSpeechVC.sendingButtonTag = tag;
     }
 }
 @end

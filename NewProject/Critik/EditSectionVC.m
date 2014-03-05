@@ -199,7 +199,6 @@
 {
     self.addSectionPopover = nil;
     AddSectionVC *addSectionVC = (AddSectionVC *)sender.sourceViewController;
-   
     NSString *sectionNum = addSectionVC.sectionTextField.text;
     // If NOT blank and NOT whitespace
     if(![sectionNum length] == 0 && ![[sectionNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
@@ -331,9 +330,16 @@
 - (IBAction)deleteSectionPressed:(id)sender{
     
     NSLog(@"%@", self.currSection.sectionName);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure want to delete section" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
-    [alert show];
-    [alert setTag:1];
+    if ([self.sections count] != 0) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure want to delete section" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
+        [alert show];
+        [alert setTag:1];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"There are no sections to be deleted" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark - Utility methods
@@ -443,8 +449,24 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addSectionPopover"]) {
         // Assign popover instance so we can dismiss it later
-        self.addSectionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+//        self.addSectionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        
+        AddSectionVC *addToSectionVC = (AddSectionVC *)popover.contentViewController;
+        
+        NSInteger tag = [(UIButton *)sender tag];
+        NSLog(@"Sending button tag: %d", tag);
+        addToSectionVC.delegate = self;
+        
     }
+}
+
+- (void) dismissPopover:(NSArray *)addContentArray
+{
+    /* Dismiss you popover here and process data */
+    [popover dismissPopoverAnimated:YES];
+    
+    
 }
 
 #pragma mark - DropBox methods
