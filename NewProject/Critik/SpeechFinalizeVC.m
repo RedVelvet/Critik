@@ -35,4 +35,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)homepageButton:(id)sender
+{
+    UIViewController * homepage = [self.storyboard instantiateViewControllerWithIdentifier:@"Homepage"];
+    
+    [self presentViewController:homepage animated:YES completion:nil];
+}
 @end

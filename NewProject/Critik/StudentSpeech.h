@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSNumber * totalPoints;
 @property (nonatomic, retain) NSString * comments;
-@property (nonatomic, retain) NSSet *speechesGiven;
+@property (nonatomic, retain) NSSet * speechesGiven;
 @property (nonatomic, retain) Student *student;
 @end
 

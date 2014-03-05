@@ -152,12 +152,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+
     StudentEvaluationVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Evaluation"];
     
     Student * temp = [self.students objectAtIndex:indexPath.row];
     evaluateSpeech.currentStudent = temp;
-    evaluateSpeech.currentSpeech = self.currSpeech;
+    evaluateSpeech.currentSpeechName = self.currSpeech;
+
     
     [self.navigationController pushViewController:evaluateSpeech animated:YES];
     

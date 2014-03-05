@@ -46,7 +46,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"QuickGrade" inManagedObjectContext:self.managedObjectContext];
     
     [fetchRequest setEntity:entity];
-    NSError* error;
+    NSError * error;
     
     // Query on managedObjectContext With Generated fetchRequest
     

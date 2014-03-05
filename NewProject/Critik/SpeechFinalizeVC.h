@@ -10,5 +10,6 @@
 
 @interface SpeechFinalizeVC : UIViewController
 
+- (IBAction)homepageButton:(id)sender;
 
 @end
