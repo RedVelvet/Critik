@@ -847,23 +847,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMz-ii-Rfj">
-                                <rect key="frame" x="320" y="640" width="704" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.43921568630000002" blue="0.32549019610000002" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="Continue" backgroundImage="NavButton-Selected.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="continueToFinalize:" destination="fhM-DW-lqh" eventType="touchUpInside" id="1RF-DD-PRe"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="yex-ay-MPu">
-                        <barButtonItem key="backBarButtonItem" title="Section" id="GUg-RT-CTt">
+                        <barButtonItem key="backBarButtonItem" title="Evaluation" id="GUg-RT-CTt">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -873,7 +862,6 @@
                     <connections>
                         <outlet property="ModuleTable" destination="rzf-da-NPv" id="O0E-KV-r3v"/>
                         <outlet property="PreDefinedCommentsTable" destination="5Xw-Ia-AzC" id="a6p-td-Q3U"/>
-                        <outlet property="continueButton" destination="HMz-ii-Rfj" id="Wtd-ZV-Y8a"/>
                         <outlet property="leftQuickGradeTable" destination="yfi-8J-bZB" id="Bqi-I9-ZBi"/>
                         <outlet property="moduleGrade" destination="UIL-KK-0bq" id="KuK-l4-9sf"/>
                         <outlet property="modulePoints" destination="1dr-OT-PHi" id="TYr-aP-K2T"/>
@@ -886,10 +874,10 @@
             </objects>
             <point key="canvasLocation" x="4272" y="281"/>
         </scene>
-        <!--Student PenaltiesVC - Speech Penalties-->
+        <!--Student PenaltiesVC - Student Penalties-->
         <scene sceneID="nEb-eh-Lyh">
             <objects>
-                <viewController storyboardIdentifier="Student Penalties" title="Speech Penalties" id="o0X-Rg-dwj" customClass="StudentPenaltiesVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Student Penalties" title="Student Penalties" id="o0X-Rg-dwj" customClass="StudentPenaltiesVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HxZ-fz-OYw"/>
                         <viewControllerLayoutGuide type="bottom" id="4Yx-oH-s0p"/>
@@ -980,8 +968,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Forms: Informative" id="e4Q-BX-ySm">
-                        <barButtonItem key="backBarButtonItem" title="Section" id="D5G-tl-pii">
+                    <navigationItem key="navigationItem" title="Penalties" id="e4Q-BX-ySm">
+                        <barButtonItem key="backBarButtonItem" title="Penalties" id="D5G-tl-pii">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -1061,7 +1049,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="6JC-vj-lrT" kind="push" id="6Gm-at-AJs"/>
+                                    <action selector="evaluateStudents:" destination="7tl-5M-qOQ" eventType="touchUpInside" id="XiH-i7-1CD"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdV-ly-jh1">
@@ -1082,8 +1070,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Forms: Informative" id="nC4-wV-30s">
-                        <barButtonItem key="backBarButtonItem" title="Section" id="xeX-4g-SKv">
+                    <navigationItem key="navigationItem" title="Summary" id="nC4-wV-30s">
+                        <barButtonItem key="backBarButtonItem" title="Summary" id="xeX-4g-SKv">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>

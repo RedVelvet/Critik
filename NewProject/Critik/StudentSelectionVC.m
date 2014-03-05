@@ -29,8 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navigationItem.title = self.currSpeech;
+    self.navigationController.title = self.currSpeech;
+    //self.navigationItem.title = self.currSpeech;
     
     
     
@@ -146,7 +146,6 @@
     
     return cell;
 }
-
 
 #pragma mark - Table view delegate
 

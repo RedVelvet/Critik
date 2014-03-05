@@ -15,6 +15,7 @@
 #import "StudentPenaltiesVC.h"
 #import "StudentSpeech.h"
 #import "Speech.h"
+#import <objc/runtime.h>
 
 @interface StudentEvaluationVC : UIViewController
 
@@ -45,8 +46,8 @@
 
 -(void) splitQuickGradesArray;
 - (IBAction)continueToFinalize:(id)sender;
-- (IBAction)startTimer:(id)sender;
-- (IBAction)resetTimer:(id)sender;
--(void) storeQuickGradeValue;
+//- (IBAction)startTimer:(id)sender;
+//- (IBAction)resetTimer:(id)sender;
+-(void)saveStudentRubricValues;
 
 @end

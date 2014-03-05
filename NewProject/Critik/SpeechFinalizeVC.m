@@ -37,8 +37,31 @@
 
 - (IBAction)homepageButton:(id)sender
 {
-    UIViewController * homepage = [self.storyboard instantiateViewControllerWithIdentifier:@"Homepage"];
+    NSString *unwindSegueIdentifier = @"unwindSegueToStudentSelection";
+    UIViewController * selectStudents = [self.storyboard instantiateViewControllerWithIdentifier:@"Homepage"];
+    UIStoryboardSegue *unwindSegue = [self.navigationController segueForUnwindingToViewController: selectStudents fromViewController: self identifier: unwindSegueIdentifier];
     
-    [self presentViewController:homepage animated:YES completion:nil];
+    [selectStudents prepareForSegue: unwindSegue sender: self];
+    
+    [unwindSegue perform];
+}
+-(IBAction)evaluateStudents:(id)sender
+{
+    NSString *unwindSegueIdentifier = @"unwindSegueToStudentSelection";
+    UIViewController * selectStudents = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Selection"];
+    UIStoryboardSegue *unwindSegue = [self.navigationController segueForUnwindingToViewController: selectStudents fromViewController: self identifier: unwindSegueIdentifier];
+    
+    [selectStudents prepareForSegue: unwindSegue sender: self];
+    
+    [unwindSegue perform];
+}
+
+
+- (IBAction)unwindToStudentSelection:(UIStoryboardSegue *)unwindSegue
+{
+    UIViewController* sourceViewController = unwindSegue.sourceViewController;
+    
+    [sourceViewController isKindOfClass:[StudentSelectionVC class]];
+    
 }
 @end

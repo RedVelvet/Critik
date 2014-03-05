@@ -2,7 +2,7 @@
 //  QuickGrade.h
 //  Critik
 //
-//  Created by Doug Wettlaufer on 2/28/14.
+//  Created by Dalton Decker on 3/5/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "StudentSelectionVC.h"
 
 @interface SpeechFinalizeVC : UIViewController
 
 - (IBAction)homepageButton:(id)sender;
+- (IBAction)evaluateStudents:(id)sender;
 
 @end

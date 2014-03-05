@@ -46,38 +46,37 @@
     self.timerHasStarted = NO;
 
     //Set title based on speech and student
-    self.navigationItem.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeechName,self.currentStudent.firstName,self.currentStudent.lastName];
+    self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeechName,self.currentStudent.firstName,self.currentStudent.lastName];
+    
     
     //Sets the QuickGrade and PreDefinedComments Tables as non selectable
     
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
     
-    
-    // initializing NSFetchRequest
+    // Initializing fetchRequest to retrieve information from Core Data
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    //Setting Entity to be Queried
-    NSEntityDescription *entity;
     
     NSError* error;
     
     if(self.currentSpeech == nil)
     {
-        [fetchRequest setEntity:[NSEntityDescription entityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext]];
-         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"student = %@",self.currentStudent]];
-        
+//        [fetchRequest setEntity:[NSEntityDescription entityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext]];
+//        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"student = %@",self.currentStudent]];
+        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"speechType = %@",self.currentSpeechName]];
         NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        
-        StudentSpeech * studentSpeech = [objects lastObject];
-        NSArray * speeches = [NSArray arrayWithArray: [studentSpeech.speechesGiven allObjects]];
-        for(int i = 0; i < [speeches count]; i ++)
-        {
-            Speech * temp = [speeches objectAtIndex:i];
-            if(temp.speechType == self.currentSpeechName){
-                self.currentSpeech = temp;
-            }
-        }
+        self.currentSpeech = [objects lastObject];
+//        
+//        StudentSpeech * studentSpeech = [objects lastObject];
+//        NSArray * speeches = [NSArray arrayWithArray: [studentSpeech.speechesGiven allObjects]];
+//        for(int i = 0; i < [speeches count]; i ++)
+//        {
+//            Speech * temp = [speeches objectAtIndex:i];
+//            if(temp.speechType == self.currentSpeechName){
+//                self.currentSpeech = temp;
+//            }
+//        }
     }
     //Retireve modules from coredata if array is null.
     if(self.SpeechModules == nil)
@@ -100,8 +99,8 @@
 //        [fetchRequest setEntity:entity];
 //        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"moduleName = %@",@"Introduction"]];
 //        NSArray * modules = [NSArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-        NSArray * modules = [NSArray arrayWithArray:[self.currentSpeech.modules allObjects]];
-        self.currentModule = [modules firstObject];
+    
+        self.currentModule = [self.SpeechModules objectAtIndex:0];
     }
     self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.points];
     
@@ -117,7 +116,9 @@
                 [allQuickGrades removeObjectAtIndex:i];
             }
         }
-        self.QuickGrades = [NSArray arrayWithArray: allQuickGrades];
+        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"quickGradeDescription" ascending:YES];
+        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+        self.QuickGrades = [NSMutableArray arrayWithArray:[self.QuickGrades sortedArrayUsingDescriptors:descriptors]];
         
         [self splitQuickGradesArray];
         
@@ -138,7 +139,7 @@
         self.PreDefComments = [NSArray arrayWithArray: allPreDefComments];
         
     }
-        NSLog(@"about to do stuff");
+    
     //reload tablviews after filling table's content arrays
     [self.PreDefinedCommentsTable reloadData];
     [self.leftQuickGradeTable reloadData];
@@ -179,7 +180,16 @@
 //sets the number of sections in a TableView
 - (int)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    int num;
+    
+    if(tableView.tag == 0)
+    {
+        num = 2;
+    }else{
+        num = 1;
+    }
+    
+    return num;
 }
 
 //sets the number of rows in a TableView
@@ -189,7 +199,12 @@
     
     if(tableView.tag == 0)
     {
-        num = [self.SpeechModules count];
+        if(section == 1)
+        {
+            num = 1;
+        }else{
+            num = [self.SpeechModules count]-1;
+        }
     }
     
     if (tableView.tag == 1)
@@ -218,19 +233,22 @@
     
     if(!cell)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    NSLog(@"about to do stuff");
     //Module table
     if(tableView.tag == 0)
     {
-        
         UIView * selectedBackgroundView = [[UIView alloc]init];
         [selectedBackgroundView setBackgroundColor:[UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0]]; // set color here
         cell.selectedBackgroundView = selectedBackgroundView;
         cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
         cell.textLabel.textColor = [UIColor whiteColor];
-        Module * temp = [self.SpeechModules objectAtIndex: indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.moduleName];
         
+        if(indexPath.section == 1)
+        {
+            cell.textLabel.text = @"Penalties";
+        }else{
+            Module * temp = [self.SpeechModules objectAtIndex: indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.moduleName];
+        }
     }
     
     //left QuickGrades Table
@@ -239,13 +257,14 @@
         QuickGrade * temp = [self.leftQuickGrades objectAtIndex:indexPath.row];
         UISegmentedControl *segment = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"-",@"ok",@"+", nil]];
         segment.tintColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
+        segment.tag = 1;
         
-        QuickGrade * segmentValue = [self findEntity:@"QuickGrade" withAttribute:@"quickGradeDescription" andValue:cell.textLabel.text];
-        NSLog(@"saved score is %@",segmentValue.score);
-        if(segmentValue.score == Nil)
-        {
-            segment.selectedSegmentIndex = (NSInteger)segmentValue.score;
-        }
+        NSLog(@"saved score is %@",temp.score);
+        
+        [segment setSelectedSegmentIndex:[temp.score integerValue]];
+        
+        objc_setAssociatedObject(segment, "obj",temp, OBJC_ASSOCIATION_ASSIGN);
+        [segment addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
     
         cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.quickGradeDescription];
         cell.accessoryView = segment;
@@ -259,12 +278,14 @@
         QuickGrade * temp = [self.rightQuickGrades objectAtIndex:indexPath.row];
         UISegmentedControl *segment = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"-",@"ok",@"+", nil]];
         segment.tintColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
+        segment.tag = 1;
         
-        QuickGrade * segmentValue = [self findEntity:@"QuickGrade" withAttribute:@"quickGradeDescription" andValue:cell.textLabel.text];
-        if(segmentValue.score == Nil)
-        {
-            segment.selectedSegmentIndex = (NSInteger) segmentValue.score;
-        }
+        NSLog(@"saved score is %@",temp.score);
+        
+        [segment setSelectedSegmentIndex:[temp.score integerValue]];
+        
+        objc_setAssociatedObject(segment, "obj",temp, OBJC_ASSOCIATION_ASSIGN);
+        [segment addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.quickGradeDescription];
         cell.accessoryView = segment;
@@ -278,18 +299,12 @@
         PreDefinedComments * temp = [self.PreDefComments objectAtIndex:indexPath.row];
         UISwitch * commentSwitch = [[UISwitch alloc]init];
         commentSwitch.tintColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
-        [commentSwitch setOn:false];
+        commentSwitch.tag = 3;
         
-        PreDefinedComments * switchValue = [self findEntity:@"PreDefinedComments" withAttribute:@"comment" andValue:cell.textLabel.text];
-        if(switchValue.isSelected == Nil)
-        {
-            if(switchValue.isSelected == [NSNumber numberWithBool:true])
-            {
-                [commentSwitch setSelected:true];
-            }else{
-                [commentSwitch setSelected:false];
-            }
-        }
+        [commentSwitch setOn:[temp.isActive boolValue]];
+        
+        objc_setAssociatedObject(commentSwitch, "obj", temp, OBJC_ASSOCIATION_ASSIGN);
+        [commentSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
         
         cell.accessoryView = commentSwitch;
         cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.comment];
@@ -317,7 +332,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self saveStudentRubricValues];
+    //[self saveStudentRubricValues];
     // initializing NSFetchRequest
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -328,54 +343,53 @@
     //Change quickGrades and PreDefinedComments arrays based on which module is selected.
     if(tableView.tag == 0)
     {
-        
-        //fetch a module from core data based on title of current selection in moduleTable
-        entity = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        Module * module = [self.SpeechModules objectAtIndex:indexPath.row ];
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"moduleName = %@",module.moduleName]];
-        
-        //Store module fetched as currentModule
-        NSArray *temp = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-        self.currentModule = [temp objectAtIndex:0];
-        
-        //Search through all QuickGrades and PreDefinedComments in an array to selective active
-        NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
-        
-        for( int i = 0; i < [allQuickGrades count]; i ++)
+        NSLog(@"about to do stuff");
+        //[self saveStudentRubricValues];
+        if(indexPath.section == 1)
         {
-            QuickGrade * temp = [allQuickGrades objectAtIndex:i];
-            if(temp.isActive == false)
-            {
-                [allQuickGrades removeObjectAtIndex:i];
-            }
-        }
-        self.QuickGrades = [NSArray arrayWithArray: allQuickGrades];
-        
-        [self splitQuickGradesArray];
-        NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
-        
-        for( int i = 0; i < [allPreDefComments count]; i ++)
-        {
-            PreDefinedComments * temp = [allPreDefComments objectAtIndex:i];
-            if(temp.isActive == false)
-            {
-                [allPreDefComments removeObjectAtIndex:i];
-            }
-        }
-        self.PreDefComments = [NSArray arrayWithArray: allPreDefComments];
-        
-        [self.rightQuickGradeTable reloadData];
-        [self.leftQuickGradeTable reloadData];
-        [self.PreDefinedCommentsTable reloadData];
-        
-        if([self.currentModule.moduleName isEqualToString:@"Conclusion"])
-        {
-            self.continueButton.hidden = NO;
+            [self continueToFinalize:nil];
         }else{
-            self.continueButton.hidden = YES;
+            
+            //fetch a module from core data based on title of current selection in moduleTable
+            entity = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
+            [fetchRequest setEntity:entity];
+            Module * module = [self.SpeechModules objectAtIndex:indexPath.row ];
+            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"moduleName = %@",module.moduleName]];
+            
+            //Store module fetched as currentModule
+            NSArray *temp = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+            self.currentModule = [temp objectAtIndex:0];
+            
+            //Search through all QuickGrades and PreDefinedComments in an array to selective active
+            NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
+            
+            for( int i = 0; i < [allQuickGrades count]; i ++)
+            {
+                QuickGrade * temp = [allQuickGrades objectAtIndex:i];
+                if(temp.isActive == false)
+                {
+                    [allQuickGrades removeObjectAtIndex:i];
+                }
+            }
+            self.QuickGrades = [NSArray arrayWithArray: allQuickGrades];
+            
+            [self splitQuickGradesArray];
+            NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
+            
+            for( int i = 0; i < [allPreDefComments count]; i ++)
+            {
+                PreDefinedComments * temp = [allPreDefComments objectAtIndex:i];
+                if(temp.isActive == false)
+                {
+                    [allPreDefComments removeObjectAtIndex:i];
+                }
+            }
+            self.PreDefComments = [NSArray arrayWithArray: allPreDefComments];
+            
+            [self.rightQuickGradeTable reloadData];
+            [self.leftQuickGradeTable reloadData];
+            [self.PreDefinedCommentsTable reloadData];
         }
-        
     }
 }
 
@@ -445,107 +459,89 @@
 
 
 
--(void)saveStudentRubricValues
-{
-    NSLog(@"About to store quick grade");
-    UITableViewCell * cell;
-    NSIndexPath * indexPath;
-
-    NSError *saveError;
-    QuickGrade * quickGrade;
-    for(int i = 0; i < [self.leftQuickGrades count]; i ++)
-    {
-        
-        indexPath = [NSIndexPath indexPathForRow: i inSection:0];
-        cell = [self.leftQuickGradeTable cellForRowAtIndexPath:indexPath];
-        UISegmentedControl * segment = (UISegmentedControl *)cell.accessoryView;
-        NSInteger value = [segment selectedSegmentIndex];
-        quickGrade = [self findEntity:@"QuickGrade" withAttribute:@"quickGradeDescription" andValue:cell.textLabel.text];
-        NSLog(@"%i",value);
-        NSLog(@"Setting quickGrade");
-        [quickGrade setValue: [NSNumber numberWithInteger:value] forKey:@"score"];
-        
-        NSLog(@"Value after saving %@",quickGrade.score);
-        NSLog(@"Set Value of quick Grade");
-        if (![self.managedObjectContext save:&saveError]) {
-            NSLog(@"Saving quick grade failed: %@", saveError);
-        } else {
-            NSLog(@"Quick Grade Saved!!!");
-        }
-    }
-    //save the right tables quick grades
-    for(int i = 0; i < [self.rightQuickGrades count]; i ++)
-    {
-        indexPath = [NSIndexPath indexPathForRow: i inSection:0];
-        cell = [self.rightQuickGradeTable cellForRowAtIndexPath:indexPath];
-        UISegmentedControl * segment = (UISegmentedControl *)cell.accessoryView;
-        NSInteger value = [segment selectedSegmentIndex];
-        quickGrade = [self findEntity:@"PreDefinedComments" withAttribute:@"comment" andValue:cell.textLabel.text];
-        
-        NSLog(@"Setting preDefinedComment");
-        [quickGrade setValue: [NSNumber numberWithInteger:value] forKey:@"isSelected"];
-        
-        
-        
-        NSLog(@"Set Value of quick Grade");
-        if (![self.managedObjectContext save:&saveError]) {
-            NSLog(@"Saving preDefinedComment failed: %@", saveError);
-        } else {
-            NSLog(@"Pre Defined Comment Saved!!!");
-        }
-    }
-//    //save the right tables quick grades
-//    for(int i = 0; i < [self.PreDefinedComments count]; i ++)
+//-(void)saveStudentRubricValues
+//{
+//    NSLog(@"About to store quick grade");
+//    UITableViewCell * cell;
+//    NSIndexPath * indexPath;
+//
+//    NSError *saveError;
+//    QuickGrade * quickGrade;
+//    for(int i = 0; i < [self.leftQuickGrades count]; i ++)
 //    {
-//        indexPath = [NSIndexPath indexPathForRow: i inSection:0];
-//        cell = [self.PreDefinedCommentsTable cellForRowAtIndexPath:indexPath];
-//        UISegmentedControl * segment = (UISegmentedControl *)cell.accessoryView;
-//        NSInteger value = [segment selectedSegmentIndex];
-//        quickGrade = [self findEntity:@"PreDefinedComments" withAttribute:@"comment" andValue:cell.textLabel.text];
 //        
-//        NSLog(@"Setting preDefinedComment");
-//        [quickGrade setValue: [NSNumber numberWithInteger:value] forKey:@"isSelected"];
+//        indexPath = [NSIndexPath indexPathForRow: i inSection:0];
+//        cell = [self.leftQuickGradeTable cellForRowAtIndexPath:indexPath];
+//        UISegmentedControl * segment = (UISegmentedControl *)cell.accessoryView;
+//        NSNumber * value =  [NSNumber numberWithInteger:[segment selectedSegmentIndex]];
+//        
+//        quickGrade = [self findEntity:@"QuickGrade" withAttribute:@"quickGradeDescription" andValue:cell.textLabel.text];
+////        NSEntityDescription *entitydesc = [NSEntityDescription entityForName:@"QuickGrade" inManagedObjectContext:context];
+////        NSManagedObject *userData = [[NSManagedObject alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:self.managedObjectContext];
+//        
+//        NSLog(@"%i",(int)value);
+//        NSLog(@"Setting quickGrade %@", quickGrade.quickGradeDescription);
+//        
+//        [quickGrade setValue:value forKey:@"score"];
+//        
+//        NSLog(@"Value after saving %@",quickGrade.score);
 //        NSLog(@"Set Value of quick Grade");
 //        if (![self.managedObjectContext save:&saveError]) {
-//            NSLog(@"Saving preDefinedComment failed: %@", saveError);
+//            NSLog(@"Saving quick grade failed: %@", saveError);
 //        } else {
-//            NSLog(@"Pre Defined Comment Saved!!!");
+//            NSLog(@"Quick Grade Saved!!!");
 //        }
 //    }
-}
-- (id)findEntity:(NSString *)entity withAttribute: (NSString *)attribute andValue:(NSString*)value
+//}
+-(void)segmentChanged:(id)sender
 {
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext:self.managedObjectContext]];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"%@ == %@ AND module == %@",attribute,value,self.currentModule]];
-    
-    NSError *error = nil;
-    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
-    
-    
-    return [objects firstObject];
+    UISegmentedControl * segment = sender;
+    if(segment.tag == 1 || segment.tag == 2)
+    {
+        NSManagedObject * temp = objc_getAssociatedObject(sender, "obj");
+        NSNumber * value = [NSNumber numberWithInteger:[segment selectedSegmentIndex]];
+        [temp setValue:value forKey:@"score"];
+        
+        NSError * error = nil;
+        if(![self.managedObjectContext save:&error])
+        {
+            NSLog(@"Can't Save Quick Grade %@",[error localizedDescription]);
+        }
+        NSLog(@"Value for segment is %@",value);
+    }
 }
+-(void)switchChanged:(id)sender
+{
+    UISwitch * tempSwitch = sender;
+    if(tempSwitch.tag == 3)
+    {
+        NSManagedObject * temp = objc_getAssociatedObject(sender, "obj");
+        NSNumber * value  = [NSNumber numberWithBool:[tempSwitch isOn]];
+        [temp setValue:value forKey:@"isSelected"];
+        
+        NSError * error = nil;
+        if(![self.managedObjectContext save:&error])
+        {
+            NSLog(@"Can't Save Pre Defined Comment %@",[error localizedDescription]);
+        }
+        NSLog(@"Value for comment is %@",value);
+    }
+}
+//- (id)findEntity:(NSString *)entity withAttribute: (NSString *)attribute andValue:(NSString*)value
+//{
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext:self.managedObjectContext]];
+//    //[request setPredicate: [NSPredicate predicateWithFormat:@"(%K = %@) AND (module = %@)",attribute, value,self.currentModule.moduleName]];
+//    NSPredicate * attributePredicate = [NSPredicate predicateWithFormat:@"%K = %@",attribute, value];
+//    NSPredicate * modulePredicate = [NSPredicate predicateWithFormat:@"module == %@",self.currentModule];
+//    
+//    NSPredicate * compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[attributePredicate,modulePredicate]];
+//    request.predicate = compoundPredicate;
+//    
+//    NSError *error = nil;
+//    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
+//    
+//    
+//    return [objects firstObject];
+//}
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
