@@ -59,6 +59,17 @@
     
     NSError* error;
     
+    if(self.currentStudent == nil)
+    {
+        self.currentStudent = [[Student alloc]init];
+    }
+    
+    if(self.currentStudent.studentSpeech == nil){
+        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
+        self.currentStudent.studentSpeech = [NSSet setWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+  
+    }
+    
     if(self.currentSpeech == nil)
     {
 //        [fetchRequest setEntity:[NSEntityDescription entityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext]];
@@ -88,10 +99,7 @@
         self.SpeechModules = [NSMutableArray arrayWithArray:[self.SpeechModules sortedArrayUsingDescriptors:descriptors]];
     }
     
-    if(self.currentStudent == nil)
-    {
-        self.currentStudent = [[Student alloc]init];
-    }
+
     
     if(self.currentModule == nil)
     {
@@ -139,6 +147,8 @@
         self.PreDefComments = [NSArray arrayWithArray: allPreDefComments];
         
     }
+    
+    
     
     //reload tablviews after filling table's content arrays
     [self.PreDefinedCommentsTable reloadData];

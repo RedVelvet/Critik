@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditPersuasiveVC.h"
+#import "SpeechSelectionVC.h"
 
 @interface HomeVC : UIViewController
+
+- (IBAction)buttonSelection:(id)sender;
 
 @end
