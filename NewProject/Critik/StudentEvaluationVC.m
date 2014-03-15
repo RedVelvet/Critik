@@ -457,42 +457,6 @@
 //    }
 //}
 
-
-
-//-(void)saveStudentRubricValues
-//{
-//    NSLog(@"About to store quick grade");
-//    UITableViewCell * cell;
-//    NSIndexPath * indexPath;
-//
-//    NSError *saveError;
-//    QuickGrade * quickGrade;
-//    for(int i = 0; i < [self.leftQuickGrades count]; i ++)
-//    {
-//        
-//        indexPath = [NSIndexPath indexPathForRow: i inSection:0];
-//        cell = [self.leftQuickGradeTable cellForRowAtIndexPath:indexPath];
-//        UISegmentedControl * segment = (UISegmentedControl *)cell.accessoryView;
-//        NSNumber * value =  [NSNumber numberWithInteger:[segment selectedSegmentIndex]];
-//        
-//        quickGrade = [self findEntity:@"QuickGrade" withAttribute:@"quickGradeDescription" andValue:cell.textLabel.text];
-////        NSEntityDescription *entitydesc = [NSEntityDescription entityForName:@"QuickGrade" inManagedObjectContext:context];
-////        NSManagedObject *userData = [[NSManagedObject alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:self.managedObjectContext];
-//        
-//        NSLog(@"%i",(int)value);
-//        NSLog(@"Setting quickGrade %@", quickGrade.quickGradeDescription);
-//        
-//        [quickGrade setValue:value forKey:@"score"];
-//        
-//        NSLog(@"Value after saving %@",quickGrade.score);
-//        NSLog(@"Set Value of quick Grade");
-//        if (![self.managedObjectContext save:&saveError]) {
-//            NSLog(@"Saving quick grade failed: %@", saveError);
-//        } else {
-//            NSLog(@"Quick Grade Saved!!!");
-//        }
-//    }
-//}
 -(void)segmentChanged:(id)sender
 {
     UISegmentedControl * segment = sender;
@@ -527,21 +491,4 @@
         NSLog(@"Value for comment is %@",value);
     }
 }
-//- (id)findEntity:(NSString *)entity withAttribute: (NSString *)attribute andValue:(NSString*)value
-//{
-//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//    [request setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext:self.managedObjectContext]];
-//    //[request setPredicate: [NSPredicate predicateWithFormat:@"(%K = %@) AND (module = %@)",attribute, value,self.currentModule.moduleName]];
-//    NSPredicate * attributePredicate = [NSPredicate predicateWithFormat:@"%K = %@",attribute, value];
-//    NSPredicate * modulePredicate = [NSPredicate predicateWithFormat:@"module == %@",self.currentModule];
-//    
-//    NSPredicate * compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[attributePredicate,modulePredicate]];
-//    request.predicate = compoundPredicate;
-//    
-//    NSError *error = nil;
-//    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
-//    
-//    
-//    return [objects firstObject];
-//}
 @end

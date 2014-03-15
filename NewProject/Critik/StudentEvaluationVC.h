@@ -48,6 +48,5 @@
 - (IBAction)continueToFinalize:(id)sender;
 //- (IBAction)startTimer:(id)sender;
 //- (IBAction)resetTimer:(id)sender;
--(void)saveStudentRubricValues;
 
 @end

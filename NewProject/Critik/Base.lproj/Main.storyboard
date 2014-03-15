@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="iaC-3o-S66">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="iaC-3o-S66">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Critik Nav Controller-->
@@ -10,7 +10,7 @@
                 <navigationController definesPresentationContext="YES" id="iaC-3o-S66" customClass="CritikNavController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" backIndicatorImage="PopOverNavBar.png" id="0KY-G3-ZY6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0KY-G3-ZY6">
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -222,6 +222,7 @@
                     <navigationItem key="navigationItem" id="9oU-pH-ADE"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="450" height="250"/>
                     <connections>
                         <outlet property="sectionTextField" destination="lac-Yb-Ih7" id="RhP-jk-HCk"/>
                     </connections>
@@ -1140,6 +1141,7 @@
                     <navigationItem key="navigationItem" id="6by-sH-IL4"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="450" height="250"/>
                     <connections>
                         <outlet property="addLabel" destination="RXE-pi-3u6" id="rWQ-pC-3ZS"/>
                         <outlet property="addTF" destination="Xiu-Nz-Rsb" id="Cnx-wI-RCv"/>
@@ -1162,7 +1164,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="w1G-Ar-QWM"/>
         <segue reference="0b9-Ty-kTk"/>
+        <segue reference="Mpf-AD-Gd2"/>
     </inferredMetricsTieBreakers>
 </document>
