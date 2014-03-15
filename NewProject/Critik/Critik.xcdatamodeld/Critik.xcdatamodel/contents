@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Module" representedClassName="Module" syncable="YES">
         <attribute name="moduleName" attributeType="String" syncable="YES"/>
         <attribute name="orderIndex" attributeType="Integer 16" syncable="YES"/>
@@ -32,6 +32,7 @@
     <entity name="Student" representedClassName="Student" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orderIndex" attributeType="Integer 16" syncable="YES"/>
         <attribute name="studentID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="students" inverseEntity="Section" syncable="YES"/>
         <relationship name="studentSpeech" toMany="YES" deletionRule="Cascade" destinationEntity="StudentSpeech" inverseName="student" inverseEntity="StudentSpeech" syncable="YES"/>
@@ -40,7 +41,7 @@
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Double" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="totalPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="speechesGiven" toMany="YES" deletionRule="Cascade" destinationEntity="Speech" syncable="YES"/>
+        <relationship name="speech" maxCount="1" deletionRule="Cascade" destinationEntity="Speech" syncable="YES"/>
         <relationship name="student" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="studentSpeech" inverseEntity="Student" syncable="YES"/>
     </entity>
     <elements>
@@ -49,7 +50,7 @@
         <element name="QuickGrade" positionX="-396" positionY="-18" width="128" height="103"/>
         <element name="Section" positionX="-396" positionY="-243" width="128" height="75"/>
         <element name="Speech" positionX="54" positionY="-45" width="128" height="75"/>
-        <element name="Student" positionX="-173" positionY="-243" width="128" height="120"/>
-        <element name="StudentSpeech" positionX="45" positionY="-246" width="128" height="120"/>
+        <element name="Student" positionX="-173" positionY="-243" width="128" height="133"/>
+        <element name="StudentSpeech" positionX="45" positionY="-246" width="128" height="118"/>
     </elements>
 </model>

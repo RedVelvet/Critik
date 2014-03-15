@@ -44,7 +44,7 @@
     self.timerSeconds = 0;
     self.timerMinutes = 0;
     self.timerHasStarted = NO;
-
+    
     //Set title based on speech and student
     self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeechName,self.currentStudent.firstName,self.currentStudent.lastName];
     
@@ -59,24 +59,35 @@
     
     NSError* error;
     
+    if(self.currentStudent == nil)
+    {
+        self.currentStudent = [[Student alloc]init];
+    }
+    
+    if(self.currentStudent.studentSpeech == nil){
+        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
+        self.currentStudent.studentSpeech = [NSSet setWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+        
+    }
+    
     if(self.currentSpeech == nil)
     {
-//        [fetchRequest setEntity:[NSEntityDescription entityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext]];
-//        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"student = %@",self.currentStudent]];
+        //        [fetchRequest setEntity:[NSEntityDescription entityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext]];
+        //        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"student = %@",self.currentStudent]];
         [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
         [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"speechType = %@",self.currentSpeechName]];
         NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         self.currentSpeech = [objects lastObject];
-//        
-//        StudentSpeech * studentSpeech = [objects lastObject];
-//        NSArray * speeches = [NSArray arrayWithArray: [studentSpeech.speechesGiven allObjects]];
-//        for(int i = 0; i < [speeches count]; i ++)
-//        {
-//            Speech * temp = [speeches objectAtIndex:i];
-//            if(temp.speechType == self.currentSpeechName){
-//                self.currentSpeech = temp;
-//            }
-//        }
+        //
+        //        StudentSpeech * studentSpeech = [objects lastObject];
+        //        NSArray * speeches = [NSArray arrayWithArray: [studentSpeech.speechesGiven allObjects]];
+        //        for(int i = 0; i < [speeches count]; i ++)
+        //        {
+        //            Speech * temp = [speeches objectAtIndex:i];
+        //            if(temp.speechType == self.currentSpeechName){
+        //                self.currentSpeech = temp;
+        //            }
+        //        }
     }
     //Retireve modules from coredata if array is null.
     if(self.SpeechModules == nil)
@@ -88,18 +99,15 @@
         self.SpeechModules = [NSMutableArray arrayWithArray:[self.SpeechModules sortedArrayUsingDescriptors:descriptors]];
     }
     
-    if(self.currentStudent == nil)
-    {
-        self.currentStudent = [[Student alloc]init];
-    }
+    
     
     if(self.currentModule == nil)
     {
-//        entity = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
-//        [fetchRequest setEntity:entity];
-//        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"moduleName = %@",@"Introduction"]];
-//        NSArray * modules = [NSArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-    
+        //        entity = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
+        //        [fetchRequest setEntity:entity];
+        //        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"moduleName = %@",@"Introduction"]];
+        //        NSArray * modules = [NSArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+        
         self.currentModule = [self.SpeechModules objectAtIndex:0];
     }
     self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.points];
@@ -123,7 +131,7 @@
         [self splitQuickGradesArray];
         
     }
-
+    
     if(self.PreDefComments == nil)
     {
         NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
@@ -139,6 +147,8 @@
         self.PreDefComments = [NSArray arrayWithArray: allPreDefComments];
         
     }
+    
+    
     
     //reload tablviews after filling table's content arrays
     [self.PreDefinedCommentsTable reloadData];
@@ -265,7 +275,7 @@
         
         objc_setAssociatedObject(segment, "obj",temp, OBJC_ASSOCIATION_ASSIGN);
         [segment addTarget:self action:@selector(segmentChanged:) forControlEvents:UIControlEventValueChanged];
-    
+        
         cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.quickGradeDescription];
         cell.accessoryView = segment;
         cell.textLabel.textColor = [UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
@@ -409,7 +419,7 @@
 //    if(self.timerHasStarted == YES){
 //        self.timerHasStarted = NO;
 //        self.startTimer.titleLabel.text = @"PLAY";
-//        
+//
 //    }
 //}
 //
@@ -423,21 +433,21 @@
 //}
 //
 //-(void) timer:(id)sender{
-//    
+//
 //    if(self.timerHasStarted){
 //        NSString *sec=[NSString stringWithFormat:@"%i",self.timerSeconds];
-//        
+//
 //        if(self.timerSeconds<10){
 //            sec = [NSString stringWithFormat:@"0%i",self.timerSeconds];
 //        }
-//        
+//
 //        NSString *min = [NSString stringWithFormat:@"%i",self.timerMinutes];
 //        if(self.timerMinutes<10){
 //            min = [NSString stringWithFormat:@"0%i",self.timerMinutes];
 //        }
-//        
+//
 //        NSString *time=[NSString stringWithFormat:@"%@:%@", min, sec];
-//        
+//
 //        [self.timerLabel setText:time];
 //        NSString * tempDuration = time;
 //        if(![tempDuration isEqualToString:@"30:00"])
@@ -457,6 +467,42 @@
 //    }
 //}
 
+
+
+//-(void)saveStudentRubricValues
+//{
+//    NSLog(@"About to store quick grade");
+//    UITableViewCell * cell;
+//    NSIndexPath * indexPath;
+//
+//    NSError *saveError;
+//    QuickGrade * quickGrade;
+//    for(int i = 0; i < [self.leftQuickGrades count]; i ++)
+//    {
+//
+//        indexPath = [NSIndexPath indexPathForRow: i inSection:0];
+//        cell = [self.leftQuickGradeTable cellForRowAtIndexPath:indexPath];
+//        UISegmentedControl * segment = (UISegmentedControl *)cell.accessoryView;
+//        NSNumber * value =  [NSNumber numberWithInteger:[segment selectedSegmentIndex]];
+//
+//        quickGrade = [self findEntity:@"QuickGrade" withAttribute:@"quickGradeDescription" andValue:cell.textLabel.text];
+////        NSEntityDescription *entitydesc = [NSEntityDescription entityForName:@"QuickGrade" inManagedObjectContext:context];
+////        NSManagedObject *userData = [[NSManagedObject alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:self.managedObjectContext];
+//
+//        NSLog(@"%i",(int)value);
+//        NSLog(@"Setting quickGrade %@", quickGrade.quickGradeDescription);
+//
+//        [quickGrade setValue:value forKey:@"score"];
+//
+//        NSLog(@"Value after saving %@",quickGrade.score);
+//        NSLog(@"Set Value of quick Grade");
+//        if (![self.managedObjectContext save:&saveError]) {
+//            NSLog(@"Saving quick grade failed: %@", saveError);
+//        } else {
+//            NSLog(@"Quick Grade Saved!!!");
+//        }
+//    }
+//}
 -(void)segmentChanged:(id)sender
 {
     UISegmentedControl * segment = sender;

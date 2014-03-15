@@ -2,7 +2,7 @@
 //  StudentSpeech.m
 //  Critik
 //
-//  Created by Doug Wettlaufer on 2/28/14.
+//  Created by Dalton Decker on 3/15/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -13,10 +13,10 @@
 
 @implementation StudentSpeech
 
+@dynamic comments;
 @dynamic duration;
 @dynamic totalPoints;
-@dynamic comments;
-@dynamic speechesGiven;
+@dynamic speech;
 @dynamic student;
 
 @end

@@ -27,7 +27,7 @@
         <!--HomeVC - Home-->
         <scene sceneID="Oei-ux-tsJ">
             <objects>
-                <viewController storyboardIdentifier="Homepage" title="Home" id="Gas-Ke-rRf" customClass="HomeVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Homepage" autoresizesArchivedViewToFullSize="NO" title="Home" id="Gas-Ke-rRf" customClass="HomeVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wjf-di-cLM"/>
                         <viewControllerLayoutGuide type="bottom" id="FGu-t3-tsw"/>
@@ -50,7 +50,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Yq6-hZ-0c5" kind="push" id="npq-sE-tiL"/>
+                                    <action selector="buttonSelection:" destination="Gas-Ke-rRf" eventType="touchUpInside" id="HVs-2v-oBl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7w-us-iza">
@@ -249,7 +249,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Persuasive">
+                                <state key="normal" title="Persuasive" backgroundImage="NavButton-Selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -262,7 +262,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Informative">
+                                <state key="normal" title="Informative" backgroundImage="NavButton-Selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -275,7 +275,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Interpersonal">
+                                <state key="normal" title="Interpersonal" backgroundImage="NavButton-Selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -306,13 +306,13 @@
         <!--Speech SelectionVC - Evaluate Speech Selection-->
         <scene sceneID="96N-UW-lbW">
             <objects>
-                <viewController title="Evaluate Speech Selection" id="Yq6-hZ-0c5" customClass="SpeechSelectionVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Speech Selection" title="Evaluate Speech Selection" id="Yq6-hZ-0c5" customClass="SpeechSelectionVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g30-rI-FZo"/>
                         <viewControllerLayoutGuide type="bottom" id="Y3e-55-wZT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ifr-hJ-bDQ">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWs-oB-jDh">
@@ -372,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2IY-rq-VcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1788" y="281"/>
+            <point key="canvasLocation" x="1780" y="-767"/>
         </scene>
         <!--Edit SpeechVC - Edit Forms - Persuasive-->
         <scene sceneID="OUk-2y-7XC">
@@ -582,7 +582,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doI-Ps-4GM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3056" y="281"/>
+            <point key="canvasLocation" x="3048" y="-767"/>
         </scene>
         <!--Student EvaluationVC - Student Evaluation-->
         <scene sceneID="IBd-ri-hhf">
@@ -724,7 +724,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boh-hV-amJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4272" y="281"/>
+            <point key="canvasLocation" x="4264" y="-767"/>
         </scene>
         <!--Student PenaltiesVC - Student Penalties-->
         <scene sceneID="nEb-eh-Lyh">
@@ -829,7 +829,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IO2-s4-9R7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5568" y="281"/>
+            <point key="canvasLocation" x="5560" y="-767"/>
         </scene>
         <!--Speech FinalizeVC - Speech Finalize-->
         <scene sceneID="gi4-U7-I6Y">
@@ -931,7 +931,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXc-IH-TZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6856" y="257"/>
+            <point key="canvasLocation" x="6848" y="-791"/>
         </scene>
         <!--View Controller - Edit Forms - Choose Speech-->
         <scene sceneID="fT9-cu-Z8L">
@@ -950,7 +950,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Speeches">
+                                <state key="normal" title="Speeches" backgroundImage="NavButton-Selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -963,7 +963,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Sections">
+                                <state key="normal" title="Sections" backgroundImage="NavButton-Selected.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>

@@ -12,9 +12,6 @@
 		1F4CF0D018C6D3EE004DDCDA /* EditForms_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2118C15B64006D2C9F /* EditForms_ChooseSpeechVC.m */; };
 		1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1B8118B5C1820015026A /* AddStudentVC.m */; };
 		1F57CD8718C126C400DE2B50 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8618C126C400DE2B50 /* Section.m */; };
-		1F57CD8A18C126C400DE2B50 /* Speech.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8918C126C400DE2B50 /* Speech.m */; };
-		1F57CD8D18C126C400DE2B50 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8C18C126C400DE2B50 /* Student.m */; };
-		1F57CD9018C126C400DE2B50 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8F18C126C400DE2B50 /* StudentSpeech.m */; };
 		1F57CD9318C126C400DE2B50 /* PreDefinedComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD9218C126C400DE2B50 /* PreDefinedComments.m */; };
 		1F6A5B2B18C1A70E006D2C9F /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2A18C1A70E006D2C9F /* Module.m */; };
 		1F6A5B2E18C1C2A0006D2C9F /* AddToModuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2D18C1C2A0006D2C9F /* AddToModuleVC.m */; };
@@ -36,6 +33,9 @@
 		6F12E3741892FEE40030AE4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F12E3721892FEE40030AE4C /* InfoPlist.strings */; };
 		6F12E3761892FEE40030AE4C /* CritikTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F12E3751892FEE40030AE4C /* CritikTests.m */; };
 		6F3478FF18C7BEB9005C7DF6 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3478FE18C7BEB9005C7DF6 /* QuickGrade.m */; };
+		6F3DE66718D4C11C00A54647 /* Speech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DE66618D4C11C00A54647 /* Speech.m */; };
+		6F3DE66A18D4C11C00A54647 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DE66918D4C11C00A54647 /* StudentSpeech.m */; };
+		6F3DE66D18D4C11D00A54647 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DE66C18D4C11D00A54647 /* Student.m */; };
 		6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03118ABF69F00FABCF2 /* HomeVC.m */; };
 		6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */; };
 		6F4EE0FE18B1721B00FABCF2 /* NavButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */; };
@@ -64,7 +64,6 @@
 		6FAD860918B83632001C8F54 /* PopOverNavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD860818B83632001C8F54 /* PopOverNavBar.png */; };
 		6FC0223518C44EDF0022B854 /* StudentPenaltiesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0223418C44EDF0022B854 /* StudentPenaltiesVC.m */; };
 		6FC0223818C4D6C90022B854 /* SpeechFinalizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0223718C4D6C90022B854 /* SpeechFinalizeVC.m */; };
-		6FED858318BFF20A0084A96A /* EditInformativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858218BFF20A0084A96A /* EditInformativeVC.m */; };
 		6FED858918C2493F0084A96A /* SpeechSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858818C2493F0084A96A /* SpeechSelectionVC.m */; };
 		6FED858C18C24BE70084A96A /* StudentSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858B18C24BE70084A96A /* StudentSelectionVC.m */; };
 		6FED858F18C24DCE0084A96A /* StudentEvaluationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858E18C24DCE0084A96A /* StudentEvaluationVC.m */; };
@@ -89,12 +88,6 @@
 		1F4F1B8118B5C1820015026A /* AddStudentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStudentVC.m; sourceTree = "<group>"; };
 		1F57CD8518C126C400DE2B50 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Section.h; path = Critik/Section.h; sourceTree = "<group>"; };
 		1F57CD8618C126C400DE2B50 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Section.m; path = Critik/Section.m; sourceTree = "<group>"; };
-		1F57CD8818C126C400DE2B50 /* Speech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Speech.h; path = Critik/Speech.h; sourceTree = "<group>"; };
-		1F57CD8918C126C400DE2B50 /* Speech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Speech.m; path = Critik/Speech.m; sourceTree = "<group>"; };
-		1F57CD8B18C126C400DE2B50 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Student.h; path = Critik/Student.h; sourceTree = "<group>"; };
-		1F57CD8C18C126C400DE2B50 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Student.m; path = Critik/Student.m; sourceTree = "<group>"; };
-		1F57CD8E18C126C400DE2B50 /* StudentSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StudentSpeech.h; path = Critik/StudentSpeech.h; sourceTree = "<group>"; };
-		1F57CD8F18C126C400DE2B50 /* StudentSpeech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StudentSpeech.m; path = Critik/StudentSpeech.m; sourceTree = "<group>"; };
 		1F57CD9118C126C400DE2B50 /* PreDefinedComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreDefinedComments.h; path = Critik/PreDefinedComments.h; sourceTree = "<group>"; };
 		1F57CD9218C126C400DE2B50 /* PreDefinedComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreDefinedComments.m; path = Critik/PreDefinedComments.m; sourceTree = "<group>"; };
 		1F6A5B2018C15B64006D2C9F /* EditForms_ChooseSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditForms_ChooseSpeechVC.h; sourceTree = "<group>"; };
@@ -126,6 +119,12 @@
 		6F12E3751892FEE40030AE4C /* CritikTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CritikTests.m; sourceTree = "<group>"; };
 		6F3478FD18C7BEB9005C7DF6 /* QuickGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickGrade.h; sourceTree = "<group>"; };
 		6F3478FE18C7BEB9005C7DF6 /* QuickGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickGrade.m; sourceTree = "<group>"; };
+		6F3DE66518D4C11C00A54647 /* Speech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speech.h; sourceTree = "<group>"; };
+		6F3DE66618D4C11C00A54647 /* Speech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speech.m; sourceTree = "<group>"; };
+		6F3DE66818D4C11C00A54647 /* StudentSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentSpeech.h; sourceTree = "<group>"; };
+		6F3DE66918D4C11C00A54647 /* StudentSpeech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentSpeech.m; sourceTree = "<group>"; };
+		6F3DE66B18D4C11D00A54647 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		6F3DE66C18D4C11D00A54647 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 		6F4EE03018ABF69F00FABCF2 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		6F4EE03118ABF69F00FABCF2 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CritikNavController.h; sourceTree = "<group>"; };
@@ -158,8 +157,6 @@
 		6FC0223418C44EDF0022B854 /* StudentPenaltiesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentPenaltiesVC.m; sourceTree = "<group>"; };
 		6FC0223618C4D6C90022B854 /* SpeechFinalizeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechFinalizeVC.h; sourceTree = "<group>"; };
 		6FC0223718C4D6C90022B854 /* SpeechFinalizeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechFinalizeVC.m; sourceTree = "<group>"; };
-		6FED858118BFF20A0084A96A /* EditInformativeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformativeVC.h; sourceTree = "<group>"; };
-		6FED858218BFF20A0084A96A /* EditInformativeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformativeVC.m; sourceTree = "<group>"; };
 		6FED858718C2493F0084A96A /* SpeechSelectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechSelectionVC.h; sourceTree = "<group>"; };
 		6FED858818C2493F0084A96A /* SpeechSelectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechSelectionVC.m; sourceTree = "<group>"; };
 		6FED858A18C24BE70084A96A /* StudentSelectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentSelectionVC.h; sourceTree = "<group>"; };
@@ -344,18 +341,18 @@
 			children = (
 				1F57CD9118C126C400DE2B50 /* PreDefinedComments.h */,
 				1F57CD9218C126C400DE2B50 /* PreDefinedComments.m */,
-				1F57CD8E18C126C400DE2B50 /* StudentSpeech.h */,
-				1F57CD8F18C126C400DE2B50 /* StudentSpeech.m */,
-				1F57CD8B18C126C400DE2B50 /* Student.h */,
-				1F57CD8C18C126C400DE2B50 /* Student.m */,
-				1F57CD8818C126C400DE2B50 /* Speech.h */,
-				1F57CD8918C126C400DE2B50 /* Speech.m */,
 				1F57CD8518C126C400DE2B50 /* Section.h */,
 				1F57CD8618C126C400DE2B50 /* Section.m */,
 				1F6A5B2918C1A70E006D2C9F /* Module.h */,
 				1F6A5B2A18C1A70E006D2C9F /* Module.m */,
 				6F3478FD18C7BEB9005C7DF6 /* QuickGrade.h */,
 				6F3478FE18C7BEB9005C7DF6 /* QuickGrade.m */,
+				6F3DE66B18D4C11D00A54647 /* Student.h */,
+				6F3DE66C18D4C11D00A54647 /* Student.m */,
+				6F3DE66818D4C11C00A54647 /* StudentSpeech.h */,
+				6F3DE66918D4C11C00A54647 /* StudentSpeech.m */,
+				6F3DE66518D4C11C00A54647 /* Speech.h */,
+				6F3DE66618D4C11C00A54647 /* Speech.m */,
 			);
 			name = "Core Data Classes";
 			path = ..;
@@ -520,9 +517,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F3DE66718D4C11C00A54647 /* Speech.m in Sources */,
 				6FED858F18C24DCE0084A96A /* StudentEvaluationVC.m in Sources */,
-				1F57CD8A18C126C400DE2B50 /* Speech.m in Sources */,
-				6FAD860C18B83A43001C8F54 /* PersuasiveSectionSelectVC.m in Sources */,
+				6F3DE66D18D4C11D00A54647 /* Student.m in Sources */,
 				1F4CF0D018C6D3EE004DDCDA /* EditForms_ChooseSpeechVC.m in Sources */,
 				1F6A5B2E18C1C2A0006D2C9F /* AddToModuleVC.m in Sources */,
 				1F6A5B2B18C1A70E006D2C9F /* Module.m in Sources */,
@@ -533,12 +530,11 @@
 				6F3478FF18C7BEB9005C7DF6 /* QuickGrade.m in Sources */,
 				1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */,
 				6FC0223818C4D6C90022B854 /* SpeechFinalizeVC.m in Sources */,
-				1F57CD9018C126C400DE2B50 /* StudentSpeech.m in Sources */,
 				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
 				6FC0223518C44EDF0022B854 /* StudentPenaltiesVC.m in Sources */,
 				6FED858918C2493F0084A96A /* SpeechSelectionVC.m in Sources */,
+				6F3DE66A18D4C11C00A54647 /* StudentSpeech.m in Sources */,
 				6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */,
-				1F57CD8D18C126C400DE2B50 /* Student.m in Sources */,
 				1F44E1E218BFFC7D0042FCB9 /* EditSpeechVC.m in Sources */,
 				6FED858C18C24BE70084A96A /* StudentSelectionVC.m in Sources */,
 				1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */,
