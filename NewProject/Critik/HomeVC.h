@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SpeechSelectionVC.h"
 
 @interface HomeVC : UIViewController
 

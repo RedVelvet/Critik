@@ -9,6 +9,7 @@
 #import "StudentSelectionVC.h"
 
 @interface StudentSelectionVC ()
+
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end
@@ -28,12 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.title = self.currSpeech;
+    //self.navigationItem.title = self.currSpeech;
     
-    self.navigationItem.title = self.currSpeech;
     
     
-    
-        AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
     
     
@@ -113,9 +114,9 @@
     NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
     NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
     self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
+    
     [self.StudentTable reloadData];
     
-    NSLog(@"Row : %d  Component : %d", row, component);
 }
 
 #pragma mark - Table view data source
@@ -146,17 +147,17 @@
     return cell;
 }
 
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+
     StudentEvaluationVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Evaluation"];
     
     Student * temp = [self.students objectAtIndex:indexPath.row];
     evaluateSpeech.currentStudent = temp;
-    evaluateSpeech.currentSpeech = self.currSpeech;
+    evaluateSpeech.currentSpeechName = self.currSpeech;
+
     
     [self.navigationController pushViewController:evaluateSpeech animated:YES];
     
