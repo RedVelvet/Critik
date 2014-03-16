@@ -50,7 +50,7 @@
         <element name="QuickGrade" positionX="-396" positionY="-18" width="128" height="103"/>
         <element name="Section" positionX="-396" positionY="-243" width="128" height="75"/>
         <element name="Speech" positionX="54" positionY="-45" width="128" height="75"/>
-        <element name="Student" positionX="-173" positionY="-243" width="128" height="133"/>
+        <element name="Student" positionX="-173" positionY="-243" width="128" height="28"/>
         <element name="StudentSpeech" positionX="45" positionY="-246" width="128" height="118"/>
     </elements>
 </model>

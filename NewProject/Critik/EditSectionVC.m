@@ -281,6 +281,7 @@
             newStudent.lastName = lastName;
             newStudent.studentID = sNum;
             newStudent.section = self.currSection;
+            newStudent.orderIndex = [NSNumber numberWithInt:-1];
             
             // Add Student to current section
             [self.currSection addStudentsObject:newStudent];

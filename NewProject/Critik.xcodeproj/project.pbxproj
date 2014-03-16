@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */; };
+		1F2176B218D633F30065EC79 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5479F918BD2F1400353383 /* DropboxSDK.framework */; };
 		1F44E1E218BFFC7D0042FCB9 /* EditSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F44E1E118BFFC7D0042FCB9 /* EditSpeechVC.m */; };
 		1F4CF0D018C6D3EE004DDCDA /* EditForms_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2118C15B64006D2C9F /* EditForms_ChooseSpeechVC.m */; };
 		1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1B8118B5C1820015026A /* AddStudentVC.m */; };
@@ -60,7 +61,6 @@
 		6F4EE11118B1721B00FABCF2 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0FC18B1721B00FABCF2 /* iTunesArtwork@2x.png */; };
 		6F4EE11318B1791300FABCF2 /* Home@2x-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */; };
 		6F4EE11718B186CE00FABCF2 /* NavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE11618B186CE00FABCF2 /* NavBar.png */; };
-		6F5479FA18BD2F1400353383 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5479F918BD2F1400353383 /* DropboxSDK.framework */; };
 		6FAD860918B83632001C8F54 /* PopOverNavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD860818B83632001C8F54 /* PopOverNavBar.png */; };
 		6FC0223518C44EDF0022B854 /* StudentPenaltiesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0223418C44EDF0022B854 /* StudentPenaltiesVC.m */; };
 		6FC0223818C4D6C90022B854 /* SpeechFinalizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0223718C4D6C90022B854 /* SpeechFinalizeVC.m */; };
@@ -170,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F5479FA18BD2F1400353383 /* DropboxSDK.framework in Frameworks */,
+				1F2176B218D633F30065EC79 /* DropboxSDK.framework in Frameworks */,
 				6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */,
 				6F12E3481892FEE40030AE4C /* CoreData.framework in Frameworks */,
 				6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */,
@@ -673,9 +673,14 @@
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Volumes/Macintosh\\ HD/Users/dougwettlaufer/Dropbox/Dropbox/School/College/Senior\\ Year/SoftwareengineeringII/Critik/NewProject",
-					"/Volumes/Macintosh\\ HD/Users/dougwettlaufer/Downloads/dropbox-ios-sync-sdk-2.1.0",
-					"/Volumes/Macintosh\\ HD/Users/ddecker2010/Desktop/Critik/NewProject",
+					/Volumes/Macintosh,
+					HD/Users/dougwettlaufer/Dropbox/Dropbox/School/College/Senior,
+					Year/SoftwareengineeringII/Critik/NewProject,
+					/Volumes/Macintosh,
+					"HD/Users/dougwettlaufer/Downloads/dropbox-ios-sync-sdk-2.1.0",
+					/Volumes/Macintosh,
+					HD/Users/ddecker2010/Desktop/Critik/NewProject,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
@@ -696,9 +701,14 @@
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Volumes/Macintosh\\ HD/Users/dougwettlaufer/Dropbox/Dropbox/School/College/Senior\\ Year/SoftwareengineeringII/Critik/NewProject",
-					"/Volumes/Macintosh\\ HD/Users/dougwettlaufer/Downloads/dropbox-ios-sync-sdk-2.1.0",
-					"/Volumes/Macintosh\\ HD/Users/ddecker2010/Desktop/Critik/NewProject",
+					/Volumes/Macintosh,
+					HD/Users/dougwettlaufer/Dropbox/Dropbox/School/College/Senior,
+					Year/SoftwareengineeringII/Critik/NewProject,
+					/Volumes/Macintosh,
+					"HD/Users/dougwettlaufer/Downloads/dropbox-ios-sync-sdk-2.1.0",
+					/Volumes/Macintosh,
+					HD/Users/ddecker2010/Desktop/Critik/NewProject,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Critik/Critik-Prefix.pch";
