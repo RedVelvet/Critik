@@ -538,7 +538,7 @@
                         <viewControllerLayoutGuide type="bottom" id="VIk-Ac-0LQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="64c-Yo-D0k">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Id7-td-Seq">
@@ -551,7 +551,7 @@
                                 </connections>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4kU-xE-dz6">
-                                <rect key="frame" x="704" y="0.0" width="320" height="768"/>
+                                <rect key="frame" x="704" y="0.0" width="320" height="704"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
@@ -572,8 +572,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="x53-kT-GH7">
                         <barButtonItem key="backBarButtonItem" title="Section" id="sbK-sK-mX3"/>
-                        <barButtonItem key="rightBarButtonItem" title="Options" id="GfH-w4-syn"/>
+                        <barButtonItem key="rightBarButtonItem" title="Options" id="GfH-w4-syn">
+                            <connections>
+                                <segue destination="aMO-EY-uJ6" kind="popover" popoverAnchorBarButtonItem="GfH-w4-syn" id="YTx-PO-Kx7">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="SectionPicker" destination="Id7-td-Seq" id="qvN-LJ-jxA"/>
@@ -583,6 +590,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doI-Ps-4GM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3048" y="-767"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="CNO-uu-dXb">
+            <objects>
+                <viewController id="aMO-EY-uJ6" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mk0-Uv-jgi"/>
+                        <viewControllerLayoutGuide type="bottom" id="fjp-ud-Dgz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J2e-rP-czb" customClass="UIPopoverBackgroundView">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="250"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="450" height="250"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yDo-yt-6lE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3401" y="233"/>
         </scene>
         <!--Student EvaluationVC - Student Evaluation-->
         <scene sceneID="IBd-ri-hhf">

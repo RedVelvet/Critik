@@ -64,11 +64,11 @@
         self.currentStudent = [[Student alloc]init];
     }
     
-    if(self.currentStudent.studentSpeech == nil){
-        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
-        self.currentStudent.studentSpeech = [NSSet setWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-        
-    }
+//    if(self.currentStudent.studentSpeech == nil){
+//        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
+//        self.currentStudent.studentSpeech = [NSSet setWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+//        
+//    }
     
     if(self.currentSpeech == nil)
     {

@@ -53,7 +53,7 @@
     NSArray * students = [NSArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
     if([students count] == 0)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Hold your horses there pedro!" message: @"You must add a section of students before you evaluate." delegate:self  cancelButtonTitle:@"Sounds Good!" otherButtonTitles:nil,nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Hold your horses there pedro!" message: @"You must add a section of students before evaluating." delegate:self  cancelButtonTitle:@"Sounds Good!" otherButtonTitles:nil,nil];
         [alert show];
     }else{
 
