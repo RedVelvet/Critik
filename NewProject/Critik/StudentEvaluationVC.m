@@ -310,8 +310,9 @@
         UISwitch * commentSwitch = [[UISwitch alloc]init];
         commentSwitch.tintColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
         commentSwitch.tag = 3;
+        bool switchIsOn = [temp.isActive boolValue];
         
-        [commentSwitch setOn:[temp.isActive boolValue]];
+        [commentSwitch setOn:switchIsOn];
         
         objc_setAssociatedObject(commentSwitch, "obj", temp, OBJC_ASSOCIATION_ASSIGN);
         [commentSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];

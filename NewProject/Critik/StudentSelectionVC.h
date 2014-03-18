@@ -18,8 +18,11 @@
 @property NSMutableArray * students;
 
 @property NSString * currSpeech;
+@property Boolean isRandom;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *SectionPicker;
 @property (weak, nonatomic) IBOutlet UITableView *StudentTable;
+
+- (void) setStudentOrder;
 
 @end

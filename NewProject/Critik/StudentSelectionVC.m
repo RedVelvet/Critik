@@ -30,27 +30,28 @@
 {
     [super viewDidLoad];
     self.navigationController.title = self.currSpeech;
-    //self.navigationItem.title = self.currSpeech;
     
     
-    
+    //Create a managedObjectContext and set equal to AppDelegates ManagedObjectContext.
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
     
     
-    // initializing NSFetchRequest
+    //initializing NSFetchRequest
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    //Setting Entity to be Queried
+    //Setting the entity name to grab from Core Data.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:self.managedObjectContext];
-    
     [fetchRequest setEntity:entity];
     NSError* error;
     
-    // Query on managedObjectContext With Generated fetchRequest
-    
+    //Setting sections equal to the objects grabbed from Core Data with the entity name 'Section'
     self.sections = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+    
+    //Sort Students array based on what has been set.
+    
     if([self.sections count] >1){
+        
         NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
         NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
         self.sections = [NSMutableArray arrayWithArray:[self.sections sortedArrayUsingDescriptors:descriptors]];
@@ -61,13 +62,37 @@
     NSSet * set = temp.students;
     self.students = [NSMutableArray arrayWithArray:[set allObjects]];
     
-    //Sorts students table by Last Name
-    if([self.students count] >1){
-        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
-        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-        self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
+    //If students table hasn't been ordered, then set to alphabetical order by last name.
+    if([self.students count] >1)
+    {
+        Student * temp = [self.students objectAtIndex:0];
+        if(temp.orderIndex == [NSNumber numberWithInt: -1])
+        {
+            id sender;
+            [sender setTag:0];
+            [self setStudentOrder:sender];
+        }else{
+            
+            NSMutableArray * tempStudents = [[NSMutableArray alloc]init];
+            for(int i = 0; i < [self.students count]; i ++)
+            {
+                Student * temp = [self.students objectAtIndex:i];
+                [tempStudents insertObject:temp atIndex: (NSInteger)temp.orderIndex];
+            }
+            self.students = tempStudents;
+        }
     }
     
+    //Updates orderIndex for students list
+    for(int i = 0; i < [self.students count]; i ++)
+    {
+        Student * temp = [self.students objectAtIndex:i];
+        temp.orderIndex = [NSNumber numberWithInt:i];
+        [self.students setObject:temp atIndexedSubscript:i];
+        
+    }
+    
+    //Update section picker and student table when view controller is loaded.
     [self.SectionPicker reloadAllComponents];
     [self.StudentTable reloadData];
 }
@@ -104,6 +129,7 @@
     return tempSection.sectionName;
 }
 
+//Updates data within student list based on what section is selected in the picker view
 -(void) pickerView:(UIPickerView *) pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     Section * temp = [self.sections objectAtIndex:row];
@@ -111,9 +137,25 @@
     self.students = [NSMutableArray arrayWithArray:[set allObjects]];
     
     // Sort the array by last name
-    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
-    NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-    self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
+    if([self.students count] >1)
+    {
+        Student * temp = [self.students objectAtIndex:0];
+        if(temp.orderIndex == [NSNumber numberWithInt: -1])
+        {
+            id sender;
+            [sender setTag:0];
+            [self setStudentOrder:sender];
+        }else{
+            
+            NSMutableArray * tempStudents = [[NSMutableArray alloc]init];
+            for(int i = 0; i < [self.students count]; i ++)
+            {
+                Student * temp = [self.students objectAtIndex:i];
+                [tempStudents insertObject:temp atIndex: (NSInteger)temp.orderIndex];
+            }
+            self.students = tempStudents;
+        }
+    }
     
     [self.StudentTable reloadData];
     
@@ -161,6 +203,29 @@
     
     [self.navigationController pushViewController:evaluateSpeech animated:YES];
     
+}
+
+//Sorts students based on instructor selection in popover
+- (void) setStudentOrder: (id) sender
+{
+    if([sender tag] == 1){
+        // create temporary array
+        NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[self.students count]];
+        
+        for (id anObject in self.students)
+        {
+            NSUInteger randomPos = arc4random()%([tmpArray count]+1);
+            [tmpArray insertObject:anObject atIndex:randomPos];
+        }
+        
+        self.students = [NSMutableArray arrayWithArray:tmpArray];
+        
+    }else{
+        
+        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+        self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
+    }
 }
 
 @end

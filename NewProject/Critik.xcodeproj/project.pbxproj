@@ -37,6 +37,7 @@
 		6F3DE66718D4C11C00A54647 /* Speech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DE66618D4C11C00A54647 /* Speech.m */; };
 		6F3DE66A18D4C11C00A54647 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DE66918D4C11C00A54647 /* StudentSpeech.m */; };
 		6F3DE66D18D4C11D00A54647 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DE66C18D4C11D00A54647 /* Student.m */; };
+		6F3DE7E618D7E6F700A54647 /* StudentOrderPopoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DE7E518D7E6F700A54647 /* StudentOrderPopoverVC.m */; };
 		6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03118ABF69F00FABCF2 /* HomeVC.m */; };
 		6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */; };
 		6F4EE0FE18B1721B00FABCF2 /* NavButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */; };
@@ -125,6 +126,8 @@
 		6F3DE66918D4C11C00A54647 /* StudentSpeech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentSpeech.m; sourceTree = "<group>"; };
 		6F3DE66B18D4C11D00A54647 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		6F3DE66C18D4C11D00A54647 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		6F3DE7E418D7E6F700A54647 /* StudentOrderPopoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentOrderPopoverVC.h; sourceTree = "<group>"; };
+		6F3DE7E518D7E6F700A54647 /* StudentOrderPopoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentOrderPopoverVC.m; sourceTree = "<group>"; };
 		6F4EE03018ABF69F00FABCF2 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		6F4EE03118ABF69F00FABCF2 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CritikNavController.h; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 				6FC0223418C44EDF0022B854 /* StudentPenaltiesVC.m */,
 				6FC0223618C4D6C90022B854 /* SpeechFinalizeVC.h */,
 				6FC0223718C4D6C90022B854 /* SpeechFinalizeVC.m */,
+				6F3DE7E418D7E6F700A54647 /* StudentOrderPopoverVC.h */,
+				6F3DE7E518D7E6F700A54647 /* StudentOrderPopoverVC.m */,
 			);
 			name = "Evaluate View Controllers";
 			sourceTree = "<group>";
@@ -518,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F3DE66718D4C11C00A54647 /* Speech.m in Sources */,
+				6F3DE7E618D7E6F700A54647 /* StudentOrderPopoverVC.m in Sources */,
 				6FED858F18C24DCE0084A96A /* StudentEvaluationVC.m in Sources */,
 				6F3DE66D18D4C11D00A54647 /* Student.m in Sources */,
 				1F4CF0D018C6D3EE004DDCDA /* EditForms_ChooseSpeechVC.m in Sources */,
