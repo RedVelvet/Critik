@@ -206,7 +206,7 @@
 }
 
 //Sorts students based on instructor selection in popover
-- (void) setStudentOrder: (id) sender
+- (IBAction) setStudentOrder: (id) sender
 {
     if([sender tag] == 1){
         // create temporary array
@@ -226,6 +226,15 @@
         NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
         self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
     }
+    NSLog(@"ORder Changed");
+    NSMutableArray * tempStudents = [[NSMutableArray alloc]init];
+    for(int i = 0; i < [self.students count]; i ++)
+    {
+        Student * temp = [self.students objectAtIndex:i];
+        temp.orderIndex = [NSNumber numberWithInt: i];
+        [tempStudents insertObject:temp atIndex:i];
+    }
+    self.students = tempStudents;
 }
 
 @end

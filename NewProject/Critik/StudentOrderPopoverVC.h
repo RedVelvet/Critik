@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StudentOrderPopoverVC : UIPopoverController
+@interface StudentOrderPopoverVC : UIViewController
 
 @end

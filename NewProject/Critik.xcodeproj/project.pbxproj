@@ -62,6 +62,7 @@
 		6F4EE11118B1721B00FABCF2 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0FC18B1721B00FABCF2 /* iTunesArtwork@2x.png */; };
 		6F4EE11318B1791300FABCF2 /* Home@2x-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */; };
 		6F4EE11718B186CE00FABCF2 /* NavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE11618B186CE00FABCF2 /* NavBar.png */; };
+		6F9E011E18D8BCA900F509B7 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9E011D18D8BCA900F509B7 /* CoreText.framework */; };
 		6FAD860918B83632001C8F54 /* PopOverNavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD860818B83632001C8F54 /* PopOverNavBar.png */; };
 		6FC0223518C44EDF0022B854 /* StudentPenaltiesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0223418C44EDF0022B854 /* StudentPenaltiesVC.m */; };
 		6FC0223818C4D6C90022B854 /* SpeechFinalizeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC0223718C4D6C90022B854 /* SpeechFinalizeVC.m */; };
@@ -155,6 +156,7 @@
 		6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home@2x-Landscape.png"; sourceTree = "<group>"; };
 		6F4EE11618B186CE00FABCF2 /* NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBar.png; sourceTree = "<group>"; };
 		6F5479F918BD2F1400353383 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		6F9E011D18D8BCA900F509B7 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		6FAD860818B83632001C8F54 /* PopOverNavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PopOverNavBar.png; sourceTree = "<group>"; };
 		6FC0223318C44EDF0022B854 /* StudentPenaltiesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentPenaltiesVC.h; sourceTree = "<group>"; };
 		6FC0223418C44EDF0022B854 /* StudentPenaltiesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentPenaltiesVC.m; sourceTree = "<group>"; };
@@ -173,8 +175,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F2176B218D633F30065EC79 /* DropboxSDK.framework in Frameworks */,
+				6F9E011E18D8BCA900F509B7 /* CoreText.framework in Frameworks */,
 				6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */,
+				1F2176B218D633F30065EC79 /* DropboxSDK.framework in Frameworks */,
 				6F12E3481892FEE40030AE4C /* CoreData.framework in Frameworks */,
 				6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */,
 				6F12E3421892FEE40030AE4C /* Foundation.framework in Frameworks */,
@@ -217,6 +220,7 @@
 		6F12E3401892FEE40030AE4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F9E011D18D8BCA900F509B7 /* CoreText.framework */,
 				6F5479F918BD2F1400353383 /* DropboxSDK.framework */,
 				6F12E3411892FEE40030AE4C /* Foundation.framework */,
 				6F12E3431892FEE40030AE4C /* CoreGraphics.framework */,

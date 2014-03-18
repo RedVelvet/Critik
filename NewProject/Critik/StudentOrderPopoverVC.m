@@ -10,4 +10,9 @@
 
 @implementation StudentOrderPopoverVC
 
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    self.view = [[UIPopoverBackgroundView alloc]init];
+}
+
 @end

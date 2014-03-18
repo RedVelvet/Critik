@@ -11,6 +11,7 @@
 #import "Student.h"
 #import "AppDelegate.h"
 #import "StudentEvaluationVC.h"
+#import "StudentOrderPopoverVC.h"
 
 @interface StudentSelectionVC : UIViewController
 
@@ -23,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *SectionPicker;
 @property (weak, nonatomic) IBOutlet UITableView *StudentTable;
 
-- (void) setStudentOrder;
+
+
+- (IBAction)setStudentOrder:(id)sender;
 
 @end

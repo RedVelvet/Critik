@@ -35,5 +35,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)Finalize:(id)sender
+{
+    SpeechFinalizeVC* finalize = [self.storyboard instantiateViewControllerWithIdentifier:@"Finalize"];
+    finalize.currentStudent = self.currentStudent;
+    finalize.currentStudentSpeech = self.currentStudentSpeech;
+    [self.navigationController pushViewController:finalize animated:YES];
+}
 
 @end

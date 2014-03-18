@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SpeechFinalizeVC.h"
 
 @interface StudentPenaltiesVC : UIViewController
+
+@property Student * currentStudent;
+@property StudentSpeech * currentStudentSpeech;
 
 @end

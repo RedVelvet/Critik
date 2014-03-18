@@ -407,6 +407,8 @@
 - (IBAction)continueToFinalize:(id)sender
 {
     StudentPenaltiesVC * penalties = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Penalties"];
+    penalties.currentStudent = self.currentStudent;
+    penalties.currentStudentSpeech = self.currentStudentSpeech;
     [self.navigationController pushViewController:penalties animated:YES];
 }
 

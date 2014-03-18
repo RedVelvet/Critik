@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreText/CoreText.h>
 #import "AppDelegate.h"
 #import "StudentSelectionVC.h"
 
 @interface SpeechFinalizeVC : UIViewController
+
+@property Student * currentStudent;
+@property StudentSpeech * currentStudentSpeech;
 
 - (IBAction)homepageButton:(id)sender;
 - (IBAction)evaluateStudents:(id)sender;

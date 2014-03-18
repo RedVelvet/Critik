@@ -34,6 +34,7 @@
 
 @property NSString * currentSpeechName;
 @property Student * currentStudent;
+@property StudentSpeech * currentStudentSpeech;
 @property Speech * currentSpeech;
 @property Module * currentModule;
 
