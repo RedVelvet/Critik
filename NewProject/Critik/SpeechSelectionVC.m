@@ -38,19 +38,19 @@
 
 - (IBAction)chooseSpeech:(UIButton *)sender
 {
-    StudentSelectionVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Selection"];
+    StudentSelectionVC * studentSelection = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Selection"];
     if(sender.tag == 0)
     {
-        evaluateSpeech.currSpeech = @"Informative";
+        studentSelection.currSpeech = @"Informative";
         
     }
     if(sender.tag == 1){
-        evaluateSpeech.currSpeech = @"Persuasive";
+        studentSelection.currSpeech = @"Persuasive";
     }
     if(sender.tag == 2){
-        evaluateSpeech.currSpeech = @"Interpersonal";
+        studentSelection.currSpeech = @"Interpersonal";
     }
     
-    [self.navigationController pushViewController:evaluateSpeech animated:YES];
+    [self.navigationController pushViewController:studentSelection animated:YES];
 }
 @end

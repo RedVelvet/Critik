@@ -2,7 +2,7 @@
 //  Speech.m
 //  Critik
 //
-//  Created by Dalton Decker on 3/15/14.
+//  Created by Dalton Decker on 3/19/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 @implementation Speech
 
 @dynamic speechType;
+@dynamic isTemplate;
 @dynamic modules;
 
 @end

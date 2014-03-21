@@ -38,12 +38,12 @@
 @property Speech * currentSpeech;
 @property Module * currentModule;
 
-@property NSArray * SpeechModules;
-@property NSArray * QuickGrades;
-@property NSArray * leftQuickGrades;
-@property NSArray * rightQuickGrades;
-@property NSArray * PreDefComments;
-@property NSArray * WrittenComments;
+@property NSMutableArray * SpeechModules;
+@property NSMutableArray * QuickGrades;
+@property NSMutableArray * leftQuickGrades;
+@property NSMutableArray * rightQuickGrades;
+@property NSMutableArray * PreDefComments;
+@property NSMutableArray * WrittenComments;
 
 -(void) splitQuickGradesArray;
 - (IBAction)continueToFinalize:(id)sender;

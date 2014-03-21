@@ -66,7 +66,7 @@
 }
 -(void)generatePDF
 {
-    //Set Filename with Student first/last and speech type
+    //Set Filename with Student first/last and speech name
     NSString* fileName = [NSString stringWithFormat:@"%@ %@ - %@",self.currentStudent.firstName,self.currentStudent.lastName,[self.currentStudentSpeech.speech speechType]];
     
     NSArray *arrayPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);

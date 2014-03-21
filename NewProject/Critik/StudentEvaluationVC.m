@@ -32,15 +32,15 @@
 - (void)viewDidAppear:(BOOL)animated {
     
     //sets the Introduction module as the first selected module
-    NSIndexPath * indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-    self.currentModule = [self.SpeechModules objectAtIndex:indexPath.row];
-    [self.ModuleTable selectRowAtIndexPath:indexPath animated:YES  scrollPosition:UITableViewScrollPositionBottom];
+    self.currentModule = [self.SpeechModules objectAtIndex:0];
+    [self.ModuleTable selectRowAtIndexPath:0 animated:YES  scrollPosition:UITableViewScrollPositionBottom];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    //Timer variables
     self.timerSeconds = 0;
     self.timerMinutes = 0;
     self.timerHasStarted = NO;
@@ -48,107 +48,116 @@
     //Set title based on speech and student
     self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeechName,self.currentStudent.firstName,self.currentStudent.lastName];
     
-    
-    //Sets the QuickGrade and PreDefinedComments Tables as non selectable
-    
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
-    
     // Initializing fetchRequest to retrieve information from Core Data
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
     NSError* error;
-    
-    if(self.currentStudent == nil)
-    {
-        self.currentStudent = [[Student alloc]init];
-    }
-    
-//    if(self.currentStudent.studentSpeech == nil){
+//    
+//    //Instantiate current Student
+//    if(self.currentStudent == nil)
+//    {
+//        self.currentStudent = [[Student alloc]init];
+//    }
+    //set student speeches for each student if it has yet to be created.
+//    if(self.currentStudent.studentSpeech == nil)
+//    {
+//        self.currentStudent.studentSpeech = [[NSSet alloc]init];
 //        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
 //        self.currentStudent.studentSpeech = [NSSet setWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
 //        
 //    }
-    
+    //set current student speech from student speeches list
+//    if(self.currentStudentSpeech == nil)
+//    {
+//        NSArray * temp = [self.currentStudent.studentSpeech allObjects];
+//        for(int i = 0; i < [temp count]; i++)
+//        {
+//            Speech * tempSpeech = [temp objectAtIndex:i];
+//            if(tempSpeech.speechType == self.currentSpeechName){
+//                self.currentStudentSpeech = [temp objectAtIndex:i];
+//            }
+//        }
+//    }
     if(self.currentSpeech == nil)
     {
-        //        [fetchRequest setEntity:[NSEntityDescription entityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext]];
-        //        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"student = %@",self.currentStudent]];
-        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"speechType = %@",self.currentSpeechName]];
-        NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        self.currentSpeech = [objects lastObject];
-        //
-        //        StudentSpeech * studentSpeech = [objects lastObject];
-        //        NSArray * speeches = [NSArray arrayWithArray: [studentSpeech.speechesGiven allObjects]];
-        //        for(int i = 0; i < [speeches count]; i ++)
-        //        {
-        //            Speech * temp = [speeches objectAtIndex:i];
-        //            if(temp.speechType == self.currentSpeechName){
-        //                self.currentSpeech = temp;
-        //            }
-        //        }
+//        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
+//        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"speechType = %@",self.currentSpeechName]];
+//        NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+//        self.currentSpeech = [objects lastObject];
+
+//        StudentSpeech * studentSpeech = [objects lastObject];
+//        NSArray * speeches = [NSArray arrayWithArray: [studentSpeech.speechesGiven allObjects]];
+//        for(int i = 0; i < [speeches count]; i ++)
+//        {
+//            Speech * temp = [speeches objectAtIndex:i];
+//            if(temp.speechType == self.currentSpeechName){
+//                self.currentSpeech = temp;
+//            }
+//        }
+        Speech * temp = self.currentStudentSpeech.speech;
+        self.currentSpeech = temp;
     }
+    
     //Retireve modules from coredata if array is null.
     if(self.SpeechModules == nil)
     {
-        self.SpeechModules = [NSArray arrayWithArray:[self.currentSpeech.modules allObjects]];
+        NSMutableArray * temp = [NSMutableArray arrayWithArray:[self.currentSpeech.modules allObjects]];
+        self.SpeechModules = temp;
         
+        //sort speech modules based on order index
         NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"orderIndex" ascending:YES];
         NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
         self.SpeechModules = [NSMutableArray arrayWithArray:[self.SpeechModules sortedArrayUsingDescriptors:descriptors]];
     }
     
     
-    
+    //First module will be introduction when first opening evaluation view
     if(self.currentModule == nil)
     {
-        //        entity = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
-        //        [fetchRequest setEntity:entity];
-        //        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"moduleName = %@",@"Introduction"]];
-        //        NSArray * modules = [NSArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-        
+        NSArray * objects = self.SpeechModules;
         self.currentModule = [self.SpeechModules objectAtIndex:0];
+        self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.points];
     }
-    self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.points];
     
+    //Creates new quick grades array if it hasn't been set.
     if(self.QuickGrades == nil)
     {
+        self.QuickGrades = [[NSMutableArray alloc]init];
         NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
         
         for( int i = 0; i < [allQuickGrades count]; i ++)
         {
             QuickGrade * temp = [allQuickGrades objectAtIndex:i];
-            if(temp.isActive == false)
+            if([temp.isActive boolValue] == true)
             {
-                [allQuickGrades removeObjectAtIndex:i];
+                [self.QuickGrades addObject:temp];
             }
         }
+        //sorts quick grades based on description
         NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"quickGradeDescription" ascending:YES];
         NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
         self.QuickGrades = [NSMutableArray arrayWithArray:[self.QuickGrades sortedArrayUsingDescriptors:descriptors]];
         
+        //splits quick grades into two columns
         [self splitQuickGradesArray];
-        
     }
     
     if(self.PreDefComments == nil)
     {
+        self.PreDefComments = [[NSMutableArray alloc]init];
         NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
         
         for( int i = 0; i < [allPreDefComments count]; i ++)
         {
             PreDefinedComments * temp = [allPreDefComments objectAtIndex:i];
-            if(temp.isActive == false)
+            if([temp.isActive boolValue] == true)
             {
-                [allPreDefComments removeObjectAtIndex:i];
+                [self.PreDefComments addObject:temp];
             }
         }
-        self.PreDefComments = [NSArray arrayWithArray: allPreDefComments];
         
     }
-    
-    
     
     //reload tablviews after filling table's content arrays
     [self.PreDefinedCommentsTable reloadData];
@@ -170,13 +179,13 @@
     someRange.location = 0;
     someRange.length = [self.QuickGrades count] / 2;
     
-    self.rightQuickGrades = [self.QuickGrades subarrayWithRange:someRange];
+    self.rightQuickGrades = [NSMutableArray arrayWithArray:[self.QuickGrades subarrayWithRange:someRange]];
     
     
     someRange.location = someRange.length;
     someRange.length = [self.QuickGrades count] - someRange.length;
     
-    self.leftQuickGrades = [self.QuickGrades subarrayWithRange:someRange];
+    self.leftQuickGrades = [NSMutableArray arrayWithArray:[self.QuickGrades subarrayWithRange:someRange]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -310,9 +319,9 @@
         UISwitch * commentSwitch = [[UISwitch alloc]init];
         commentSwitch.tintColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
         commentSwitch.tag = 3;
-        bool switchIsOn = [temp.isActive boolValue];
         
-        [commentSwitch setOn:switchIsOn];
+        commentSwitch.on = [temp.isActive boolValue];
+//        [commentSwitch setOn:[temp.isActive boolValue]];
         
         objc_setAssociatedObject(commentSwitch, "obj", temp, OBJC_ASSOCIATION_ASSIGN);
         [commentSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
@@ -373,29 +382,29 @@
             
             //Search through all QuickGrades and PreDefinedComments in an array to selective active
             NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
-            
+            [self.QuickGrades removeAllObjects];
             for( int i = 0; i < [allQuickGrades count]; i ++)
             {
                 QuickGrade * temp = [allQuickGrades objectAtIndex:i];
-                if(temp.isActive == false)
+                bool tempbool = [temp.isActive boolValue];
+                if(tempbool == true)
                 {
-                    [allQuickGrades removeObjectAtIndex:i];
+                    [self.QuickGrades addObject:temp];
                 }
             }
-            self.QuickGrades = [NSArray arrayWithArray: allQuickGrades];
             
             [self splitQuickGradesArray];
             NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
-            
+            [self.PreDefComments removeAllObjects];
             for( int i = 0; i < [allPreDefComments count]; i ++)
             {
                 PreDefinedComments * temp = [allPreDefComments objectAtIndex:i];
-                if(temp.isActive == false)
+                bool tempbool = [temp.isActive boolValue];
+                if(tempbool == true)
                 {
-                    [allPreDefComments removeObjectAtIndex:i];
+                    [self.PreDefComments addObject:temp];
                 }
             }
-            self.PreDefComments = [NSArray arrayWithArray: allPreDefComments];
             
             [self.rightQuickGradeTable reloadData];
             [self.leftQuickGradeTable reloadData];

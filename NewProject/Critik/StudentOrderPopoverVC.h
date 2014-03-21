@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DismissPopoverDelegate
+- (void) dismissPopover:(NSString *)order;
+@end
+
+
 @interface StudentOrderPopoverVC : UIViewController
 
+@property (nonatomic, assign) id<DismissPopoverDelegate> delegate;
+
+- (IBAction)savePopoverContent:(id)sender;
 @end

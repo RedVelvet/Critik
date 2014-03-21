@@ -572,9 +572,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="x53-kT-GH7">
                         <barButtonItem key="backBarButtonItem" title="Section" id="sbK-sK-mX3"/>
-                        <barButtonItem key="rightBarButtonItem" title="Options" id="GfH-w4-syn">
+                        <barButtonItem key="rightBarButtonItem" title="Order" id="GfH-w4-syn">
                             <connections>
-                                <segue destination="8gP-WU-wdQ" kind="popover" popoverAnchorBarButtonItem="GfH-w4-syn" id="fBE-iE-0Qj">
+                                <segue destination="gBH-f3-1ah" kind="popover" identifier="orderPopoverSegue" popoverAnchorBarButtonItem="GfH-w4-syn" id="Q5a-Pf-XJK">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -591,39 +591,39 @@
             </objects>
             <point key="canvasLocation" x="3048" y="-767"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="nGK-Oq-Zun">
+        <!--Student Order PopoverVC-->
+        <scene sceneID="ARB-CB-tvr">
             <objects>
-                <viewController storyboardIdentifier="Order Selection" id="8gP-WU-wdQ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StudentOrder" id="gBH-f3-1ah" customClass="StudentOrderPopoverVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yh8-kj-B7a"/>
-                        <viewControllerLayoutGuide type="bottom" id="voe-XE-52T"/>
+                        <viewControllerLayoutGuide type="top" id="Nqh-8o-8As"/>
+                        <viewControllerLayoutGuide type="bottom" id="u3h-ce-XND"/>
                     </layoutGuides>
-                    <view key="view" opaque="NO" tag="1" contentMode="scaleToFill" id="xEY-kM-8yd">
+                    <view key="view" contentMode="scaleToFill" id="Xdp-U5-laV">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fcm-Nz-WEo">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAw-5U-RmD">
                                 <rect key="frame" x="50" y="88" width="350" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Alphabetize" backgroundImage="PopOverNavBar.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="setStudentOrder:" destination="8gP-WU-wdQ" eventType="touchUpInside" id="uMY-7f-V5F"/>
+                                    <action selector="savePopoverContent:" destination="gBH-f3-1ah" eventType="touchUpInside" id="Nfq-IK-cgg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nq-og-ZmU">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErC-9e-Xbg">
                                 <rect key="frame" x="50" y="148" width="350" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Randomize" backgroundImage="PopOverNavBar.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="setStudentOrder:" destination="8gP-WU-wdQ" eventType="touchUpInside" id="ieb-dv-3ct"/>
+                                    <action selector="savePopoverContent:" destination="gBH-f3-1ah" eventType="touchUpInside" id="JVg-L6-A4x"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Student Order" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvb-yk-Hfr">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Student Order" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7Z-d1-t8D">
                                 <rect key="frame" x="144" y="49" width="162" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -631,16 +631,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="450" height="250"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PYR-Wf-ShK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yAg-7V-zwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4118" y="202"/>
+            <point key="canvasLocation" x="3942" y="103"/>
         </scene>
         <!--Student EvaluationVC - Student Evaluation-->
         <scene sceneID="IBd-ri-hhf">

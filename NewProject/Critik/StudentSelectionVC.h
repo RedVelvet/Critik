@@ -13,7 +13,11 @@
 #import "StudentEvaluationVC.h"
 #import "StudentOrderPopoverVC.h"
 
-@interface StudentSelectionVC : UIViewController
+@interface StudentSelectionVC : UIViewController <DismissPopoverDelegate>
+{
+    UIPopoverController* popover;
+}
+
 
 @property NSMutableArray * sections;
 @property NSMutableArray * students;
@@ -23,8 +27,9 @@
 
 @property (weak, nonatomic) IBOutlet UIPickerView *SectionPicker;
 @property (weak, nonatomic) IBOutlet UITableView *StudentTable;
+@property (nonatomic,strong) UIPopoverController *orderPopover;
 
-
+- (void)showPopover:(id)sender;
 
 - (IBAction)setStudentOrder:(id)sender;
 

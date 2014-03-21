@@ -2,7 +2,7 @@
 //  Speech.h
 //  Critik
 //
-//  Created by Dalton Decker on 3/15/14.
+//  Created by Dalton Decker on 3/19/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Speech : NSManagedObject
 
 @property (nonatomic, retain) NSString * speechType;
+@property (nonatomic, retain) NSString * isTemplate;
 @property (nonatomic, retain) NSSet *modules;
 @end
 

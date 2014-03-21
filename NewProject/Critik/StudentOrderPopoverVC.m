@@ -10,9 +10,25 @@
 
 @implementation StudentOrderPopoverVC
 
--(void)viewDidLoad{
+-(void)viewDidLoad {
     [super viewDidLoad];
-    self.view = [[UIPopoverBackgroundView alloc]init];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)savePopoverContent:(id)sender {
+    
+    // Return which order to set students based on button pressed.
+    if([sender tag] == 0){
+        [self.delegate dismissPopover:@"Alphabetize"];
+    }else{
+        [self.delegate dismissPopover:@"Randomize"];
+    }
+    
 }
 
 @end
