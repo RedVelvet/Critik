@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"%@",self.currSpeech);
     //Set the title of the current view based on the speech selected
     self.navigationController.title = self.currSpeech;
     
@@ -43,7 +43,7 @@
     [fetchRequest setEntity:entity];
     NSError* error;
     
-    //Retrive sections from core data and store within sections attribute
+    //Retrieve sections from core data and store within sections attribute
     self.sections = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
     
     

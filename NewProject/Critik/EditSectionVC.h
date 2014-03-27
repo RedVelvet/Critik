@@ -12,6 +12,7 @@
 #import "Student.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import "AddSectionVC.h"
+#import "StudentSpeech.h"
 
 @interface EditSectionVC : UIViewController <DismissPopoverDelegate>
 {
