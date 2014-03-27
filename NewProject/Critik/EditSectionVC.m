@@ -313,14 +313,6 @@
             
             if(count == 0)
             {
-                // get speeches
-//                fetchRequest = [[NSFetchRequest alloc] init];
-//                entity = [NSEntityDescription entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
-//                [fetchRequest setEntity:entity];
-//                NSError *error;
-//                NSArray *speechArr = [[NSArray alloc]initWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-                
-//                NSSet *speechSet = [NSSet setWithArray:speechArr];
                 
                 // Add Student to Core Data
                 Student *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:managedObjectContext];
@@ -330,21 +322,21 @@
                 newStudent.section = self.currSection;
                 newStudent.orderIndex = [NSNumber numberWithInt:-1];
                 
-//                // get speeches
-//                fetchRequest = [[NSFetchRequest alloc] init];
-//                entity = [NSEntityDescription entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
-//                [fetchRequest setEntity:entity];
-//                NSError *error;
-//                NSSet *speechSet = [NSSet setWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-//                [newStudent addStudentSpeech:speechSet];
+                // get speeches
+                fetchRequest = [[NSFetchRequest alloc] init];
+                entity = [NSEntityDescription entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
+                [fetchRequest setEntity:entity];
+                NSError *error;
+                NSArray *speechArr = [[NSArray alloc]initWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
                 
-//                for(int i = 0; i < [speechArr count]; i++)
-//                {
-//                    StudentSpeech* tempSS = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:managedObjectContext];
-//                    tempSS.speech = [speechArr objectAtIndex:i];
-//                    tempSS.student = newStudent;
-//                    [newStudent addStudentSpeechObject:tempSS];
-//                }
+                
+                for(int i = 0; i < [speechArr count]; i++)
+                {
+                    StudentSpeech* tempSS = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:managedObjectContext];
+                    tempSS.speech = [speechArr objectAtIndex:i];
+                    tempSS.student = newStudent;
+                    [newStudent addStudentSpeechObject:tempSS];
+                }
                 
                 // Add Student to current section
                 [self.currSection addStudentsObject:newStudent];
