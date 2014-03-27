@@ -79,8 +79,8 @@
 //            }
 //        }
 //    }
-    if(self.currentSpeech == nil)
-    {
+//    if(self.currentSpeech == nil)
+//    {
 //        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
 //        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"speechType = %@",self.currentSpeechName]];
 //        NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -97,28 +97,27 @@
 //        }
         Speech * temp = self.currentStudentSpeech.speech;
         self.currentSpeech = temp;
-    }
-    
+//    }
+
     //Retireve modules from coredata if array is null.
-    if(self.SpeechModules == nil)
-    {
-        NSMutableArray * temp = [NSMutableArray arrayWithArray:[self.currentSpeech.modules allObjects]];
-        self.SpeechModules = temp;
+//    if(self.SpeechModules == nil)
+//    {
+        NSMutableArray * Moduletemp = [NSMutableArray arrayWithArray: [self.currentSpeech.modules allObjects]];
+        self.SpeechModules = Moduletemp;
         
         //sort speech modules based on order index
         NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"orderIndex" ascending:YES];
         NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
         self.SpeechModules = [NSMutableArray arrayWithArray:[self.SpeechModules sortedArrayUsingDescriptors:descriptors]];
-    }
+//    }
     
     
     //First module will be introduction when first opening evaluation view
-    if(self.currentModule == nil)
-    {
-        NSArray * objects = self.SpeechModules;
+//    if(self.currentModule == nil)
+//    {
         self.currentModule = [self.SpeechModules objectAtIndex:0];
         self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.points];
-    }
+//    }
     
     //Creates new quick grades array if it hasn't been set.
     if(self.QuickGrades == nil)

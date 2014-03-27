@@ -191,31 +191,60 @@
 
     StudentEvaluationVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Evaluation"];
     
-    Student * temp = [self.students objectAtIndex:indexPath.row];
-    evaluateSpeech.currentStudent = temp;
+    Student * currentStudent = [self.students objectAtIndex:indexPath.row];
+    evaluateSpeech.currentStudent = currentStudent;
     evaluateSpeech.currentSpeechName = self.currSpeech;
-    NSArray * speechesToCheckFor = [temp.studentSpeech allObjects];
+
+    
+    if(currentStudent.studentSpeech == nil)
+    {
+        //Create newStudentSpeech and newSpeech and insert into managedObjectContext to be saved to core data.
+        StudentSpeech * newStudentSpeech = [[StudentSpeech alloc]initWithEntity:@"StudentSpeech" insertIntoManagedObjectContext:self.managedObjectContext];
+        Speech * newSpeech = [[Speech alloc]initWithEntity:@"Speech" insertIntoManagedObjectContext:self.managedObjectContext];
+        
+        //Gets the speech with selected speechType and if it is a template from core data storing it within an array
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSError * error;
+        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
+        NSPredicate * speechType = [NSPredicate predicateWithFormat:@"speechType = %@",self.currSpeech];
+        NSPredicate * tempateSpeech = [NSPredicate predicateWithFormat:@"isTemplate = true"];
+        [fetchRequest setPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:speechType,tempateSpeech, nil]]];
+        NSArray * objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        
+        Speech * speechFromCoreData = [objects firstObject];
+        
+        
+        newSpeech = [objects objectAtIndex:0];//Makes the new speech a copy of the current speech to evaluate
+        newSpeech.isTemplate = @"false";//allows for easy differentiation in core data
+        
+        newStudentSpeech.speech = newSpeech;
+        
+        [currentStudent addStudentSpeechObject:newStudentSpeech]; //adds the newly created student speech as a studentSpeech for the current Student
+        
+        
+        
+    }
+    
+    NSArray * speechesToCheckFor = [currentStudent.studentSpeech allObjects];
     for(int i = 0; i < [speechesToCheckFor count]; i ++)
     {
         StudentSpeech * speechCheck = [speechesToCheckFor objectAtIndex:i];
         NSLog(@"type: %@", speechCheck.speech.speechType);
         if([speechCheck.speech.speechType isEqual: self.currSpeech] || speechCheck == nil)
         {
-            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-            NSError * error;
-            [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
-            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"speechType = %@",self.currSpeech]];
-            NSArray * speeches = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+            
             
             
             
             StudentSpeech * studentSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext];
             Speech * speech = [NSEntityDescription insertNewObjectForEntityForName:@"Speech" inManagedObjectContext:self.managedObjectContext];
             speech = [speeches objectAtIndex:0];
-            speech.isTemplate = @"NotTemplate";
+            speech.isTemplate = @"false";
             studentSpeech.student = [self.students objectAtIndex:indexPath.row];
             studentSpeech.speech = speech;
             
+            //set the current student speech of the evaluation page
+            evaluateSpeech.currentStudentSpeech = studentSpeech;
             
             if(![self.managedObjectContext save:&error])
             {
@@ -227,7 +256,7 @@
     //        StudentSpeech * studentSpeech = [StudentSpeech alloc]init
     //        studentSpeech.student = [self.students objectAtIndex:indexPath.row];
     //        studentSpeech.speech = [speeches objectAtIndex:0];
-            evaluateSpeech.currentStudentSpeech = studentSpeech;
+            
         }
     }
     
