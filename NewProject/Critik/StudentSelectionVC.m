@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"%@",self.currSpeech);
     //Set the title of the current view based on the speech selected
     self.navigationController.title = self.currSpeech;
     
@@ -43,7 +43,7 @@
     [fetchRequest setEntity:entity];
     NSError* error;
     
-    //Retrive sections from core data and store within sections attribute
+    //Retrieve sections from core data and store within sections attribute
     self.sections = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
     
     
@@ -197,9 +197,9 @@
     NSArray * speechesToCheckFor = [temp.studentSpeech allObjects];
     for(int i = 0; i < [speechesToCheckFor count]; i ++)
     {
-        Speech * speechCheck = [speechesToCheckFor objectAtIndex:i];
-        
-        if(speechCheck.speechType == self.currSpeech || speechCheck == nil)
+        StudentSpeech * speechCheck = [speechesToCheckFor objectAtIndex:i];
+        NSLog(@"type: %@", speechCheck.speech.speechType);
+        if([speechCheck.speech.speechType isEqual: self.currSpeech] || speechCheck == nil)
         {
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
             NSError * error;
@@ -209,7 +209,7 @@
             
             
             
-            StudentSpeech * studentSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"Student Speech" inManagedObjectContext:self.managedObjectContext];
+            StudentSpeech * studentSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext];
             Speech * speech = [NSEntityDescription insertNewObjectForEntityForName:@"Speech" inManagedObjectContext:self.managedObjectContext];
             speech = [speeches objectAtIndex:0];
             speech.isTemplate = @"NotTemplate";

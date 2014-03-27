@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "StudentEvaluationVC.h"
 #import "StudentOrderPopoverVC.h"
+#import "StudentSpeech.h"
 
 @interface StudentSelectionVC : UIViewController <DismissPopoverDelegate>
 {

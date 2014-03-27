@@ -175,6 +175,13 @@
         NSError *error;
         if (![managedObjectContext save:&error]) {
             NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Error"
+                                  message: @"Student could not be deleted"
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
         }
         
         // Animate the deletion
@@ -200,45 +207,67 @@
     self.addSectionPopover = nil;
     AddSectionVC *addSectionVC = (AddSectionVC *)sender.sourceViewController;
     NSString *sectionNum = addSectionVC.sectionTextField.text;
+    
     // If NOT blank and NOT whitespace
     if(![sectionNum length] == 0 && ![[sectionNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
-        
-        NSString *sectionName = [NSString stringWithFormat:@"Section %@", sectionNum];
-        // Check if there is already a student with the new id
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
-        [fetchRequest setEntity:entity];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sectionName like %@)", sectionName];
-        [fetchRequest setPredicate:predicate];
-        NSError *error;
-        NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
-//        NSLog(@"Count %d", count);
-        
-        if(count == 0)
+        NSNumber* numberToSave = [NSNumber numberWithInteger:[sectionNum integerValue]];
+        if (numberToSave && [numberToSave intValue] > 0)
         {
-            
-            // Add Section to Core Data
-            Section *newSection = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
-            newSection.sectionName = sectionName;
-            
-            if (![managedObjectContext save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            }
+            NSString *sectionName = [NSString stringWithFormat:@"Section %@", sectionNum];
+            // Check if there is already a student with the new id
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
             NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
             [fetchRequest setEntity:entity];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sectionName like %@)", sectionName];
+            [fetchRequest setPredicate:predicate];
+            NSError *error;
+            NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
+    //        NSLog(@"Count %d", count);
             
-            sections = [NSMutableArray arrayWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-            NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
-            NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-            sections = [NSMutableArray arrayWithArray: [sections sortedArrayUsingDescriptors:descriptors]];
-            [self.sectionPicker reloadAllComponents];
+            if(count == 0)
+            {
+                
+                // Add Section to Core Data
+                Section *newSection = [NSEntityDescription insertNewObjectForEntityForName:@"Section" inManagedObjectContext:managedObjectContext];
+                newSection.sectionName = sectionName;
+                
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle: @"Error"
+                                          message: @"Section could not be saved"
+                                          delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+                NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"Section" inManagedObjectContext:managedObjectContext];
+                [fetchRequest setEntity:entity];
+                
+                sections = [NSMutableArray arrayWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+                NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
+                NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+                sections = [NSMutableArray arrayWithArray: [sections sortedArrayUsingDescriptors:descriptors]];
+                [self.sectionPicker reloadAllComponents];
+            }
+            else{
+                NSLog(@"Section already exists");
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle: @"Error"
+                                      message: @"A section with this name already exists"
+                                      delegate: nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+                [alert show];
+            }
         }
-        else{
-            NSLog(@"Section already exists");
+        else
+        {
+            NSLog(@"%@ is incorrect in the section textfield",numberToSave);
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle: @"Error"
-                                  message: @"A section with this name already exists"
+                                  message: @"Enter a positive number in the section field"
                                   delegate: nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -248,7 +277,10 @@
     }
 }
 
-
+- (IBAction)unwindToCancel:(UIStoryboardSegue *)sender
+{
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+}
 // called after 'Save' is tapped on the AddStudentVC
 - (IBAction)unwindToTableView:(UIStoryboardSegue *)sender
 {
@@ -258,52 +290,117 @@
     NSString *sNum = addStudentVC.sNumTF.text;
     [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
     
-    // If NOT blank and NOT whitespace
-    if(![firstName length] == 0 && ![[firstName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
-       && ![lastName length] == 0 && ![[lastName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
-       && ![sNum length] == 0 && ![[sNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
-        
-        // Check if there is already a student with the new id
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:managedObjectContext];
-        [fetchRequest setEntity:entity];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(studentID like %@)", sNum];
-        [fetchRequest setPredicate:predicate];
-        NSError *error;
-        NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
-        NSLog(@"Count %d", count);
-        
-        if(count == 0)
+    if ([self.sections count] > 0)
+    {
+        // If NOT blank and NOT whitespace
+        if(![firstName length] == 0 && ![[firstName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
+           && ![lastName length] == 0 && ![[lastName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
+           && ![sNum length] == 0 && ![[sNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
         {
-            // Add Student to Core Data
-            Student *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:managedObjectContext];
-            newStudent.firstName = firstName;
-            newStudent.lastName = lastName;
-            newStudent.studentID = sNum;
-            newStudent.section = self.currSection;
-            newStudent.orderIndex = [NSNumber numberWithInt:-1];
+            NSNumber* numberToSave = [NSNumber numberWithInteger:[sNum integerValue]];
+            if (numberToSave && [numberToSave intValue] > 0)
+            {
             
-            // Add Student to current section
-            [self.currSection addStudentsObject:newStudent];
+            // Check if there is already a student with the new id
+            NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Student" inManagedObjectContext:managedObjectContext];
+            [fetchRequest setEntity:entity];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(studentID like %@)", sNum];
+            [fetchRequest setPredicate:predicate];
+            NSError *error;
+            NSUInteger count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];
+            NSLog(@"Count %d", count);
             
-            // Save context
-            if (![managedObjectContext save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            if(count == 0)
+            {
+                
+                // Add Student to Core Data
+                Student *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:managedObjectContext];
+                newStudent.firstName = firstName;
+                newStudent.lastName = lastName;
+                newStudent.studentID = sNum;
+                newStudent.section = self.currSection;
+                newStudent.orderIndex = [NSNumber numberWithInt:-1];
+                
+                // get speeches
+                fetchRequest = [[NSFetchRequest alloc] init];
+                entity = [NSEntityDescription entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
+                [fetchRequest setEntity:entity];
+                NSError *error;
+                NSArray *speechArr = [[NSArray alloc]initWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+                
+                
+                for(int i = 0; i < [speechArr count]; i++)
+                {
+                    StudentSpeech* tempSS = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:managedObjectContext];
+                    tempSS.speech = [speechArr objectAtIndex:i];
+                    tempSS.student = newStudent;
+                    [newStudent addStudentSpeechObject:tempSS];
+                }
+                
+                // Add Student to current section
+                [self.currSection addStudentsObject:newStudent];
+                
+                // Save context
+                if (![managedObjectContext save:&error]) {
+                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle: @"Error"
+                                          message: @"Student could not be saved"
+                                          delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+                [self.studentTableView reloadData];
             }
-            [self.studentTableView reloadData];
+            else
+            {
+                NSLog(@"Student already exists");
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle: @"Error"
+                                      message: @"A student with this id already exists"
+                                      delegate: nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+                [alert show];
+            }
+            
         }
         else
         {
-            NSLog(@"Student already exists");
+            NSLog(@"%@ is incorrect in the sNum textfield",numberToSave);
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle: @"Error"
-                                  message: @"A student with this id already exists"
+                                  message: @"Enter a positive number in the S# field"
                                   delegate: nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
             [alert show];
         }
-        
+    }
+    else
+    {
+        NSLog(@"Missing first, last name, or s#");
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Error"
+                              message: @"The first name, last name, and S# are all required"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    }
+    else
+    {
+        NSLog(@"Trying to add student without section");
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Error"
+                              message: @"Please add a section before adding a student"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 
@@ -355,12 +452,21 @@
         {
             // Okay was pressed so delete the section, this will cascade to all students in the section
             [self.sections removeObject:self.currSection];
+            [self.students removeAllObjects];
             [managedObjectContext deleteObject:self.currSection];
             NSError *error;
             if (![managedObjectContext save:&error]) {
                 NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle: @"Error"
+                                      message: @"Section could not be deleted"
+                                      delegate: nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+                [alert show];
             }
             [self.sectionPicker reloadAllComponents];
+            
             [self.studentTableView reloadData];
         }
     }
@@ -419,13 +525,23 @@
             newStudent.lastName = lastName;
             newStudent.studentID = sNum;
             newStudent.section = self.currSection;
+            newStudent.orderIndex = [NSNumber numberWithInt:-1];
             
+            // get speeches
+//            fetchRequest = [[NSFetchRequest alloc] init];
+//            entity = [NSEntityDescription entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
+//            [fetchRequest setEntity:entity];
+//            NSError *error;
+//            NSSet *speechSet = [NSSet setWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+//            [newStudent addStudentSpeech:speechSet];
+
             // Add Student to current section
             [self.currSection addStudentsObject:newStudent];
             
             // Save context
             if (![managedObjectContext save:&error]) {
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                
             }
         }
         else{

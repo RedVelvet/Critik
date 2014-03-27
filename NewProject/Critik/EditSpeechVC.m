@@ -11,6 +11,7 @@
 #define leftTableTag 2
 #define rightTableTag 3
 #define commentsTableTag 4
+#define kOFFSET_FOR_KEYBOARD 352.0
 @interface EditSpeechVC ()
 
 @end
@@ -25,6 +26,8 @@
     }
     return self;
 }
+
+#pragma mark - View
 
 - (void)viewDidLoad
 {
@@ -127,7 +130,7 @@
         NSSet *moduleSet = [NSSet setWithObjects:introModule, orgModule, reasonModule, presentationModule, voiceModule, physicalModule, conclusionModule, nil];
         // Add Module to current Speech
         [newSpeech addModules:moduleSet];
-        
+        newSpeech.isTemplate = @"true";
         // Save context
         if (![managedObjectContext save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -160,6 +163,55 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+//method to move the view up/down whenever the keyboard is shown/dismissed
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    CGRect rect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+        rect.size.height += kOFFSET_FOR_KEYBOARD;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += kOFFSET_FOR_KEYBOARD;
+        rect.size.height -= kOFFSET_FOR_KEYBOARD;
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -191,6 +243,7 @@
         [otherScrollView setContentOffset:[scrollView contentOffset] animated:NO];
     }
 }
+
 
 #pragma mark - Table view delegate
 
@@ -269,6 +322,13 @@
                 if(![managedObjectContext save:&error])
                 {
                     NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle: @"Error"
+                                          message: @"Quick Grade could not be saved"
+                                          delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
                 }
                 
                 [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -289,6 +349,13 @@
                 if(![managedObjectContext save:&error])
                 {
                     NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle: @"Error"
+                                          message: @"Quick Grade could not be saved"
+                                          delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
                 }
                 
                 [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -308,6 +375,13 @@
                 if(![managedObjectContext save:&error])
                 {
                     NSLog(@"Whoops, couldn't delete: %@", [error localizedDescription]);
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle: @"Error"
+                                          message: @"Comment could not be deleted"
+                                          delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
                 }
                 
                 [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -382,7 +456,24 @@
         switchView.tag = leftTableTag;
         objc_setAssociatedObject(switchView, "obj", tempQuickGrade, OBJC_ASSOCIATION_ASSIGN);
         [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
-        cell.textLabel.text = tempQuickGrade.quickGradeDescription;
+//        cell.textLabel.text = tempQuickGrade.quickGradeDescription;
+        
+        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 185, 30)];
+        tf.adjustsFontSizeToFitWidth = YES;
+        tf.textColor = [UIColor blackColor];
+        tf.text = tempQuickGrade.quickGradeDescription;
+        tf.backgroundColor = [UIColor whiteColor];
+        tf.tintColor = [UIColor blueColor];
+        tf.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        tf.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
+        tf.delegate = self;
+        tf.tag = leftTableTag;
+        tf.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+        [tf setEnabled: YES];
+        objc_setAssociatedObject(tf, "obj1", tempQuickGrade, OBJC_ASSOCIATION_ASSIGN);
+        [cell addSubview:tf];
+        
+
 
     }
     else if (tableView.tag == rightTableTag)
@@ -399,7 +490,21 @@
         switchView.tag = leftTableTag;
         objc_setAssociatedObject(switchView, "obj", tempQuickGrade, OBJC_ASSOCIATION_ASSIGN);
         [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
-        cell.textLabel.text = tempQuickGrade.quickGradeDescription;
+//        cell.textLabel.text = tempQuickGrade.quickGradeDescription;
+        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 185, 30)];
+        tf.adjustsFontSizeToFitWidth = YES;
+        tf.textColor = [UIColor blackColor];
+        tf.tintColor = [UIColor blueColor];
+        tf.text = tempQuickGrade.quickGradeDescription;
+        tf.backgroundColor = [UIColor whiteColor];
+        tf.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        tf.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
+        tf.delegate = self;
+        tf.tag = rightTableTag;
+        tf.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+        [tf setEnabled: YES];
+        objc_setAssociatedObject(tf, "obj1", tempQuickGrade, OBJC_ASSOCIATION_ASSIGN);
+        [cell addSubview:tf];
 
         
     }
@@ -416,7 +521,22 @@
         switchView.tag = commentsTableTag;
         objc_setAssociatedObject(switchView, "obj", tempPredef, OBJC_ASSOCIATION_ASSIGN);
         [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
-        cell.textLabel.text = tempPredef.comment;
+//        cell.textLabel.text = tempPredef.comment;
+        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 185, 30)];
+        tf.adjustsFontSizeToFitWidth = YES;
+        tf.textColor = [UIColor blackColor];
+        tf.tintColor = [UIColor blueColor];
+        tf.text = tempPredef.comment;
+        tf.backgroundColor = [UIColor whiteColor];
+        tf.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+        tf.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
+        tf.delegate = self;
+//        [tf setPlaceholder:@"commentsTableTag"];
+        tf.tag = commentsTableTag;
+        tf.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+        [tf setEnabled: YES];
+        objc_setAssociatedObject(tf, "obj1", tempPredef, OBJC_ASSOCIATION_ASSIGN);
+        [cell addSubview:tf];
     }
     
     return cell;
@@ -427,7 +547,7 @@
 
 - (void) dismissPopover:(NSArray *)addContentArray
 {
-    /* Dismiss you popover here and process data */
+    /* Dismiss your popover here and process data */
     NSLog(@"Popover: %@ Content: %@", [addContentArray objectAtIndex:0], [addContentArray objectAtIndex:1]);
     [popover dismissPopoverAnimated:YES];
     NSString *fromPopover = [addContentArray objectAtIndex:0];
@@ -443,7 +563,7 @@
             for (PreDefinedComments *p in preDefinedComments)
             {
                 NSLog(@"PreDefined Comments: %@", p.comment);
-                if ([p.comment isEqualToString:content]) {
+                if ([p.comment caseInsensitiveCompare:content] == NSOrderedSame) {
                     predefExists = YES;
                     break;
                 }
@@ -463,7 +583,13 @@
                 NSError *error;
                 if (![managedObjectContext save:&error]) {
                     NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-                    NSLog(@"%@", error);
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle: @"Error"
+                                          message: @"Comment could not be saved"
+                                          delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
                 }
                 
                 self.preDefinedComments = [NSMutableArray arrayWithArray:[self.currModule.preDefinedComments allObjects]];
@@ -494,7 +620,7 @@
             for (QuickGrade *q in quickGrades)
             {
                 NSLog(@"Quick Grade: %@", q.quickGradeDescription);
-                if ([q.quickGradeDescription isEqualToString:content]) {
+                if ([q.quickGradeDescription caseInsensitiveCompare:content] == NSOrderedSame) {
                     quickGradeExists = YES;
                     break;
                 }
@@ -515,6 +641,13 @@
                 NSError *error;
                 if (![managedObjectContext save:&error]) {
                     NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                    UIAlertView *alert = [[UIAlertView alloc]
+                                          initWithTitle: @"Error"
+                                          message: @"Quick Grade could not be saved"
+                                          delegate: nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+                    [alert show];
                 }
                 self.quickGrades = [NSMutableArray arrayWithArray:[self.currModule.quickGrade allObjects]];
                 [self splitQuickGrades];
@@ -599,22 +732,118 @@
         [self.quickGrades1 addObject:[self.quickGrades objectAtIndex:0]];
     }
 }
-- (IBAction)pointTFDidEndEditing:(id)sender {
-    NSLog(@"Points tf changed to %@", self.pointTF.text);
-    // If NOT blank and NOT whitespace
-    if(![self.pointTF.text length] == 0 && ![[self.pointTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
+
+# pragma mark - Textfield
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    NSLog(@"textFieldDidBeginEditing");
+    NSLog(@"textfield tag: %d",sender.tag);
+    NSLog(@"origin: %f",self.view.frame.origin.y);
+    if (sender.tag == commentsTableTag)
     {
-        NSManagedObject *temp = self.currModule;
-        NSNumberFormatter *numValue = [[NSNumberFormatter alloc]init];
-        [numValue setNumberStyle:NSNumberFormatterNoStyle];
-        [temp setValue:[numValue numberFromString: self.pointTF.text] forKey:@"points"];
+        NSLog(@"origin: %f",self.view.frame.origin.y);
+        //move the main view, so that the keyboard does not hide it.
+        if  (self.view.frame.origin.y >= 0)
+        {
+            [self setViewMovedUp:YES];
+        }
+    }
+    
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    
+    if (textField.tag == leftTableTag || textField.tag == rightTableTag) {
+        QuickGrade *temp = (QuickGrade*)objc_getAssociatedObject(textField, "obj1");
+        
+        [temp setValue:textField.text forKey:@"quickGradeDescription"];
+        //        NSLog( @"The switch is %@ for table: %d which is %@", switchControl.on ? @"ON" : @"OFF", switchControl.tag,  boolValue);
+        NSError *error = nil;
+        // Save the object to persistent store
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        }
+    } else if (textField.tag == commentsTableTag)
+    {
+        PreDefinedComments *temp = (PreDefinedComments*)objc_getAssociatedObject(textField, "obj1");
+        [temp setValue:textField.text forKey:@"comment"];
+        //        NSLog( @"The switch is %@ for table: %d which is %@", switchControl.on ? @"ON" : @"OFF", switchControl.tag,  boolValue);
         NSError *error = nil;
         // Save the object to persistent store
         if (![managedObjectContext save:&error]) {
             NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
         }
     }
+    
+    
+    return YES;
 }
 
+- (IBAction)pointTFDidEndEditing:(id)sender {
+    NSLog(@"Points tf changed to %@", self.pointTF.text);
+    // If NOT blank and NOT whitespace
+    if(![self.pointTF.text length] == 0 && ![[self.pointTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
+    {
+        NSNumber* numberToSave = [NSNumber numberWithInteger:[self.pointTF.text integerValue]];
+        if (numberToSave && [numberToSave intValue] > 0) {
+            NSManagedObject *temp = self.currModule;
+            NSNumberFormatter *numValue = [[NSNumberFormatter alloc]init];
+            [numValue setNumberStyle:NSNumberFormatterNoStyle];
+            [temp setValue:[numValue numberFromString: self.pointTF.text] forKey:@"points"];
+            NSError *error = nil;
+            // Save the object to persistent store
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+            }
+        }
+        else
+        {
+            NSLog(@"%@ is incorrect in the points textfield",numberToSave);
+            [self.pointTF setText:@"0"];
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Error"
+                                  message: @"Enter a positive number in the points field"
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+    
+}
 
+#pragma mark - Keyboard
+- (void) keyboardWasShown:(NSNotification *)nsNotification {
+    NSDictionary *userInfo = [nsNotification userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    NSLog(@"Height: %f Width: %f", kbSize.height, kbSize.width);
+    // Portrait:    Height: 264.000000  Width: 768.000000
+    // Landscape:   Height: 1024.000000 Width: 352.000000
+}
+-(void)keyboardWillShow {
+    NSLog(@"keyboardwillshow");
+    // Animate the current view out of the way
+//    if (self.view.frame.origin.y >= 0)
+//    {
+//        [self setViewMovedUp:YES];
+//    }
+//    else if (self.view.frame.origin.y < 0)
+//    {
+//        [self setViewMovedUp:NO];
+//    }
+}
+
+-(void)keyboardWillHide {
+    NSLog(@"keyboardwillhide");
+    NSLog(@"origin: %f",self.view.frame.origin.y);
+//    if (self.view.frame.origin.y >= 0)
+//    {
+//        [self setViewMovedUp:YES];
+//    }
+    if (self.view.frame.origin.y < 0)
+    {
+        [self setViewMovedUp:NO];
+    }
+}
 @end
