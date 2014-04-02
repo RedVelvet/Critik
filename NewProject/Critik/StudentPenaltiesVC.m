@@ -9,7 +9,7 @@
 #import "StudentPenaltiesVC.h"
 
 @interface StudentPenaltiesVC ()
-
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation StudentPenaltiesVC
@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"Penalties";
+    AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = [appDelegate managedObjectContext];
 	// Do any additional setup after loading the view.
 }
 
@@ -37,7 +39,10 @@
 }
 - (IBAction)Finalize:(id)sender
 {
-    SpeechFinalizeVC* finalize = [self.storyboard instantiateViewControllerWithIdentifier:@"Finalize"];
+    
+    [self.currentStudentSpeech.comments setValue: self.additionalComments.text forKeyPath:@"comments"];
+    
+    SpeechFinalizeVC * finalize = [self.storyboard instantiateViewControllerWithIdentifier:@"Finalize"];
     finalize.currentStudent = self.currentStudent;
     finalize.currentStudentSpeech = self.currentStudentSpeech;
     [self.navigationController pushViewController:finalize animated:YES];

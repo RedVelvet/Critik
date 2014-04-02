@@ -2,7 +2,7 @@
 //  Module.m
 //  Critik
 //
-//  Created by Doug Wettlaufer on 2/28/14.
+//  Created by Dalton Decker on 4/1/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -15,9 +15,10 @@
 @implementation Module
 
 @dynamic moduleName;
+@dynamic orderIndex;
 @dynamic points;
 @dynamic written;
-@dynamic orderIndex;
+@dynamic pointsPossible;
 @dynamic preDefinedComments;
 @dynamic quickGrade;
 @dynamic speech;

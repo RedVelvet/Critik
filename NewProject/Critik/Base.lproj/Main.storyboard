@@ -41,7 +41,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRI-AG-eHA">
-                                <rect key="frame" x="0.0" y="207" width="1024" height="52"/>
+                                <rect key="frame" x="0.0" y="147" width="1024" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -54,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7w-us-iza">
-                                <rect key="frame" x="0.0" y="147" width="1024" height="52"/>
+                                <rect key="frame" x="0.0" y="207" width="1024" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.40227550400000001" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -642,30 +642,19 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajo-gc-UOc">
-                                <rect key="frame" x="240" y="660" width="80" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="RESET">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetTimer:" destination="fhM-DW-lqh" eventType="touchUpInside" id="IBr-W6-GYj"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roz-yc-GNW">
                                 <rect key="frame" x="80" y="660" width="80" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" title="PLAY">
+                                <state key="normal" title="Start">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startTimer:" destination="fhM-DW-lqh" eventType="touchUpInside" id="CIt-3L-0oE"/>
+                                    <action selector="startStopTimer:" destination="fhM-DW-lqh" eventType="touchUpInside" id="1pM-Kn-udt"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEw-Ym-fQV">
-                                <rect key="frame" x="160" y="660" width="80" height="44"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEw-Ym-fQV">
+                                <rect key="frame" x="160" y="660" width="160" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -756,8 +745,8 @@
                         <outlet property="moduleGrade" destination="UIL-KK-0bq" id="KuK-l4-9sf"/>
                         <outlet property="modulePoints" destination="1dr-OT-PHi" id="TYr-aP-K2T"/>
                         <outlet property="rightQuickGradeTable" destination="yRT-be-Kyl" id="l6X-VM-JRi"/>
-                        <outlet property="startTimer" destination="roz-yc-GNW" id="b9X-hs-IPG"/>
-                        <outlet property="timerLabel" destination="oEw-Ym-fQV" id="0I8-Uk-jv8"/>
+                        <outlet property="timerButton" destination="roz-yc-GNW" id="3qR-Ne-AY9"/>
+                        <outlet property="timerLabel" destination="oEw-Ym-fQV" id="IUA-lG-5sH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boh-hV-amJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -864,6 +853,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="additionalComments" destination="eCS-AY-Wtx" id="ox4-sV-HuD"/>
+                        <outlet property="duration" destination="L8y-QH-vfu" id="xYM-aG-eBO"/>
+                        <outlet property="latePresentation" destination="Ea9-g4-XsK" id="hoV-J9-uYX"/>
+                        <outlet property="overTime" destination="dgc-cZ-l7R" id="UUE-Ei-bRi"/>
+                        <outlet property="penaltyPoints" destination="3g9-pf-yHs" id="6fF-gZ-zOS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IO2-s4-9R7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -872,7 +868,7 @@
         <!--Speech FinalizeVC - Speech Finalize-->
         <scene sceneID="gi4-U7-I6Y">
             <objects>
-                <viewController storyboardIdentifier="Summary" title="Speech Finalize" id="7tl-5M-qOQ" customClass="SpeechFinalizeVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Finalize" title="Speech Finalize" id="7tl-5M-qOQ" customClass="SpeechFinalizeVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HIw-Xf-t7V"/>
                         <viewControllerLayoutGuide type="bottom" id="g7m-2q-FOa"/>
@@ -911,7 +907,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="homepageButton:" destination="7tl-5M-qOQ" eventType="touchUpInside" id="flt-AA-jcV"/>
+                                    <segue destination="XeT-ld-4Sv" kind="unwind" unwindAction="UnwindFromFinalizeToHome:" id="qcc-vo-Xi0"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Points:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mc8-3G-eh3">
@@ -929,6 +925,9 @@
                                 <state key="normal" title="Save to Dropbox" backgroundImage="NavButton-Selected.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="generatePDF:" destination="7tl-5M-qOQ" eventType="touchUpInside" id="cKs-jG-Sjt"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziG-GX-o2M">
                                 <rect key="frame" x="0.0" y="388" width="1024" height="52"/>
@@ -939,7 +938,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="evaluateStudents:" destination="7tl-5M-qOQ" eventType="touchUpInside" id="XiH-i7-1CD"/>
+                                    <segue destination="XeT-ld-4Sv" kind="unwind" unwindAction="UnwindFromFinalizeToStudentSelection:" id="5yW-md-yJk"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdV-ly-jh1">
@@ -968,6 +967,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXc-IH-TZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="XeT-ld-4Sv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6848" y="-791"/>
         </scene>
@@ -1256,7 +1256,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0b9-Ty-kTk"/>
         <segue reference="Mpf-AD-Gd2"/>
+        <segue reference="0b9-Ty-kTk"/>
     </inferredMetricsTieBreakers>
 </document>

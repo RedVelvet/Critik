@@ -2,7 +2,7 @@
 //  Module.h
 //  Critik
 //
-//  Created by Doug Wettlaufer on 2/28/14.
+//  Created by Dalton Decker on 4/1/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -14,9 +14,10 @@
 @interface Module : NSManagedObject
 
 @property (nonatomic, retain) NSString * moduleName;
+@property (nonatomic, retain) NSNumber * orderIndex;
 @property (nonatomic, retain) NSNumber * points;
 @property (nonatomic, retain) NSString * written;
-@property (nonatomic, retain) NSNumber * orderIndex;
+@property (nonatomic, retain) NSNumber * pointsPossible;
 @property (nonatomic, retain) NSSet *preDefinedComments;
 @property (nonatomic, retain) NSSet *quickGrade;
 @property (nonatomic, retain) Speech *speech;

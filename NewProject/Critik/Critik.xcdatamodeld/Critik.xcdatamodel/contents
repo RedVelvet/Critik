@@ -4,6 +4,7 @@
         <attribute name="moduleName" attributeType="String" syncable="YES"/>
         <attribute name="orderIndex" attributeType="Integer 16" syncable="YES"/>
         <attribute name="points" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="written" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="preDefinedComments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PreDefinedComments" inverseName="module" inverseEntity="PreDefinedComments" syncable="YES"/>
         <relationship name="quickGrade" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QuickGrade" inverseName="module" inverseEntity="QuickGrade" syncable="YES"/>
@@ -46,7 +47,7 @@
         <relationship name="student" maxCount="1" deletionRule="Nullify" destinationEntity="Student" inverseName="studentSpeech" inverseEntity="Student" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Module" positionX="-171" positionY="-78" width="128" height="150"/>
+        <element name="Module" positionX="-171" positionY="-78" width="128" height="165"/>
         <element name="PreDefinedComments" positionX="-396" positionY="-135" width="128" height="105"/>
         <element name="QuickGrade" positionX="-396" positionY="-18" width="128" height="103"/>
         <element name="Section" positionX="-396" positionY="-243" width="128" height="75"/>

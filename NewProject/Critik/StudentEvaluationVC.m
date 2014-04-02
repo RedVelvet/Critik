@@ -12,13 +12,16 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-@property int timerMinutes;
-@property int timerSeconds;
-@property BOOL timerHasStarted;
 
 @end
 
-@implementation StudentEvaluationVC
+@implementation StudentEvaluationVC{
+    // Keeps track of if the timer is started.
+    bool startTimer;
+    
+    // Gets the exact time when the button is pressed.
+    NSTimeInterval time;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,161 +32,102 @@
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     
     //sets the Introduction module as the first selected module
     self.currentModule = [self.SpeechModules objectAtIndex:0];
-    [self.ModuleTable selectRowAtIndexPath:0 animated:YES  scrollPosition:UITableViewScrollPositionBottom];
+    //Set the first Modue selected when first opening view
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.ModuleTable selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    //Timer variables
-    self.timerSeconds = 0;
-    self.timerMinutes = 0;
-    self.timerHasStarted = NO;
+    // Sets the text of our Label to a default time of 0.
+    self.timerLabel.text = @"0:00";
+    // We set start to false because we don't want the time to be on until we press the button.
+    startTimer = false;
     
-    //Set title based on speech and student
-    self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeechName,self.currentStudent.firstName,self.currentStudent.lastName];
-    
+    //set AppDelegate and NSManagedObjectContext
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
-    // Initializing fetchRequest to retrieve information from Core Data
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSError* error;
-//    
-//    //Instantiate current Student
-//    if(self.currentStudent == nil)
-//    {
-//        self.currentStudent = [[Student alloc]init];
-//    }
-    //set student speeches for each student if it has yet to be created.
-//    if(self.currentStudent.studentSpeech == nil)
-//    {
-//        self.currentStudent.studentSpeech = [[NSSet alloc]init];
-//        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
-//        self.currentStudent.studentSpeech = [NSSet setWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-//        
-//    }
-    //set current student speech from student speeches list
-//    if(self.currentStudentSpeech == nil)
-//    {
-//        NSArray * temp = [self.currentStudent.studentSpeech allObjects];
-//        for(int i = 0; i < [temp count]; i++)
-//        {
-//            Speech * tempSpeech = [temp objectAtIndex:i];
-//            if(tempSpeech.speechType == self.currentSpeechName){
-//                self.currentStudentSpeech = [temp objectAtIndex:i];
-//            }
-//        }
-//    }
-//    if(self.currentSpeech == nil)
-//    {
-//        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
-//        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"speechType = %@",self.currentSpeechName]];
-//        NSArray *objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-//        self.currentSpeech = [objects lastObject];
+    NSLog(@" numStudentSpeeches: %d",[self.currentStudent.studentSpeech count]);
 
-//        StudentSpeech * studentSpeech = [objects lastObject];
-//        NSArray * speeches = [NSArray arrayWithArray: [studentSpeech.speechesGiven allObjects]];
-//        for(int i = 0; i < [speeches count]; i ++)
-//        {
-//            Speech * temp = [speeches objectAtIndex:i];
-//            if(temp.speechType == self.currentSpeechName){
-//                self.currentSpeech = temp;
-//            }
-//        }
-        Speech * temp = self.currentStudentSpeech.speech;
-        self.currentSpeech = temp;
-//    }
+    //sets currentSpeech
+    self.currentSpeech = self.currentStudentSpeech.speech;
+    //Set title based on speech and student
+    self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeech.speechType,self.currentStudent.firstName,self.currentStudent.lastName];
+    
+    //[self.ModuleTable selectRowAtIndexPath:0 animated:YES  scrollPosition:UITableViewScrollPositionBottom];
+    
+    //sets speech modules
+    self.SpeechModules = [NSMutableArray arrayWithArray:[self.currentSpeech.modules allObjects]];
+    //sort speech modules based on order index
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"orderIndex" ascending:YES];
+    NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+    self.SpeechModules = [NSMutableArray arrayWithArray:[self.SpeechModules sortedArrayUsingDescriptors:descriptors]];
+    
+    //Sets first module to the Introduction when opening the evaluation page
+    self.currentModule = [self.SpeechModules objectAtIndex:0];
+    self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.points];
 
-    //Retireve modules from coredata if array is null.
-//    if(self.SpeechModules == nil)
-//    {
-        NSMutableArray * Moduletemp = [NSMutableArray arrayWithArray: [self.currentSpeech.modules allObjects]];
-        self.SpeechModules = Moduletemp;
-        
-        //sort speech modules based on order index
-        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"orderIndex" ascending:YES];
-        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-        self.SpeechModules = [NSMutableArray arrayWithArray:[self.SpeechModules sortedArrayUsingDescriptors:descriptors]];
-//    }
     
-    
-    //First module will be introduction when first opening evaluation view
-//    if(self.currentModule == nil)
-//    {
-        self.currentModule = [self.SpeechModules objectAtIndex:0];
-        self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.points];
-//    }
-    
-    //Creates new quick grades array if it hasn't been set.
-    if(self.QuickGrades == nil)
+    //Initialize Quickgrades
+    self.QuickGrades = [[NSMutableArray alloc]init];
+    NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
+    //Select only active QuickGrades
+    for( int i = 0; i < [allQuickGrades count]; i ++)
     {
-        self.QuickGrades = [[NSMutableArray alloc]init];
-        NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
-        
-        for( int i = 0; i < [allQuickGrades count]; i ++)
+        QuickGrade * temp = [allQuickGrades objectAtIndex:i];
+        if([temp.isActive boolValue] == true)
         {
-            QuickGrade * temp = [allQuickGrades objectAtIndex:i];
-            if([temp.isActive boolValue] == true)
-            {
-                [self.QuickGrades addObject:temp];
-            }
+            [self.QuickGrades addObject:temp];
         }
-        //sorts quick grades based on description
-        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"quickGradeDescription" ascending:YES];
-        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-        self.QuickGrades = [NSMutableArray arrayWithArray:[self.QuickGrades sortedArrayUsingDescriptors:descriptors]];
-        
-        //splits quick grades into two columns
-        [self splitQuickGradesArray];
     }
+    //sorts quick grades based on description
+    valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"quickGradeDescription" ascending:YES];
+    descriptors = [NSArray arrayWithObject:valueDescriptor];
+    self.QuickGrades = [NSMutableArray arrayWithArray:[self.QuickGrades sortedArrayUsingDescriptors:descriptors]];
+    //splits quick grades into two columns
+    [self splitQuickGradesArray];
     
-    if(self.PreDefComments == nil)
+    //Initialize PreDefinedComments
+    self.PreDefComments = [[NSMutableArray alloc]init];
+    NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
+    //Select only active PreDefinedComments
+    for( int i = 0; i < [allPreDefComments count]; i ++)
     {
-        self.PreDefComments = [[NSMutableArray alloc]init];
-        NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
-        
-        for( int i = 0; i < [allPreDefComments count]; i ++)
+        PreDefinedComments * temp = [allPreDefComments objectAtIndex:i];
+        if([temp.isActive boolValue] == true)
         {
-            PreDefinedComments * temp = [allPreDefComments objectAtIndex:i];
-            if([temp.isActive boolValue] == true)
-            {
-                [self.PreDefComments addObject:temp];
-            }
+            [self.PreDefComments addObject:temp];
         }
-        
     }
-    
     //reload tablviews after filling table's content arrays
     [self.PreDefinedCommentsTable reloadData];
     [self.leftQuickGradeTable reloadData];
     [self.rightQuickGradeTable reloadData];
     [self.ModuleTable reloadData];
     
-    //set continue button as hidden unless Conclusion module is selected
-    self.continueButton.titleLabel.text = @"Continue";
-    self.continueButton.backgroundColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
-    self.continueButton.hidden = YES;
     NSLog(@"Speech %@",self.currentSpeech.speechType);
+    
+    
 }
 
+//Splits QuickGrades Arrays in between 2 different columns
 -(void) splitQuickGradesArray
 {
     NSRange someRange;
     
     someRange.location = 0;
     someRange.length = [self.QuickGrades count] / 2;
-    
     self.rightQuickGrades = [NSMutableArray arrayWithArray:[self.QuickGrades subarrayWithRange:someRange]];
     
     
     someRange.location = someRange.length;
     someRange.length = [self.QuickGrades count] - someRange.length;
-    
     self.leftQuickGrades = [NSMutableArray arrayWithArray:[self.QuickGrades subarrayWithRange:someRange]];
 }
 
@@ -353,11 +297,11 @@
 {
     //[self saveStudentRubricValues];
     // initializing NSFetchRequest
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    //Setting Entity to be Queried
-    NSEntityDescription *entity;
-    NSError* error;
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    
+//    //Setting Entity to be Queried
+//    NSEntityDescription *entity;
+//    NSError* error;
     
     //Change quickGrades and PreDefinedComments arrays based on which module is selected.
     if(tableView.tag == 0)
@@ -369,15 +313,23 @@
             [self continueToFinalize:nil];
         }else{
             
-            //fetch a module from core data based on title of current selection in moduleTable
-            entity = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
-            [fetchRequest setEntity:entity];
-            Module * module = [self.SpeechModules objectAtIndex:indexPath.row ];
-            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"moduleName = %@",module.moduleName]];
+//            //fetch a module from core data based on title of current selection in moduleTable
+//            entity = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
+//            [fetchRequest setEntity:entity];
+//            Module * module = [self.SpeechModules objectAtIndex:indexPath.row ];
+//            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"moduleName = %@",module.moduleName]];
+//            
+//            //Store module fetched as currentModule
+//            NSArray *temp = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+//            self.currentModule = [temp objectAtIndex:0];
             
-            //Store module fetched as currentModule
-            NSArray *temp = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-            self.currentModule = [temp objectAtIndex:0];
+            Module * module = [self.SpeechModules objectAtIndex:indexPath.row];
+            for(int i = 0; i < [self.currentStudentSpeech.speech.modules count]; i ++){
+                Module * temp = [[self.currentStudentSpeech.speech.modules allObjects] objectAtIndex:i];
+                if(temp.moduleName == module.moduleName){
+                    self.currentModule = temp;
+                }
+            }
             
             //Search through all QuickGrades and PreDefinedComments in an array to selective active
             NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
@@ -404,7 +356,7 @@
                     [self.PreDefComments addObject:temp];
                 }
             }
-            
+            self.modulePoints.text = [NSString stringWithFormat:@"/ %d",[module.points intValue]];
             [self.rightQuickGradeTable reloadData];
             [self.leftQuickGradeTable reloadData];
             [self.PreDefinedCommentsTable reloadData];
@@ -420,100 +372,8 @@
     [self.navigationController pushViewController:penalties animated:YES];
 }
 
-//- (IBAction)startTimer:(id)sender
-//{
-//    if(self.timerHasStarted == NO){
-//        [self.startTimer setTitle:@"PAUSE" forState:(UIControlStateNormal)];
-//        self.timerHasStarted=YES;
-//        [self timer:nil];
-//    }
-//    if(self.timerHasStarted == YES){
-//        self.timerHasStarted = NO;
-//        self.startTimer.titleLabel.text = @"PLAY";
-//
-//    }
-//}
-//
-//- (IBAction)resetTimer:(id)sender
-//{
-//    self.timerSeconds = 0;
-//    self.timerMinutes = 0;
-//    self.timerHasStarted = NO;
-//    self.startTimer.titleLabel.text = @"PLAY";
-//    [self.timerLabel setText:@"00:00"];
-//}
-//
-//-(void) timer:(id)sender{
-//
-//    if(self.timerHasStarted){
-//        NSString *sec=[NSString stringWithFormat:@"%i",self.timerSeconds];
-//
-//        if(self.timerSeconds<10){
-//            sec = [NSString stringWithFormat:@"0%i",self.timerSeconds];
-//        }
-//
-//        NSString *min = [NSString stringWithFormat:@"%i",self.timerMinutes];
-//        if(self.timerMinutes<10){
-//            min = [NSString stringWithFormat:@"0%i",self.timerMinutes];
-//        }
-//
-//        NSString *time=[NSString stringWithFormat:@"%@:%@", min, sec];
-//
-//        [self.timerLabel setText:time];
-//        NSString * tempDuration = time;
-//        if(![tempDuration isEqualToString:@"30:00"])
-//        {
-//            [self performSelector:@selector(timer:) withObject:nil afterDelay:1.0];
-//        }
-//        self.timerSeconds+=1;
-//        if(self.timerSeconds>59){
-//            self.timerSeconds=0;
-//            self.timerMinutes+=1;
-//        }
-//    }
-//    else
-//    {
-//        self.timerSeconds = 0;
-//        self.timerMinutes = 0;
-//    }
-//}
 
 
-
-//-(void)saveStudentRubricValues
-//{
-//    NSLog(@"About to store quick grade");
-//    UITableViewCell * cell;
-//    NSIndexPath * indexPath;
-//
-//    NSError *saveError;
-//    QuickGrade * quickGrade;
-//    for(int i = 0; i < [self.leftQuickGrades count]; i ++)
-//    {
-//
-//        indexPath = [NSIndexPath indexPathForRow: i inSection:0];
-//        cell = [self.leftQuickGradeTable cellForRowAtIndexPath:indexPath];
-//        UISegmentedControl * segment = (UISegmentedControl *)cell.accessoryView;
-//        NSNumber * value =  [NSNumber numberWithInteger:[segment selectedSegmentIndex]];
-//
-//        quickGrade = [self findEntity:@"QuickGrade" withAttribute:@"quickGradeDescription" andValue:cell.textLabel.text];
-////        NSEntityDescription *entitydesc = [NSEntityDescription entityForName:@"QuickGrade" inManagedObjectContext:context];
-////        NSManagedObject *userData = [[NSManagedObject alloc]initWithEntity:entitydesc insertIntoManagedObjectContext:self.managedObjectContext];
-//
-//        NSLog(@"%i",(int)value);
-//        NSLog(@"Setting quickGrade %@", quickGrade.quickGradeDescription);
-//
-//        [quickGrade setValue:value forKey:@"score"];
-//
-//        NSLog(@"Value after saving %@",quickGrade.score);
-//        NSLog(@"Set Value of quick Grade");
-//        if (![self.managedObjectContext save:&saveError]) {
-//            NSLog(@"Saving quick grade failed: %@", saveError);
-//        } else {
-//            NSLog(@"Quick Grade Saved!!!");
-//        }
-//    }
-//}
 -(void)segmentChanged:(id)sender
 {
     UISegmentedControl * segment = sender;
@@ -547,5 +407,59 @@
         }
         NSLog(@"Value for comment is %@",value);
     }
+}
+#pragma mark - Timer stuff
+- (IBAction)startStopTimer:(id)sender {
+    
+    // If start is false then we need to start update the Label with the new time.
+    if (startTimer == false) {
+        
+        // Since it is false we need to reset it back to true.
+        startTimer = true;
+        
+        // Gets the current time.
+        time = [NSDate timeIntervalSinceReferenceDate];
+        
+        // Changes the title of the button to Stop!
+        [sender setTitle:@"Stop" forState:UIControlStateNormal];
+        
+        // Calls the update method.
+        [self update];
+        
+    }else {
+        
+        // Since it is false we need to reset it back to false.
+        startTimer = false;
+        
+        // Changes the title of the button back to Start.
+        [sender setTitle:@"Start" forState:UIControlStateNormal];
+    }
+}
+
+-(void)update
+{
+    // If start is false then we shouldn't be updateing the time se we return out of the method.
+    if (startTimer == false) {
+        
+        return;
+        
+    }
+    
+    // We get the current time and then use that to calculate the elapsed time.
+    NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
+    NSTimeInterval elapsedTime = currentTime - time;
+    
+    // We calculate the minutes.
+    int minutes = (int)(elapsedTime / 60.0);
+    
+    // We calculate the seconds.
+    int seconds = (int)(elapsedTime = elapsedTime - (minutes * 60));
+    
+    // We update our Label with the current time.
+    self.timerLabel.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
+    
+    // We recursively call update to get the new time.
+    [self performSelector:@selector(update) withObject:self afterDelay:0.1];
+    
 }
 @end

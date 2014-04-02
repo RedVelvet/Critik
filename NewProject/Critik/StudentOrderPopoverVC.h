@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "Section.h"
+#import "Student.h"  
 
-@protocol DismissPopoverDelegate
-- (void) dismissPopover:(NSString *)order;
-@end
+//@protocol DismissPopoverDelegate
+//- (void) dismissPopover:(NSString *)order;
+//@end
 
 
-@interface StudentOrderPopoverVC : UIViewController
+@interface StudentOrderPopoverVC : UIViewController <UIPopoverControllerDelegate>
 
-@property (nonatomic, assign) id<DismissPopoverDelegate> delegate;
+@property NSMutableArray * students;
+@property Section * currentSection;
+@property NSManagedObjectContext * managedObjectContext;
 
 - (IBAction)savePopoverContent:(id)sender;
 @end

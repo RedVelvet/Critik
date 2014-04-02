@@ -188,89 +188,135 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    //Create new Evaluation View
     StudentEvaluationVC * evaluateSpeech = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Evaluation"];
-    
+    //Create a temp student from student selected from table
     Student * currentStudent = [self.students objectAtIndex:indexPath.row];
+    //set Evaluation's current Student as the Student selected
     evaluateSpeech.currentStudent = currentStudent;
+    //Set the current SpeechName
     evaluateSpeech.currentSpeechName = self.currSpeech;
 
+    //Get a list of all speeches from core data
+    //initializing NSFetchRequest
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    //Setting the entity name to grab from Core Data.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(isTemplate = %@)",@"true"]];
+    [fetchRequest setEntity:entity];
+    NSError* error;
+    NSArray * allSpeeches = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    if(currentStudent.studentSpeech == nil)
-    {
-        //Create newStudentSpeech and newSpeech and insert into managedObjectContext to be saved to core data.
-        StudentSpeech * newStudentSpeech = [[StudentSpeech alloc]initWithEntity:@"StudentSpeech" insertIntoManagedObjectContext:self.managedObjectContext];
-        Speech * newSpeech = [[Speech alloc]initWithEntity:@"Speech" insertIntoManagedObjectContext:self.managedObjectContext];
-        
-        //Gets the speech with selected speechType and if it is a template from core data storing it within an array
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSError * error;
-        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
-        NSPredicate * speechType = [NSPredicate predicateWithFormat:@"speechType = %@",self.currSpeech];
-        NSPredicate * tempateSpeech = [NSPredicate predicateWithFormat:@"isTemplate = true"];
-        [fetchRequest setPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:speechType,tempateSpeech, nil]]];
-        NSArray * objects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-        
-        Speech * speechFromCoreData = [objects firstObject];
-        
-        
-        newSpeech = [objects objectAtIndex:0];//Makes the new speech a copy of the current speech to evaluate
-        newSpeech.isTemplate = @"false";//allows for easy differentiation in core data
-        
-        newStudentSpeech.speech = newSpeech;
-        
-        [currentStudent addStudentSpeechObject:newStudentSpeech]; //adds the newly created student speech as a studentSpeech for the current Student
-        
-        
-        
-    }
-    
-    NSArray * speechesToCheckFor = [currentStudent.studentSpeech allObjects];
-    for(int i = 0; i < [speechesToCheckFor count]; i ++)
-    {
-        StudentSpeech * speechCheck = [speechesToCheckFor objectAtIndex:i];
-        NSLog(@"type: %@", speechCheck.speech.speechType);
-        if([speechCheck.speech.speechType isEqual: self.currSpeech] || speechCheck == nil)
+    NSLog(@"%d",[allSpeeches count]);
+//    if([currentStudent.studentSpeech count] == 0)
+//    {
+        //For loop to add all possible speeches
+        for(int a = 0; a < [allSpeeches count]; a ++)
         {
+            //The Template speech from which to create new StudentSpeech
+            Speech * templateSpeech = [allSpeeches objectAtIndex:a];
+            //Create newStudentSpeech and newSpeech and insert into managedObjectContext to be saved to core data.
+            StudentSpeech * newStudentSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext];
+            Speech * newSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"Speech" inManagedObjectContext:self.managedObjectContext];
+
+            //Makes the new speech a copy of the current speech to evaluate
+            [newSpeech setValue:@"false" forKeyPath:@"isTemplate"];
+            [newSpeech setValue:templateSpeech.speechType forKeyPath:@"speechType"];
+            
+            //Add the Modules to the new Speech along with the QuickGrades and PreDefinedComments related to that Module being added
+            NSArray * templateModules = [templateSpeech.modules allObjects];
+            for(int i = 0; i < [templateModules count]; i ++){
+                //current module from template module
+                Module * tempModule = [templateModules objectAtIndex:i];
+                //create new Module and add to managedObjectContext
+                Module * newModule = [NSEntityDescription insertNewObjectForEntityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
+                
+                //Set values of newModule based on templateModule
+                [newModule setValue:tempModule.moduleName forKeyPath:@"moduleName"];
+                [newModule setValue:tempModule.points forKeyPath:@"points"];
+                [newModule setValue:tempModule.orderIndex forKeyPath:@"orderIndex"];
+                [newModule setValue:tempModule.written forKeyPath:@"written"];
+                [newModule setValue:newSpeech forKeyPath:@"speech"];
+                
+                //add Module to newSpeech
+                [newSpeech addModulesObject:newModule];
+                
+                //Add the quickGrades to the new Module being added
+                NSArray * templateQuickGrades = [tempModule.quickGrade allObjects];
+                for(int j = 0; j < [templateQuickGrades count]; j ++){
+                    //current QuickGrade from Current Module
+                    QuickGrade * tempQuickGrade = [templateQuickGrades objectAtIndex:j];
+                    //Create new QuickGrade within managedObjectContext
+                    QuickGrade * newQuickGrade = [NSEntityDescription insertNewObjectForEntityForName:@"QuickGrade" inManagedObjectContext:self.managedObjectContext];
+                    
+                    //Set values of new QuickGrade based on template QuickGrade
+                    [newQuickGrade setValue:tempQuickGrade.isActive forKeyPath:@"isActive"];
+                    [newQuickGrade setValue:tempQuickGrade.quickGradeDescription forKeyPath:@"quickGradeDescription"];
+                    [newQuickGrade setValue:tempQuickGrade.score forKeyPath:@"score"];
+                    [newQuickGrade setValue:newModule forKeyPath:@"module"];
+                    
+                    //add QuickGrade to current Module
+                    [newModule addQuickGradeObject:newQuickGrade];
+                }
+                
+                //Add the preDefinedComments to the new Module being added
+                NSArray * templateComments = [tempModule.preDefinedComments allObjects];
+                for(int j = 0; j < [templateComments count]; j ++){
+                    //current PreDefinedComment from Current Module
+                    PreDefinedComments * tempComment = [templateComments objectAtIndex:j];
+                    //Create new PreDefinedComment within managedObjectContext
+                    PreDefinedComments * newComment = [NSEntityDescription insertNewObjectForEntityForName:@"PreDefinedComments" inManagedObjectContext:self.managedObjectContext];
+                    //set new PreDefinedComment equal to current PreDefinedComment to add
+//                    newComment = tempComment;
+                    [newComment setValue:tempComment.comment forKeyPath:@"comment"];
+                    [newComment setValue:tempComment.isActive forKeyPath:@"isActive"];
+                    [newComment setValue:tempComment.isSelected forKeyPath:@"isSelected"];
+                    [newComment setValue:newModule forKeyPath:@"module"];
+                    
+                    //add PreDefinedComment to current Module
+                    [newModule addPreDefinedCommentsObject:newComment];
+                }
+            }
+            //assigns the new Speech to the new Student Speech
+            [newStudentSpeech setValue:newSpeech forKeyPath:@"speech"];
+            
+            //adds the newly created student speech as a studentSpeech for the current Student
+            [currentStudent addStudentSpeechObject:newStudentSpeech];
             
             
-            
-            
-            StudentSpeech * studentSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext];
-            Speech * speech = [NSEntityDescription insertNewObjectForEntityForName:@"Speech" inManagedObjectContext:self.managedObjectContext];
-            speech = [speeches objectAtIndex:0];
-            speech.isTemplate = @"false";
-            studentSpeech.student = [self.students objectAtIndex:indexPath.row];
-            studentSpeech.speech = speech;
-            
-            //set the current student speech of the evaluation page
-            evaluateSpeech.currentStudentSpeech = studentSpeech;
-            
+            //Save managedObjectContext to Core Data. Print out error if can not save
             if(![self.managedObjectContext save:&error])
             {
                 NSLog(@"Could not save studentSpeech: %@", [error localizedDescription]);
             }
-            
-            
-            
-    //        StudentSpeech * studentSpeech = [StudentSpeech alloc]init
-    //        studentSpeech.student = [self.students objectAtIndex:indexPath.row];
-    //        studentSpeech.speech = [speeches objectAtIndex:0];
-            
+        }
+//    }else{
+//        
+//        NSLog(@"Need to update speeches");
+//        //[self updateStudentSpeech];
+//    }
+    
+    //Sets the currentStudentSpeech to pass on to the Evaluation page
+    NSArray * studentSpeechesToSelectFrom = [currentStudent.studentSpeech allObjects];
+    for(int i = 0; i < [studentSpeechesToSelectFrom count]; i ++){
+        StudentSpeech * tempSS = [studentSpeechesToSelectFrom objectAtIndex:i];
+        Speech * temp = tempSS.speech;
+        NSString * speechName = temp.speechType;
+        if([speechName isEqualToString:self.currSpeech]){
+            evaluateSpeech.currentStudentSpeech = [studentSpeechesToSelectFrom objectAtIndex:i];
         }
     }
-    
-
     
     [self.navigationController pushViewController:evaluateSpeech animated:YES];
     
 }
 
+
 # pragma mark - Popover Handling
-//- (void)showPopover:(id)sender
-//{
-//    
-//}
+- (void)showPopover:(id)sender
+{
+    
+}
 //- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
 //    if ([identifier isEqualToString:@"studentOrder"]) {
 //        if (self.orderPopover == nil) {
@@ -299,7 +345,7 @@
 //        popoverView.delegate = self;
 //    }
 //}
-//
+
 //Sorts students based on instructor selection in popover
 - (void) setStudentOrder: (NSString*) order
 {
@@ -330,6 +376,10 @@
         [tempStudents insertObject:temp atIndex:i];
     }
     self.students = tempStudents;
+}
+
+- (IBAction)UnwindFromFinalizeToStudentSelection:(UIStoryboardSegue *)unwindSegue{
+    
 }
 
 @end

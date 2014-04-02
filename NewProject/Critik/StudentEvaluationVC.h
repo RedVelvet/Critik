@@ -20,11 +20,10 @@
 @interface StudentEvaluationVC : UIViewController
 
 
-@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
-@property (weak, nonatomic) IBOutlet UIButton *startTimer;
-@property (weak, nonatomic) IBOutlet UILabel *modulePoints;
-@property (weak, nonatomic) IBOutlet UITextField *moduleGrade;
-@property (weak, nonatomic) IBOutlet UIButton * continueButton;
+@property (weak, nonatomic) IBOutlet UILabel * timerLabel;
+@property (weak, nonatomic) IBOutlet UIButton * timerButton;
+@property (weak, nonatomic) IBOutlet UILabel * modulePoints;
+@property (weak, nonatomic) IBOutlet UITextField * moduleGrade;
 
 @property (weak, nonatomic) IBOutlet UITableView *leftQuickGradeTable;
 @property (weak, nonatomic) IBOutlet UITableView *rightQuickGradeTable;
@@ -45,9 +44,8 @@
 @property NSMutableArray * PreDefComments;
 @property NSMutableArray * WrittenComments;
 
--(void) splitQuickGradesArray;
+- (void) splitQuickGradesArray;
 - (IBAction)continueToFinalize:(id)sender;
-//- (IBAction)startTimer:(id)sender;
-//- (IBAction)resetTimer:(id)sender;
+- (IBAction)startStopTimer:(id)sender;
 
 @end
