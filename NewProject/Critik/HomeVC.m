@@ -67,15 +67,11 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (IBAction)UnwindFromFinalizeToHome:(UIStoryboardSegue *)unwindSegue
 {
-    //    UINavigationController * homeViewController = unwindSegue.sourceViewController;
-    //
-    //    if ([homeViewController isKindOfClass:[HomeVC class]])
-    //    {
-    //        NSLog(@"Going to Home");
-    //    }
+    
 }
 @end
