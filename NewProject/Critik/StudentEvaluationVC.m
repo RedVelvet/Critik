@@ -165,7 +165,7 @@
         {
             num = 1;
         }else{
-            num = [self.SpeechModules count]-1;
+            num = [self.SpeechModules count];
         }
     }
     

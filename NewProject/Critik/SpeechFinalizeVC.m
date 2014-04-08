@@ -110,10 +110,10 @@
     CGContextScaleCTM(pdfContext, 1.0, -1.0);
     CGContextTranslateCTM(pdfContext, 0.0, -bounds.size.height);
     
-    UIFont * titleFont = [UIFont fontWithName:@"Avenir New" size:13];
-    UIFont * moduleFont = [UIFont fontWithName:@"Avenir New" size:11];
-    UIFont * bodyFont = [UIFont fontWithName:@"Avenir New" size:10];
-//    UIFont * smallBody = [UIFont fontWithName:@"Avenir New" size:8];
+    UIFont * titleFont = [UIFont fontWithName:@"Times" size:10];
+    UIFont * moduleFont = [UIFont fontWithName:@"Times" size:10];
+    UIFont * bodyFont = [UIFont fontWithName:@"Times" size:10];
+//    UIFont * smallBody = [UIFont fontWithName:@"Times" size:8];
     
     // Make a copy of the default paragraph style
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -178,16 +178,16 @@
             QuickGrade * currentQuickGrade = [self.leftQuickGrades objectAtIndex:j];
 
             //Print QuickGrade Description
-            [currentQuickGrade.quickGradeDescription drawInRect:CGRectMake(originX, originY, 150, 15) withAttributes:bodyAttributes];
+            [currentQuickGrade.quickGradeDescription drawInRect:CGRectMake(originX, originY, 200, 22) withAttributes:bodyAttributes];
             
             //Print QuickGrade Score image
             switch([currentQuickGrade.score intValue])
             {
-                case 0: [minusQG drawInRect:CGRectMake(originX+150, originY, 50, 15)];
+                case 0: [minusQG drawInRect:CGRectMake(originX + 225, originY + 3, 40, 15)];
                     break;
-                case 1: [okQG drawInRect:CGRectMake(originX + 150, originY, 50, 15)];
+                case 1: [okQG drawInRect:CGRectMake(originX + 225, originY + 3, 40, 15)];
                     break;
-                case 2: [plusQG drawInRect:CGRectMake(originX + 150, originY, 50, 15)];
+                case 2: [plusQG drawInRect:CGRectMake(originX + 225, originY + 3, 40, 15)];
                     break;
             }
             //Go to a new line
@@ -201,16 +201,16 @@
             QuickGrade * currentQuickGrade = [self.rightQuickGrades objectAtIndex:j];
             
             //Print QuickGrade Description
-            [currentQuickGrade.quickGradeDescription drawInRect:CGRectMake(originX + 300, originY, 150, 15) withAttributes:bodyAttributes];
+            [currentQuickGrade.quickGradeDescription drawInRect:CGRectMake(originX + 300, originY, 200, 22) withAttributes:bodyAttributes];
             
             //Print QuickGrade Score image
             switch([currentQuickGrade.score intValue])
             {
-                case 0: [minusQG drawInRect:CGRectMake(originX + 450, originY, 50, 12)];
+                case 0: [minusQG drawInRect:CGRectMake(originX + 500, originY + 3, 40, 15)];
                     break;
-                case 1: [okQG drawInRect:CGRectMake(originX + 450, originY, 50, 12)];
+                case 1: [okQG drawInRect:CGRectMake(originX + 500, originY + 3, 40, 15)];
                     break;
-                case 2: [plusQG drawInRect:CGRectMake(originX + 450, originY, 50, 12)];
+                case 2: [plusQG drawInRect:CGRectMake(originX + 500, originY + 3, 40, 15)];
                     break;
             }
             //Go to new line

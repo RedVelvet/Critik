@@ -591,7 +591,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="savePopoverContent:" destination="gBH-f3-1ah" eventType="touchUpInside" id="Nfq-IK-cgg"/>
+                                    <segue destination="9PZ-eW-DxD" kind="unwind" unwindAction="UnwindFromOrderPopoverToStudentSelectionAndAlphabetize:" id="0p1-zv-JWJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErC-9e-Xbg">
@@ -601,7 +601,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="savePopoverContent:" destination="gBH-f3-1ah" eventType="touchUpInside" id="JVg-L6-A4x"/>
+                                    <segue destination="9PZ-eW-DxD" kind="unwind" unwindAction="UnwindFromOrderPopoverToStudentSelectionAndRandomize:" id="gFI-O7-Nj8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Student Order" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7Z-d1-t8D">
@@ -619,6 +619,7 @@
                     <size key="freeformSize" width="450" height="250"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAg-7V-zwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9PZ-eW-DxD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3942" y="103"/>
         </scene>
