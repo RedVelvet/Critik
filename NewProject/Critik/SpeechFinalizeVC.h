@@ -19,9 +19,10 @@
 @property Student * currentStudent;
 @property StudentSpeech * currentStudentSpeech;
 
-- (IBAction)homepageButton:(id)sender;
-- (IBAction)evaluateStudents:(id)sender;
--(IBAction)generatePDF:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *pointsEarned;
+@property (weak, nonatomic) IBOutlet UILabel *penaltyPoints;
+@property (weak, nonatomic) IBOutlet UILabel *totalPoints;
 
+-(IBAction)generatePDF:(id)sender;
 
 @end

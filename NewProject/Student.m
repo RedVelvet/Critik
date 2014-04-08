@@ -2,7 +2,7 @@
 //  Student.m
 //  Critik
 //
-//  Created by Dalton Decker on 3/15/14.
+//  Created by Dalton Decker on 4/7/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -15,8 +15,10 @@
 
 @dynamic firstName;
 @dynamic lastName;
+@dynamic informativeOrder;
 @dynamic studentID;
-@dynamic orderIndex;
+@dynamic persuasiveOrder;
+@dynamic interpersonalOrder;
 @dynamic section;
 @dynamic studentSpeech;
 

@@ -37,41 +37,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)savePopoverContent:(id)sender {
-    
-    // Return which order to set students based on button pressed.
-    if([sender tag] == 0)
-    {
-        //sort students by last name
-        NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
-        NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
-        self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
-        //set the order index
-        for(int i = 0; i < [self.students count]; i ++)
-        {
-            [[self.students objectAtIndex:i] setOrderIndex:[NSNumber numberWithInt:i]];
-        }
-        
-    }else{
-        //Randomize Students
-        if([self.students count] > 1)
-        {
-            for (NSUInteger i = [self.students count] - 1; i >= 1; i--)
-            {
-                int j = arc4random_uniform(i + 1);
-                [self.students exchangeObjectAtIndex:j withObjectAtIndex:i];
-            }
-            //set the order index
-            for(int i = 0; i < [self.students count]; i ++)
-            {
-                [[self.students objectAtIndex:i] setOrderIndex:[NSNumber numberWithInt:i]];
-            }
-        }
-    }
-    
-}
-
-
-
 @end

@@ -22,5 +22,4 @@
 @property Section * currentSection;
 @property NSManagedObjectContext * managedObjectContext;
 
-- (IBAction)savePopoverContent:(id)sender;
 @end

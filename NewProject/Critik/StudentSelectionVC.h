@@ -14,11 +14,7 @@
 #import "StudentOrderPopoverVC.h"
 #import "StudentSpeech.h"
 
-@interface StudentSelectionVC : UIViewController //<DismissPopoverDelegate>
-//{
-//    UIPopoverController* popover;
-//}
-
+@interface StudentSelectionVC : UIViewController
 
 @property NSMutableArray * sections;
 @property NSMutableArray * students;
@@ -28,12 +24,9 @@
 
 @property (weak, nonatomic) IBOutlet UIPickerView *SectionPicker;
 @property (weak, nonatomic) IBOutlet UITableView *StudentTable;
-@property (nonatomic,strong) UIPopoverController *orderPopover;
 
-//- (void)showPopover:(id)sender;
-
-- (IBAction)setStudentOrder:(id)sender;
-- (void)createNewStudentSpeech;
-- (IBAction)UnwindFromFinalizeToStudentSelection:(UIStoryboardSegue *)unwindSegue;
+-(void) setStudentOrder:(NSString *) order;
+- (IBAction)UnwindFromOrderPopoverToStudentSelectionAndAlphabetize:(UIStoryboardSegue *)unwindSegue;
+- (IBAction)UnwindFromOrderPopoverToStudentSelectionAndRandomize:(UIStoryboardSegue *)unwindSegue;
 
 @end

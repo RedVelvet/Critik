@@ -11,7 +11,7 @@
 @interface StudentEvaluationVC ()
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-
+@property int presentationTime;
 
 @end
 
@@ -264,7 +264,6 @@
         commentSwitch.tag = 3;
         
         commentSwitch.on = [temp.isActive boolValue];
-//        [commentSwitch setOn:[temp.isActive boolValue]];
         
         objc_setAssociatedObject(commentSwitch, "obj", temp, OBJC_ASSOCIATION_ASSIGN);
         [commentSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
@@ -295,14 +294,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[self saveStudentRubricValues];
-    // initializing NSFetchRequest
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    
-//    //Setting Entity to be Queried
-//    NSEntityDescription *entity;
-//    NSError* error;
-    
     //Change quickGrades and PreDefinedComments arrays based on which module is selected.
     if(tableView.tag == 0)
     {
@@ -312,16 +303,6 @@
         {
             [self continueToFinalize:nil];
         }else{
-            
-//            //fetch a module from core data based on title of current selection in moduleTable
-//            entity = [NSEntityDescription entityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
-//            [fetchRequest setEntity:entity];
-//            Module * module = [self.SpeechModules objectAtIndex:indexPath.row ];
-//            [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"moduleName = %@",module.moduleName]];
-//            
-//            //Store module fetched as currentModule
-//            NSArray *temp = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-//            self.currentModule = [temp objectAtIndex:0];
             
             Module * module = [self.SpeechModules objectAtIndex:indexPath.row];
             for(int i = 0; i < [self.currentStudentSpeech.speech.modules count]; i ++){
@@ -366,6 +347,15 @@
 
 - (IBAction)continueToFinalize:(id)sender
 {
+    NSError * error;
+    self.currentStudentSpeech.duration = [NSNumber numberWithInt:[self.timerLabel.text intValue]];
+//    [self.currentStudentSpeech setValue: [NSNumber numberWithInt:self.presentationTime]  forKey:@"duration"];
+    
+    if(![self.managedObjectContext save:&error])
+    {
+        NSLog(@"Can't Save duration %@",[error localizedDescription]);
+    }
+    
     StudentPenaltiesVC * penalties = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Penalties"];
     penalties.currentStudent = self.currentStudent;
     penalties.currentStudentSpeech = self.currentStudentSpeech;
@@ -422,7 +412,7 @@
         
         // Changes the title of the button to Stop!
         [sender setTitle:@"Stop" forState:UIControlStateNormal];
-        
+        self.presentationTime = 0.0;
         // Calls the update method.
         [self update];
         
@@ -444,7 +434,6 @@
         return;
         
     }
-    
     // We get the current time and then use that to calculate the elapsed time.
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
     NSTimeInterval elapsedTime = currentTime - time;
@@ -457,6 +446,7 @@
     
     // We update our Label with the current time.
     self.timerLabel.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
+    self.presentationTime += seconds;
     
     // We recursively call update to get the new time.
     [self performSelector:@selector(update) withObject:self afterDelay:0.1];

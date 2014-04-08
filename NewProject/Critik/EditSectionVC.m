@@ -320,7 +320,9 @@
                 newStudent.lastName = lastName;
                 newStudent.studentID = sNum;
                 newStudent.section = self.currSection;
-                newStudent.orderIndex = [NSNumber numberWithInt:-1];
+                newStudent.informativeOrder = [NSNumber numberWithInt:-1];
+                newStudent.interpersonalOrder = [NSNumber numberWithInt:-1];
+                newStudent.persuasiveOrder = [NSNumber numberWithInt:-1];
                 
                 // get speeches
                 fetchRequest = [[NSFetchRequest alloc] init];
@@ -525,7 +527,9 @@
             newStudent.lastName = lastName;
             newStudent.studentID = sNum;
             newStudent.section = self.currSection;
-            newStudent.orderIndex = [NSNumber numberWithInt:-1];
+            newStudent.informativeOrder = [NSNumber numberWithInt:-1];
+            newStudent.interpersonalOrder = [NSNumber numberWithInt:-1];
+            newStudent.persuasiveOrder = [NSNumber numberWithInt:-1];
             
             // get speeches
 //            fetchRequest = [[NSFetchRequest alloc] init];
