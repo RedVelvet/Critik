@@ -10,7 +10,7 @@
 #import <CoreText/CoreText.h>
 #import "AppDelegate.h"
 #import "StudentSelectionVC.h"
-#import "PDFHelper.h"
+#import <DropboxSDK/DropboxSDK.h>
 #import "HomeVC.h"
 #import "StudentSelectionVC.h"
 
@@ -18,11 +18,15 @@
 
 @property Student * currentStudent;
 @property StudentSpeech * currentStudentSpeech;
+@property DBRestClient *restClient;
 
 @property (weak, nonatomic) IBOutlet UILabel *pointsEarned;
 @property (weak, nonatomic) IBOutlet UILabel *penaltyPoints;
 @property (weak, nonatomic) IBOutlet UILabel *totalPoints;
 
 -(IBAction)generatePDF:(id)sender;
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata;
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error;
 
 @end

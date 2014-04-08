@@ -44,9 +44,6 @@
     
     int size = [sections count];
     NSLog(@"there are %d objects in the array", size);
-    //Instantiate NSMutableArray
-    
-    students = [[NSMutableArray alloc]init];
     
     if ([sections count] == 0) {
         self.sectionLabel.text = @"Add a section";
@@ -56,11 +53,14 @@
         NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sectionName" ascending:YES];
         NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
         sections = [NSMutableArray arrayWithArray:[sections sortedArrayUsingDescriptors:descriptors]];
+        
+        Section * firstSection = [sections objectAtIndex:0];
+        students = [NSMutableArray arrayWithArray:[firstSection.students allObjects]];
     }
     
 //    UIView *pickerView = (UIPickerView*)[self.view viewWithTag:1000];
     
-    
+    [self.studentTableView reloadData];
     
     
 }
@@ -138,16 +138,19 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
     
-    if([students count] != 0){
-        cell.backgroundColor = [UIColor colorWithRed:35.0/255.0 green:100.0/255.0 blue:30.0/255.0 alpha:1.0];
-        cell.textLabel.textColor = [UIColor whiteColor];
-    }
-    else{
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.textLabel.textColor = [UIColor blackColor];
-    }
+//    if([students count] != 0){
+//        cell.backgroundColor = [UIColor colorWithRed:35.0/255.0 green:100.0/255.0 blue:30.0/255.0 alpha:1.0];
+//        cell.textLabel.textColor = [UIColor whiteColor];
+//    }
+//    else{
+//        cell.backgroundColor = [UIColor whiteColor];
+//        cell.textLabel.textColor = [UIColor blackColor];
+//    }
+    cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
+    cell.textLabel.textColor = [UIColor whiteColor];
     Student *tempStudent = [self.students objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", tempStudent.firstName, tempStudent.lastName];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
     cell.detailTextLabel.text = tempStudent.studentID; // FOR DEBUGGING PURPOSES
     return cell;
 }

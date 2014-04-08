@@ -31,10 +31,7 @@
    
     
     // Initialize Dropbox session
-    DBSession* dbSession = [[DBSession alloc]
-                            initWithAppKey:APP_KEY
-                            appSecret:APP_SECRET
-                            root:kDBRootAppFolder];
+    DBSession* dbSession = [[DBSession alloc] initWithAppKey:APP_KEY appSecret:APP_SECRET root:kDBRootAppFolder];
     [DBSession setSharedSession:dbSession];
     
     

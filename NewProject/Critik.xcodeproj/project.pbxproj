@@ -36,7 +36,6 @@
 		6F26385018EB4F4200E8CB54 /* plusQuickGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F26384D18EB4F4200E8CB54 /* plusQuickGrade.png */; };
 		6F26385118EB4F4200E8CB54 /* okQuickGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F26384E18EB4F4200E8CB54 /* okQuickGrade.png */; };
 		6F26385218EB4F4200E8CB54 /* minusQuickGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F26384F18EB4F4200E8CB54 /* minusQuickGrade.png */; };
-		6F31A1ED18E7EE5600C3E4FB /* PDFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F31A1EC18E7EE5600C3E4FB /* PDFHelper.m */; };
 		6F332B9718F3779F00547116 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F332B9618F3779F00547116 /* Student.m */; };
 		6F332BA518F4856300547116 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F332BA418F4856300547116 /* StudentSpeech.m */; };
 		6F3478FF18C7BEB9005C7DF6 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3478FE18C7BEB9005C7DF6 /* QuickGrade.m */; };
@@ -126,8 +125,6 @@
 		6F26384D18EB4F4200E8CB54 /* plusQuickGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusQuickGrade.png; sourceTree = "<group>"; };
 		6F26384E18EB4F4200E8CB54 /* okQuickGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = okQuickGrade.png; sourceTree = "<group>"; };
 		6F26384F18EB4F4200E8CB54 /* minusQuickGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minusQuickGrade.png; sourceTree = "<group>"; };
-		6F31A1EB18E7EE5600C3E4FB /* PDFHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFHelper.h; sourceTree = "<group>"; };
-		6F31A1EC18E7EE5600C3E4FB /* PDFHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFHelper.m; sourceTree = "<group>"; };
 		6F332B9518F3779F00547116 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		6F332B9618F3779F00547116 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 		6F332BA318F4856300547116 /* StudentSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentSpeech.h; sourceTree = "<group>"; };
@@ -400,8 +397,6 @@
 				6FC0223718C4D6C90022B854 /* SpeechFinalizeVC.m */,
 				6F3DE7E418D7E6F700A54647 /* StudentOrderPopoverVC.h */,
 				6F3DE7E518D7E6F700A54647 /* StudentOrderPopoverVC.m */,
-				6F31A1EB18E7EE5600C3E4FB /* PDFHelper.h */,
-				6F31A1EC18E7EE5600C3E4FB /* PDFHelper.m */,
 			);
 			name = "Evaluate View Controllers";
 			sourceTree = "<group>";
@@ -564,7 +559,6 @@
 				6F3478FF18C7BEB9005C7DF6 /* QuickGrade.m in Sources */,
 				1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */,
 				6FC0223818C4D6C90022B854 /* SpeechFinalizeVC.m in Sources */,
-				6F31A1ED18E7EE5600C3E4FB /* PDFHelper.m in Sources */,
 				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
 				6FC0223518C44EDF0022B854 /* StudentPenaltiesVC.m in Sources */,
 				6FED858918C2493F0084A96A /* SpeechSelectionVC.m in Sources */,

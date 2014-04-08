@@ -17,6 +17,7 @@
 @end
 
 @implementation SpeechFinalizeVC
+@synthesize restClient;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -235,5 +236,85 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+#pragma mark - DropBox methods
+
+- (DBRestClient *)restClient {
+    if (!self.restClient) {
+        self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        self.restClient.delegate = self;
+    }
+    return self.restClient;
+}
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
+              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
+    
+    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
+    
+    NSLog(@"File upload failed with error - %@", error);
+}
+
+
+- (void)loadfile:(id)sender
+{
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:self];
+    }
+    NSLog(@"loadFiles");
+    [[self restClient] loadMetadata:@"/"];
+}
+
+
+- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata {
+    NSLog(@"loadedMetadata");
+    if (metadata.isDirectory) {
+        NSLog(@"Folder '%@' contains:", metadata.path);
+        for (DBMetadata *file in metadata.contents) {
+            NSLog(@"	%@", file.filename);
+        }
+    }
+}
+
+- (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error {
+    
+    NSLog(@"Error loading metadata: %@", error);
+}
+
+
+//-(void)downloadFile {
+//    
+//    if (![[DBSession sharedSession] isLinked]) {
+//        [[DBSession sharedSession] linkFromController:self];
+//        
+//    }
+//    
+//    
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *docDir = [paths objectAtIndex:0];
+//    NSString *localPath = [docDir stringByAppendingString:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName]];
+//    
+//    [[self restClient] loadFile:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName] intoPath:localPath];
+//    
+//    
+//}
+//- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath {
+//    
+//    NSLog(@"File loaded into path: %@", localPath);
+//    
+//    [self addStudentsToSectionFromRoster];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been downloaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//    [alert show];
+//}
+
+//- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
+//    NSLog(@"There was an error loading the file - %@", error);
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Failed to download file. Please try again." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//    [alert show];
+//}
 
 @end

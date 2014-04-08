@@ -67,8 +67,7 @@
     /* Student list implementation
     Fills the students table with the first section data of the pickerview when view is first presented*/
     Section * temp = [self.sections objectAtIndex:0];
-    NSSet * set = temp.students;
-    self.students = [NSMutableArray arrayWithArray:[set allObjects]];
+    self.students = [NSMutableArray arrayWithArray:[temp.students allObjects]];
     
     //If students table hasn't been ordered, then set to alphabetical order by last name.
     if([self.students count] >1)
