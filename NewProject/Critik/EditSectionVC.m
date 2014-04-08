@@ -357,6 +357,15 @@
                                           otherButtonTitles:nil];
                     [alert show];
                 }
+                
+                //Reloads Student list once student is added
+                // Students array is the current section's NSSet of students
+                self.students = [NSMutableArray arrayWithArray:[self.currSection.students allObjects]];
+                // Sort the array by last name
+                NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+                NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+                self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
+                //Reload table view
                 [self.studentTableView reloadData];
             }
             else
@@ -589,6 +598,7 @@
 {
     /* Dismiss you popover here and process data */
     [popover dismissPopoverAnimated:YES];
+    [self.studentTableView reloadData];
     
     
 }
