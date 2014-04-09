@@ -789,7 +789,7 @@
             NSManagedObject *temp = self.currModule;
             NSNumberFormatter *numValue = [[NSNumberFormatter alloc]init];
             [numValue setNumberStyle:NSNumberFormatterNoStyle];
-            [temp setValue:[numValue numberFromString: self.pointTF.text] forKey:@"points"];
+            [temp setValue:[numValue numberFromString: self.pointTF.text] forKey:@"pointsPossible"];
             NSError *error = nil;
             // Save the object to persistent store
             if (![managedObjectContext save:&error]) {
