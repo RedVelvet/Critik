@@ -8,7 +8,7 @@
 
 #import "SpeechFinalizeVC.h"
 
-@interface SpeechFinalizeVC ()
+@interface SpeechFinalizeVC () <DBRestClientDelegate>
 
 @property NSArray *  QuickGrades;
 @property NSArray * rightQuickGrades;
@@ -188,32 +188,43 @@
             contentSize += 20;
         }
         
-        //Draw penalty points
-        [[NSString stringWithFormat:@"Penalty Points: %@",self.currentStudentSpeech.penaltyPoints] drawInRect:CGRectMake(originX + 150, originY, 150, 20) withAttributes:attributes];
-        originY += 20;
-        contentSize += 20;
-        if([self.currentStudentSpeech.isLate isEqualToString:@"true"]){
-            [[NSString stringWithFormat:@"%@",@"**Presented Late**"] drawInRect:CGRectMake(originX, originY, 500, 20) withAttributes:attributes];
-            originY += 20;
-        }
-        if([self.currentStudentSpeech.overTime isEqualToString:@"true"]){
-            [[NSString stringWithFormat:@"%@",@"**Did not meet time constraints**"] drawInRect:CGRectMake(originX, originY, 500, 20) withAttributes:attributes];
-            originY += 20;
-        }
-        
-        //Draw total points
-        [[NSString stringWithFormat:@"Total Points: %@",self.currentStudentSpeech.totalPoints] drawInRect:CGRectMake(originX, originY, 150, 20) withAttributes:attributes];
-        
-        
         //Go to a new line and bring indention inward
         originY += 25;
         originX -= 15;
         contentSize += 25;
     }
     
+    //Draw penalty points
+    [[NSString stringWithFormat:@"Points Earned: %@",self.currentStudentSpeech.pointsEarned] drawInRect:CGRectMake(originX, originY, 150, 20) withAttributes:attributes];
+    [[NSString stringWithFormat:@"Penalty Points: %@",self.currentStudentSpeech.penaltyPoints] drawInRect:CGRectMake(originX + 150, originY, 150, 20) withAttributes:attributes];
+    originY += 20;
+    contentSize += 20;
+    if([self.currentStudentSpeech.isLate isEqualToString:@"true"]){
+        [[NSString stringWithFormat:@"%@",@"**Presented Late**"] drawInRect:CGRectMake(originX, originY, 500, 20) withAttributes:attributes];
+        originY += 20;
+    }
+    if([self.currentStudentSpeech.overTime isEqualToString:@"true"]){
+        [[NSString stringWithFormat:@"%@",@"**Did not meet time constraints**"] drawInRect:CGRectMake(originX, originY, 500, 20) withAttributes:attributes];
+        originY += 20;
+    }
+    
+    //Draw total points
+    [[NSString stringWithFormat:@"Total Points: %@",self.currentStudentSpeech.totalPoints] drawInRect:CGRectMake(originX, originY, 150, 20) withAttributes:attributes];
+    
+    
     //close and save pdf context
     UIGraphicsEndPDFContext();
     
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:self];
+        
+    }else if( [[DBSession sharedSession] isLinked]){
+        
+        NSString *destPath = [NSString stringWithFormat:@"/Student Reports/%@/%@",self.currentStudent.section.sectionName,self.currentStudentSpeech.speech.speechType];
+        [self.restClient loadMetadata:destPath];
+        [self.restClient deletePath:[NSString stringWithFormat:@"%@/%@",destPath,fileName ]];
+        [self.restClient uploadFile: fileName toPath: destPath withParentRev:nil fromPath:path];
+    }
 }
 
 //Splits the quick grades into two separate arrays: left, right.
@@ -237,37 +248,34 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+
 #pragma mark - DropBox methods
 
 - (DBRestClient *)restClient {
-    if (!self.restClient) {
-        self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-        self.restClient.delegate = self;
+    if (!restClient) {
+        restClient =
+        [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        restClient.delegate = self;
     }
-    return self.restClient;
+    return restClient;
 }
 
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
-              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
     
     NSLog(@"File uploaded successfully to path: %@", metadata.path);
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
     
     NSLog(@"File upload failed with error - %@", error);
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
 }
-
-
-- (void)loadfile:(id)sender
-{
-    if (![[DBSession sharedSession] isLinked]) {
-        [[DBSession sharedSession] linkFromController:self];
-    }
-    NSLog(@"loadFiles");
-    [[self restClient] loadMetadata:@"/"];
-}
-
 
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata {
     NSLog(@"loadedMetadata");
@@ -283,38 +291,5 @@
     
     NSLog(@"Error loading metadata: %@", error);
 }
-
-
-//-(void)downloadFile {
-//    
-//    if (![[DBSession sharedSession] isLinked]) {
-//        [[DBSession sharedSession] linkFromController:self];
-//        
-//    }
-//    
-//    
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *docDir = [paths objectAtIndex:0];
-//    NSString *localPath = [docDir stringByAppendingString:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName]];
-//    
-//    [[self restClient] loadFile:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName] intoPath:localPath];
-//    
-//    
-//}
-//- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath {
-//    
-//    NSLog(@"File loaded into path: %@", localPath);
-//    
-//    [self addStudentsToSectionFromRoster];
-//    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been downloaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//    [alert show];
-//}
-
-//- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
-//    NSLog(@"There was an error loading the file - %@", error);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Failed to download file. Please try again." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//    [alert show];
-//}
 
 @end

@@ -281,169 +281,174 @@
             }
         }
     }else{
-        
+        bool needToAddSpeech = true;
         NSLog(@"Need to update speeches");
         for(int i = 0; i < [allTemplateSpeeches count]; i ++)
         {
             Speech * templateSpeech = [allTemplateSpeeches objectAtIndex: i];
+            Speech * currentSpeech;
             NSArray * studentSpeeches = [currentStudent.studentSpeech allObjects];
             for(int j = 0; j < [studentSpeeches count]; j ++)
             {
                 StudentSpeech * currentStudentSpeech = [studentSpeeches objectAtIndex:j];
-                Speech * currentSpeech = currentStudentSpeech.speech;
-                if(![templateSpeech.speechType isEqualToString:currentSpeech.speechType])
+                currentSpeech = currentStudentSpeech.speech;
+                
+                if([templateSpeech.speechType isEqualToString:currentSpeech.speechType]){
+                    needToAddSpeech = false;
+                }
+            }
+            if(needToAddSpeech)
+            {
+                //Create newStudentSpeech and newSpeech and insert into managedObjectContext to be saved to core data.
+                StudentSpeech * newStudentSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext];
+                Speech * newSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"Speech" inManagedObjectContext:self.managedObjectContext];
+                
+                //Makes the new speech a copy of the current speech to evaluate
+                [newSpeech setValue:@"false" forKeyPath:@"isTemplate"];
+                [newSpeech setValue:currentSpeech.speechType forKeyPath:@"speechType"];
+                
+                //Add the Modules to the new Speech along with the QuickGrades and PreDefinedComments related to that Module being added
+                NSArray * templateModules = [currentSpeech.modules allObjects];
+                for(int a = 0; a < [templateModules count]; a ++){
+                    //current module from template module
+                    Module * tempModule = [templateModules objectAtIndex:a];
+                    //create new Module and add to managedObjectContext
+                    Module * newModule = [NSEntityDescription insertNewObjectForEntityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
+                    
+                    //Set values of newModule based on templateModule
+                    [newModule setValue:tempModule.moduleName forKeyPath:@"moduleName"];
+                    [newModule setValue:tempModule.points forKeyPath:@"points"];
+                    [newModule setValue:tempModule.orderIndex forKeyPath:@"orderIndex"];
+                    [newModule setValue:tempModule.written forKeyPath:@"written"];
+                    [newModule setValue:newSpeech forKeyPath:@"speech"];
+                    
+                    //add Module to newSpeech
+                    [newSpeech addModulesObject:newModule];
+                    
+                    //Add the quickGrades to the new Module being added
+                    NSArray * templateQuickGrades = [tempModule.quickGrade allObjects];
+                    for(int m = 0;  m< [templateQuickGrades count]; m ++){
+                        //current QuickGrade from Current Module
+                        QuickGrade * tempQuickGrade = [templateQuickGrades objectAtIndex:m];
+                        //Create new QuickGrade within managedObjectContext
+                        QuickGrade * newQuickGrade = [NSEntityDescription insertNewObjectForEntityForName:@"QuickGrade" inManagedObjectContext:self.managedObjectContext];
+                        
+                        //Set values of new QuickGrade based on template QuickGrade
+                        [newQuickGrade setValue:tempQuickGrade.isActive forKeyPath:@"isActive"];
+                        [newQuickGrade setValue:tempQuickGrade.quickGradeDescription forKeyPath:@"quickGradeDescription"];
+                        [newQuickGrade setValue:tempQuickGrade.score forKeyPath:@"score"];
+                        [newQuickGrade setValue:newModule forKeyPath:@"module"];
+                        
+                        //add QuickGrade to current Module
+                        [newModule addQuickGradeObject:newQuickGrade];
+                    }
+                    
+                    //Add the preDefinedComments to the new Module being added
+                    NSArray * templateComments = [tempModule.preDefinedComments allObjects];
+                    for(int m = 0; m < [templateComments count]; m ++){
+                        //current PreDefinedComment from Current Module
+                        PreDefinedComments * tempComment = [templateComments objectAtIndex:m];
+                        //Create new PreDefinedComment within managedObjectContext
+                        PreDefinedComments * newComment = [NSEntityDescription insertNewObjectForEntityForName:@"PreDefinedComments" inManagedObjectContext:self.managedObjectContext];
+                        //set new PreDefinedComment equal to current PreDefinedComment to add
+                        //                    newComment = tempComment;
+                        [newComment setValue:tempComment.comment forKeyPath:@"comment"];
+                        [newComment setValue:tempComment.isActive forKeyPath:@"isActive"];
+                        [newComment setValue:tempComment.isSelected forKeyPath:@"isSelected"];
+                        [newComment setValue:newModule forKeyPath:@"module"];
+                        
+                        //add PreDefinedComment to current Module
+                        [newModule addPreDefinedCommentsObject:newComment];
+                    }
+                }
+                //assigns the new Speech to the new Student Speech
+                [newStudentSpeech setValue:newSpeech forKeyPath:@"speech"];
+                
+                //adds the newly created student speech as a studentSpeech for the current Student
+                [currentStudent addStudentSpeechObject:newStudentSpeech];
+                
+                
+                //Save managedObjectContext to Core Data. Print out error if can not save
+                if(![self.managedObjectContext save:&error])
                 {
-                    //Create newStudentSpeech and newSpeech and insert into managedObjectContext to be saved to core data.
-                    StudentSpeech * newStudentSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:self.managedObjectContext];
-                    Speech * newSpeech = [NSEntityDescription insertNewObjectForEntityForName:@"Speech" inManagedObjectContext:self.managedObjectContext];
+                    NSLog(@"Could not save studentSpeech: %@", [error localizedDescription]);
                     
-                    //Makes the new speech a copy of the current speech to evaluate
-                    [newSpeech setValue:@"false" forKeyPath:@"isTemplate"];
-                    [newSpeech setValue:currentSpeech.speechType forKeyPath:@"speechType"];
+                }
+            }else{
+                //IF SPEECH EXISTS, THEN UPDATE IT!!!
+                
+                /* need to be able to edit descriptions if they were changed. But i need an identifier to determine which one that is*/
+                
+                //templateSpeech.type and currentSpeech.type are equal
+                NSArray * allStudentModules = [currentSpeech.modules allObjects];
+                NSArray * allTemplateModules = [templateSpeech.modules allObjects];
+                for(int a = 0; a < [allTemplateModules count]; a ++){
+                    //current module from template module and student module
+                    Module * tempModule = [allTemplateModules objectAtIndex:a];
+                    Module * studentModule = [allStudentModules objectAtIndex:a];
                     
-                    //Add the Modules to the new Speech along with the QuickGrades and PreDefinedComments related to that Module being added
-                    NSArray * templateModules = [currentSpeech.modules allObjects];
-                    for(int a = 0; a < [templateModules count]; a ++){
-                        //current module from template module
-                        Module * tempModule = [templateModules objectAtIndex:a];
-                        //create new Module and add to managedObjectContext
-                        Module * newModule = [NSEntityDescription insertNewObjectForEntityForName:@"Module" inManagedObjectContext:self.managedObjectContext];
-                        
-                        //Set values of newModule based on templateModule
-                        [newModule setValue:tempModule.moduleName forKeyPath:@"moduleName"];
-                        [newModule setValue:tempModule.points forKeyPath:@"points"];
-                        [newModule setValue:tempModule.orderIndex forKeyPath:@"orderIndex"];
-                        [newModule setValue:tempModule.written forKeyPath:@"written"];
-                        [newModule setValue:newSpeech forKeyPath:@"speech"];
-                        
-                        //add Module to newSpeech
-                        [newSpeech addModulesObject:newModule];
-                        
-                        //Add the quickGrades to the new Module being added
-                        NSArray * templateQuickGrades = [tempModule.quickGrade allObjects];
-                        for(int m = 0;  m< [templateQuickGrades count]; m ++){
-                            //current QuickGrade from Current Module
-                            QuickGrade * tempQuickGrade = [templateQuickGrades objectAtIndex:m];
-                            //Create new QuickGrade within managedObjectContext
-                            QuickGrade * newQuickGrade = [NSEntityDescription insertNewObjectForEntityForName:@"QuickGrade" inManagedObjectContext:self.managedObjectContext];
+                    //Update student Module possible points
+                    studentModule.pointsPossible = tempModule.pointsPossible;
+                    
+                    //quick grades from template and student being compared
+                    NSArray * templateQuickGrades = [tempModule.quickGrade allObjects];
+                    NSArray * studentQuickGrades = [studentModule.quickGrade allObjects];
+                    //nothing needs to be added yet.
+                    bool needToAdd = false;
+                    //iterate through template quick grades to determine what needs to be added.
+                    for(int m = 0;  m< [templateQuickGrades count]; m ++){
+                        //current QuickGrade from Current Module
+                        QuickGrade * tempQuickGrade = [templateQuickGrades objectAtIndex:m];
+                        for(int b = 0; b < [studentQuickGrades count]; b ++){
+                            QuickGrade * studentQuickGrade = [studentQuickGrades objectAtIndex:b];
+                            //if quick grade doesn't exist, then set bool that it needs to be added.
+                            if(![studentQuickGrade.quickGradeDescription isEqualToString:tempQuickGrade.quickGradeDescription]){
+                                needToAdd = true;
+                            }
                             
-                            //Set values of new QuickGrade based on template QuickGrade
+                        }
+                        // add current quick grade from template to current student
+                        if(needToAdd){
+                            //Create new comment within managedObjectContext
+                            QuickGrade * newQuickGrade = [NSEntityDescription insertNewObjectForEntityForName:@"QuickGrade" inManagedObjectContext:self.managedObjectContext];
+                            //set new quick grade attributes equal to the template quick grade
                             [newQuickGrade setValue:tempQuickGrade.isActive forKeyPath:@"isActive"];
                             [newQuickGrade setValue:tempQuickGrade.quickGradeDescription forKeyPath:@"quickGradeDescription"];
                             [newQuickGrade setValue:tempQuickGrade.score forKeyPath:@"score"];
-                            [newQuickGrade setValue:newModule forKeyPath:@"module"];
+                            [newQuickGrade setValue:studentModule forKeyPath:@"module"];
                             
                             //add QuickGrade to current Module
-                            [newModule addQuickGradeObject:newQuickGrade];
+                            [studentModule addQuickGradeObject:newQuickGrade];
                         }
-                        
-                        //Add the preDefinedComments to the new Module being added
-                        NSArray * templateComments = [tempModule.preDefinedComments allObjects];
-                        for(int m = 0; m < [templateComments count]; m ++){
-                            //current PreDefinedComment from Current Module
-                            PreDefinedComments * tempComment = [templateComments objectAtIndex:m];
+                    }
+                    
+                    //Pre Defined Comments from template and student being compared
+                    NSArray * templateComments = [tempModule.preDefinedComments allObjects];
+                    NSArray * studentComments = [studentModule.preDefinedComments allObjects];
+                    //Nothing needs to be added yet.
+                    needToAdd = false;
+                    //Iterate through template comments to determine what needs to be added.
+                    for(int m = 0; m < [templateComments count]; m ++){
+                        //current PreDefinedComment from Current Module
+                        PreDefinedComments * tempComment = [templateComments objectAtIndex:m];
+                        for(int b = 0; b < [studentComments count]; b ++){
+                            //if pre Defined comment doesn't exist, then set bool that it needs to be added.
+                            if(![studentComments.description isEqualToString:templateComments.description]){
+                                needToAdd = true;
+                            }
+                        }
+                        // add current comment from template to current student
+                        if(needToAdd){
                             //Create new PreDefinedComment within managedObjectContext
                             PreDefinedComments * newComment = [NSEntityDescription insertNewObjectForEntityForName:@"PreDefinedComments" inManagedObjectContext:self.managedObjectContext];
                             //set new PreDefinedComment equal to current PreDefinedComment to add
-                            //                    newComment = tempComment;
                             [newComment setValue:tempComment.comment forKeyPath:@"comment"];
                             [newComment setValue:tempComment.isActive forKeyPath:@"isActive"];
                             [newComment setValue:tempComment.isSelected forKeyPath:@"isSelected"];
-                            [newComment setValue:newModule forKeyPath:@"module"];
+                            [newComment setValue:studentModule forKeyPath:@"module"];
                             
                             //add PreDefinedComment to current Module
-                            [newModule addPreDefinedCommentsObject:newComment];
-                        }
-                    }
-                    //assigns the new Speech to the new Student Speech
-                    [newStudentSpeech setValue:newSpeech forKeyPath:@"speech"];
-                    
-                    //adds the newly created student speech as a studentSpeech for the current Student
-                    [currentStudent addStudentSpeechObject:newStudentSpeech];
-                    
-                    
-                    //Save managedObjectContext to Core Data. Print out error if can not save
-                    if(![self.managedObjectContext save:&error])
-                    {
-                        NSLog(@"Could not save studentSpeech: %@", [error localizedDescription]);
-                        
-                    }
-                }else{
-                    //IF SPEECH EXISTS, THEN UPDATE IT!!!
-                    
-                    /* need to be able to edit descriptions if they were changed. But i need an identifier to determine which one that is*/
-                    
-                    //templateSpeech.type and currentSpeech.type are equal
-                    NSArray * allStudentModules = [currentSpeech.modules allObjects];
-                    NSArray * allTemplateModules = [templateSpeech.modules allObjects];
-                    for(int a = 0; a < [allTemplateModules count]; a ++){
-                        //current module from template module and student module
-                        Module * tempModule = [allTemplateModules objectAtIndex:a];
-                        Module * studentModule = [allStudentModules objectAtIndex:a];
-                        
-                        //Update student Module possible points
-                        studentModule.pointsPossible = tempModule.pointsPossible;
-                        
-                        //quick grades from template and student being compared
-                        NSArray * templateQuickGrades = [tempModule.quickGrade allObjects];
-                        NSArray * studentQuickGrades = [studentModule.quickGrade allObjects];
-                        //nothing needs to be added yet.
-                        bool needToAdd = false;
-                        //iterate through template quick grades to determine what needs to be added.
-                        for(int m = 0;  m< [templateQuickGrades count]; m ++){
-                            //current QuickGrade from Current Module
-                            QuickGrade * tempQuickGrade = [templateQuickGrades objectAtIndex:m];
-                            for(int b = 0; b < [studentQuickGrades count]; b ++){
-                                QuickGrade * studentQuickGrade = [studentQuickGrades objectAtIndex:b];
-                                //if quick grade doesn't exist, then set bool that it needs to be added.
-                                if(![studentQuickGrade.quickGradeDescription isEqualToString:tempQuickGrade.quickGradeDescription]){
-                                    needToAdd = true;
-                                }
-                                
-                            }
-                            // add current quick grade from template to current student
-                            if(needToAdd){
-                                //Create new comment within managedObjectContext
-                                QuickGrade * newQuickGrade = [NSEntityDescription insertNewObjectForEntityForName:@"QuickGrade" inManagedObjectContext:self.managedObjectContext];
-                                //set new quick grade attributes equal to the template quick grade
-                                [newQuickGrade setValue:tempQuickGrade.isActive forKeyPath:@"isActive"];
-                                [newQuickGrade setValue:tempQuickGrade.quickGradeDescription forKeyPath:@"quickGradeDescription"];
-                                [newQuickGrade setValue:tempQuickGrade.score forKeyPath:@"score"];
-                                [newQuickGrade setValue:studentModule forKeyPath:@"module"];
-                                
-                                //add QuickGrade to current Module
-                                [studentModule addQuickGradeObject:newQuickGrade];
-                            }
-                        }
-                        
-                        //Pre Defined Comments from template and student being compared
-                        NSArray * templateComments = [tempModule.preDefinedComments allObjects];
-                        NSArray * studentComments = [studentModule.preDefinedComments allObjects];
-                        //Nothing needs to be added yet.
-                        needToAdd = false;
-                        //Iterate through template comments to determine what needs to be added.
-                        for(int m = 0; m < [templateComments count]; m ++){
-                            //current PreDefinedComment from Current Module
-                            PreDefinedComments * tempComment = [templateComments objectAtIndex:m];
-                            for(int b = 0; b < [studentComments count]; b ++){
-                                //if pre Defined comment doesn't exist, then set bool that it needs to be added.
-                                if(![studentComments.description isEqualToString:templateComments.description]){
-                                    needToAdd = true;
-                                }
-                            }
-                            // add current comment from template to current student
-                            if(needToAdd){
-                                //Create new PreDefinedComment within managedObjectContext
-                                PreDefinedComments * newComment = [NSEntityDescription insertNewObjectForEntityForName:@"PreDefinedComments" inManagedObjectContext:self.managedObjectContext];
-                                //set new PreDefinedComment equal to current PreDefinedComment to add
-                                [newComment setValue:tempComment.comment forKeyPath:@"comment"];
-                                [newComment setValue:tempComment.isActive forKeyPath:@"isActive"];
-                                [newComment setValue:tempComment.isSelected forKeyPath:@"isSelected"];
-                                [newComment setValue:studentModule forKeyPath:@"module"];
-                                
-                                //add PreDefinedComment to current Module
-                                [studentModule addPreDefinedCommentsObject:newComment];
-                            }
+                            [studentModule addPreDefinedCommentsObject:newComment];
                         }
                     }
                 }

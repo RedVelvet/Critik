@@ -613,8 +613,7 @@
     return restClient;
 }
 
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
-              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
     
     NSLog(@"File uploaded successfully to path: %@", metadata.path);
 }
@@ -682,5 +681,4 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Failed to download file. Please try again." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
 }
-
 @end
