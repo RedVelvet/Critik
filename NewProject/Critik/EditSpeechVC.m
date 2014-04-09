@@ -151,7 +151,7 @@
     if ([self.moduleLabel.text isEqualToString:@"Module Label"]) {
         self.moduleLabel.text = @"Introduction";
         self.currModule = [self.modules objectAtIndex:0];
-        self.pointTF.text = [NSString stringWithFormat:@"%@",self.currModule.points];
+        self.pointTF.text = [NSString stringWithFormat:@"%@",self.currModule.pointsPossible];
         self.quickGrades = [NSMutableArray arrayWithArray:[self.currModule.quickGrade allObjects]];
         self.preDefinedComments = [NSMutableArray arrayWithArray:[self.currModule.preDefinedComments allObjects]];
         NSIndexPath * indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
@@ -258,7 +258,7 @@
             [self splitQuickGrades];
             self.preDefinedComments = [NSMutableArray arrayWithArray:[self.currModule.preDefinedComments allObjects]];
             self.moduleLabel.text = self.currModule.moduleName;
-            self.pointTF.text = [NSString stringWithFormat:@"%@",self.currModule.points];
+            self.pointTF.text = [NSString stringWithFormat:@"%@",self.currModule.pointsPossible];
             [self.quickTable1 reloadData];
             [self.quickTable2 reloadData];
             [self.commentsTable reloadData];

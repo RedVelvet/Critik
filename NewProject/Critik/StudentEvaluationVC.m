@@ -36,6 +36,7 @@
     
     //sets the Introduction module as the first selected module
     self.currentModule = [self.SpeechModules objectAtIndex:0];
+    
     //Set the first Modue selected when first opening view
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.ModuleTable selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
@@ -71,12 +72,19 @@
     
     //Sets first module to the Introduction when opening the evaluation page
     self.currentModule = [self.SpeechModules objectAtIndex:0];
-    self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.points];
-
+    self.moduleGrade.text = [NSString stringWithFormat:@"%@", self.currentModule.points];
+    self.modulePoints.text = [NSString stringWithFormat:@"%@",self.currentModule.pointsPossible];
     
     //Initialize Quickgrades
     self.QuickGrades = [[NSMutableArray alloc]init];
-    NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
+    NSMutableArray * allQuickGrades = [[NSMutableArray alloc]init];
+    
+    [self.QuickGrades removeAllObjects];
+    [allQuickGrades removeAllObjects];
+    [self.leftQuickGrades removeAllObjects];
+    [self.rightQuickGrades removeAllObjects];
+    
+    allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
     //Select only active QuickGrades
     for( int i = 0; i < [allQuickGrades count]; i ++)
     {
@@ -95,7 +103,12 @@
     
     //Initialize PreDefinedComments
     self.PreDefComments = [[NSMutableArray alloc]init];
-    NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
+    NSMutableArray * allPreDefComments = [[NSMutableArray alloc]init];
+    
+    [self.PreDefComments removeAllObjects];
+    [allPreDefComments removeAllObjects];
+    
+    allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
     //Select only active PreDefinedComments
     for( int i = 0; i < [allPreDefComments count]; i ++)
     {
@@ -114,6 +127,10 @@
     NSLog(@"Speech %@",self.currentSpeech.speechType);
     
     
+}
+-(void) viewWillDisappear:(BOOL)animated{
+    [self.QuickGrades removeAllObjects];
+    [self.PreDefComments removeAllObjects];
 }
 
 //Splits QuickGrades Arrays in between 2 different columns
@@ -303,6 +320,9 @@
         {
             [self continueToFinalize:nil];
         }else{
+            //Saves grade for module before changing modules
+            self.currentModule.points = [NSNumber numberWithInt:[self.moduleGrade.text intValue]];
+            self.moduleGrade.text = @"";
             
             Module * module = [self.SpeechModules objectAtIndex:indexPath.row];
             for(int i = 0; i < [self.currentStudentSpeech.speech.modules count]; i ++){

@@ -282,7 +282,7 @@
         }
     }else{
         bool needToAddSpeech = true;
-        NSLog(@"Need to update speeches");
+        NSLog(@"Need to update student speeches");
         for(int i = 0; i < [allTemplateSpeeches count]; i ++)
         {
             Speech * templateSpeech = [allTemplateSpeeches objectAtIndex: i];
@@ -295,6 +295,7 @@
                 
                 if([templateSpeech.speechType isEqualToString:currentSpeech.speechType]){
                     needToAddSpeech = false;
+                    break;
                 }
             }
             if(needToAddSpeech)
@@ -376,12 +377,30 @@
                 }
             }else{
                 //IF SPEECH EXISTS, THEN UPDATE IT!!!
+                StudentSpeech * currentStudentSpeech = [studentSpeeches objectAtIndex:i];
+                currentSpeech = currentStudentSpeech.speech;
                 
-                /* need to be able to edit descriptions if they were changed. But i need an identifier to determine which one that is*/
+                /* 
+                 Need to be able to edit descriptions if they were changed. But i need an identifier to determine which one that is.
+                 
+                 Tend to have problem when the student quickGrade/PreDefinedComment list is larger than the template's quickGrade/PreDefinedComment list.
+                 
+                 
+                 
+                 */
+                
                 
                 //templateSpeech.type and currentSpeech.type are equal
                 NSArray * allStudentModules = [currentSpeech.modules allObjects];
+                NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"orderIndex" ascending:YES];
+                NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
+                allStudentModules = [NSMutableArray arrayWithArray:[allStudentModules sortedArrayUsingDescriptors:descriptors]];
+                
                 NSArray * allTemplateModules = [templateSpeech.modules allObjects];
+                valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"orderIndex" ascending:YES];
+                descriptors = [NSArray arrayWithObject:valueDescriptor];
+                allTemplateModules = [NSMutableArray arrayWithArray:[allTemplateModules sortedArrayUsingDescriptors:descriptors]];
+                
                 for(int a = 0; a < [allTemplateModules count]; a ++){
                     //current module from template module and student module
                     Module * tempModule = [allTemplateModules objectAtIndex:a];
@@ -392,22 +411,31 @@
                     
                     //quick grades from template and student being compared
                     NSArray * templateQuickGrades = [tempModule.quickGrade allObjects];
+                    valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"quickGradeDescription" ascending:YES];
+                    descriptors = [NSArray arrayWithObject:valueDescriptor];
+                    templateQuickGrades = [NSMutableArray arrayWithArray:[templateQuickGrades sortedArrayUsingDescriptors:descriptors]];
+                    
                     NSArray * studentQuickGrades = [studentModule.quickGrade allObjects];
+                    valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"quickGradeDescription" ascending:YES];
+                    descriptors = [NSArray arrayWithObject:valueDescriptor];
+                    studentQuickGrades = [NSMutableArray arrayWithArray:[studentQuickGrades sortedArrayUsingDescriptors:descriptors]];
+                    
                     //nothing needs to be added yet.
-                    bool needToAdd = false;
+                    bool needToAdd = true;
                     //iterate through template quick grades to determine what needs to be added.
-                    for(int m = 0;  m< [templateQuickGrades count]; m ++){
+                    for(int m = 0;  m < [templateQuickGrades count]; m ++){
                         //current QuickGrade from Current Module
                         QuickGrade * tempQuickGrade = [templateQuickGrades objectAtIndex:m];
                         for(int b = 0; b < [studentQuickGrades count]; b ++){
-                            QuickGrade * studentQuickGrade = [studentQuickGrades objectAtIndex:b];
-                            //if quick grade doesn't exist, then set bool that it needs to be added.
-                            if(![studentQuickGrade.quickGradeDescription isEqualToString:tempQuickGrade.quickGradeDescription]){
-                                needToAdd = true;
-                            }
+                            QuickGrade * stuQuickGrade = [studentQuickGrades objectAtIndex:b];
                             
+                            if([tempQuickGrade.quickGradeDescription isEqualToString:stuQuickGrade.quickGradeDescription]){
+                                needToAdd = false;
+                            }else{
+                                needToAdd = true;
+                                break;
+                            }
                         }
-                        // add current quick grade from template to current student
                         if(needToAdd){
                             //Create new comment within managedObjectContext
                             QuickGrade * newQuickGrade = [NSEntityDescription insertNewObjectForEntityForName:@"QuickGrade" inManagedObjectContext:self.managedObjectContext];
@@ -426,15 +454,16 @@
                     NSArray * templateComments = [tempModule.preDefinedComments allObjects];
                     NSArray * studentComments = [studentModule.preDefinedComments allObjects];
                     //Nothing needs to be added yet.
-                    needToAdd = false;
+                    needToAdd = true;
                     //Iterate through template comments to determine what needs to be added.
                     for(int m = 0; m < [templateComments count]; m ++){
                         //current PreDefinedComment from Current Module
                         PreDefinedComments * tempComment = [templateComments objectAtIndex:m];
                         for(int b = 0; b < [studentComments count]; b ++){
+                            PreDefinedComments * stuComment = [studentComments objectAtIndex:b];
                             //if pre Defined comment doesn't exist, then set bool that it needs to be added.
-                            if(![studentComments.description isEqualToString:templateComments.description]){
-                                needToAdd = true;
+                            if([tempComment.comment isEqualToString:stuComment.comment]){
+                                needToAdd = false;
                             }
                         }
                         // add current comment from template to current student
@@ -449,6 +478,8 @@
                             
                             //add PreDefinedComment to current Module
                             [studentModule addPreDefinedCommentsObject:newComment];
+                            
+                            needToAdd = true;
                         }
                     }
                 }
@@ -467,6 +498,11 @@
         }
     }
     
+    //Save to core data
+    if(![self.managedObjectContext save:&error]){
+        NSLog(@"Error saving to core data: %@",error);
+    }
+    
     [self.navigationController pushViewController:evaluateSpeech animated:YES];
     
 }
@@ -474,15 +510,6 @@
 //Sorts students based on instructor selection in popover
 - (void) setStudentOrder: (NSString*) order
 {
-//    NSString *orderIndexType;
-//    if([self.currSpeech isEqualToString:@"Informative"]){
-//        orderIndexType = @"informativeOrder";
-//    }else if([self.currSpeech isEqualToString:@"Persuasive"]){
-//        orderIndexType = @"persuasiveOrder";
-//    }else if([self.currSpeech isEqualToString:@"Interpersonal"]){
-//        orderIndexType = @"interpersonalOrder";
-//    }
-    
     if([order isEqualToString: @"Randomize"]){
         // create temporary array
         NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[self.students count]];
