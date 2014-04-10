@@ -51,10 +51,19 @@
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Student" inManagedObjectContext:self.managedObjectContext]];
     
     NSArray * students = [NSArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-    if([students count] == 0)
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Speech" inManagedObjectContext:self.managedObjectContext]];
+    NSArray * speeches = [NSArray arrayWithArray:[self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+    if([students count] == 0 || [speeches count] == 0)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Hold your horses there pedro!" message: @"You must add a section of students before evaluating." delegate:self  cancelButtonTitle:@"Sounds Good!" otherButtonTitles:nil,nil];
-        [alert show];
+        if([students count] == 0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Hold your horses there pedro!" message: @"You must add a section of students before evaluating." delegate:self  cancelButtonTitle:@"Sounds Good!" otherButtonTitles:nil,nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Wait wait wait!" message: @"You must also add something to speeches to evaluate" delegate:self  cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+            [alert show];
+        }
     }else{
 
             SpeechSelectionVC * evaluate = [self.storyboard instantiateViewControllerWithIdentifier:@"Speech Selection"];

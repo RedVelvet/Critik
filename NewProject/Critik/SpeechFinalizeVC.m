@@ -103,7 +103,7 @@
         Module * currentModule = [Modules objectAtIndex:i];
 
         //Draw Module Name along with points earned out of total possible points
-        [[NSString stringWithFormat:@"%@ - %d/%d pts",currentModule.moduleName, [currentModule.pointsPossible intValue], [currentModule.points intValue] ]drawInRect:CGRectMake(originX, originY, 550, 20) withAttributes:attributes]; //drawAtPoint:CGPointMake(originX, originY) withAttributes:moduleAttributes];
+        [[NSString stringWithFormat:@"%@ - %d/%d pts",currentModule.moduleName, [currentModule.points intValue], [currentModule.pointsPossible intValue] ]drawInRect:CGRectMake(originX, originY, 550, 20) withAttributes:attributes]; //drawAtPoint:CGPointMake(originX, originY) withAttributes:moduleAttributes];
         contentSize += 20;
 
         //Increment Origins to a new line and indent
@@ -170,7 +170,8 @@
             //Go to new line
             originY += 20;
         }
-
+        originY += 20;
+        contentSize += 20;
         //Get preDefinedComments from current module and organize them so that they are in order
         NSArray * preDefinedComments = [currentModule.preDefinedComments allObjects];
         valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"comment" ascending:YES];
@@ -186,6 +187,7 @@
             //Draw PreDefinedComment
             [currentComment.comment drawAtPoint:CGPointMake(originX, originY) withAttributes:attributes];
             contentSize += 20;
+            originY += 20;
         }
         
         //Go to a new line and bring indention inward

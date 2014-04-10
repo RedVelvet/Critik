@@ -73,7 +73,7 @@
     //Sets first module to the Introduction when opening the evaluation page
     self.currentModule = [self.SpeechModules objectAtIndex:0];
     self.moduleGrade.text = [NSString stringWithFormat:@"%@", self.currentModule.points];
-    self.modulePoints.text = [NSString stringWithFormat:@"%@",self.currentModule.pointsPossible];
+    self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.pointsPossible];
     
     //Initialize Quickgrades
     self.QuickGrades = [[NSMutableArray alloc]init];
@@ -280,7 +280,7 @@
         commentSwitch.tintColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
         commentSwitch.tag = 3;
         
-        commentSwitch.on = [temp.isActive boolValue];
+        [commentSwitch setOn: [temp.isSelected boolValue] animated:NO];
         
         objc_setAssociatedObject(commentSwitch, "obj", temp, OBJC_ASSOCIATION_ASSIGN);
         [commentSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
@@ -322,7 +322,6 @@
         }else{
             //Saves grade for module before changing modules
             self.currentModule.points = [NSNumber numberWithInt:[self.moduleGrade.text intValue]];
-            self.moduleGrade.text = @"";
             
             Module * module = [self.SpeechModules objectAtIndex:indexPath.row];
             for(int i = 0; i < [self.currentStudentSpeech.speech.modules count]; i ++){
@@ -357,7 +356,8 @@
                     [self.PreDefComments addObject:temp];
                 }
             }
-            self.modulePoints.text = [NSString stringWithFormat:@"/ %d",[module.points intValue]];
+            self.moduleGrade.text = [NSString stringWithFormat:@"%@",module.points];
+            self.modulePoints.text = [NSString stringWithFormat:@"/ %@",module.pointsPossible];
             [self.rightQuickGradeTable reloadData];
             [self.leftQuickGradeTable reloadData];
             [self.PreDefinedCommentsTable reloadData];
