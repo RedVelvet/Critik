@@ -281,6 +281,7 @@
                     newQuickGrade.quickGradeDescription = quickGradeTemplate.quickGradeDescription;
                     newQuickGrade.isActive = quickGradeTemplate.isActive;
                     newQuickGrade.module = newModule;
+                    newQuickGrade.quickGradeID = [NSString stringWithFormat:@"%@", [quickGradeTemplate objectID]];
                     [newModule addQuickGradeObject:newQuickGrade];
                 }
                 
@@ -292,6 +293,7 @@
                     newPreDefinedComment.comment = preDefinedCommentTemplate.comment;
                     newPreDefinedComment.isActive = preDefinedCommentTemplate.isActive;
                     newPreDefinedComment.module = newModule;
+                    newPreDefinedComment.commentID = [NSString stringWithFormat:@"%@",[preDefinedCommentTemplate objectID]];
                     [newModule addPreDefinedCommentsObject:newPreDefinedComment];
                 }
                 //Add new Module to new Speech
@@ -426,6 +428,8 @@
                 
                 newQuickGrade.quickGradeDescription = currentTemplateQuickGrade.quickGradeDescription;
                 newQuickGrade.isActive = currentTemplateQuickGrade.isActive;
+                newQuickGrade.module = studentModule;
+                newQuickGrade.quickGradeID = [NSString stringWithFormat:@"%@",[currentTemplateQuickGrade objectID]];
                 
                 [studentModule addQuickGradeObject:newQuickGrade];
             }
@@ -480,6 +484,8 @@
                 
                 newPreDefinedComment.comment = currentTemplatePreDefinedComment.comment;
                 newPreDefinedComment.isActive = currentTemplatePreDefinedComment.isActive;
+                newPreDefinedComment.module = studentModule;
+                newPreDefinedComment.commentID = [NSString stringWithFormat:@"%@",[currentTemplatePreDefinedComment objectID]];
                 
                 [studentModule addPreDefinedCommentsObject:newPreDefinedComment];
             }

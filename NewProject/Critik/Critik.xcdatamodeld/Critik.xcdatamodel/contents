@@ -12,6 +12,7 @@
     </entity>
     <entity name="PreDefinedComments" representedClassName="PreDefinedComments" syncable="YES">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commentID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isActive" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="isSelected" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="module" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="preDefinedComments" inverseEntity="Module" syncable="YES"/>
@@ -19,6 +20,7 @@
     <entity name="QuickGrade" representedClassName="QuickGrade" syncable="YES">
         <attribute name="isActive" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="quickGradeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quickGradeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="score" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="module" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="quickGrade" inverseEntity="Module" syncable="YES"/>
     </entity>
@@ -54,8 +56,8 @@
     </entity>
     <elements>
         <element name="Module" positionX="-171" positionY="-78" width="128" height="165"/>
-        <element name="PreDefinedComments" positionX="-396" positionY="-135" width="128" height="105"/>
-        <element name="QuickGrade" positionX="-396" positionY="-18" width="128" height="103"/>
+        <element name="PreDefinedComments" positionX="-396" positionY="-135" width="128" height="118"/>
+        <element name="QuickGrade" positionX="-396" positionY="-18" width="128" height="118"/>
         <element name="Section" positionX="-396" positionY="-243" width="128" height="75"/>
         <element name="Speech" positionX="54" positionY="-45" width="128" height="90"/>
         <element name="Student" positionX="-173" positionY="-243" width="128" height="165"/>
