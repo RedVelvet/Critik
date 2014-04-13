@@ -252,7 +252,9 @@
     
     switch (tableView.tag) {
         case moduleTableTag:
-           
+            [self.quickGrades removeAllObjects];
+            [self.quickGrades1 removeAllObjects];
+            [self.quickGrades2 removeAllObjects];
             self.currModule = [modules objectAtIndex:indexPath.row];
             self.quickGrades = [NSMutableArray arrayWithArray:[self.currModule.quickGrade allObjects]];
             [self splitQuickGrades];

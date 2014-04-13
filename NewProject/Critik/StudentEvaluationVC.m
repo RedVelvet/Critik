@@ -59,6 +59,7 @@
     //sets currentSpeech
     self.currentSpeech = self.currentStudentSpeech.speech;
     //Set title based on speech and student
+    self.navigationItem.title = @"Hello";
     self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeech.speechType,self.currentStudent.firstName,self.currentStudent.lastName];
     
     //[self.ModuleTable selectRowAtIndexPath:0 animated:YES  scrollPosition:UITableViewScrollPositionBottom];
@@ -220,6 +221,7 @@
         cell.selectedBackgroundView = selectedBackgroundView;
         cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
         cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
         
         if(indexPath.section == 1)
         {

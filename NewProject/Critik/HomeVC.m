@@ -61,7 +61,7 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Hold your horses there pedro!" message: @"You must add a section of students before evaluating." delegate:self  cancelButtonTitle:@"Sounds Good!" otherButtonTitles:nil,nil];
             [alert show];
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Wait wait wait!" message: @"You must also add something to speeches to evaluate" delegate:self  cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Wait wait wait!" message: @"You must also add something to speeches to evaluate" delegate:self  cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
             [alert show];
         }
     }else{

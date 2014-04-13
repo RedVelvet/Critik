@@ -10,7 +10,7 @@
 #import "AddSectionVC.h"
 #import "AddStudentVC.h"
 
-@interface EditSectionVC ()
+@interface EditSectionVC () <DBRestClientDelegate>
 
 @end
 
