@@ -64,6 +64,8 @@
     finalize.currentStudent = self.currentStudent;
     finalize.currentStudentSpeech = self.currentStudentSpeech;
     [self.navigationController pushViewController:finalize animated:YES];
+    
+    
 }
 
 #pragma mark Keyboard

@@ -20,10 +20,12 @@
 @interface StudentEvaluationVC : UIViewController
 
 
+
 @property (weak, nonatomic) IBOutlet UILabel * timerLabel;
 @property (weak, nonatomic) IBOutlet UIButton * timerButton;
 @property (weak, nonatomic) IBOutlet UILabel * modulePoints;
 @property (weak, nonatomic) IBOutlet UITextField * moduleGrade;
+@property (weak, nonatomic) IBOutlet UILabel *moduleLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *leftQuickGradeTable;
 @property (weak, nonatomic) IBOutlet UITableView *rightQuickGradeTable;

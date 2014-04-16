@@ -46,19 +46,19 @@
     if (self.sendingButtonTag == 13) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Informative"];
         [fetchRequest setPredicate:predicate];
-        self.navBar.title = @"Edit Forms: Informative";
+        self.navBar.title = @"Edit: Informative";
     }
     else if (self.sendingButtonTag == 14)
     {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Persuasive"];
         [fetchRequest setPredicate:predicate];
-        self.navBar.title = @"Edit Forms: Persuasive";
+        self.navBar.title = @"Edit: Persuasive";
     }
     else if (self.sendingButtonTag == 15)
     {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Interpersonal"];
         [fetchRequest setPredicate:predicate];
-        self.navBar.title = @"Edit Forms: Interpersonal";
+        self.navBar.title = @"Edit: Interpersonal";
     }
     
     
@@ -127,7 +127,12 @@
         conclusionModule.orderIndex = [NSNumber numberWithInt:6];
         conclusionModule.speech = newSpeech;
         
-        NSSet *moduleSet = [NSSet setWithObjects:introModule, orgModule, reasonModule, presentationModule, voiceModule, physicalModule, conclusionModule, nil];
+        Module *penaltiesModule = [NSEntityDescription insertNewObjectForEntityForName:@"Module" inManagedObjectContext:managedObjectContext];
+        penaltiesModule.moduleName = @"Penalties";
+        penaltiesModule.orderIndex = [NSNumber numberWithInt:7];
+        penaltiesModule.speech = newSpeech;
+        
+        NSSet *moduleSet = [NSSet setWithObjects:introModule, orgModule, reasonModule, presentationModule, voiceModule, physicalModule, conclusionModule, penaltiesModule, nil];
         // Add Module to current Speech
         [newSpeech addModules:moduleSet];
         newSpeech.isTemplate = @"true";
@@ -408,7 +413,7 @@
     NSInteger rows = 0;
     if (tableView.tag == moduleTableTag)//module tableview
     {
-        rows = [modules count];
+        rows = [self.modules count]-1; //won't display penalties
     }
     else if (tableView.tag == leftTableTag)
     {
@@ -715,24 +720,24 @@
 
 - (void) splitQuickGrades
 {
-    if ([self.quickGrades count] != 1) {
+//    if ([self.quickGrades count] != 1) {
     
         NSRange someRange;
         
         someRange.location = 0;
         someRange.length = [self.quickGrades count] / 2;
-        
-        self.quickGrades1 = [NSMutableArray arrayWithArray:[self.quickGrades subarrayWithRange:someRange]];
+        self.quickGrades2 = [NSMutableArray arrayWithArray:[self.quickGrades subarrayWithRange:someRange]];
+    
         
         someRange.location = someRange.length;
         someRange.length = [self.quickGrades count] - someRange.length;
-        
-        self.quickGrades2 = [NSMutableArray arrayWithArray:[self.quickGrades subarrayWithRange:someRange]];
-    }
-    else
-    {
-        [self.quickGrades1 addObject:[self.quickGrades objectAtIndex:0]];
-    }
+        self.quickGrades1 = [NSMutableArray arrayWithArray:[self.quickGrades subarrayWithRange:someRange]];
+    
+//    }
+//    else
+//    {
+//        [self.quickGrades1 addObject:[self.quickGrades objectAtIndex:0]];
+//    }
 }
 
 # pragma mark - Textfield

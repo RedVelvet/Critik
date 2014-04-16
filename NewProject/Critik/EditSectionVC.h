@@ -34,6 +34,6 @@
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error;
 - (void)downloadFile;
 - (IBAction)addStudentPressed:(id)sender;
-- (IBAction)deleteSectionPressed:(id)sender;
+
 
 @end

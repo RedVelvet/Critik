@@ -214,7 +214,7 @@
     // If NOT blank and NOT whitespace
     if(![sectionNum length] == 0 && ![[sectionNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
         NSNumber* numberToSave = [NSNumber numberWithInteger:[sectionNum integerValue]];
-        if (numberToSave && [numberToSave intValue] > 0)
+        if (numberToSave && [numberToSave intValue] >= 0)
         {
             NSString *sectionName = [NSString stringWithFormat:@"Section %@", sectionNum];
             // Check if there is already a student with the new id
@@ -421,16 +421,32 @@
 // called after 'Upload Roster' is tapped on the AddStudentVC
 - (IBAction)unwindToEditSectionForRosterUpload:(UIStoryboardSegue *)sender
 {
-    //    [viewController1 dismissViewControllerAnimated:YES completion:^{
-    //        [self presentViewController:viewController2 animated:YES completion:NULL];
-    //    }];
-    [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
-        [self downloadFile];
-    }];
-    
+   
+//    [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
+//        [self downloadFile];
+//    }];
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    [self downloadFile];
     //[self addStudentsToSectionFromRoster];
 }
-
+- (IBAction)unwindToDeleteSection:(UIStoryboardSegue *)sender{
+        [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"%@", self.currSection.sectionName);
+    
+        
+        if ([self.sections count] != 0) {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure want to delete section" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
+            [alert show];
+            [alert setTag:1];
+        }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"There are no sections to be deleted" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+   
+    
+}
 
 #pragma mark - Buttons
 - (IBAction)addStudentPressed:(id)sender {
@@ -439,20 +455,7 @@
     NSLog(@"%@",self.currSection.sectionName);
 }
 
-- (IBAction)deleteSectionPressed:(id)sender{
-    
-    NSLog(@"%@", self.currSection.sectionName);
-    if ([self.sections count] != 0) {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure want to delete section" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
-        [alert show];
-        [alert setTag:1];
-    }
-    else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"There are no sections to be deleted" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
-}
+
 
 #pragma mark - Utility methods
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

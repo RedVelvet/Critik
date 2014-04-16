@@ -59,9 +59,9 @@
     //sets currentSpeech
     self.currentSpeech = self.currentStudentSpeech.speech;
     //Set title based on speech and student
-    self.navigationItem.title = @"Hello";
-    self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeech.speechType,self.currentStudent.firstName,self.currentStudent.lastName];
-    
+//    self.navigationItem.title = @"Hello";
+//    self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeech.speechType,self.currentStudent.firstName,self.currentStudent.lastName];
+    self.navigationItem.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeech.speechType,self.currentStudent.firstName,self.currentStudent.lastName];
     //[self.ModuleTable selectRowAtIndexPath:0 animated:YES  scrollPosition:UITableViewScrollPositionBottom];
     
     //sets speech modules
@@ -75,7 +75,7 @@
     self.currentModule = [self.SpeechModules objectAtIndex:0];
     self.moduleGrade.text = [NSString stringWithFormat:@"%@", self.currentModule.points];
     self.modulePoints.text = [NSString stringWithFormat:@"/ %@",self.currentModule.pointsPossible];
-    
+    self.moduleLabel.text = self.currentModule.moduleName;
     //Initialize Quickgrades
     self.QuickGrades = [[NSMutableArray alloc]init];
     NSMutableArray * allQuickGrades = [[NSMutableArray alloc]init];
@@ -332,7 +332,7 @@
                     self.currentModule = temp;
                 }
             }
-            
+            self.moduleLabel.text = self.currentModule.moduleName;
             //Search through all QuickGrades and PreDefinedComments in an array to selective active
             NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
             [self.QuickGrades removeAllObjects];
