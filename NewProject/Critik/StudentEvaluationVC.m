@@ -160,16 +160,7 @@
 //sets the number of sections in a TableView
 - (int)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    int num;
-    
-    if(tableView.tag == 0)
-    {
-        num = 2;
-    }else{
-        num = 1;
-    }
-    
-    return num;
+    return 1;
 }
 
 //sets the number of rows in a TableView
@@ -179,12 +170,7 @@
     
     if(tableView.tag == 0)
     {
-        if(section == 1)
-        {
-            num = 1;
-        }else{
-            num = [self.SpeechModules count];
-        }
+        num = [self.SpeechModules count];
     }
     
     if (tableView.tag == 1)
@@ -221,15 +207,10 @@
         cell.selectedBackgroundView = selectedBackgroundView;
         cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
         cell.textLabel.textColor = [UIColor whiteColor];
-        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
         
-        if(indexPath.section == 1)
-        {
-            cell.textLabel.text = @"Penalties";
-        }else{
-            Module * temp = [self.SpeechModules objectAtIndex: indexPath.row];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.moduleName];
-        }
+        Module * temp = [self.SpeechModules objectAtIndex: indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.moduleName];
+        
     }
     
     //left QuickGrades Table
@@ -314,11 +295,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //Change quickGrades and PreDefinedComments arrays based on which module is selected.
+    Module * module = [self.SpeechModules objectAtIndex:indexPath.row];
     if(tableView.tag == 0)
     {
-        NSLog(@"about to do stuff");
-        //[self saveStudentRubricValues];
-        if(indexPath.section == 1)
+        if([module.moduleName isEqualToString:@"Penalties"])
         {
             [self continueToFinalize:nil];
         }else{
@@ -378,6 +358,7 @@
         NSLog(@"Can't Save duration %@",[error localizedDescription]);
     }
     
+    NSLog(@"%u", self.presentationTime);
     StudentPenaltiesVC * penalties = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Penalties"];
     penalties.currentStudent = self.currentStudent;
     penalties.currentStudentSpeech = self.currentStudentSpeech;
@@ -434,7 +415,6 @@
         
         // Changes the title of the button to Stop!
         [sender setTitle:@"Stop" forState:UIControlStateNormal];
-        self.presentationTime = 0.0;
         // Calls the update method.
         [self update];
         
@@ -451,27 +431,24 @@
 -(void)update
 {
     // If start is false then we shouldn't be updateing the time se we return out of the method.
-    if (startTimer == false) {
+    if (startTimer == true) {
         
-        return;
+        // We get the current time and then use that to calculate the elapsed time.
+        NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
+        NSTimeInterval elapsedTime = currentTime - time;
+        self.presentationTime = (int)elapsedTime;
+        // We calculate the minutes.
+        int minutes = (int)(elapsedTime / 60.0);
         
+        // We calculate the seconds.
+        int seconds = (int)(elapsedTime = elapsedTime - (minutes * 60));
+        
+        // We update our Label with the current time.
+        self.timerLabel.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
+        
+        
+        // We recursively call update to get the new time.
+        [self performSelector:@selector(update) withObject:self afterDelay:0.1];
     }
-    // We get the current time and then use that to calculate the elapsed time.
-    NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
-    NSTimeInterval elapsedTime = currentTime - time;
-    
-    // We calculate the minutes.
-    int minutes = (int)(elapsedTime / 60.0);
-    
-    // We calculate the seconds.
-    int seconds = (int)(elapsedTime = elapsedTime - (minutes * 60));
-    
-    // We update our Label with the current time.
-    self.timerLabel.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
-    self.presentationTime += seconds;
-    
-    // We recursively call update to get the new time.
-    [self performSelector:@selector(update) withObject:self afterDelay:0.1];
-    
 }
 @end
