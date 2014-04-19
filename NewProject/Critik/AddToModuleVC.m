@@ -42,10 +42,10 @@
 //    NSLog(@"TAG: %d", self.sendingButtonTag);
     switch (self.sendingButtonTag) {
         case addQuickGrade:
-            self.addLabel.text = @"Add Quick Grade";
+            self.addLabel.text = @"Add Scaled Comment";
             break;
         case addPredefined:
-            self.addLabel.text = @"Add Comment";
+            self.addLabel.text = @"Add Checked Comment";
             break;
         default:
             break;

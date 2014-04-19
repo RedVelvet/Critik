@@ -450,6 +450,7 @@
         cell.textLabel.textColor = [UIColor whiteColor];
         Module *tempModule = [modules objectAtIndex:indexPath.row];
         cell.textLabel.text = tempModule.moduleName;
+        
     }
     else if (tableView.tag == leftTableTag ) {
         [self.quickTable1 registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
@@ -560,7 +561,7 @@
     NSString *fromPopover = [addContentArray objectAtIndex:0];
     NSString *content = [addContentArray objectAtIndex:1];
     
-    if ([fromPopover isEqualToString:@"Add Comment"]) { // Adding a predefined comment
+    if ([fromPopover isEqualToString:@"Add Checked Comment"]) { // Adding a predefined comment
         
         // If NOT blank and NOT whitespace
         if(![content length] == 0 && ![[content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
@@ -617,7 +618,7 @@
             
         }
     }
-    else if ([fromPopover isEqualToString:@"Add Quick Grade"]) // Adding a quick grade
+    else if ([fromPopover isEqualToString:@"Add Scaled Comment"]) // Adding a quick grade
     {
         // If NOT blank and NOT whitespace
         if(![content length] == 0 && ![[content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)

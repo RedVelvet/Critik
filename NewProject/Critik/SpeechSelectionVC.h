@@ -12,6 +12,6 @@
 @interface SpeechSelectionVC : UIViewController
 
 - (IBAction)chooseSpeech:(UIButton *)sender;
-
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

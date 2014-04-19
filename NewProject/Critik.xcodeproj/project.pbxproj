@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */; };
 		1F2176B218D633F30065EC79 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5479F918BD2F1400353383 /* DropboxSDK.framework */; };
+		1F42DC56190231AD00EB7DB8 /* horizontalBars.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F42DC55190231AD00EB7DB8 /* horizontalBars.png */; };
 		1F44E1E218BFFC7D0042FCB9 /* EditSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F44E1E118BFFC7D0042FCB9 /* EditSpeechVC.m */; };
 		1F4CF0D018C6D3EE004DDCDA /* EditForms_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2118C15B64006D2C9F /* EditForms_ChooseSpeechVC.m */; };
 		1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1B8118B5C1820015026A /* AddStudentVC.m */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		1F203F9E18B3F0F9007C9F7E /* EditSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSectionVC.h; sourceTree = "<group>"; };
 		1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSectionVC.m; sourceTree = "<group>"; };
+		1F42DC55190231AD00EB7DB8 /* horizontalBars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horizontalBars.png; sourceTree = "<group>"; };
 		1F44E1E018BFFC7D0042FCB9 /* EditSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSpeechVC.h; sourceTree = "<group>"; };
 		1F44E1E118BFFC7D0042FCB9 /* EditSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSpeechVC.m; sourceTree = "<group>"; };
 		1F4F1B8018B5C1820015026A /* AddStudentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStudentVC.h; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 		6F4EE02F18ABEF3300FABCF2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1F42DC55190231AD00EB7DB8 /* horizontalBars.png */,
 				6F26385318EB4F4D00E8CB54 /* PDFQuickGradeScale */,
 				6F4EE0E418B1721B00FABCF2 /* Home */,
 				6F4EE0E818B1721B00FABCF2 /* Splash */,
@@ -512,6 +515,7 @@
 				6F26385018EB4F4200E8CB54 /* plusQuickGrade.png in Resources */,
 				6F4EE11018B1721B00FABCF2 /* iTunesArtwork.png in Resources */,
 				6F4EE10118B1721B00FABCF2 /* icon.png in Resources */,
+				1F42DC56190231AD00EB7DB8 /* horizontalBars.png in Resources */,
 				6F4EE10018B1721B00FABCF2 /* Default-Landscape.png in Resources */,
 				6F4EE10C18B1721B00FABCF2 /* Icon-Small.png in Resources */,
 				6F4EE10E18B1721B00FABCF2 /* Icon.png in Resources */,

@@ -14,7 +14,11 @@
 
 @end
 
-@implementation EditSectionVC
+@implementation EditSectionVC{
+    __weak UIPopoverController *menuPopover;
+    __weak UIPopoverController *studentPopover;
+    __weak UIPopoverController *sectionPopover;
+}
 @synthesize sections, students, managedObjectContext, restClient;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -282,7 +286,14 @@
 
 - (IBAction)unwindToCancel:(UIStoryboardSegue *)sender
 {
-    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    if ([sender.identifier isEqualToString:@"studentPopoverSeque"])
+    {
+        [studentPopover dismissPopoverAnimated:YES];
+    }
+    else if ([sender.identifier isEqualToString:@"sectionPopoverSeque"])
+    {
+        [sectionPopover dismissPopoverAnimated:YES];
+    }
 }
 // called after 'Save' is tapped on the AddStudentVC
 - (IBAction)unwindToTableView:(UIStoryboardSegue *)sender
@@ -433,10 +444,10 @@
         [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"%@", self.currSection.sectionName);
     
-        
+    NSString *alertMessage = [NSString stringWithFormat:@"Are you sure you want to delete %@?",self.currSection.sectionName];
         if ([self.sections count] != 0) {
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:@"Are you sure want to delete section" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:alertMessage delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
             [alert show];
             [alert setTag:1];
         }
@@ -573,34 +584,51 @@
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if ([identifier isEqualToString:@"addSectionPopover"]) {
-        if (self.addSectionPopover == nil) {
-            return YES;
+    
+    if ([identifier isEqualToString:@"menuPopoverSeque"]) {
+        if (menuPopover) {
+            NSLog(@"IF %@", identifier);
+            [menuPopover dismissPopoverAnimated:YES];
+            
+            return NO;
         }
-        return NO;
+        else
+        {
+            NSLog(@"ELSE %@", identifier);
+            return YES;
+            
+        }
     }
     return YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"addSectionPopover"]) {
+    
+    if ([segue.identifier isEqualToString:@"menuPopoverSeque"]) {
         // Assign popover instance so we can dismiss it later
 //        self.addSectionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-        popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        menuPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
         
-        AddSectionVC *addToSectionVC = (AddSectionVC *)popover.contentViewController;
+      
         
-        NSInteger tag = [(UIButton *)sender tag];
-        NSLog(@"Sending button tag: %d", tag);
-        addToSectionVC.delegate = self;
-        
+    }
+    else if ([segue.identifier isEqualToString:@"studentPopoverSeque"])
+    {
+        studentPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+    }
+    else if ([segue.identifier isEqualToString:@"sectionPopoverSeque"])
+    {
+//        AddSectionVC *addToSectionVC = (AddSectionVC *)popover.contentViewController;
+        sectionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+//        NSInteger tag = [(UIButton *)sender tag];
+        sectionPopover.delegate = self;
     }
 }
 
 - (void) dismissPopover:(NSArray *)addContentArray
 {
     /* Dismiss you popover here and process data */
-    [popover dismissPopoverAnimated:YES];
+    [sectionPopover dismissPopoverAnimated:YES];
     [self.studentTableView reloadData];
     
     
