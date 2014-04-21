@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property int presentationTime;
+@property NSTimer * timer;
 
 @end
 
@@ -46,10 +47,14 @@
 {
     [super viewDidLoad];
     
+    
+    
     // Sets the text of our Label to a default time of 0.
     self.timerLabel.text = @"0:00";
+    self.timerButton.titleLabel.text = @"Start";
     // We set start to false because we don't want the time to be on until we press the button.
     startTimer = false;
+    self.presentationTime = [self.currentStudentSpeech.duration intValue];
     
     //set AppDelegate and NSManagedObjectContext
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
@@ -61,7 +66,7 @@
     //Set title based on speech and student
 //    self.navigationItem.title = @"Hello";
 //    self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeech.speechType,self.currentStudent.firstName,self.currentStudent.lastName];
-    self.navigationItem.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeech.speechType,self.currentStudent.firstName,self.currentStudent.lastName];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ %@",self.currentStudent.firstName,self.currentStudent.lastName];
     //[self.ModuleTable selectRowAtIndexPath:0 animated:YES  scrollPosition:UITableViewScrollPositionBottom];
     
     //sets speech modules
@@ -270,7 +275,7 @@
         
         cell.accessoryView = commentSwitch;
         cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.comment];
-        cell.textLabel.textColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
+        cell.textLabel.textColor = [UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -406,49 +411,52 @@
     
     // If start is false then we need to start update the Label with the new time.
     if (startTimer == false) {
-        
-        // Since it is false we need to reset it back to true.
-        startTimer = true;
-        
-        // Gets the current time.
-        time = [NSDate timeIntervalSinceReferenceDate];
+      
         
         // Changes the title of the button to Stop!
         [sender setTitle:@"Stop" forState:UIControlStateNormal];
         // Calls the update method.
-        [self update];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(update) userInfo:nil repeats:YES];
+        startTimer = true;
         
     }else {
         
         // Since it is false we need to reset it back to false.
+        [self.timer invalidate];
+        self.timer = nil;
         startTimer = false;
         
         // Changes the title of the button back to Start.
         [sender setTitle:@"Start" forState:UIControlStateNormal];
+        
+        
     }
 }
 
--(void)update
+- (IBAction)resetTimer:(id)sender{
+    self.presentationTime = 0;
+    self.timerLabel.text = @"0:00";
+}
+
+- (void)update
 {
     // If start is false then we shouldn't be updateing the time se we return out of the method.
     if (startTimer == true) {
         
         // We get the current time and then use that to calculate the elapsed time.
-        NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
-        NSTimeInterval elapsedTime = currentTime - time;
-        self.presentationTime = (int)elapsedTime;
+        self.presentationTime++;
         // We calculate the minutes.
-        int minutes = (int)(elapsedTime / 60.0);
+        int minutes = (self.presentationTime / 60.0);
         
         // We calculate the seconds.
-        int seconds = (int)(elapsedTime = elapsedTime - (minutes * 60));
+        int seconds = (self.presentationTime - (minutes * 60));
         
         // We update our Label with the current time.
         self.timerLabel.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
         
         
-        // We recursively call update to get the new time.
-        [self performSelector:@selector(update) withObject:self afterDelay:0.1];
+//        // We recursively call update to get the new time.
+//        [self performSelector:@selector(update) withObject:self afterDelay:0.1];
     }
 }
 @end

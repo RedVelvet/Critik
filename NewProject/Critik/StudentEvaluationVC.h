@@ -49,5 +49,7 @@
 - (void) splitQuickGradesArray;
 - (IBAction)continueToFinalize:(id)sender;
 - (IBAction)startStopTimer:(id)sender;
+- (IBAction)resetTimer:(id)sender;
+- (void) update;
 
 @end
