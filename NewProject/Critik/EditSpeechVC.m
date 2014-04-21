@@ -531,7 +531,7 @@
         objc_setAssociatedObject(switchView, "obj", tempPredef, OBJC_ASSOCIATION_ASSIGN);
         [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
 //        cell.textLabel.text = tempPredef.comment;
-        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 185, 30)];
+        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 650, 30)];
         tf.adjustsFontSizeToFitWidth = YES;
         tf.textColor = [UIColor blackColor];
         tf.tintColor = [UIColor blueColor];

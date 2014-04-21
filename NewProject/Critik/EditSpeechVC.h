@@ -16,7 +16,7 @@
 #import "AddToModuleVC.h"
 
 
-@interface EditSpeechVC : UIViewController <DismissPopoverDelegate>
+@interface EditSpeechVC : UIViewController <DismissPopoverDelegate, UITextFieldDelegate>
 {
     UIScrollView *beingScrolled_;
     UIPopoverController* popover;
