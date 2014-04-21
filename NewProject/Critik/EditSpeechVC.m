@@ -12,6 +12,7 @@
 #define rightTableTag 3
 #define commentsTableTag 4
 #define kOFFSET_FOR_KEYBOARD 352.0
+#define ACCEPTABLE_CHARACTERS @"0123456789"
 @interface EditSpeechVC ()
 
 @end
@@ -792,8 +793,13 @@
     // If NOT blank and NOT whitespace
     if(![self.pointTF.text length] == 0 && ![[self.pointTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
     {
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+        
+        NSString *filtered = [[self.pointTF.text componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        
+        NSLog(@"====%hhd", [self.pointTF.text isEqualToString:filtered]);
         NSNumber* numberToSave = [NSNumber numberWithInteger:[self.pointTF.text integerValue]];
-        if (numberToSave && [numberToSave intValue] > 0) {
+        if ([self.pointTF.text isEqualToString:filtered] && [numberToSave intValue] > 0) {
             NSManagedObject *temp = self.currModule;
             NSNumberFormatter *numValue = [[NSNumberFormatter alloc]init];
             [numValue setNumberStyle:NSNumberFormatterNoStyle];

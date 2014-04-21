@@ -9,6 +9,7 @@
 #import "EditSectionVC.h"
 #import "AddSectionVC.h"
 #import "AddStudentVC.h"
+#define ACCEPTABLE_CHARACTERS @"0123456789"
 
 @interface EditSectionVC () <DBRestClientDelegate>
 
@@ -217,8 +218,15 @@
     
     // If NOT blank and NOT whitespace
     if(![sectionNum length] == 0 && ![[sectionNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
+        
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+        
+        NSString *filtered = [[sectionNum componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        
+        NSLog(@"====%hhd", [sectionNum isEqualToString:filtered]);
+
         NSNumber* numberToSave = [NSNumber numberWithInteger:[sectionNum integerValue]];
-        if (numberToSave && [numberToSave intValue] >= 0)
+        if ([sectionNum isEqualToString:filtered] && [numberToSave intValue] >= 0)
         {
             NSString *sectionName = [NSString stringWithFormat:@"Section %@", sectionNum];
             // Check if there is already a student with the new id
@@ -311,8 +319,23 @@
            && ![lastName length] == 0 && ![[lastName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0
            && ![sNum length] == 0 && ![[sNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
         {
+//            NSString *expression = @"^([0-9]+)?(\\.([0-9]{1,2})?)?$";
+//            NSString *expression = [NSString stringWithFormat:@"^([0-9]+)?(\([0-9]{1,2})?)?$"];
+//            
+//            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
+//                                                                                   options:NSRegularExpressionCaseInsensitive
+//                                                                                     error:nil];
+//            NSUInteger numberOfMatches = [regex numberOfMatchesInString:sNum
+//                                                                options:0
+//                                                                  range:NSMakeRange(0, [sNum length])];
+            
+            NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+            
+            NSString *filtered = [[sNum componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+
             NSNumber* numberToSave = [NSNumber numberWithInteger:[sNum integerValue]];
-            if (numberToSave && [numberToSave intValue] > 0)
+            NSLog(@"====%hhd", [sNum isEqualToString:filtered]);
+            if (![sNum isEqualToString:filtered] && [numberToSave intValue] > 0)
             {
             
             // Check if there is already a student with the new id
