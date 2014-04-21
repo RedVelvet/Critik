@@ -416,7 +416,7 @@
                             <textField opaque="NO" clipsSubviews="YES" tag="44" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nhk-rk-qcG">
                                 <rect key="frame" x="959" y="7" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -541,7 +541,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Section Rosters" id="x53-kT-GH7">
                         <barButtonItem key="backBarButtonItem" title="Section Rosters" id="sbK-sK-mX3"/>
-                        <barButtonItem key="rightBarButtonItem" title="Order" id="GfH-w4-syn">
+                        <barButtonItem key="rightBarButtonItem" image="horizontalBars.png" id="GfH-w4-syn">
                             <connections>
                                 <segue destination="gBH-f3-1ah" kind="popover" identifier="orderPopoverSegue" popoverAnchorBarButtonItem="GfH-w4-syn" id="Q5a-Pf-XJK">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -569,11 +569,11 @@
                         <viewControllerLayoutGuide type="bottom" id="u3h-ce-XND"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xdp-U5-laV">
-                        <rect key="frame" x="0.0" y="0.0" width="383" height="160"/>
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="220"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAw-5U-RmD">
-                                <rect key="frame" x="20" y="24" width="342" height="52"/>
+                                <rect key="frame" x="21" y="24" width="342" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Alphabetize" backgroundImage="PopOverNavBar.png">
@@ -584,7 +584,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErC-9e-Xbg">
-                                <rect key="frame" x="20" y="84" width="342" height="52"/>
+                                <rect key="frame" x="21" y="84" width="342" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Randomize" backgroundImage="PopOverNavBar.png">
@@ -594,12 +594,20 @@
                                     <segue destination="9PZ-eW-DxD" kind="unwind" unwindAction="UnwindFromOrderPopoverToStudentSelectionAndRandomize:" id="gFI-O7-Nj8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bn3-iQ-T0f">
+                                <rect key="frame" x="21" y="144" width="342" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Export Order" backgroundImage="PopOverNavBar.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="383" height="160"/>
+                    <size key="freeformSize" width="383" height="220"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAg-7V-zwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9PZ-eW-DxD" userLabel="Exit" sceneMemberID="exit"/>
