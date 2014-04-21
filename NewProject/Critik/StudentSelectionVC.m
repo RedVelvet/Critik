@@ -167,8 +167,10 @@
     
     cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
     cell.textLabel.textColor = [UIColor whiteColor];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
     Student * tempStudent = [self.students objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",tempStudent.firstName, tempStudent.lastName];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",tempStudent.studentID];
     
     return cell;
 }
