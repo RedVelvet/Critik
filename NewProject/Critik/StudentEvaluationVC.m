@@ -276,7 +276,7 @@
     
     return cell;
 }
-//
+
 //Sets the QuickGrades tables to scroll together
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 {
