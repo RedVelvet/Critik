@@ -338,7 +338,7 @@
             //Find the Template Module that corresponds to the Student Module being updated
             for(int a = 0; a < [speechModules count]; a++){
                 Module * temp = [speechModules objectAtIndex:a];
-                if([temp.moduleName isEqualToString:currentTemplateModule.moduleName]){
+                if([temp.moduleName isEqualToString:currentTemplateModule.moduleName] && ![temp.moduleName isEqualToString:@"Penalties"]){
                     currentStudentModule = temp;
                     break;
                 }
@@ -469,7 +469,7 @@
             PreDefinedComments * currentTemplatePreDefinedComment = [templatePreDefinedComments objectAtIndex:i];
             BOOL needToAdd = true;
             
-            for(int j = 0; j < [templatePreDefinedComments count]; j ++){
+            for(int j = 0; j < [studentPreDefinedComments count]; j ++){
                 PreDefinedComments * temp = [studentPreDefinedComments objectAtIndex:j];
                 
                 if([temp.comment isEqualToString:currentTemplatePreDefinedComment.comment]){
