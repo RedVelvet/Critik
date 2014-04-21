@@ -64,7 +64,7 @@
     
     if([self.penaltyPoints.text intValue] < 0){
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Penalties can not be negative" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Penalties Error" message: @"Penalties must be a number greater than or equal to 0" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         
     }else{
