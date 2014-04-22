@@ -22,6 +22,17 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    int minutes = ([self.currentStudentSpeech.duration intValue] / 60.0);
+    
+    // We calculate the seconds.
+    int seconds = ([self.currentStudentSpeech.duration intValue] - (minutes * 60));
+    
+    // We update our Label with the current time.
+    self.duration.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
+    
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,12 +40,6 @@
     //set title of page
     self.navigationItem.title = @"Penalties";
     
-    //print out the duration of the presentation
-    NSNumber * duration = self.currentStudentSpeech.duration;
-    int minutes = [duration intValue]/60;
-    int seconds = [duration intValue] - (minutes * 60);
-    self.duration.text = [NSString stringWithFormat:@"%d:%d",minutes,seconds];
-    self.penaltyPoints.text = [NSString stringWithFormat:@"%@",self.currentStudentSpeech.penaltyPoints];
     self.additionalComments.text = self.currentStudentSpeech.comments;
     
     if([self.currentStudentSpeech.isLate isEqualToString:@"true"]){

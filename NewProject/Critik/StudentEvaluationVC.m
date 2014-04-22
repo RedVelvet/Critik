@@ -47,16 +47,17 @@
 {
     [super viewDidLoad];
     
-    
-    
-    // Sets the text of our Label to a default time of 0.
-    self.timerLabel.text = @"0:00";
-    self.timerButton.titleLabel.text = @"Start";
-    // We set start to false because we don't want the time to be on until we press the button.
-    startTimer = false;
     self.presentationTime = [self.currentStudentSpeech.duration intValue];
     [self.timerButton setImage:[UIImage imageNamed:@"play25trans.png"] forState:UIControlStateNormal];
     [self.timerResetButton setImage:[UIImage imageNamed:@"reset25trans.png"] forState:UIControlStateNormal];
+    
+    int minutes = (self.presentationTime / 60.0);
+    // We calculate the seconds.
+    int seconds = (self.presentationTime - (minutes * 60));
+    // We update our Label with the current time.
+    self.timerLabel.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
+    // We set start to false because we don't want the time to be on until we press the button.
+    startTimer = false;
     
     //set AppDelegate and NSManagedObjectContext
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
@@ -137,6 +138,12 @@
     
 }
 -(void) viewWillDisappear:(BOOL)animated{
+    NSError * error;
+    if(![self.managedObjectContext save:&error])
+    {
+        NSLog(@"Can't Save duration %@",[error localizedDescription]);
+    }
+    
     [self.QuickGrades removeAllObjects];
     [self.PreDefComments removeAllObjects];
 }
@@ -375,17 +382,11 @@
     }
 }
 
+
 - (IBAction)continueToFinalize:(id)sender
 {
-    NSError * error;
-    self.currentStudentSpeech.duration = [NSNumber numberWithInt:[self.timerLabel.text intValue]];
-//    [self.currentStudentSpeech setValue: [NSNumber numberWithInt:self.presentationTime]  forKey:@"duration"];
     
-    if(![self.managedObjectContext save:&error])
-    {
-        NSLog(@"Can't Save duration %@",[error localizedDescription]);
-    }
-    
+    self.currentStudentSpeech.duration = [NSNumber numberWithInt:self.presentationTime];
     NSLog(@"%u", self.presentationTime);
     StudentPenaltiesVC * penalties = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Penalties"];
     penalties.currentStudent = self.currentStudent;
