@@ -793,13 +793,15 @@
     // If NOT blank and NOT whitespace
     if(![self.pointTF.text length] == 0 && ![[self.pointTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0)
     {
-        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
-        
-        NSString *filtered = [[self.pointTF.text componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-        
-        NSLog(@"====%hhd", [self.pointTF.text isEqualToString:filtered]);
+//        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+//        
+//        NSString *filtered = [[self.pointTF.text componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+//        
+//        NSLog(@"====%hhd", [self.pointTF.text isEqualToString:filtered]);
+        NSScanner * scanner = [NSScanner scannerWithString:self.pointTF.text];
+        BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
         NSNumber* numberToSave = [NSNumber numberWithInteger:[self.pointTF.text integerValue]];
-        if ([self.pointTF.text isEqualToString:filtered] && [numberToSave intValue] > 0) {
+        if (isNumeric && [numberToSave intValue] > 0) {
             NSManagedObject *temp = self.currModule;
             NSNumberFormatter *numValue = [[NSNumberFormatter alloc]init];
             [numValue setNumberStyle:NSNumberFormatterNoStyle];

@@ -219,14 +219,16 @@
     // If NOT blank and NOT whitespace
     if(![sectionNum length] == 0 && ![[sectionNum stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0){
         
-        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+//        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+//        
+//        NSString *filtered = [[sectionNum componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+//        
+//        NSLog(@"====%hhd", [sectionNum isEqualToString:filtered]);
+        NSScanner * scanner = [NSScanner scannerWithString:sectionNum];
+        BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
         
-        NSString *filtered = [[sectionNum componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-        
-        NSLog(@"====%hhd", [sectionNum isEqualToString:filtered]);
-
         NSNumber* numberToSave = [NSNumber numberWithInteger:[sectionNum integerValue]];
-        if ([sectionNum isEqualToString:filtered] && [numberToSave intValue] >= 0)
+        if (isNumeric && [numberToSave intValue] >= 0)
         {
             NSString *sectionName = [NSString stringWithFormat:@"Section %@", sectionNum];
             // Check if there is already a student with the new id
@@ -332,19 +334,17 @@
             NSScanner * scanner = [NSScanner scannerWithString:sNum];
             BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
             
-            if(isNumeric){
-                
-            }
+            
             
 //            NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
 //            
 //            NSString *filtered = [[sNum componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
 //
-//            NSNumber* numberToSave = [NSNumber numberWithInteger:[sNum integerValue]];
+            NSNumber* numberToSave = [NSNumber numberWithInteger:[sNum integerValue]];
 //            NSLog(@"====%hhd", [sNum isEqualToString:filtered]);
 //            if (![sNum isEqualToString:filtered] && [numberToSave intValue] > 0)
 //            {
-            if(isNumeric){
+            if(isNumeric && [numberToSave intValue] > 0){
             
             // Check if there is already a student with the new id
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
