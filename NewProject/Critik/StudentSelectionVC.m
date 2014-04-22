@@ -537,7 +537,7 @@
 }
 
 # pragma mark Export Order
--(void) exportStudentOrder{
+/*-(void) exportStudentOrder{
     
     //Variables to store origin
     int originX = 20;
@@ -548,9 +548,9 @@
     //file name
     NSString * fileName = [NSString stringWithFormat:@"Student Order %@-%@",currentSection.sectionName,self.currSpeech ];
     //Get document directory path and create new file with given filename
-//    NSString *path = [[self applicationDocumentsDirectory].path stringByAppendingPathComponent:fileName];
+    NSString *path = [[self applicationDocumentsDirectory].path stringByAppendingPathComponent:fileName];
     //create pdf context
-//    UIGraphicsBeginPDFContextToFile(path, CGRectZero, nil);
+    UIGraphicsBeginPDFContextToFile(path, CGRectZero, nil);
     //set pdf font
     UIFont * font = [UIFont fontWithName:@"Times" size:12];
     
@@ -576,10 +576,31 @@
         //Go to a new line
         originY += 15;
     }
-
+    NSError *error;
+    if(![self.managedObjectContext save:&error]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Student Order could not upload" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Student Order uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    UIGraphicsEndPDFContext();
+    
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:self];
+        
+    }else if( [[DBSession sharedSession] isLinked]){
+        
+        NSString *destPath = [NSString stringWithFormat:@"Student Order %@-%@",currentSection.sectionName,self.currSpeech ];
+        [self.restClient loadMetadata:destPath];
+        [self.restClient deletePath:destPath];
+        [self.restClient uploadFile: fileName toPath: destPath withParentRev:nil fromPath:path];
+    }
+    
     
 }
-
+*/
 # pragma mark Unwind Segues
 -(IBAction)UnwindFromFinalizeToStudentSelection:(UIStoryboardSegue *)unwindSegue
 {
