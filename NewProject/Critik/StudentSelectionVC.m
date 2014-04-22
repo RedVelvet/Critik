@@ -228,7 +228,7 @@
 -(void) createStudentSpeeches:(NSArray *)allTemplateSpeeches forStudent: (Student *)student
 {
     NSArray * allStudentSpeeches = [student.studentSpeech allObjects];
-    
+    NSLog(@"%@ %@", student.firstName, student.lastName);
     if([allStudentSpeeches count] > [allTemplateSpeeches count])
     {
         for(int i = 0; i < [allStudentSpeeches count]; i ++)
