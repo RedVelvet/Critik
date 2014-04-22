@@ -7,8 +7,6 @@
 //
 
 #import "StudentPenaltiesVC.h"
-#define kOFFSET_FOR_KEYBOARD 352.0
-
 @interface StudentPenaltiesVC ()
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @end
@@ -61,8 +59,17 @@
     
     //Create error variable to use for saving to core data
     NSError * error;
+    //This is the string that is going to be compared to the input string
+    NSString *testString = [NSString string];
+    NSScanner *scanner = [NSScanner scannerWithString:self.penaltyPoints.text];
+    //This is the character set containing all digits. It is used to filter the input string
+    NSCharacterSet *skips = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
     
-    if([self.penaltyPoints.text intValue] < 0){
+    //This goes through the input string and puts all the
+    //characters that are digits into the new string
+    [scanner scanCharactersFromSet:skips intoString:&testString];
+    //If the string containing all the numbers has the same length as the input...
+    if([self.penaltyPoints.text length] != [testString length]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Penalties Error" message: @"Penalties must be a number greater than or equal to 0" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];

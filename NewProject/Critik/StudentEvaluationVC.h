@@ -23,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel * timerLabel;
 @property (weak, nonatomic) IBOutlet UIButton * timerButton;
+@property (weak, nonatomic) IBOutlet UIButton *timerResetButton;
 @property (weak, nonatomic) IBOutlet UILabel * modulePoints;
 @property (weak, nonatomic) IBOutlet UITextField * moduleGrade;
 @property (weak, nonatomic) IBOutlet UILabel *moduleLabel;

@@ -55,6 +55,8 @@
     // We set start to false because we don't want the time to be on until we press the button.
     startTimer = false;
     self.presentationTime = [self.currentStudentSpeech.duration intValue];
+    [self.timerButton setImage:[UIImage imageNamed:@"play25trans.png"] forState:UIControlStateNormal];
+    [self.timerResetButton setImage:[UIImage imageNamed:@"reset25trans.png"] forState:UIControlStateNormal];
     
     //set AppDelegate and NSManagedObjectContext
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
@@ -299,55 +301,76 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    //This is the string that is going to be compared to the input string
+    NSString *testString = [NSString string];
+    NSScanner *scanner = [NSScanner scannerWithString:self.moduleGrade.text];
+    //This is the character set containing all digits. It is used to filter the input string
+    NSCharacterSet *skips = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
+    
+    //This goes through the input string and puts all the
+    //characters that are digits into the new string
+    [scanner scanCharactersFromSet:skips intoString:&testString];
+    //If the string containing all the numbers has the same length as the input...
+    if([self.moduleGrade.text length] != [testString length] && ![self.moduleGrade.text intValue] <= [self.modulePoints.text intValue] ) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Module Points Error" message: @"Points given must be a number less than or equal to points possible" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        
+    }else{
     //Change quickGrades and PreDefinedComments arrays based on which module is selected.
     Module * module = [self.SpeechModules objectAtIndex:indexPath.row];
-    if(tableView.tag == 0)
-    {
-        if([module.moduleName isEqualToString:@"Penalties"])
+        if(tableView.tag == 0)
         {
-            [self continueToFinalize:nil];
-        }else{
-            //Saves grade for module before changing modules
-            self.currentModule.points = [NSNumber numberWithInt:[self.moduleGrade.text intValue]];
             
-            Module * module = [self.SpeechModules objectAtIndex:indexPath.row];
-            for(int i = 0; i < [self.currentStudentSpeech.speech.modules count]; i ++){
-                Module * temp = [[self.currentStudentSpeech.speech.modules allObjects] objectAtIndex:i];
-                if(temp.moduleName == module.moduleName){
-                    self.currentModule = temp;
-                }
-            }
-            self.moduleLabel.text = self.currentModule.moduleName;
-            //Search through all QuickGrades and PreDefinedComments in an array to selective active
-            NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
-            [self.QuickGrades removeAllObjects];
-            for( int i = 0; i < [allQuickGrades count]; i ++)
+            if([module.moduleName isEqualToString:@"Penalties"])
             {
-                QuickGrade * temp = [allQuickGrades objectAtIndex:i];
-                bool tempbool = [temp.isActive boolValue];
-                if(tempbool == true)
-                {
-                    [self.QuickGrades addObject:temp];
+                [self continueToFinalize:nil];
+                
+            }else{
+                //Saves grade for module before changing modules
+                self.currentModule.points = [NSNumber numberWithInt:[self.moduleGrade.text intValue]];
+                
+                Module * module = [self.SpeechModules objectAtIndex:indexPath.row];
+                for(int i = 0; i < [self.currentStudentSpeech.speech.modules count]; i ++){
+                    Module * temp = [[self.currentStudentSpeech.speech.modules allObjects] objectAtIndex:i];
+                    if(temp.moduleName == module.moduleName){
+                        self.currentModule = temp;
+                    }
                 }
+                self.moduleLabel.text = self.currentModule.moduleName;
+                //Search through all QuickGrades and PreDefinedComments in an array to selective active
+                NSMutableArray * allQuickGrades = [NSMutableArray arrayWithArray:[self.currentModule.quickGrade allObjects]];
+                [self.QuickGrades removeAllObjects];
+                for( int i = 0; i < [allQuickGrades count]; i ++)
+                {
+                    QuickGrade * temp = [allQuickGrades objectAtIndex:i];
+                    bool tempbool = [temp.isActive boolValue];
+                    if(tempbool == true)
+                    {
+                        [self.QuickGrades addObject:temp];
+                    }
+                }
+                
+                [self splitQuickGradesArray];
+                NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
+                [self.PreDefComments removeAllObjects];
+                for( int i = 0; i < [allPreDefComments count]; i ++)
+                {
+                    PreDefinedComments * temp = [allPreDefComments objectAtIndex:i];
+                    bool tempbool = [temp.isActive boolValue];
+                    if(tempbool == true)
+                    {
+                        [self.PreDefComments addObject:temp];
+                    }
+                }
+                self.moduleGrade.text = [NSString stringWithFormat:@"%@",module.points];
+                self.modulePoints.text = [NSString stringWithFormat:@"/ %@",module.pointsPossible];
+                [self.rightQuickGradeTable reloadData];
+                [self.leftQuickGradeTable reloadData];
+                [self.PreDefinedCommentsTable reloadData];
             }
             
-            [self splitQuickGradesArray];
-            NSMutableArray * allPreDefComments = [NSMutableArray arrayWithArray:[self.currentModule.preDefinedComments allObjects]];
-            [self.PreDefComments removeAllObjects];
-            for( int i = 0; i < [allPreDefComments count]; i ++)
-            {
-                PreDefinedComments * temp = [allPreDefComments objectAtIndex:i];
-                bool tempbool = [temp.isActive boolValue];
-                if(tempbool == true)
-                {
-                    [self.PreDefComments addObject:temp];
-                }
-            }
-            self.moduleGrade.text = [NSString stringWithFormat:@"%@",module.points];
-            self.modulePoints.text = [NSString stringWithFormat:@"/ %@",module.pointsPossible];
-            [self.rightQuickGradeTable reloadData];
-            [self.leftQuickGradeTable reloadData];
-            [self.PreDefinedCommentsTable reloadData];
         }
     }
 }
@@ -414,7 +437,7 @@
       
         
         // Changes the title of the button to Stop!
-        [sender setTitle:@"Stop" forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"pause25trans.png"] forState:UIControlStateNormal];
         // Calls the update method.
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(update) userInfo:nil repeats:YES];
         startTimer = true;
@@ -427,7 +450,7 @@
         startTimer = false;
         
         // Changes the title of the button back to Start.
-        [sender setTitle:@"Start" forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"play25trans.png"] forState:UIControlStateNormal];
         
         
     }

@@ -43,7 +43,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark PDF Generation
 -(IBAction)generatePDF:(id)sender
 {
     //Variables to store origin
@@ -196,6 +196,9 @@
         contentSize += 25;
     }
     
+    [[NSString stringWithFormat:@"Additional Comments: \n%@",self.currentStudentSpeech.comments] drawInRect:CGRectMake(originX+10, originY, 550, 80) withAttributes:attributes];
+    originY += 80;
+    
     //Draw penalty points
     [[NSString stringWithFormat:@"Points Earned: %@",self.currentStudentSpeech.pointsEarned] drawInRect:CGRectMake(originX, originY, 150, 20) withAttributes:attributes];
     [[NSString stringWithFormat:@"Penalty Points: %@",self.currentStudentSpeech.penaltyPoints] drawInRect:CGRectMake(originX + 150, originY, 150, 20) withAttributes:attributes];
@@ -229,6 +232,7 @@
     }
 }
 
+#pragma mark QuickGrade Arrays
 //Splits the quick grades into two separate arrays: left, right.
 -(void) splitQuickGradesArray
 {

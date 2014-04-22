@@ -129,7 +129,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Edit Section" id="KDG-A6-eGy">
                         <barButtonItem key="backBarButtonItem" title="Edit Section" id="AG6-k6-o8V"/>
-                        <barButtonItem key="rightBarButtonItem" image="horizontalBars.png" id="Rb3-F3-3Fe">
+                        <barButtonItem key="rightBarButtonItem" image="options22trans.png" id="Rb3-F3-3Fe">
                             <connections>
                                 <segue destination="EBZ-Qh-yNG" kind="popover" identifier="menuPopoverSeque" popoverAnchorBarButtonItem="Rb3-F3-3Fe" id="ZgY-hQ-Zen">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -541,7 +541,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Section Rosters" id="x53-kT-GH7">
                         <barButtonItem key="backBarButtonItem" title="Section Rosters" id="sbK-sK-mX3"/>
-                        <barButtonItem key="rightBarButtonItem" image="horizontalBars.png" id="GfH-w4-syn">
+                        <barButtonItem key="rightBarButtonItem" image="options22trans.png" id="GfH-w4-syn">
                             <connections>
                                 <segue destination="gBH-f3-1ah" kind="popover" identifier="orderPopoverSegue" popoverAnchorBarButtonItem="GfH-w4-syn" id="Q5a-Pf-XJK">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -612,7 +612,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAg-7V-zwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9PZ-eW-DxD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3942" y="103"/>
+            <point key="canvasLocation" x="3999" y="104"/>
         </scene>
         <!--Student EvaluationVC - Student Evaluation-->
         <scene sceneID="IBd-ri-hhf">
@@ -630,12 +630,12 @@
                                 <rect key="frame" x="0.0" y="650" width="73" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roz-yc-GNW">
-                                <rect key="frame" x="72" y="650" width="54" height="54"/>
+                                <rect key="frame" x="73" y="650" width="54" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
@@ -643,7 +643,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEw-Ym-fQV">
-                                <rect key="frame" x="126" y="650" width="70" height="54"/>
+                                <rect key="frame" x="127" y="650" width="70" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -724,36 +724,34 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Of0-ij-RmP">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aj8-tw-VlB">
                                 <rect key="frame" x="196" y="650" width="54" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <state key="normal" title="R">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Reset">
-                                            <attributes>
-                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
                                 <connections>
-                                    <action selector="resetTimer:" destination="fhM-DW-lqh" eventType="touchUpInside" id="Nog-8N-TJm"/>
+                                    <action selector="resetTimer:" destination="fhM-DW-lqh" eventType="touchUpInside" id="UeM-II-XoJ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="yex-ay-MPu">
                         <barButtonItem key="backBarButtonItem" title="Evaluation" id="GUg-RT-CTt">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Comments" id="Axu-nm-jme">
+                            <connections>
+                                <segue destination="vgW-Hp-qFU" kind="popover" popoverAnchorBarButtonItem="Axu-nm-jme" id="xGB-R6-i7b">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <keyCommands/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="ModuleTable" destination="rzf-da-NPv" id="O0E-KV-r3v"/>
@@ -765,11 +763,48 @@
                         <outlet property="rightQuickGradeTable" destination="yRT-be-Kyl" id="l6X-VM-JRi"/>
                         <outlet property="timerButton" destination="roz-yc-GNW" id="3qR-Ne-AY9"/>
                         <outlet property="timerLabel" destination="oEw-Ym-fQV" id="IUA-lG-5sH"/>
+                        <outlet property="timerResetButton" destination="aj8-tw-VlB" id="0De-8Q-XGV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boh-hV-amJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4264" y="-767"/>
+        </scene>
+        <!--Additional Comments PopoverVC - AdditionalCommentsPopover-->
+        <scene sceneID="Ouv-De-YtP">
+            <objects>
+                <viewController title="AdditionalCommentsPopover" id="vgW-Hp-qFU" customClass="AdditionalCommentsPopoverVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tp5-Uz-qMZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Tj-ol-IGQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x06-R8-GAf">
+                        <rect key="frame" x="0.0" y="0.0" width="650" height="250"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Additional Comments:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJx-xf-0aT">
+                                <rect key="frame" x="20" y="20" width="180" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9m9-VY-tOn">
+                                <rect key="frame" x="20" y="52" width="610" height="178"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.9214564732142857" green="0.9214564732142857" blue="0.9214564732142857" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="650" height="250"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="twg-8c-0me" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4791" y="104"/>
         </scene>
         <!--Student PenaltiesVC - Student Penalties-->
         <scene sceneID="nEb-eh-Lyh">
@@ -809,7 +844,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Over Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibJ-Kj-2aE">
                                 <rect key="frame" x="526" y="182" width="83" height="24"/>
@@ -1295,7 +1330,7 @@
         <image name="Home@2x-Landscape.png" width="2048" height="1536"/>
         <image name="NavButton-Selected.png" width="1024" height="52"/>
         <image name="PopOverNavBar.png" width="2048" height="64"/>
-        <image name="horizontalBars.png" width="50" height="36"/>
+        <image name="options22trans.png" width="24" height="16"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
