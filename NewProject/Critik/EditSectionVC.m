@@ -369,21 +369,21 @@
                 newStudent.interpersonalOrder = [NSNumber numberWithInt:-1];
                 newStudent.persuasiveOrder = [NSNumber numberWithInt:-1];
                 
-                // get speeches
-                fetchRequest = [[NSFetchRequest alloc] init];
-                entity = [NSEntityDescription entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
-                [fetchRequest setEntity:entity];
-                NSError *error;
-                NSArray *speechArr = [[NSArray alloc]initWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
-                
-                
-                for(int i = 0; i < [speechArr count]; i++)
-                {
-                    StudentSpeech* tempSS = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:managedObjectContext];
-                    tempSS.speech = [speechArr objectAtIndex:i];
-                    tempSS.student = newStudent;
-                    [newStudent addStudentSpeechObject:tempSS];
-                }
+//                // get speeches
+//                fetchRequest = [[NSFetchRequest alloc] init];
+//                entity = [NSEntityDescription entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
+//                [fetchRequest setEntity:entity];
+//                NSError *error;
+//                NSArray *speechArr = [[NSArray alloc]initWithArray:[managedObjectContext executeFetchRequest:fetchRequest error:&error]];
+//                
+//                
+//                for(int i = 0; i < [speechArr count]; i++)
+//                {
+//                    StudentSpeech* tempSS = [NSEntityDescription insertNewObjectForEntityForName:@"StudentSpeech" inManagedObjectContext:managedObjectContext];
+//                    tempSS.speech = [speechArr objectAtIndex:i];
+//                    tempSS.student = newStudent;
+//                    [newStudent addStudentSpeechObject:tempSS];
+//                }
                 
                 // Add Student to current section
                 [self.currSection addStudentsObject:newStudent];
