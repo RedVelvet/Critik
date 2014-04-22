@@ -35,7 +35,7 @@
     //Set the text of points earned, penalty points, and total points
     self.pointsEarned.text = [NSString stringWithFormat:@"%@",self.currentStudentSpeech.pointsEarned];
     self.penaltyPoints.text = [NSString stringWithFormat:@"%@",self.currentStudentSpeech.penaltyPoints];
-    self.totalPoints.text = [NSString stringWithFormat:@"%@",self.currentStudentSpeech.totalPoints];
+    self.totalPoints.text = [NSString stringWithFormat:@"%@ / %u",self.currentStudentSpeech.totalPoints,self.pointsPossible];
 }
 
 - (void)didReceiveMemoryWarning
@@ -268,8 +268,6 @@
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
     
-    NSLog(@"File uploaded successfully to path: %@", metadata.path);
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
     
@@ -277,25 +275,8 @@
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
     
-    NSLog(@"File upload failed with error - %@", error);
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
-}
-
-- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata {
-    NSLog(@"loadedMetadata");
-    if (metadata.isDirectory) {
-        NSLog(@"Folder '%@' contains:", metadata.path);
-        for (DBMetadata *file in metadata.contents) {
-            NSLog(@"	%@", file.filename);
-        }
-    }
-}
-
-- (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error {
-    
-    NSLog(@"Error loading metadata: %@", error);
 }
 
 @end

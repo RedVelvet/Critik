@@ -329,14 +329,22 @@
 //                                                                options:0
 //                                                                  range:NSMakeRange(0, [sNum length])];
             
-            NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+            NSScanner * scanner = [NSScanner scannerWithString:sNum];
+            BOOL isNumeric = [scanner scanInteger:NULL] && [scanner isAtEnd];
             
-            NSString *filtered = [[sNum componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-
-            NSNumber* numberToSave = [NSNumber numberWithInteger:[sNum integerValue]];
-            NSLog(@"====%hhd", [sNum isEqualToString:filtered]);
-            if (![sNum isEqualToString:filtered] && [numberToSave intValue] > 0)
-            {
+            if(isNumeric){
+                
+            }
+            
+//            NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ACCEPTABLE_CHARACTERS] invertedSet];
+//            
+//            NSString *filtered = [[sNum componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+//
+//            NSNumber* numberToSave = [NSNumber numberWithInteger:[sNum integerValue]];
+//            NSLog(@"====%hhd", [sNum isEqualToString:filtered]);
+//            if (![sNum isEqualToString:filtered] && [numberToSave intValue] > 0)
+//            {
+            if(isNumeric){
             
             // Check if there is already a student with the new id
             NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -417,7 +425,7 @@
         }
         else
         {
-            NSLog(@"%@ is incorrect in the sNum textfield",numberToSave);
+//            NSLog(@"%@ is incorrect in the sNum textfield",numberToSave);
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle: @"Error"
                                   message: @"Enter a positive number in the S# field"

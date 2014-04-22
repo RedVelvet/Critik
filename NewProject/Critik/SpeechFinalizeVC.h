@@ -18,6 +18,7 @@
 
 @property Student * currentStudent;
 @property StudentSpeech * currentStudentSpeech;
+@property int pointsPossible;
 @property (strong, nonatomic) DBRestClient *restClient;
 
 @property (weak, nonatomic) IBOutlet UILabel *pointsEarned;

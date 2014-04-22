@@ -62,7 +62,6 @@
     //set AppDelegate and NSManagedObjectContext
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
-    NSLog(@" numStudentSpeeches: %d",[self.currentStudent.studentSpeech count]);
 
     //sets currentSpeech
     self.currentSpeech = self.currentStudentSpeech.speech;
@@ -133,15 +132,14 @@
     [self.rightQuickGradeTable reloadData];
     [self.ModuleTable reloadData];
     
-    NSLog(@"Speech %@",self.currentSpeech.speechType);
-    
-    
 }
+
 -(void) viewWillDisappear:(BOOL)animated{
     NSError * error;
     if(![self.managedObjectContext save:&error])
     {
-        NSLog(@"Can't Save duration %@",[error localizedDescription]);
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: @"Presentation could not be saved."delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
     
     [self.QuickGrades removeAllObjects];
@@ -235,8 +233,6 @@
         segment.tintColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
         segment.tag = 1;
         
-        NSLog(@"saved score is %@",temp.score);
-        
         [segment setSelectedSegmentIndex:[temp.score integerValue]];
         
         objc_setAssociatedObject(segment, "obj",temp, OBJC_ASSOCIATION_ASSIGN);
@@ -255,8 +251,6 @@
         UISegmentedControl *segment = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"-",@"ok",@"+", nil]];
         segment.tintColor = [UIColor colorWithRed:15.0/255.0 green:117.0/255.0 blue:84.0/255.0 alpha:1.0];
         segment.tag = 1;
-        
-        NSLog(@"saved score is %@",temp.score);
         
         [segment setSelectedSegmentIndex:[temp.score integerValue]];
         
@@ -387,7 +381,6 @@
 {
     
     self.currentStudentSpeech.duration = [NSNumber numberWithInt:self.presentationTime];
-    NSLog(@"%u", self.presentationTime);
     StudentPenaltiesVC * penalties = [self.storyboard instantiateViewControllerWithIdentifier:@"Student Penalties"];
     penalties.currentStudent = self.currentStudent;
     penalties.currentStudentSpeech = self.currentStudentSpeech;
@@ -408,9 +401,9 @@
         NSError * error = nil;
         if(![self.managedObjectContext save:&error])
         {
-            NSLog(@"Can't Save Quick Grade %@",[error localizedDescription]);
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: @"Presentation could not be saved."delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         }
-        NSLog(@"Value for segment is %@",value);
     }
 }
 -(void)switchChanged:(id)sender
@@ -425,9 +418,9 @@
         NSError * error = nil;
         if(![self.managedObjectContext save:&error])
         {
-            NSLog(@"Can't Save Pre Defined Comment %@",[error localizedDescription]);
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: @"Presentation could not be saved."delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         }
-        NSLog(@"Value for comment is %@",value);
     }
 }
 #pragma mark - Timer stuff

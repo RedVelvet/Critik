@@ -8,13 +8,16 @@
 
 #import "StudentSelectionVC.h"
 
-@interface StudentSelectionVC ()
+@interface StudentSelectionVC () <DBRestClientDelegate>
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property NSString * orderIndexType;
+@property int currentPickerSectionIndex;
+
 @end
 
 @implementation StudentSelectionVC
+@synthesize restClient;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%@",self.currSpeech);
     //Set the title of the current view based on the speech selected
     self.navigationController.title = self.currSpeech;
     
@@ -95,6 +97,7 @@
     }
     
     //Update section picker and student table when view controller is loaded.
+    self.currentPickerSectionIndex = 0;
     [self.SectionPicker reloadAllComponents];
     [self.StudentTable reloadData];
 }
@@ -133,6 +136,7 @@
 //Updates data within student list based on what section is selected in the picker view
 -(void) pickerView:(UIPickerView *) pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    self.currentPickerSectionIndex = row;
     Section * temp = [self.sections objectAtIndex:row];
     NSSet * set = temp.students;
     self.students = [NSMutableArray arrayWithArray:[set allObjects]];
@@ -145,7 +149,7 @@
     
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table View
 
 //sets the number of sections in a TableView
 - (int)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -174,8 +178,6 @@
     
     return cell;
 }
-
-#pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -246,7 +248,6 @@
             if(needToRemoveSpeech){
                 [student removeStudentSpeechObject:studentSpeech];
             }
-            
         }
     }else{
         for(int i = 0; i < [allTemplateSpeeches count]; i ++){
@@ -309,9 +310,9 @@
     //Save to core data
     if(![self.managedObjectContext save:&error])
     {
-        NSLog(@"Error saving to core data: %@",error);
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: [NSString stringWithFormat:@"Error updating students' speeches.\n%@",error ] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
-    
 }
 
 -(void) updateStudentSpeeches:(NSArray*)allTemplateSpeeches forStudent: (Student*)student
@@ -382,7 +383,8 @@
     NSError * error;
     if(![self.managedObjectContext save:&error])
     {
-        NSLog(@"\nError saving to core data: %@",error);
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: [NSString stringWithFormat:@"Presentation could not be saved.\n%@",error ] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 }
 //Add Quick Grades that do not exist in current Module
@@ -403,7 +405,6 @@
                     needToRemove = false;
                     break;
                 }
-                
             }
             if(needToRemove){
                 [studentModule removeQuickGradeObject:currentStudentQuickGrade];
@@ -422,7 +423,6 @@
                     needToAdd = false;
                     break;
                 }
-                
             }
             if(needToAdd){
                 QuickGrade * newQuickGrade = [NSEntityDescription insertNewObjectForEntityForName:@"QuickGrade" inManagedObjectContext:self.managedObjectContext];
@@ -437,6 +437,7 @@
         }
     }
 }
+
 //Update Quick Grades that already exists in current Module
 -(void) updateQuickGrades: (NSArray *)allQuickGrades andUpdateIn: (Module *)studentModule{
     
@@ -520,7 +521,6 @@
         NSArray * descriptors = [NSArray arrayWithObject:valueDescriptor];
         self.students = [NSMutableArray arrayWithArray:[self.students sortedArrayUsingDescriptors:descriptors]];
     }
-    NSLog(@"Order Changed");
     
     for(int i = 0; i < [self.students count]; i ++){
         Student * temp = [self.students objectAtIndex:i];
@@ -529,10 +529,55 @@
     
     NSError * error;
     if(![self.managedObjectContext save:&error]){
-        NSLog(@"Error saving to core data: %@",error);
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: [NSString stringWithFormat:@"Presentation could not be saved.\n%@",error ] delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
     
     [self.StudentTable reloadData];
+}
+
+# pragma mark Export Order
+-(void) exportStudentOrder{
+    
+    //Variables to store origin
+    int originX = 20;
+    int originY = 15;
+    int contentSize = 0;
+    int pageSize = 792;
+    Section * currentSection = [self.sections objectAtIndex:self.currentPickerSectionIndex];
+    //file name
+    NSString * fileName = [NSString stringWithFormat:@"Student Order %@-%@",currentSection.sectionName,self.currSpeech ];
+    //Get document directory path and create new file with given filename
+//    NSString *path = [[self applicationDocumentsDirectory].path stringByAppendingPathComponent:fileName];
+    //create pdf context
+//    UIGraphicsBeginPDFContextToFile(path, CGRectZero, nil);
+    //set pdf font
+    UIFont * font = [UIFont fontWithName:@"Times" size:12];
+    
+    // Make a copy of the default paragraph style
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    // Set line break mode
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    // Set text alignment
+    paragraphStyle.alignment = NSTextAlignmentRight;
+    //Set attributes based type of data
+    NSDictionary * attributes = [NSDictionary dictionaryWithObjectsAndKeys: font, NSFontAttributeName, [NSNumber numberWithFloat:1.0], NSBaselineOffsetAttributeName, nil];
+    
+  
+    
+    //Begin new page
+    UIGraphicsBeginPDFPage();
+    
+    for(int i = 0; i < [self.students count]; i ++){
+        Student * currentStudent = [self.students objectAtIndex:i];
+        //Draw Student Name at top of document
+        [ [NSString stringWithFormat:@"%@ %@",currentStudent.firstName,currentStudent.lastName] drawAtPoint:CGPointMake(originX, originY) withAttributes:attributes];
+        contentSize += 15;
+        //Go to a new line
+        originY += 15;
+    }
+
+    
 }
 
 # pragma mark Unwind Segues
@@ -557,4 +602,26 @@
     
 }
 
+#pragma mark Dropbox
+- (DBRestClient *)restClient {
+    if (!restClient) {
+        restClient =
+        [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        restClient.delegate = self;
+    }
+    return restClient;
+}
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+}
 @end

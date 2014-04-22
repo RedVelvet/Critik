@@ -44,11 +44,8 @@
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Speech" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
-
-    
 
     if(sender.tag == 0)
     {
@@ -61,21 +58,12 @@
         if (count != 0) {
             studentSelection.currSpeech = @"Informative";
             [self.navigationController pushViewController:studentSelection animated:YES];
-        }
-        else
-        {
-            NSString *alertMessage = @"Please add an Informative speech";
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: @"Error"
-                                  message: alertMessage
-                                  delegate: nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Please add an Informative Speech." delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
-        
-        
     }
+    
     if(sender.tag == 1){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Persuasive"];
         [fetchRequest setPredicate:predicate];
@@ -86,19 +74,12 @@
         if (count != 0) {
             studentSelection.currSpeech = @"Persuasive";
             [self.navigationController pushViewController:studentSelection animated:YES];
-        }
-        else
-        {
-            NSString *alertMessage = @"Please add a Persuasive speech";
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: @"Error"
-                                  message: alertMessage
-                                  delegate: nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Please add a Persuasive Speech." delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
     }
+    
     if(sender.tag == 2){
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Persuasive"];
         [fetchRequest setPredicate:predicate];
@@ -109,20 +90,10 @@
         if (count != 0) {
             studentSelection.currSpeech = @"Interpersonal";
             [self.navigationController pushViewController:studentSelection animated:YES];
-        }
-        else
-        {
-            NSString *alertMessage = @"Please add an Interpersonal speech";
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: @"Error"
-                                  message: alertMessage
-                                  delegate: nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Please add an Interpersonal Speech." delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
     }
-    
-    
 }
 @end
