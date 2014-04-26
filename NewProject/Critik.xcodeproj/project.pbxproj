@@ -16,6 +16,7 @@
 		1F57CD8718C126C400DE2B50 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8618C126C400DE2B50 /* Section.m */; };
 		1F6A5B2E18C1C2A0006D2C9F /* AddToModuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2D18C1C2A0006D2C9F /* AddToModuleVC.m */; };
 		1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A516118B46616009A1253 /* AddSectionVC.m */; };
+		1FB969B5190C419B00E8BB3A /* MenuPopoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB969B4190C419B00E8BB3A /* MenuPopoverVC.m */; };
 		6F12E3421892FEE40030AE4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3411892FEE40030AE4C /* Foundation.framework */; };
 		6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3431892FEE40030AE4C /* CoreGraphics.framework */; };
 		6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3451892FEE40030AE4C /* UIKit.framework */; };
@@ -119,6 +120,8 @@
 		1F6A5B2D18C1C2A0006D2C9F /* AddToModuleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddToModuleVC.m; sourceTree = "<group>"; };
 		1F9A516018B46616009A1253 /* AddSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSectionVC.h; sourceTree = "<group>"; };
 		1F9A516118B46616009A1253 /* AddSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSectionVC.m; sourceTree = "<group>"; };
+		1FB969B3190C419B00E8BB3A /* MenuPopoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPopoverVC.h; sourceTree = "<group>"; };
+		1FB969B4190C419B00E8BB3A /* MenuPopoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPopoverVC.m; sourceTree = "<group>"; };
 		6F12E33E1892FEE40030AE4C /* Critik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Critik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F12E3411892FEE40030AE4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F12E3431892FEE40030AE4C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -483,6 +486,8 @@
 				1F6A5B2118C15B64006D2C9F /* EditForms_ChooseSpeechVC.m */,
 				1F6A5B2C18C1C2A0006D2C9F /* AddToModuleVC.h */,
 				1F6A5B2D18C1C2A0006D2C9F /* AddToModuleVC.m */,
+				1FB969B3190C419B00E8BB3A /* MenuPopoverVC.h */,
+				1FB969B4190C419B00E8BB3A /* MenuPopoverVC.m */,
 			);
 			name = "Edit View Controllers";
 			sourceTree = "<group>";
@@ -638,6 +643,7 @@
 				1F4CF0D018C6D3EE004DDCDA /* EditForms_ChooseSpeechVC.m in Sources */,
 				6F4281161905BC74001B86B0 /* AdditionalCommentsPopoverVC.m in Sources */,
 				1F6A5B2E18C1C2A0006D2C9F /* AddToModuleVC.m in Sources */,
+				1FB969B5190C419B00E8BB3A /* MenuPopoverVC.m in Sources */,
 				1F57CD8718C126C400DE2B50 /* Section.m in Sources */,
 				6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */,
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
