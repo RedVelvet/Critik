@@ -329,6 +329,7 @@
             Speech * temp = [allTemplateSpeeches objectAtIndex:j];
             if([temp.speechType isEqualToString:speech.speechType]){
                 templateSpeech = temp;
+                break;
             }
         }
         
@@ -537,7 +538,12 @@
 }
 
 # pragma mark Export Order
-/*-(void) exportStudentOrder{
+//Retireves the path of Documents Directory
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+-(void) exportStudentOrder{
     
     //Variables to store origin
     int originX = 20;
@@ -600,7 +606,7 @@
     
     
 }
-*/
+
 # pragma mark Unwind Segues
 -(IBAction)UnwindFromFinalizeToStudentSelection:(UIStoryboardSegue *)unwindSegue
 {

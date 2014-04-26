@@ -47,6 +47,7 @@
 {
     [super viewDidLoad];
     
+    
     self.presentationTime = [self.currentStudentSpeech.duration intValue];
     [self.timerButton setImage:[UIImage imageNamed:@"play25trans.png"] forState:UIControlStateNormal];
     [self.timerResetButton setImage:[UIImage imageNamed:@"reset25trans.png"] forState:UIControlStateNormal];
@@ -66,10 +67,7 @@
     //sets currentSpeech
     self.currentSpeech = self.currentStudentSpeech.speech;
     //Set title based on speech and student
-//    self.navigationItem.title = @"Hello";
-//    self.navigationController.title = [NSString stringWithFormat:@"Evaluate: %@ - %@ %@",self.currentSpeech.speechType,self.currentStudent.firstName,self.currentStudent.lastName];
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@",self.currentStudent.firstName,self.currentStudent.lastName];
-    //[self.ModuleTable selectRowAtIndexPath:0 animated:YES  scrollPosition:UITableViewScrollPositionBottom];
     
     //sets speech modules
     self.SpeechModules = [NSMutableArray arrayWithArray:[self.currentSpeech.modules allObjects]];
@@ -126,6 +124,7 @@
             [self.PreDefComments addObject:temp];
         }
     }
+    
     //reload tablviews after filling table's content arrays
     [self.PreDefinedCommentsTable reloadData];
     [self.leftQuickGradeTable reloadData];
@@ -242,6 +241,10 @@
         cell.accessoryView = segment;
         cell.textLabel.textColor = [UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0f];
+        cell.textLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        cell.textLabel.numberOfLines = 0;
+        
     }
     
     //Right QuickGrades Table
@@ -261,6 +264,9 @@
         cell.accessoryView = segment;
         cell.textLabel.textColor = [UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0f];
+        cell.textLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        cell.textLabel.numberOfLines = 0;
     }
     
     //Predefined comments table
@@ -280,11 +286,15 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@",temp.comment];
         cell.textLabel.textColor = [UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15.0f];
+        cell.textLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        cell.textLabel.numberOfLines = 0;
+        
     }
     
     return cell;
 }
-//
+
 //Sets the QuickGrades tables to scroll together
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 {
@@ -319,6 +329,8 @@
         [alert show];
         
     }else{
+        //save current points
+        self.currentModule.points = [NSNumber numberWithInt: [self.moduleGrade.text intValue]];
     //Change quickGrades and PreDefinedComments arrays based on which module is selected.
     Module * module = [self.SpeechModules objectAtIndex:indexPath.row];
         if(tableView.tag == 0)
@@ -376,7 +388,7 @@
     }
 }
 
-
+//Continue to view were penalties for presentation are applied and additional comments
 - (IBAction)continueToFinalize:(id)sender
 {
     
@@ -387,15 +399,19 @@
     [self.navigationController pushViewController:penalties animated:YES];
 }
 
-
-
+//If segment changes by user input. Then save the change to core data.
 -(void)segmentChanged:(id)sender
 {
+    //new segment corresponding to tableviewcell.
     UISegmentedControl * segment = sender;
+    //if cell is a quick grade
     if(segment.tag == 1 || segment.tag == 2)
     {
+        //retrieve nsobject related to segmented control
         NSManagedObject * temp = objc_getAssociatedObject(sender, "obj");
+        //store the value from the user's input
         NSNumber * value = [NSNumber numberWithInteger:[segment selectedSegmentIndex]];
+        //save to core data
         [temp setValue:value forKey:@"score"];
         
         NSError * error = nil;
@@ -406,6 +422,7 @@
         }
     }
 }
+//if user changes position of switch for predefined comments.
 -(void)switchChanged:(id)sender
 {
     UISwitch * tempSwitch = sender;
@@ -424,6 +441,7 @@
     }
 }
 #pragma mark - Timer stuff
+//Start and stop timer, displaying related images
 - (IBAction)startStopTimer:(id)sender {
     
     // If start is false then we need to start update the Label with the new time.
@@ -449,12 +467,12 @@
         
     }
 }
-
+//reset timer to zero
 - (IBAction)resetTimer:(id)sender{
     self.presentationTime = 0;
     self.timerLabel.text = @"0:00";
 }
-
+//iterate timer function
 - (void)update
 {
     // If start is false then we shouldn't be updateing the time se we return out of the method.

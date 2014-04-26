@@ -7,6 +7,9 @@
 //
 
 #import "StudentPenaltiesVC.h"
+
+#define kOFFSET_FOR_KEYBOARD 80.0
+
 @interface StudentPenaltiesVC ()
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @end
@@ -31,6 +34,17 @@
     // We update our Label with the current time.
     self.duration.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
     
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
     
 }
 - (void)viewDidLoad
@@ -39,6 +53,8 @@
     
     //set title of page
     self.navigationItem.title = @"Penalties";
+    
+    self.penaltyPoints.text = [NSString stringWithFormat:@"%@",self.currentStudentSpeech.penaltyPoints];
     
     self.additionalComments.text = self.currentStudentSpeech.comments;
     
@@ -61,7 +77,13 @@
 }
 - (IBAction)Finalize:(id)sender
 {
-    
+    Speech * currentSpeech = self.currentStudentSpeech.speech;
+    NSArray * modules = [currentSpeech.modules allObjects];
+    int pointsPossible = 0;
+    for(int i = 0; i < [modules count]; i ++){
+        Module * currentModule = [modules objectAtIndex:i];
+        pointsPossible += [currentModule.pointsPossible intValue];
+    }
     
     //This is the string that is going to be compared to the input string
     NSString *testString = [NSString string];
@@ -72,22 +94,15 @@
     [scanner scanCharactersFromSet:skips intoString:&testString];
     
     //If the string containing all the numbers has the same length as the input...
-    if([self.penaltyPoints.text length] != [testString length] || ([self.currentStudentSpeech.pointsEarned intValue] - [self.penaltyPoints.text intValue]) < [self.currentStudentSpeech.totalPoints intValue] ) {
+    if([self.penaltyPoints.text length] != [testString length] || (pointsPossible - ([self.currentStudentSpeech.pointsEarned intValue] - [self.penaltyPoints.text intValue])  < 0) ) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Penalties Error" message: @"Penalties must be a number greater than or equal to 0 and can not bring total points to a negative." delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         
         [alert show];
         
     }else{
-        
-        //Generate points earned, and total points based on penalty points
-        NSArray * allModules = [self.currentStudentSpeech.speech.modules allObjects];
-        int pointsPossible = 0;
-        for(int i = 0; i < [allModules count]; i++){
-            Module * currentModule = [allModules objectAtIndex:i];
-            
-            pointsPossible += [currentModule.pointsPossible intValue];
-        }
+        self.currentStudentSpeech.penaltyPoints = [NSNumber numberWithInt: [self.penaltyPoints.text intValue]];
+        self.currentStudentSpeech.totalPoints = [NSNumber numberWithInt:([self.currentStudentSpeech.pointsEarned intValue]-[self.currentStudentSpeech.penaltyPoints intValue]) ];
 
         
         //Create new Finalize view controller and push to view with currentStudent and currentStudentSpeech
@@ -153,6 +168,75 @@
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: @"Presentation could not be saved."delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
+    
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
+-(void)keyboardWillShow {
+    // Animate the current view out of the way
+    if (self.view.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+    else if (self.view.frame.origin.y < 0)
+    {
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)keyboardWillHide {
+    if (self.view.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+    else if (self.view.frame.origin.y < 0)
+    {
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    if ([sender isEqual:self.additionalComments])
+    {
+        //move the main view, so that the keyboard does not hide it.
+        if  (self.view.frame.origin.y >= 0)
+        {
+            [self setViewMovedUp:YES];
+        }
+    }
+}
+
+//method to move the view up/down whenever the keyboard is shown/dismissed
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    CGRect rect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+        rect.size.height += kOFFSET_FOR_KEYBOARD;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += kOFFSET_FOR_KEYBOARD;
+        rect.size.height -= kOFFSET_FOR_KEYBOARD;
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
 }
 
 @end

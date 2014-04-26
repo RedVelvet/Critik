@@ -58,10 +58,10 @@
     {
         if([students count] == 0)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Hold your horses there pedro!" message: @"You must add a section of students before evaluating." delegate:self  cancelButtonTitle:@"Sounds Good!" otherButtonTitles:nil,nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Wait!" message: @"Don't get too excited! Please add a section and student first." delegate:self  cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
             [alert show];
         }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Wait wait wait!" message: @"You must also add something to speeches to evaluate" delegate:self  cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Almost There!" message: @"You must also add something to speeches in order to evaluate" delegate:self  cancelButtonTitle:@"Okay" otherButtonTitles:nil,nil];
             [alert show];
         }
     }else{

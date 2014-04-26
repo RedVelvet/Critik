@@ -16,6 +16,9 @@
 		1F57CD8718C126C400DE2B50 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F57CD8618C126C400DE2B50 /* Section.m */; };
 		1F6A5B2E18C1C2A0006D2C9F /* AddToModuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2D18C1C2A0006D2C9F /* AddToModuleVC.m */; };
 		1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A516118B46616009A1253 /* AddSectionVC.m */; };
+		6F016BFB19086A6A007524EA /* Critik.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6F016BF819086A6A007524EA /* Critik.sqlite */; };
+		6F016BFC19086A6A007524EA /* Critik.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 6F016BF919086A6A007524EA /* Critik.sqlite-shm */; };
+		6F016BFD19086A6A007524EA /* Critik.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 6F016BFA19086A6A007524EA /* Critik.sqlite-wal */; };
 		6F12E3421892FEE40030AE4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3411892FEE40030AE4C /* Foundation.framework */; };
 		6F12E3441892FEE40030AE4C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3431892FEE40030AE4C /* CoreGraphics.framework */; };
 		6F12E3461892FEE40030AE4C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F12E3451892FEE40030AE4C /* UIKit.framework */; };
@@ -119,6 +122,9 @@
 		1F6A5B2D18C1C2A0006D2C9F /* AddToModuleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddToModuleVC.m; sourceTree = "<group>"; };
 		1F9A516018B46616009A1253 /* AddSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSectionVC.h; sourceTree = "<group>"; };
 		1F9A516118B46616009A1253 /* AddSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSectionVC.m; sourceTree = "<group>"; };
+		6F016BF819086A6A007524EA /* Critik.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Critik.sqlite; sourceTree = "<group>"; };
+		6F016BF919086A6A007524EA /* Critik.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Critik.sqlite-shm"; sourceTree = "<group>"; };
+		6F016BFA19086A6A007524EA /* Critik.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Critik.sqlite-wal"; sourceTree = "<group>"; };
 		6F12E33E1892FEE40030AE4C /* Critik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Critik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F12E3411892FEE40030AE4C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F12E3431892FEE40030AE4C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -243,6 +249,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F016BF719086A4D007524EA /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				6F016BF819086A6A007524EA /* Critik.sqlite */,
+				6F016BF919086A6A007524EA /* Critik.sqlite-shm */,
+				6F016BFA19086A6A007524EA /* Critik.sqlite-wal */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		6F12E3351892FEE40030AE4C = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +306,7 @@
 				6FAD861018B83C00001C8F54 /* Evaluate View Controllers */,
 				6F12E3611892FEE40030AE4C /* Images.xcassets */,
 				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
+				6F016BF719086A4D007524EA /* Core Data */,
 				6F4EE13918B2968500FABCF2 /* Core Data Classes */,
 				6F4EE02F18ABEF3300FABCF2 /* Images */,
 				6F12E34A1892FEE40030AE4C /* Supporting Files */,
@@ -569,6 +586,7 @@
 				6F4EE10B18B1721B00FABCF2 /* Icon-Small-50@2x.png in Resources */,
 				6F4EE10718B1721B00FABCF2 /* Icon-72@2x.png in Resources */,
 				6F12E3621892FEE40030AE4C /* Images.xcassets in Resources */,
+				6F016BFB19086A6A007524EA /* Critik.sqlite in Resources */,
 				6F23A5081906038E00A57C74 /* pause50bg.png in Resources */,
 				6F4EE10818B1721B00FABCF2 /* Icon-76.png in Resources */,
 				6F23A5071906038E00A57C74 /* pause25trans.png in Resources */,
@@ -584,6 +602,7 @@
 				6F23A5111906038E00A57C74 /* reset50bg.png in Resources */,
 				6F4EE11018B1721B00FABCF2 /* iTunesArtwork.png in Resources */,
 				6F23A5051906038E00A57C74 /* options44trans.png in Resources */,
+				6F016BFC19086A6A007524EA /* Critik.sqlite-shm in Resources */,
 				6F4EE10118B1721B00FABCF2 /* icon.png in Resources */,
 				1F42DC56190231AD00EB7DB8 /* horizontalBars.png in Resources */,
 				6F23A50F1906038E00A57C74 /* reset25bg.png in Resources */,
@@ -610,6 +629,7 @@
 				6F4EE10918B1721B00FABCF2 /* Icon-76@2x.png in Resources */,
 				6F332BA918F4B10800547116 /* NavBar.png in Resources */,
 				6F23A5031906038E00A57C74 /* options22trans.png in Resources */,
+				6F016BFD19086A6A007524EA /* Critik.sqlite-wal in Resources */,
 				6F26385118EB4F4200E8CB54 /* okQuickGrade.png in Resources */,
 				6F4EE10518B1721B00FABCF2 /* Icon-60@2x.png in Resources */,
 				6F23A50B1906038E00A57C74 /* play25trans.png in Resources */,

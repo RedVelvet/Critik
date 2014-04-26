@@ -27,7 +27,6 @@
 
 -(IBAction)generatePDF:(id)sender;
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata;
-
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error;
 
 @end

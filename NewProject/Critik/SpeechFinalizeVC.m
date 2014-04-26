@@ -32,6 +32,14 @@
 {
     [super viewDidLoad];
     
+//    Speech * currentSpeech = self.currentStudentSpeech.speech;
+//    NSArray * modules = [currentSpeech.modules allObjects];
+//    int pointsPossible = 0;
+//    for(int i = 0; i < [modules count]; i ++){
+//        Module * currentModule = [modules objectAtIndex:i];
+//        pointsPossible += [currentModule.pointsPossible intValue];
+//    }
+    
     //Set the text of points earned, penalty points, and total points
     self.pointsEarned.text = [NSString stringWithFormat:@"%@",self.currentStudentSpeech.pointsEarned];
     self.penaltyPoints.text = [NSString stringWithFormat:@"%@",self.currentStudentSpeech.penaltyPoints];

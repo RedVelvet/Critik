@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="iaC-3o-S66">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="iaC-3o-S66">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -569,11 +569,11 @@
                         <viewControllerLayoutGuide type="bottom" id="u3h-ce-XND"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xdp-U5-laV">
-                        <rect key="frame" x="0.0" y="0.0" width="383" height="220"/>
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="166"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAw-5U-RmD">
-                                <rect key="frame" x="21" y="24" width="342" height="52"/>
+                                <rect key="frame" x="21" y="27" width="342" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Alphabetize" backgroundImage="PopOverNavBar.png">
@@ -584,7 +584,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ErC-9e-Xbg">
-                                <rect key="frame" x="21" y="84" width="342" height="52"/>
+                                <rect key="frame" x="21" y="87" width="342" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Randomize" backgroundImage="PopOverNavBar.png">
@@ -595,7 +595,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bn3-iQ-T0f">
-                                <rect key="frame" x="21" y="144" width="342" height="52"/>
+                                <rect key="frame" x="21" y="174" width="342" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Export Order" backgroundImage="PopOverNavBar.png">
@@ -607,7 +607,7 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="383" height="220"/>
+                    <size key="freeformSize" width="383" height="166"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAg-7V-zwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9PZ-eW-DxD" userLabel="Exit" sceneMemberID="exit"/>
@@ -741,7 +741,7 @@
                         <barButtonItem key="backBarButtonItem" title="Evaluation" id="GUg-RT-CTt">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Comments" id="Axu-nm-jme">
+                        <barButtonItem key="rightBarButtonItem" id="Axu-nm-jme">
                             <connections>
                                 <segue destination="vgW-Hp-qFU" kind="popover" popoverAnchorBarButtonItem="Axu-nm-jme" id="xGB-R6-i7b">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>

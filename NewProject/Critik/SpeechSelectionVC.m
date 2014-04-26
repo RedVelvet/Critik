@@ -81,7 +81,7 @@
     }
     
     if(sender.tag == 2){
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Persuasive"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(speechType like %@)", @"Interpersonal"];
         [fetchRequest setPredicate:predicate];
         
         NSError *error;
