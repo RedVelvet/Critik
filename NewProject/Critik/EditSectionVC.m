@@ -563,6 +563,7 @@
         NSString *firstName = [studentArray objectAtIndex:3];
         NSString *lastName = [studentArray objectAtIndex:2];
         NSString *sNum = [studentArray objectAtIndex:1];
+        sNum = [sNum substringFromIndex:1]; // remove letter S from sNumber
         
         NSLog(@"S#: %@ \nLast name: %@ \nFirst name: %@", [studentArray objectAtIndex:1], [studentArray objectAtIndex:2], [studentArray objectAtIndex:3]);
         
