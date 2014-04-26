@@ -29,6 +29,8 @@
 //    MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
 //    controller.managedObjectContext = self.managedObjectContext;
    
+    //checks to see if database exists for preloaded data.
+    [self initialDatabaseUpload];
     
     // Initialize Dropbox session
     DBSession* dbSession = [[DBSession alloc] initWithAppKey:APP_KEY appSecret:APP_SECRET root:kDBRootAppFolder];
@@ -167,6 +169,33 @@
     }    
     
     return _persistentStoreCoordinator;
+}
+
+//Checks to see if an sqlite database already exists for initial app startup
+- (void) initialDatabaseUpload {
+    
+    //filemanager to move files if
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    
+    BOOL success = [fileManager fileExistsAtPath:[self getDBPath]];
+    
+    if(!success) {
+        
+        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Critik.sqlite"];
+        success = [fileManager copyItemAtPath:defaultDBPath toPath:[self getDBPath] error:&error];
+        
+        if (!success)
+            NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
+    }
+}
+//Search for database file path
+- (NSString *) getDBPath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
+    NSString *documentsDir = [paths objectAtIndex:0];
+    //NSLog(@"dbpath : %@",documentsDir);
+    return [documentsDir stringByAppendingPathComponent:@"Critik.sqlite"];
 }
 
 #pragma mark - Application's Documents directory

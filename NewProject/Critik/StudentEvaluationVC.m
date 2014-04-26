@@ -49,8 +49,8 @@
     
     
     self.presentationTime = [self.currentStudentSpeech.duration intValue];
-    [self.timerButton setImage:[UIImage imageNamed:@"play25trans.png"] forState:UIControlStateNormal];
-    [self.timerResetButton setImage:[UIImage imageNamed:@"reset25trans.png"] forState:UIControlStateNormal];
+    [self.timerButton setImage:[UIImage imageNamed:@"play22trans.png"] forState:UIControlStateNormal];
+    [self.timerResetButton setImage:[UIImage imageNamed:@"reset22trans.png"] forState:UIControlStateNormal];
     
     int minutes = (self.presentationTime / 60.0);
     // We calculate the seconds.
@@ -449,7 +449,7 @@
       
         
         // Changes the title of the button to Stop!
-        [sender setImage:[UIImage imageNamed:@"pause25trans.png"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"pause22trans.png"] forState:UIControlStateNormal];
         // Calls the update method.
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(update) userInfo:nil repeats:YES];
         startTimer = true;
@@ -462,7 +462,7 @@
         startTimer = false;
         
         // Changes the title of the button back to Start.
-        [sender setImage:[UIImage imageNamed:@"play25trans.png"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"play22trans.png"] forState:UIControlStateNormal];
         
         
     }

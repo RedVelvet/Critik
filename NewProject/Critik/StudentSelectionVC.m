@@ -552,7 +552,7 @@
     int pageSize = 792;
     Section * currentSection = [self.sections objectAtIndex:self.currentPickerSectionIndex];
     //file name
-    NSString * fileName = [NSString stringWithFormat:@"Student Order %@-%@",currentSection.sectionName,self.currSpeech ];
+    NSString * fileName = [NSString stringWithFormat:@"%@-%@ Presentation Order",currentSection.sectionName,self.currSpeech ];
     //Get document directory path and create new file with given filename
     NSString *path = [[self applicationDocumentsDirectory].path stringByAppendingPathComponent:fileName];
     //create pdf context
@@ -569,26 +569,27 @@
     //Set attributes based type of data
     NSDictionary * attributes = [NSDictionary dictionaryWithObjectsAndKeys: font, NSFontAttributeName, [NSNumber numberWithFloat:1.0], NSBaselineOffsetAttributeName, nil];
     
-  
-    
     //Begin new page
     UIGraphicsBeginPDFPage();
     
+    //Title of student list with section and presentation
+    [[NSString stringWithFormat:@"%@ - %@ Presentation Order",self.currSpeech,currentSection.sectionName] drawAtPoint:CGPointMake(originX, originY) withAttributes:attributes];
+    originY +=20;
+    originX +=15;
+    
     for(int i = 0; i < [self.students count]; i ++){
+        //if student list is more than 1 page, create new page
+        if(contentSize >= pageSize){
+            UIGraphicsBeginPDFPage();
+            originY+= 15;
+            contentSize = 15;
+        }
         Student * currentStudent = [self.students objectAtIndex:i];
         //Draw Student Name at top of document
-        [ [NSString stringWithFormat:@"%@ %@",currentStudent.firstName,currentStudent.lastName] drawAtPoint:CGPointMake(originX, originY) withAttributes:attributes];
+        [ [NSString stringWithFormat:@"%u.  %@ %@",i+1,currentStudent.firstName,currentStudent.lastName] drawAtPoint:CGPointMake(originX, originY) withAttributes:attributes];
         contentSize += 15;
         //Go to a new line
         originY += 15;
-    }
-    NSError *error;
-    if(![self.managedObjectContext save:&error]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Student Order could not upload" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Student Order uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
     }
     
     UIGraphicsEndPDFContext();
@@ -598,9 +599,9 @@
         
     }else if( [[DBSession sharedSession] isLinked]){
         
-        NSString *destPath = [NSString stringWithFormat:@"Student Order %@-%@",currentSection.sectionName,self.currSpeech ];
+        NSString *destPath = [NSString stringWithFormat:@"/Student Reports/%@/%@",currentSection.sectionName,self.currSpeech];
         [self.restClient loadMetadata:destPath];
-        [self.restClient deletePath:destPath];
+        [self.restClient deletePath:[NSString stringWithFormat:@"%@/%@",destPath,fileName ]];
         [self.restClient uploadFile: fileName toPath: destPath withParentRev:nil fromPath:path];
     }
     
@@ -617,9 +618,15 @@
 {
     [self setStudentOrder:@"Randomize"];
 }
+
 - (IBAction)UnwindFromOrderPopoverToStudentSelectionAndAlphabetize:(UIStoryboardSegue *)unwindSegue
 {
     [self setStudentOrder:@"Alphabetize"];
+}
+
+- (IBAction)UnwindFromOrderPopoverToStudentSelectionAndExportOrder:(UIStoryboardSegue *)unwindSegue
+{
+    [self exportStudentOrder];
 }
 
 #pragma mark Alert View
@@ -641,14 +648,14 @@
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Studen Order file has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
     
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"File has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Student Order could not be exported" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
 }
 @end

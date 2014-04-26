@@ -569,7 +569,7 @@
                         <viewControllerLayoutGuide type="bottom" id="u3h-ce-XND"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xdp-U5-laV">
-                        <rect key="frame" x="0.0" y="0.0" width="383" height="166"/>
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="225"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAw-5U-RmD">
@@ -595,19 +595,22 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bn3-iQ-T0f">
-                                <rect key="frame" x="21" y="174" width="342" height="52"/>
+                                <rect key="frame" x="21" y="147" width="342" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Export Order" backgroundImage="PopOverNavBar.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="9PZ-eW-DxD" kind="unwind" unwindAction="UnwindFromOrderPopoverToStudentSelectionAndExportOrder:" id="jjv-e8-QiG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="383" height="166"/>
+                    <size key="freeformSize" width="383" height="225"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAg-7V-zwJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9PZ-eW-DxD" userLabel="Exit" sceneMemberID="exit"/>
@@ -724,10 +727,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aj8-tw-VlB">
-                                <rect key="frame" x="196" y="650" width="54" height="54"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aj8-tw-VlB">
+                                <rect key="frame" x="197" y="650" width="53" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="reset22trans.png"/>
                                 <connections>
                                     <action selector="resetTimer:" destination="fhM-DW-lqh" eventType="touchUpInside" id="UeM-II-XoJ"/>
                                 </connections>
@@ -854,12 +858,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-cZ-l7R">
-                                <rect key="frame" x="439" y="161" width="51" height="31"/>
+                                <rect key="frame" x="439" y="178" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Late Presentation" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIo-Xc-K4m">
-                                <rect key="frame" x="522" y="221" width="146" height="24"/>
+                                <rect key="frame" x="526" y="221" width="146" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
@@ -887,7 +891,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mse-NO-aRP">
-                                <rect key="frame" x="0.0" y="507" width="1024" height="52"/>
+                                <rect key="frame" x="0.0" y="489" width="1024" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.52389370440000005" blue="0.46313102709999998" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1331,6 +1335,7 @@
         <image name="NavButton-Selected.png" width="1024" height="52"/>
         <image name="PopOverNavBar.png" width="2048" height="64"/>
         <image name="options22trans.png" width="24" height="16"/>
+        <image name="reset22trans.png" width="20" height="24"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
