@@ -468,7 +468,7 @@
         [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
 //        cell.textLabel.text = tempQuickGrade.quickGradeDescription;
         
-        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 185, 30)];
+        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 275, 30)];
         tf.adjustsFontSizeToFitWidth = YES;
         tf.textColor = [UIColor blackColor];
         tf.text = tempQuickGrade.quickGradeDescription;
@@ -501,7 +501,7 @@
         objc_setAssociatedObject(switchView, "obj", tempQuickGrade, OBJC_ASSOCIATION_ASSIGN);
         [switchView addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
 //        cell.textLabel.text = tempQuickGrade.quickGradeDescription;
-        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 185, 30)];
+        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 275, 30)];
         tf.adjustsFontSizeToFitWidth = YES;
         tf.textColor = [UIColor blackColor];
         tf.tintColor = [UIColor blueColor];

@@ -523,6 +523,7 @@
                                 <rect key="frame" x="704" y="0.0" width="320" height="704"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" red="0.0" green="0.43921568630000002" blue="0.32549019610000002" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="6JC-vj-lrT" id="8BI-dz-kkA"/>
                                     <outlet property="delegate" destination="6JC-vj-lrT" id="4UN-wO-Xc4"/>
@@ -746,9 +747,9 @@
                         <barButtonItem key="backBarButtonItem" title="Evaluation" id="GUg-RT-CTt">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" id="Axu-nm-jme">
+                        <barButtonItem key="rightBarButtonItem" image="custom_comments22trans.png" id="Axu-nm-jme">
                             <connections>
-                                <segue destination="vgW-Hp-qFU" kind="popover" popoverAnchorBarButtonItem="Axu-nm-jme" id="xGB-R6-i7b">
+                                <segue destination="vgW-Hp-qFU" kind="popover" identifier="additionalComments" popoverAnchorBarButtonItem="Axu-nm-jme" id="xGB-R6-i7b">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -806,6 +807,9 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="650" height="250"/>
+                    <connections>
+                        <outlet property="comments" destination="9m9-VY-tOn" id="EIV-6x-Y0d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twg-8c-0me" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1338,6 +1342,7 @@
         <image name="Home@2x-Landscape.png" width="2048" height="1536"/>
         <image name="NavButton-Selected.png" width="1024" height="52"/>
         <image name="PopOverNavBar.png" width="2048" height="64"/>
+        <image name="custom_comments22trans.png" width="26" height="24"/>
         <image name="options22trans.png" width="24" height="16"/>
         <image name="reset22trans.png" width="20" height="24"/>
     </resources>

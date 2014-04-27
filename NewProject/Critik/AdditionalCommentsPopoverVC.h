@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DismissPopoverDelegate
+- (void) dismissPopover:(NSString *)additionalComments;
+@end
+
 @interface AdditionalCommentsPopoverVC : UIViewController
+
+@property (weak, nonatomic) IBOutlet UITextView *comments;
+@property (nonatomic, assign) id<DismissPopoverDelegate> delegate;
 
 @end

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */; };
 		1F2176B218D633F30065EC79 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5479F918BD2F1400353383 /* DropboxSDK.framework */; };
-		1F42DC56190231AD00EB7DB8 /* horizontalBars.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F42DC55190231AD00EB7DB8 /* horizontalBars.png */; };
 		1F44E1E218BFFC7D0042FCB9 /* EditSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F44E1E118BFFC7D0042FCB9 /* EditSpeechVC.m */; };
 		1F4CF0D018C6D3EE004DDCDA /* EditForms_ChooseSpeechVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6A5B2118C15B64006D2C9F /* EditForms_ChooseSpeechVC.m */; };
 		1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F1B8118B5C1820015026A /* AddStudentVC.m */; };
@@ -38,9 +37,7 @@
 		6F26385118EB4F4200E8CB54 /* okQuickGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F26384E18EB4F4200E8CB54 /* okQuickGrade.png */; };
 		6F26385218EB4F4200E8CB54 /* minusQuickGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F26384F18EB4F4200E8CB54 /* minusQuickGrade.png */; };
 		6F332B9718F3779F00547116 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F332B9618F3779F00547116 /* Student.m */; };
-		6F332BA518F4856300547116 /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F332BA418F4856300547116 /* StudentSpeech.m */; };
 		6F332BA918F4B10800547116 /* NavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F332BA818F4B10800547116 /* NavBar.png */; };
-		6F4281161905BC74001B86B0 /* AdditionalCommentsPopoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4281151905BC74001B86B0 /* AdditionalCommentsPopoverVC.m */; };
 		6F451199190C3B2A0083541B /* Critik.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6F451196190C3B2A0083541B /* Critik.sqlite */; };
 		6F45119A190C3B2A0083541B /* Critik.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 6F451197190C3B2A0083541B /* Critik.sqlite-shm */; };
 		6F45119B190C3B2A0083541B /* Critik.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 6F451198190C3B2A0083541B /* Critik.sqlite-wal */; };
@@ -49,6 +46,11 @@
 		6F4511A3190C3E460083541B /* play22trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45119F190C3E460083541B /* play22trans.png */; };
 		6F4511A4190C3E460083541B /* reset22trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4511A0190C3E460083541B /* reset22trans.png */; };
 		6F4511A7190C45920083541B /* StudentOrderPopoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511A6190C45920083541B /* StudentOrderPopoverVC.m */; };
+		6F4511AA190DA4890083541B /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511A9190DA4890083541B /* QuickGrade.m */; };
+		6F4511AD190DA48A0083541B /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511AC190DA48A0083541B /* StudentSpeech.m */; };
+		6F4511B0190DA48A0083541B /* PreDefinedComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511AF190DA48A0083541B /* PreDefinedComments.m */; };
+		6F4511B3190DB30D0083541B /* options22trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4511B2190DB30D0083541B /* options22trans.png */; };
+		6F4511B6190DBDE10083541B /* AdditionalCommentsPopoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511B5190DBDE10083541B /* AdditionalCommentsPopoverVC.m */; };
 		6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03118ABF69F00FABCF2 /* HomeVC.m */; };
 		6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */; };
 		6F4EE0FE18B1721B00FABCF2 /* NavButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */; };
@@ -80,8 +82,6 @@
 		6FED858918C2493F0084A96A /* SpeechSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858818C2493F0084A96A /* SpeechSelectionVC.m */; };
 		6FED858C18C24BE70084A96A /* StudentSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858B18C24BE70084A96A /* StudentSelectionVC.m */; };
 		6FED858F18C24DCE0084A96A /* StudentEvaluationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED858E18C24DCE0084A96A /* StudentEvaluationVC.m */; };
-		6FEE98DD18F65EA60069C434 /* PreDefinedComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEE98DC18F65EA60069C434 /* PreDefinedComments.m */; };
-		6FEE98E018F65EA60069C434 /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEE98DF18F65EA60069C434 /* QuickGrade.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +97,6 @@
 /* Begin PBXFileReference section */
 		1F203F9E18B3F0F9007C9F7E /* EditSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSectionVC.h; sourceTree = "<group>"; };
 		1F203F9F18B3F0F9007C9F7E /* EditSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSectionVC.m; sourceTree = "<group>"; };
-		1F42DC55190231AD00EB7DB8 /* horizontalBars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horizontalBars.png; sourceTree = "<group>"; };
 		1F44E1E018BFFC7D0042FCB9 /* EditSpeechVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSpeechVC.h; sourceTree = "<group>"; };
 		1F44E1E118BFFC7D0042FCB9 /* EditSpeechVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSpeechVC.m; sourceTree = "<group>"; };
 		1F4F1B8018B5C1820015026A /* AddStudentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStudentVC.h; sourceTree = "<group>"; };
@@ -138,11 +137,7 @@
 		6F26384F18EB4F4200E8CB54 /* minusQuickGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minusQuickGrade.png; sourceTree = "<group>"; };
 		6F332B9518F3779F00547116 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		6F332B9618F3779F00547116 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
-		6F332BA318F4856300547116 /* StudentSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentSpeech.h; sourceTree = "<group>"; };
-		6F332BA418F4856300547116 /* StudentSpeech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentSpeech.m; sourceTree = "<group>"; };
 		6F332BA818F4B10800547116 /* NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBar.png; sourceTree = "<group>"; };
-		6F4281141905BC74001B86B0 /* AdditionalCommentsPopoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalCommentsPopoverVC.h; sourceTree = "<group>"; };
-		6F4281151905BC74001B86B0 /* AdditionalCommentsPopoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalCommentsPopoverVC.m; sourceTree = "<group>"; };
 		6F451196190C3B2A0083541B /* Critik.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Critik.sqlite; sourceTree = "<group>"; };
 		6F451197190C3B2A0083541B /* Critik.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Critik.sqlite-shm"; sourceTree = "<group>"; };
 		6F451198190C3B2A0083541B /* Critik.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Critik.sqlite-wal"; sourceTree = "<group>"; };
@@ -152,6 +147,16 @@
 		6F4511A0190C3E460083541B /* reset22trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset22trans.png; sourceTree = "<group>"; };
 		6F4511A5190C45920083541B /* StudentOrderPopoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentOrderPopoverVC.h; sourceTree = "<group>"; };
 		6F4511A6190C45920083541B /* StudentOrderPopoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentOrderPopoverVC.m; sourceTree = "<group>"; };
+		6F4511A8190DA4890083541B /* QuickGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickGrade.h; sourceTree = "<group>"; };
+		6F4511A9190DA4890083541B /* QuickGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickGrade.m; sourceTree = "<group>"; };
+		6F4511AB190DA48A0083541B /* StudentSpeech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentSpeech.h; sourceTree = "<group>"; };
+		6F4511AC190DA48A0083541B /* StudentSpeech.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentSpeech.m; sourceTree = "<group>"; };
+		6F4511AE190DA48A0083541B /* PreDefinedComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreDefinedComments.h; sourceTree = "<group>"; };
+		6F4511AF190DA48A0083541B /* PreDefinedComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreDefinedComments.m; sourceTree = "<group>"; };
+		6F4511B1190DAF4D0083541B /* Critik 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Critik 2.xcdatamodel"; sourceTree = "<group>"; };
+		6F4511B2190DB30D0083541B /* options22trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options22trans.png; sourceTree = "<group>"; };
+		6F4511B4190DBDE10083541B /* AdditionalCommentsPopoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalCommentsPopoverVC.h; sourceTree = "<group>"; };
+		6F4511B5190DBDE10083541B /* AdditionalCommentsPopoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalCommentsPopoverVC.m; sourceTree = "<group>"; };
 		6F4EE03018ABF69F00FABCF2 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		6F4EE03118ABF69F00FABCF2 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CritikNavController.h; sourceTree = "<group>"; };
@@ -192,10 +197,6 @@
 		6FED858B18C24BE70084A96A /* StudentSelectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentSelectionVC.m; sourceTree = "<group>"; };
 		6FED858D18C24DCE0084A96A /* StudentEvaluationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentEvaluationVC.h; sourceTree = "<group>"; };
 		6FED858E18C24DCE0084A96A /* StudentEvaluationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentEvaluationVC.m; sourceTree = "<group>"; };
-		6FEE98DB18F65EA60069C434 /* PreDefinedComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreDefinedComments.h; sourceTree = "<group>"; };
-		6FEE98DC18F65EA60069C434 /* PreDefinedComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreDefinedComments.m; sourceTree = "<group>"; };
-		6FEE98DE18F65EA60069C434 /* QuickGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickGrade.h; sourceTree = "<group>"; };
-		6FEE98DF18F65EA60069C434 /* QuickGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickGrade.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,22 +331,22 @@
 			name = InitialDatabaseData;
 			sourceTree = "<group>";
 		};
-		6F45119C190C3E340083541B /* TimerButtons */ = {
+		6F45119C190C3E340083541B /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				6F4511B2190DB30D0083541B /* options22trans.png */,
 				6F45119D190C3E460083541B /* custom_comments22trans.png */,
 				6F45119E190C3E460083541B /* pause22trans.png */,
 				6F45119F190C3E460083541B /* play22trans.png */,
 				6F4511A0190C3E460083541B /* reset22trans.png */,
 			);
-			name = TimerButtons;
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 		6F4EE02F18ABEF3300FABCF2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				1F42DC55190231AD00EB7DB8 /* horizontalBars.png */,
-				6F45119C190C3E340083541B /* TimerButtons */,
+				6F45119C190C3E340083541B /* Buttons */,
 				6F26385318EB4F4D00E8CB54 /* PDFQuickGradeScale */,
 				6F4EE0E418B1721B00FABCF2 /* Home */,
 				6F4EE0E818B1721B00FABCF2 /* Splash */,
@@ -417,12 +418,12 @@
 				6F26384B18EB449200E8CB54 /* Module.m */,
 				6F332B9518F3779F00547116 /* Student.h */,
 				6F332B9618F3779F00547116 /* Student.m */,
-				6F332BA318F4856300547116 /* StudentSpeech.h */,
-				6F332BA418F4856300547116 /* StudentSpeech.m */,
-				6FEE98DE18F65EA60069C434 /* QuickGrade.h */,
-				6FEE98DF18F65EA60069C434 /* QuickGrade.m */,
-				6FEE98DB18F65EA60069C434 /* PreDefinedComments.h */,
-				6FEE98DC18F65EA60069C434 /* PreDefinedComments.m */,
+				6F4511AE190DA48A0083541B /* PreDefinedComments.h */,
+				6F4511AF190DA48A0083541B /* PreDefinedComments.m */,
+				6F4511AB190DA48A0083541B /* StudentSpeech.h */,
+				6F4511AC190DA48A0083541B /* StudentSpeech.m */,
+				6F4511A8190DA4890083541B /* QuickGrade.h */,
+				6F4511A9190DA4890083541B /* QuickGrade.m */,
 			);
 			name = "Core Data Classes";
 			path = ..;
@@ -431,8 +432,6 @@
 		6FAD861018B83C00001C8F54 /* Evaluate View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6F4511A5190C45920083541B /* StudentOrderPopoverVC.h */,
-				6F4511A6190C45920083541B /* StudentOrderPopoverVC.m */,
 				6FED858718C2493F0084A96A /* SpeechSelectionVC.h */,
 				6FED858818C2493F0084A96A /* SpeechSelectionVC.m */,
 				6FED858A18C24BE70084A96A /* StudentSelectionVC.h */,
@@ -443,8 +442,10 @@
 				6FC0223418C44EDF0022B854 /* StudentPenaltiesVC.m */,
 				6FC0223618C4D6C90022B854 /* SpeechFinalizeVC.h */,
 				6FC0223718C4D6C90022B854 /* SpeechFinalizeVC.m */,
-				6F4281141905BC74001B86B0 /* AdditionalCommentsPopoverVC.h */,
-				6F4281151905BC74001B86B0 /* AdditionalCommentsPopoverVC.m */,
+				6F4511A5190C45920083541B /* StudentOrderPopoverVC.h */,
+				6F4511A6190C45920083541B /* StudentOrderPopoverVC.m */,
+				6F4511B4190DBDE10083541B /* AdditionalCommentsPopoverVC.h */,
+				6F4511B5190DBDE10083541B /* AdditionalCommentsPopoverVC.m */,
 			);
 			name = "Evaluate View Controllers";
 			sourceTree = "<group>";
@@ -563,10 +564,10 @@
 				6F12E3571892FEE40030AE4C /* Main.storyboard in Resources */,
 				6F4EE10418B1721B00FABCF2 /* Icon-60.png in Resources */,
 				6F26385018EB4F4200E8CB54 /* plusQuickGrade.png in Resources */,
+				6F4511B3190DB30D0083541B /* options22trans.png in Resources */,
 				6F4EE11018B1721B00FABCF2 /* iTunesArtwork.png in Resources */,
 				6F45119A190C3B2A0083541B /* Critik.sqlite-shm in Resources */,
 				6F4EE10118B1721B00FABCF2 /* icon.png in Resources */,
-				1F42DC56190231AD00EB7DB8 /* horizontalBars.png in Resources */,
 				6F4EE10018B1721B00FABCF2 /* Default-Landscape.png in Resources */,
 				6F4EE10C18B1721B00FABCF2 /* Icon-Small.png in Resources */,
 				6F4EE10E18B1721B00FABCF2 /* Icon.png in Resources */,
@@ -604,11 +605,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F332BA518F4856300547116 /* StudentSpeech.m in Sources */,
+				6F4511AD190DA48A0083541B /* StudentSpeech.m in Sources */,
 				6FED858F18C24DCE0084A96A /* StudentEvaluationVC.m in Sources */,
 				6FD1D3CA18DA6EF20039F98F /* Speech.m in Sources */,
 				1F4CF0D018C6D3EE004DDCDA /* EditForms_ChooseSpeechVC.m in Sources */,
-				6F4281161905BC74001B86B0 /* AdditionalCommentsPopoverVC.m in Sources */,
 				1F6A5B2E18C1C2A0006D2C9F /* AddToModuleVC.m in Sources */,
 				1FB969B5190C419B00E8BB3A /* MenuPopoverVC.m in Sources */,
 				1F57CD8718C126C400DE2B50 /* Section.m in Sources */,
@@ -616,20 +616,21 @@
 				6F12E3541892FEE40030AE4C /* AppDelegate.m in Sources */,
 				1F9A516218B46616009A1253 /* AddSectionVC.m in Sources */,
 				6FC0223818C4D6C90022B854 /* SpeechFinalizeVC.m in Sources */,
+				6F4511B6190DBDE10083541B /* AdditionalCommentsPopoverVC.m in Sources */,
 				6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */,
 				6FC0223518C44EDF0022B854 /* StudentPenaltiesVC.m in Sources */,
 				6FED858918C2493F0084A96A /* SpeechSelectionVC.m in Sources */,
 				6F332B9718F3779F00547116 /* Student.m in Sources */,
-				6FEE98E018F65EA60069C434 /* QuickGrade.m in Sources */,
+				6F4511AA190DA4890083541B /* QuickGrade.m in Sources */,
 				6F12E35A1892FEE40030AE4C /* Critik.xcdatamodeld in Sources */,
 				6F4511A7190C45920083541B /* StudentOrderPopoverVC.m in Sources */,
 				1F44E1E218BFFC7D0042FCB9 /* EditSpeechVC.m in Sources */,
-				6FEE98DD18F65EA60069C434 /* PreDefinedComments.m in Sources */,
 				6FED858C18C24BE70084A96A /* StudentSelectionVC.m in Sources */,
 				1F4F1B8218B5C1820015026A /* AddStudentVC.m in Sources */,
 				6F26384C18EB449200E8CB54 /* Module.m in Sources */,
 				6F12E3501892FEE40030AE4C /* main.m in Sources */,
 				1F203FA018B3F0F9007C9F7E /* EditSectionVC.m in Sources */,
+				6F4511B0190DA48A0083541B /* PreDefinedComments.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,9 +888,10 @@
 		6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				6F4511B1190DAF4D0083541B /* Critik 2.xcdatamodel */,
 				6F12E3591892FEE40030AE4C /* Critik.xcdatamodel */,
 			);
-			currentVersion = 6F12E3591892FEE40030AE4C /* Critik.xcdatamodel */;
+			currentVersion = 6F4511B1190DAF4D0083541B /* Critik 2.xcdatamodel */;
 			path = Critik.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -2,7 +2,7 @@
 //  PreDefinedComments.m
 //  Critik
 //
-//  Created by Dalton Decker on 4/10/14.
+//  Created by Dalton Decker on 4/27/14.
 //  Copyright (c) 2014 RedVelvet. All rights reserved.
 //
 
@@ -13,9 +13,9 @@
 @implementation PreDefinedComments
 
 @dynamic comment;
+@dynamic commentID;
 @dynamic isActive;
 @dynamic isSelected;
-@dynamic commentID;
 @dynamic module;
 
 @end

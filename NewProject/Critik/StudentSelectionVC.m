@@ -169,12 +169,28 @@
     if(!cell)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
-    cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.detailTextLabel.textColor = [UIColor whiteColor];
+    
+    
     Student * tempStudent = [self.students objectAtIndex:indexPath.row];
+    NSArray * studentSpeeches = [tempStudent.studentSpeech allObjects];
+    
+    for(int i = 0; i < [studentSpeeches count]; i ++){
+        StudentSpeech * tempStudentSpeech = [studentSpeeches objectAtIndex:i];
+        if([tempStudentSpeech.speech.speechType isEqualToString:self.currSpeech]){
+            if([tempStudentSpeech.hasBeenEvaluated isEqualToString:@"true"]){
+                cell.textLabel.textColor = [UIColor colorWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1.0];
+                cell.detailTextLabel.textColor = [UIColor colorWithRed:92.0/255.0 green:92.0/255.0 blue:92.0/255.0 alpha:1.0];
+            }else{
+                cell.textLabel.textColor = [UIColor whiteColor];
+                cell.detailTextLabel.textColor = [UIColor whiteColor];
+            }
+            break;
+        }
+    }
+    
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",tempStudent.firstName, tempStudent.lastName];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",tempStudent.studentID];
+    cell.backgroundColor = [UIColor colorWithRed:38.0/255.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0];
     
     return cell;
 }
@@ -648,14 +664,14 @@
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Studen Order file has been uploaded successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Student order has been exported to Dropbox > Apps > Critik > Student Reports > Section > Speech Type" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
     
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Student Order could not be exported" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure" message:@"Student Order could not be exported" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
 }
 @end

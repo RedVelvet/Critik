@@ -16,6 +16,7 @@
 #import "StudentSpeech.h"
 #import "Speech.h"
 #import <objc/runtime.h>
+#import "AdditionalCommentsPopoverVC.h"
 
 @interface StudentEvaluationVC : UIViewController
 

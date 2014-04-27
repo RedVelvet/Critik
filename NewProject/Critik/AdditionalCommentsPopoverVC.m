@@ -35,6 +35,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) viewWillDisappear:(BOOL)animated{
+    [self.delegate dismissPopover:self.comments.text];
+}
+
 /*
 #pragma mark - Navigation
 

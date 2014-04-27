@@ -8,7 +8,9 @@
 
 #import "StudentEvaluationVC.h"
 
-@interface StudentEvaluationVC ()
+@interface StudentEvaluationVC () <DismissPopoverDelegate>{
+    UIPopoverController * popover;
+}
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property int presentationTime;
@@ -125,6 +127,10 @@
         }
     }
     
+    valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"comment" ascending:YES];
+    descriptors = [NSArray arrayWithObject:valueDescriptor];
+    self.PreDefComments = [NSMutableArray arrayWithArray:[self.PreDefComments sortedArrayUsingDescriptors:descriptors]];
+    
     //reload tablviews after filling table's content arrays
     [self.PreDefinedCommentsTable reloadData];
     [self.leftQuickGradeTable reloadData];
@@ -140,9 +146,6 @@
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: @"Presentation could not be saved."delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
-    
-    [self.QuickGrades removeAllObjects];
-    [self.PreDefComments removeAllObjects];
 }
 
 //Splits QuickGrades Arrays in between 2 different columns
@@ -388,6 +391,30 @@
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"additionalComments"]) {
+        popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        
+        AdditionalCommentsPopoverVC *additionalComments = (AdditionalCommentsPopoverVC *)popover.contentViewController;
+        
+       
+        additionalComments.delegate = self;
+        additionalComments.comments.text = self.currentStudentSpeech.comments;
+        
+    }
+}
+
+- (void) dismissPopover:(NSString *)additionalComments{
+    self.currentStudentSpeech.comments = additionalComments;
+    
+    NSError * error;
+    if(![self.managedObjectContext save:&error]){
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: @"Additional Comments could not be saved."delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+}
 //Continue to view were penalties for presentation are applied and additional comments
 - (IBAction)continueToFinalize:(id)sender
 {

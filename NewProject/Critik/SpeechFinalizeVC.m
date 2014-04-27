@@ -14,6 +14,8 @@
 @property NSArray * rightQuickGrades;
 @property NSArray * leftQuickGrades;
 
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
 @end
 
 @implementation SpeechFinalizeVC
@@ -32,13 +34,9 @@
 {
     [super viewDidLoad];
     
-//    Speech * currentSpeech = self.currentStudentSpeech.speech;
-//    NSArray * modules = [currentSpeech.modules allObjects];
-//    int pointsPossible = 0;
-//    for(int i = 0; i < [modules count]; i ++){
-//        Module * currentModule = [modules objectAtIndex:i];
-//        pointsPossible += [currentModule.pointsPossible intValue];
-//    }
+    //set app delegate and managedObject
+    AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = [appDelegate managedObjectContext];
     
     //Set the text of points earned, penalty points, and total points
     self.pointsEarned.text = [NSString stringWithFormat:@"%@",self.currentStudentSpeech.pointsEarned];
@@ -237,6 +235,14 @@
         [self.restClient loadMetadata:destPath];
         [self.restClient deletePath:[NSString stringWithFormat:@"%@/%@",destPath,fileName ]];
         [self.restClient uploadFile: fileName toPath: destPath withParentRev:nil fromPath:path];
+    }
+    
+    self.currentStudentSpeech.hasBeenEvaluated = @"true";
+    
+    NSError * error;
+    if(![self.managedObjectContext save:&error]){
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: @"Presentation could not be saved."delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 }
 
