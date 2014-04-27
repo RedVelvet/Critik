@@ -1253,10 +1253,10 @@
             </objects>
             <point key="canvasLocation" x="5566" y="-1475"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu PopoverVC-->
         <scene sceneID="Qfq-Zs-n7S">
             <objects>
-                <viewController storyboardIdentifier="menuPopover" id="EBZ-Qh-yNG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="menuPopover" id="EBZ-Qh-yNG" customClass="MenuPopoverVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wGy-LO-7ZW"/>
                         <viewControllerLayoutGuide type="bottom" id="cfv-zs-QJF"/>
@@ -1323,6 +1323,9 @@
                     <navigationItem key="navigationItem" id="V40-aA-paW"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="383" height="285"/>
+                    <connections>
+                        <outlet property="dropboxBtn" destination="Sjd-cd-DFW" id="tgk-ct-2Pz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="leb-Ik-wuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="70W-ff-42D" userLabel="Exit" sceneMemberID="exit"/>
@@ -1345,6 +1348,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="w1G-Ar-QWM"/>
-        <segue reference="GvU-dQ-No5"/>
+        <segue reference="0b9-Ty-kTk"/>
     </inferredMetricsTieBreakers>
 </document>

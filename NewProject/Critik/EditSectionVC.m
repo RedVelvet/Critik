@@ -16,7 +16,8 @@
 @end
 
 @implementation EditSectionVC{
-    __weak UIPopoverController *menuPopover;
+    //__weak UIPopoverController *menuPopover;
+//    __weak MenuPopoverVC *menuPopoverVC;
     __weak UIPopoverController *studentPopover;
     __weak UIPopoverController *sectionPopover;
 }
@@ -463,13 +464,18 @@
 // called after 'Upload Roster' is tapped on the AddStudentVC
 - (IBAction)unwindToEditSectionForRosterUpload:(UIStoryboardSegue *)sender
 {
-   
-//    [self.presentedViewController dismissViewControllerAnimated:YES completion:^{
-//        [self downloadFile];
-//    }];
-    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
-    [self downloadFile];
-    //[self addStudentsToSectionFromRoster];
+    
+    MenuPopoverVC *menuPopoverVC = (MenuPopoverVC *)sender.sourceViewController;
+    NSLog(@"UNWIND %d", menuPopoverVC.sendingButtonTag);
+    if (menuPopoverVC.sendingButtonTag == 0) {
+        [[DBSession sharedSession] linkFromController:self];
+    }
+    else
+    {
+        [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+        [self downloadFile];
+        //[self addStudentsToSectionFromRoster];
+    }
 }
 - (IBAction)unwindToDeleteSection:(UIStoryboardSegue *)sender{
         [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
@@ -615,33 +621,41 @@
     
 }
 
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    
-    if ([identifier isEqualToString:@"menuPopoverSeque"]) {
-        if (menuPopover) {
-            NSLog(@"IF %@", identifier);
-            [menuPopover dismissPopoverAnimated:YES];
-            
-            return NO;
-        }
-        else
-        {
-            NSLog(@"ELSE %@", identifier);
-            return YES;
-            
-        }
-    }
-    return YES;
-}
+//- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+//    
+//    if ([identifier isEqualToString:@"menuPopoverSeque"]) {
+//        if (menuPopoverVC) {
+//            NSLog(@"IF %@", identifier);
+//            [menuPopoverVC dismissViewControllerAnimated:YES completion:nil];
+//            
+//            return NO;
+//        }
+//        else
+//        {
+//            NSLog(@"ELSE %@", identifier);
+//            return YES;
+//            
+//        }
+//    }
+//    return YES;
+//}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"menuPopoverSeque"]) {
         // Assign popover instance so we can dismiss it later
 //        self.addSectionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-        menuPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        popover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        MenuPopoverVC *menuPopoverVC = (MenuPopoverVC *)popover.contentViewController;
         
-      
+        NSInteger tag = 0;
+        if ([[DBSession sharedSession] isLinked]) {
+            tag = 1;
+        }
+        
+        menuPopoverVC.delegate = self;
+        menuPopoverVC.sendingButtonTag = tag;
+//        menuPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
         
     }
     else if ([segue.identifier isEqualToString:@"studentPopoverSeque"])
@@ -653,7 +667,7 @@
 //        AddSectionVC *addToSectionVC = (AddSectionVC *)popover.contentViewController;
         sectionPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
 //        NSInteger tag = [(UIButton *)sender tag];
-        sectionPopover.delegate = self;
+//        sectionPopover.delegate = self;
     }
 }
 
@@ -676,15 +690,6 @@
     return restClient;
 }
 
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
-    
-    NSLog(@"File uploaded successfully to path: %@", metadata.path);
-}
-
-- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
-    
-    NSLog(@"File upload failed with error - %@", error);
-}
 
 
 - (void)loadfile:(id)sender
@@ -741,7 +746,28 @@
 
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
     NSLog(@"There was an error loading the file - %@", error);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed" message:@"Failed to download file. Please try again." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
+    NSLog(@"This is the code %d", error.code);
+    if (error.code == 401) { // bad or expired token
+        [[DBSession sharedSession] linkFromController:self];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docDir = [paths objectAtIndex:0];
+        NSString *localPath = [docDir stringByAppendingString:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName]];
+        
+        [[self restClient] loadFile:[NSString stringWithFormat:@"/%@.csv",self.currSection.sectionName] intoPath:localPath];
+        
+    }
+    else if (error.code == 404) //file not found
+    {
+        NSString *message = [NSString stringWithFormat:@"The file couldn't be found. Please look for %@.csv in the Dropbox>Apps>Critik folder.",self.currSection.sectionName];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+    {
+        NSString *message = [NSString stringWithFormat:@"There was an error downloading the file %@.csv, please try again.",self.currSection.sectionName];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }
+    
 }
 @end

@@ -13,7 +13,7 @@
 #import <DropboxSDK/DropboxSDK.h>
 #import "AddSectionVC.h"
 #import "StudentSpeech.h"
-
+#import "MenuPopoverVC.h"
 @interface EditSectionVC : UIViewController <DismissPopoverDelegate>
 {
     UIPopoverController* popover;
@@ -28,10 +28,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *studentTableView;
 @property (nonatomic, readonly) DBRestClient *restClient;
 @property (strong, nonatomic) UIPopoverController *addSectionPopover;
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
-              from:(NSString*)srcPath metadata:(DBMetadata*)metadata;
-
-- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error;
+@property NSInteger sendingButtonTag;
 - (void)downloadFile;
 - (IBAction)addStudentPressed:(id)sender;
 
