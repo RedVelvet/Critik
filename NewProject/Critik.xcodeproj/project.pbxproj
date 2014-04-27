@@ -341,8 +341,8 @@
 		6F4EE02F18ABEF3300FABCF2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				6F45119C190C3E340083541B /* TimerButtons */,
 				1F42DC55190231AD00EB7DB8 /* horizontalBars.png */,
+				6F45119C190C3E340083541B /* TimerButtons */,
 				6F26385318EB4F4D00E8CB54 /* PDFQuickGradeScale */,
 				6F4EE0E418B1721B00FABCF2 /* Home */,
 				6F4EE0E818B1721B00FABCF2 /* Splash */,
