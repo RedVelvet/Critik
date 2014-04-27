@@ -617,7 +617,7 @@
         }
         
     }
-    
+    [self.studentTableView reloadData];
     
 }
 

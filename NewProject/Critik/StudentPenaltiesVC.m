@@ -94,7 +94,7 @@
     [scanner scanCharactersFromSet:skips intoString:&testString];
     
     //If the string containing all the numbers has the same length as the input...
-    if([self.penaltyPoints.text length] != [testString length] || (pointsPossible - ([self.currentStudentSpeech.pointsEarned intValue] - [self.penaltyPoints.text intValue])  < 0) ) {
+    if([self.penaltyPoints.text length] != [testString length] || ([self.currentStudentSpeech.pointsEarned intValue] - [self.penaltyPoints.text intValue])  < 0) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Penalties Error" message: @"Penalties must be a number greater than or equal to 0 and can not bring total points to a negative." delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         

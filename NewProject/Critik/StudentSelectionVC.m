@@ -573,7 +573,7 @@
     UIGraphicsBeginPDFPage();
     
     //Title of student list with section and presentation
-    [[NSString stringWithFormat:@"%@ - %@ Presentation Order",self.currSpeech,currentSection.sectionName] drawAtPoint:CGPointMake(originX, originY) withAttributes:attributes];
+    [[NSString stringWithFormat:@"%@ - %@ Presentation Order",currentSection.sectionName,self.currSpeech] drawAtPoint:CGPointMake(originX, originY) withAttributes:attributes];
     originY +=20;
     originX +=15;
     
