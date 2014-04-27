@@ -167,6 +167,7 @@
         [self.quickTable1 reloadData];
         [self.quickTable2 reloadData];
     }
+    self.pointTF.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -742,7 +743,13 @@
 //    }
 }
 
+
 # pragma mark - Textfield
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
     NSLog(@"textFieldDidBeginEditing");
@@ -829,6 +836,7 @@
 }
 
 #pragma mark - Keyboard
+
 - (void) keyboardWasShown:(NSNotification *)nsNotification {
     NSDictionary *userInfo = [nsNotification userInfo];
     CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
