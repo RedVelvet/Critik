@@ -41,16 +41,16 @@
 		6F451199190C3B2A0083541B /* Critik.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6F451196190C3B2A0083541B /* Critik.sqlite */; };
 		6F45119A190C3B2A0083541B /* Critik.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 6F451197190C3B2A0083541B /* Critik.sqlite-shm */; };
 		6F45119B190C3B2A0083541B /* Critik.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 6F451198190C3B2A0083541B /* Critik.sqlite-wal */; };
-		6F4511A1190C3E460083541B /* custom_comments22trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45119D190C3E460083541B /* custom_comments22trans.png */; };
-		6F4511A2190C3E460083541B /* pause22trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45119E190C3E460083541B /* pause22trans.png */; };
-		6F4511A3190C3E460083541B /* play22trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45119F190C3E460083541B /* play22trans.png */; };
-		6F4511A4190C3E460083541B /* reset22trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4511A0190C3E460083541B /* reset22trans.png */; };
 		6F4511A7190C45920083541B /* StudentOrderPopoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511A6190C45920083541B /* StudentOrderPopoverVC.m */; };
 		6F4511AA190DA4890083541B /* QuickGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511A9190DA4890083541B /* QuickGrade.m */; };
 		6F4511AD190DA48A0083541B /* StudentSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511AC190DA48A0083541B /* StudentSpeech.m */; };
 		6F4511B0190DA48A0083541B /* PreDefinedComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511AF190DA48A0083541B /* PreDefinedComments.m */; };
-		6F4511B3190DB30D0083541B /* options22trans.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4511B2190DB30D0083541B /* options22trans.png */; };
 		6F4511B6190DBDE10083541B /* AdditionalCommentsPopoverVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4511B5190DBDE10083541B /* AdditionalCommentsPopoverVC.m */; };
+		6F4511C6190DEBD60083541B /* custom_comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4511C1190DEBD60083541B /* custom_comments.png */; };
+		6F4511D1190E08640083541B /* options.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4511CD190E08640083541B /* options.png */; };
+		6F4511D2190E08640083541B /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4511CE190E08640083541B /* pause.png */; };
+		6F4511D3190E08640083541B /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4511CF190E08640083541B /* play.png */; };
+		6F4511D4190E08640083541B /* reset.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4511D0190E08640083541B /* reset.png */; };
 		6F4EE03218ABF69F00FABCF2 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE03118ABF69F00FABCF2 /* HomeVC.m */; };
 		6F4EE08918ADAEAC00FABCF2 /* CritikNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */; };
 		6F4EE0FE18B1721B00FABCF2 /* NavButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */; };
@@ -141,10 +141,6 @@
 		6F451196190C3B2A0083541B /* Critik.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Critik.sqlite; sourceTree = "<group>"; };
 		6F451197190C3B2A0083541B /* Critik.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Critik.sqlite-shm"; sourceTree = "<group>"; };
 		6F451198190C3B2A0083541B /* Critik.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Critik.sqlite-wal"; sourceTree = "<group>"; };
-		6F45119D190C3E460083541B /* custom_comments22trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_comments22trans.png; sourceTree = "<group>"; };
-		6F45119E190C3E460083541B /* pause22trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause22trans.png; sourceTree = "<group>"; };
-		6F45119F190C3E460083541B /* play22trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play22trans.png; sourceTree = "<group>"; };
-		6F4511A0190C3E460083541B /* reset22trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset22trans.png; sourceTree = "<group>"; };
 		6F4511A5190C45920083541B /* StudentOrderPopoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentOrderPopoverVC.h; sourceTree = "<group>"; };
 		6F4511A6190C45920083541B /* StudentOrderPopoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentOrderPopoverVC.m; sourceTree = "<group>"; };
 		6F4511A8190DA4890083541B /* QuickGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickGrade.h; sourceTree = "<group>"; };
@@ -154,9 +150,13 @@
 		6F4511AE190DA48A0083541B /* PreDefinedComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreDefinedComments.h; sourceTree = "<group>"; };
 		6F4511AF190DA48A0083541B /* PreDefinedComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreDefinedComments.m; sourceTree = "<group>"; };
 		6F4511B1190DAF4D0083541B /* Critik 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Critik 2.xcdatamodel"; sourceTree = "<group>"; };
-		6F4511B2190DB30D0083541B /* options22trans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options22trans.png; sourceTree = "<group>"; };
 		6F4511B4190DBDE10083541B /* AdditionalCommentsPopoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalCommentsPopoverVC.h; sourceTree = "<group>"; };
 		6F4511B5190DBDE10083541B /* AdditionalCommentsPopoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalCommentsPopoverVC.m; sourceTree = "<group>"; };
+		6F4511C1190DEBD60083541B /* custom_comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_comments.png; sourceTree = "<group>"; };
+		6F4511CD190E08640083541B /* options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = options.png; sourceTree = "<group>"; };
+		6F4511CE190E08640083541B /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		6F4511CF190E08640083541B /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		6F4511D0190E08640083541B /* reset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset.png; sourceTree = "<group>"; };
 		6F4EE03018ABF69F00FABCF2 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		6F4EE03118ABF69F00FABCF2 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CritikNavController.h; sourceTree = "<group>"; };
@@ -334,11 +334,11 @@
 		6F45119C190C3E340083541B /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				6F4511B2190DB30D0083541B /* options22trans.png */,
-				6F45119D190C3E460083541B /* custom_comments22trans.png */,
-				6F45119E190C3E460083541B /* pause22trans.png */,
-				6F45119F190C3E460083541B /* play22trans.png */,
-				6F4511A0190C3E460083541B /* reset22trans.png */,
+				6F4511CD190E08640083541B /* options.png */,
+				6F4511CE190E08640083541B /* pause.png */,
+				6F4511CF190E08640083541B /* play.png */,
+				6F4511D0190E08640083541B /* reset.png */,
+				6F4511C1190DEBD60083541B /* custom_comments.png */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -554,38 +554,38 @@
 				6F4EE10718B1721B00FABCF2 /* Icon-72@2x.png in Resources */,
 				6F12E3621892FEE40030AE4C /* Images.xcassets in Resources */,
 				6F451199190C3B2A0083541B /* Critik.sqlite in Resources */,
-				6F4511A3190C3E460083541B /* play22trans.png in Resources */,
 				6F4EE10818B1721B00FABCF2 /* Icon-76.png in Resources */,
 				6F12E34E1892FEE40030AE4C /* InfoPlist.strings in Resources */,
+				6F4511D4190E08640083541B /* reset.png in Resources */,
 				6F4EE10F18B1721B00FABCF2 /* Icon@2x.png in Resources */,
-				6F4511A4190C3E460083541B /* reset22trans.png in Resources */,
 				6F26385218EB4F4200E8CB54 /* minusQuickGrade.png in Resources */,
 				6F4EE0FE18B1721B00FABCF2 /* NavButton-Selected.png in Resources */,
 				6F12E3571892FEE40030AE4C /* Main.storyboard in Resources */,
 				6F4EE10418B1721B00FABCF2 /* Icon-60.png in Resources */,
 				6F26385018EB4F4200E8CB54 /* plusQuickGrade.png in Resources */,
-				6F4511B3190DB30D0083541B /* options22trans.png in Resources */,
 				6F4EE11018B1721B00FABCF2 /* iTunesArtwork.png in Resources */,
 				6F45119A190C3B2A0083541B /* Critik.sqlite-shm in Resources */,
 				6F4EE10118B1721B00FABCF2 /* icon.png in Resources */,
 				6F4EE10018B1721B00FABCF2 /* Default-Landscape.png in Resources */,
 				6F4EE10C18B1721B00FABCF2 /* Icon-Small.png in Resources */,
+				6F4511D2190E08640083541B /* pause.png in Resources */,
 				6F4EE10E18B1721B00FABCF2 /* Icon.png in Resources */,
 				6F4EE0FF18B1721B00FABCF2 /* NavButton.png in Resources */,
 				6F4EE10D18B1721B00FABCF2 /* Icon-Small@2x.png in Resources */,
 				6F4EE10A18B1721B00FABCF2 /* Icon-Small-50.png in Resources */,
 				6F4EE10618B1721B00FABCF2 /* Icon-72.png in Resources */,
-				6F4511A1190C3E460083541B /* custom_comments22trans.png in Resources */,
 				6F4EE11118B1721B00FABCF2 /* iTunesArtwork@2x.png in Resources */,
 				6FAD860918B83632001C8F54 /* PopOverNavBar.png in Resources */,
 				6F4EE11318B1791300FABCF2 /* Home@2x-Landscape.png in Resources */,
 				6F4EE10218B1721B00FABCF2 /* Icon-40.png in Resources */,
+				6F4511D1190E08640083541B /* options.png in Resources */,
 				6F4EE10318B1721B00FABCF2 /* Icon-40@2x.png in Resources */,
+				6F4511D3190E08640083541B /* play.png in Resources */,
 				6F4EE10918B1721B00FABCF2 /* Icon-76@2x.png in Resources */,
+				6F4511C6190DEBD60083541B /* custom_comments.png in Resources */,
 				6F332BA918F4B10800547116 /* NavBar.png in Resources */,
 				6F45119B190C3B2A0083541B /* Critik.sqlite-wal in Resources */,
 				6F26385118EB4F4200E8CB54 /* okQuickGrade.png in Resources */,
-				6F4511A2190C3E460083541B /* pause22trans.png in Resources */,
 				6F4EE10518B1721B00FABCF2 /* Icon-60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -128,6 +128,13 @@
         //Iterate through the leftQuickGrades array to print quickGrades on left of page
         for(int j = 0; j < [self.leftQuickGrades count]; j ++)
         {
+            if(!(contentSize < pageSize)){
+                UIGraphicsBeginPDFPage();
+                contentSize = 0;
+                originX = 20;
+                originY = 15;
+            }
+            
             //Sets current QuickGrade
             QuickGrade * currentQuickGrade = [self.leftQuickGrades objectAtIndex:j];
 
@@ -148,6 +155,7 @@
                     contentSize += 20;
                     break;
             }
+            
             //Go to a new line
             originY += 20;
         }
@@ -157,6 +165,13 @@
         //Iterate through the rightQuickGrades array to print quickgrades on right of page
         for(int j = 0; j < [self.rightQuickGrades count]; j ++)
         {
+            if(!(contentSize < pageSize)){
+                UIGraphicsBeginPDFPage();
+                contentSize = 0;
+                originX = 20;
+                originY = 15;
+            }
+            
             //Sets current QuickGrade
             QuickGrade * currentQuickGrade = [self.rightQuickGrades objectAtIndex:j];
 
@@ -187,13 +202,21 @@
         //Iterate through the PredefinedComments and print on to page
         for(int a = 0; a < [preDefinedComments count]; a ++)
         {
+            if(!(contentSize < pageSize)){
+                UIGraphicsBeginPDFPage();
+                contentSize = 0;
+                originX = 20;
+                originY = 15;
+            }
+            
             //Current PreDefinedComment to Print
             PreDefinedComments * currentComment = [preDefinedComments objectAtIndex:a];
-            
-            //Draw PreDefinedComment
-            [currentComment.comment drawAtPoint:CGPointMake(originX, originY) withAttributes:attributes];
-            contentSize += 20;
-            originY += 20;
+            if([currentComment.isSelected boolValue]){
+                //Draw PreDefinedComment
+                [currentComment.comment drawAtPoint:CGPointMake(originX, originY) withAttributes:attributes];
+                contentSize += 20;
+                originY += 20;
+            }
         }
         
         //Go to a new line and bring indention inward

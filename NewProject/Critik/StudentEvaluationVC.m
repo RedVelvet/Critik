@@ -41,8 +41,8 @@
     self.currentModule = [self.SpeechModules objectAtIndex:0];
     
     //Set the first Modue selected when first opening view
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.ModuleTable selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
+    self.currentIndex = 0;
+    [self.ModuleTable selectRowAtIndexPath: [NSIndexPath indexPathForRow:self.currentIndex inSection:0] animated:NO scrollPosition: UITableViewScrollPositionNone];
 }
 
 - (void)viewDidLoad
@@ -51,8 +51,8 @@
     
     
     self.presentationTime = [self.currentStudentSpeech.duration intValue];
-    [self.timerButton setImage:[UIImage imageNamed:@"play22trans.png"] forState:UIControlStateNormal];
-    [self.timerResetButton setImage:[UIImage imageNamed:@"reset22trans.png"] forState:UIControlStateNormal];
+    [self.timerButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+    [self.timerResetButton setImage:[UIImage imageNamed:@"reset.png"] forState:UIControlStateNormal];
     
     int minutes = (self.presentationTime / 60.0);
     // We calculate the seconds.
@@ -326,12 +326,14 @@
     //characters that are digits into the new string
     [scanner scanCharactersFromSet:skips intoString:&testString];
     //If the string containing all the numbers has the same length as the input...
-    if([self.moduleGrade.text length] != [testString length] && ![self.moduleGrade.text intValue] <= [self.modulePoints.text intValue] ) {
+    if([self.moduleGrade.text length] != [testString length] || [self.moduleGrade.text intValue] > [self.currentModule.pointsPossible intValue] ) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Module Points Error" message: @"Points given must be a number less than or equal to points possible" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
+        [self.ModuleTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         
     }else{
+        self.currentIndex = indexPath.row;
         //save current points
         self.currentModule.points = [NSNumber numberWithInt: [self.moduleGrade.text intValue]];
     //Change quickGrades and PreDefinedComments arrays based on which module is selected.
@@ -476,7 +478,7 @@
       
         
         // Changes the title of the button to Stop!
-        [sender setImage:[UIImage imageNamed:@"pause22trans.png"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
         // Calls the update method.
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(update) userInfo:nil repeats:YES];
         startTimer = true;
@@ -489,7 +491,7 @@
         startTimer = false;
         
         // Changes the title of the button back to Start.
-        [sender setImage:[UIImage imageNamed:@"play22trans.png"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
         
         
     }

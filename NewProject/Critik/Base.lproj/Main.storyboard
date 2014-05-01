@@ -129,7 +129,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Edit Section" id="KDG-A6-eGy">
                         <barButtonItem key="backBarButtonItem" title="Edit Section" id="AG6-k6-o8V"/>
-                        <barButtonItem key="rightBarButtonItem" image="options22trans.png" id="Rb3-F3-3Fe">
+                        <barButtonItem key="rightBarButtonItem" image="options.png" id="Rb3-F3-3Fe">
                             <connections>
                                 <segue destination="EBZ-Qh-yNG" kind="popover" identifier="menuPopoverSeque" popoverAnchorBarButtonItem="Rb3-F3-3Fe" id="ZgY-hQ-Zen">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -542,7 +542,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Section Rosters" id="x53-kT-GH7">
                         <barButtonItem key="backBarButtonItem" title="Section Rosters" id="sbK-sK-mX3"/>
-                        <barButtonItem key="rightBarButtonItem" image="options22trans.png" id="GfH-w4-syn">
+                        <barButtonItem key="rightBarButtonItem" image="options.png" id="GfH-w4-syn">
                             <connections>
                                 <segue destination="gBH-f3-1ah" kind="popover" identifier="orderPopoverSegue" popoverAnchorBarButtonItem="GfH-w4-syn" id="Q5a-Pf-XJK">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -733,7 +733,7 @@
                                 <rect key="frame" x="197" y="650" width="53" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
-                                <state key="normal" image="reset22trans.png"/>
+                                <state key="normal" image="reset.png"/>
                                 <connections>
                                     <action selector="resetTimer:" destination="fhM-DW-lqh" eventType="touchUpInside" id="UeM-II-XoJ"/>
                                 </connections>
@@ -747,7 +747,7 @@
                         <barButtonItem key="backBarButtonItem" title="Evaluation" id="GUg-RT-CTt">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="custom_comments22trans.png" id="Axu-nm-jme">
+                        <barButtonItem key="rightBarButtonItem" image="custom_comments.png" id="Axu-nm-jme">
                             <connections>
                                 <segue destination="vgW-Hp-qFU" kind="popover" identifier="additionalComments" popoverAnchorBarButtonItem="Axu-nm-jme" id="xGB-R6-i7b">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -798,6 +798,7 @@
                                 <rect key="frame" x="20" y="52" width="610" height="178"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.9214564732142857" green="0.9214564732142857" blue="0.9214564732142857" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -828,73 +829,59 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Duration: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6s-Hy-Bd2">
-                                <rect key="frame" x="400" y="74" width="86" height="24"/>
+                                <rect key="frame" x="400" y="132" width="86" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8y-QH-vfu">
-                                <rect key="frame" x="525" y="74" width="72" height="24"/>
+                                <rect key="frame" x="525" y="132" width="72" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Penalty Points:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fL1-jW-IUc">
-                                <rect key="frame" x="354" y="106" width="132" height="24"/>
+                                <rect key="frame" x="354" y="164" width="132" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3g9-pf-yHs">
-                                <rect key="frame" x="525" y="103" width="72" height="30"/>
+                                <rect key="frame" x="525" y="161" width="72" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Over Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibJ-Kj-2aE">
-                                <rect key="frame" x="525" y="161" width="83" height="24"/>
+                                <rect key="frame" x="525" y="219" width="83" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-cZ-l7R">
-                                <rect key="frame" x="437" y="157" width="51" height="31"/>
+                                <rect key="frame" x="437" y="215" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="onTintColor" red="0.0" green="0.43921568630000002" blue="0.32549019610000002" alpha="1" colorSpace="deviceRGB"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Late Presentation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIo-Xc-K4m">
-                                <rect key="frame" x="525" y="200" width="146" height="24"/>
+                                <rect key="frame" x="525" y="258" width="146" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ea9-g4-XsK">
-                                <rect key="frame" x="437" y="196" width="51" height="31"/>
+                                <rect key="frame" x="437" y="254" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="onTintColor" red="0.0" green="0.43921568630000002" blue="0.32549019610000002" alpha="1" colorSpace="deviceRGB"/>
                             </switch>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCS-AY-Wtx">
-                                <rect key="frame" x="173" y="276" width="710" height="175"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.43921568630000002" blue="0.32549019610000002" alpha="0.040000000000000001" colorSpace="deviceRGB"/>
-                                <color key="tintColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
-                                <color key="textColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Additional Comments:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LL-pr-JmB">
-                                <rect key="frame" x="168" y="244" width="196" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mse-NO-aRP">
                                 <rect key="frame" x="0.0" y="489" width="1024" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -905,6 +892,21 @@
                                     <action selector="Finalize:" destination="o0X-Rg-dwj" eventType="touchUpInside" id="Ovg-vV-LPT"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmI-ra-vjS">
+                                <rect key="frame" x="187" y="321" width="650" height="153"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.92145647320000001" green="0.92145647320000001" blue="0.92145647320000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.1960784495" green="0.1960784495" blue="0.1960784495" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Additional Comments:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="to4-6c-0cc">
+                                <rect key="frame" x="187" y="292" width="171" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -917,7 +919,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="additionalComments" destination="eCS-AY-Wtx" id="ox4-sV-HuD"/>
+                        <outlet property="additionalComments" destination="bmI-ra-vjS" id="w4n-Fo-3aD"/>
                         <outlet property="duration" destination="L8y-QH-vfu" id="xYM-aG-eBO"/>
                         <outlet property="latePresentation" destination="Ea9-g4-XsK" id="hoV-J9-uYX"/>
                         <outlet property="overTime" destination="dgc-cZ-l7R" id="UUE-Ei-bRi"/>
@@ -1342,9 +1344,9 @@
         <image name="Home@2x-Landscape.png" width="2048" height="1536"/>
         <image name="NavButton-Selected.png" width="1024" height="52"/>
         <image name="PopOverNavBar.png" width="2048" height="64"/>
-        <image name="custom_comments22trans.png" width="26" height="24"/>
-        <image name="options22trans.png" width="24" height="16"/>
-        <image name="reset22trans.png" width="20" height="24"/>
+        <image name="custom_comments.png" width="23" height="20"/>
+        <image name="options.png" width="20" height="20"/>
+        <image name="reset.png" width="54" height="54"/>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -35,15 +35,9 @@
     self.duration.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
     
     // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
     
     
 }
@@ -56,7 +50,7 @@
     
     self.penaltyPoints.text = [NSString stringWithFormat:@"%@",self.currentStudentSpeech.penaltyPoints];
     
-    self.additionalComments.text = self.currentStudentSpeech.comments;
+//    self.additionalComments.text = self.currentStudentSpeech.comments;
     
     if([self.currentStudentSpeech.isLate isEqualToString:@"true"]){
         [self.latePresentation setOn:YES];
@@ -64,6 +58,8 @@
     if([self.currentStudentSpeech.overTime isEqualToString:@"true"]){
         [self.overTime setOn:YES];
     }
+    
+    self.additionalComments.text = self.currentStudentSpeech.comments;
     
     //set app delegate and managedObject
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
@@ -121,7 +117,7 @@
 {
     //Save duration, comments and penalty points to core data
     self.currentStudentSpeech.duration = [NSNumber numberWithInt:[self.penaltyPoints.text intValue]];
-    self.currentStudentSpeech.comments = self.additionalComments.text;
+//    self.currentStudentSpeech.comments = self.additionalComments.text;
     self.currentStudentSpeech.penaltyPoints = [NSNumber numberWithInt: [self.penaltyPoints.text intValue]];
     
     self.currentStudentSpeech.penaltyPoints = [NSNumber numberWithInt:[self.penaltyPoints.text intValue]];

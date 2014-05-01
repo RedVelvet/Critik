@@ -47,6 +47,7 @@
 @property NSMutableArray * rightQuickGrades;
 @property NSMutableArray * PreDefComments;
 @property NSMutableArray * WrittenComments;
+@property int currentIndex;
 
 - (void) splitQuickGradesArray;
 - (IBAction)continueToFinalize:(id)sender;
