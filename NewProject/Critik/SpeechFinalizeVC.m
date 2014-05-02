@@ -54,7 +54,7 @@
 {
     //Variables to store origin
     int originX = 20;
-    int originY = 15;
+    int originY = 20;
     int contentSize = 0;
     int pageSize = 792;
     //file name
@@ -97,13 +97,13 @@
     originY += 20;
     
     //Iterate through each module to print out coresponding data
-    for(int i = 0; i < [Modules count]; i ++)
+    for(int i = 0; i < [Modules count]-1; i ++)
     {
         if(!(contentSize < pageSize)){
             UIGraphicsBeginPDFPage();
-            contentSize = 0;
+            contentSize = 20;
             originX = 20;
-            originY = 15;
+            originY = 20;
         }
         //Current Module to print data from
         Module * currentModule = [Modules objectAtIndex:i];
@@ -114,7 +114,7 @@
 
         //Increment Origins to a new line and indent
         originY += 20;
-        originX += 15;
+        originX += 20;
 
         //Get quick grades from current module and organize them so they are in order
         self.QuickGrades = [currentModule.quickGrade allObjects];
@@ -125,25 +125,23 @@
         //Split quickGrades into two arrays allowing for 2 equal columns on pdf
         [self splitQuickGradesArray];
 
-        //Iterate through the leftQuickGrades array to print quickGrades on left of page
+        //Iterate through the QuickGrade arrays to print quickGrades
         for(int j = 0; j < [self.leftQuickGrades count]; j ++)
         {
             if(!(contentSize < pageSize)){
                 UIGraphicsBeginPDFPage();
-                contentSize = 0;
-                originX = 20;
-                originY = 15;
+                contentSize = 20;
+                originY = 20;
             }
             
             //Sets current QuickGrade
-            QuickGrade * currentQuickGrade = [self.leftQuickGrades objectAtIndex:j];
+            QuickGrade * leftQuickGrade = [self.leftQuickGrades objectAtIndex:j];
 
             //Print QuickGrade Description
-            [currentQuickGrade.quickGradeDescription drawInRect:CGRectMake(originX, originY, 200, 20) withAttributes:attributes];
-            contentSize += 20;
+            [leftQuickGrade.quickGradeDescription drawInRect:CGRectMake(originX, originY, 200, 20) withAttributes:attributes];
 
             //Print QuickGrade Score image
-            switch([currentQuickGrade.score intValue])
+            switch([leftQuickGrade.score intValue])
             {
                 case 0: [minusQG drawInRect:CGRectMake(originX + 225, originY + 3, 40, 15)];
                     contentSize += 20;
@@ -156,43 +154,30 @@
                     break;
             }
             
-            //Go to a new line
-            originY += 20;
-        }
-        //Move originY back up to the beginning of when quickgrades were being printed and start second column
-        originY -= (20*[self.leftQuickGrades count]);
-        
-        //Iterate through the rightQuickGrades array to print quickgrades on right of page
-        for(int j = 0; j < [self.rightQuickGrades count]; j ++)
-        {
-            if(!(contentSize < pageSize)){
-                UIGraphicsBeginPDFPage();
-                contentSize = 0;
-                originX = 20;
-                originY = 15;
+            if(j < [self.rightQuickGrades count]){
+                //Sets current QuickGrade
+                QuickGrade * rightQuickGrade = [self.rightQuickGrades objectAtIndex:j];
+                
+                //Print QuickGrade Description
+                [rightQuickGrade.quickGradeDescription drawInRect:CGRectMake(originX + 300, originY, 200, 20) withAttributes:attributes];
+                
+                //Print QuickGrade Score image
+                switch([rightQuickGrade.score intValue])
+                {
+                    case 0: [minusQG drawInRect:CGRectMake(originX + 500, originY + 3, 40, 15)];
+                        break;
+                    case 1: [okQG drawInRect:CGRectMake(originX + 500, originY + 3, 40, 15)];
+                        break;
+                    case 2: [plusQG drawInRect:CGRectMake(originX + 500, originY + 3, 40, 15)];
+                        break;
+                }
             }
             
-            //Sets current QuickGrade
-            QuickGrade * currentQuickGrade = [self.rightQuickGrades objectAtIndex:j];
-
-            //Print QuickGrade Description
-            [currentQuickGrade.quickGradeDescription drawInRect:CGRectMake(originX + 300, originY, 200, 20) withAttributes:attributes];
-
-            //Print QuickGrade Score image
-            switch([currentQuickGrade.score intValue])
-            {
-                case 0: [minusQG drawInRect:CGRectMake(originX + 500, originY + 3, 40, 15)];
-                    break;
-                case 1: [okQG drawInRect:CGRectMake(originX + 500, originY + 3, 40, 15)];
-                    break;
-                case 2: [plusQG drawInRect:CGRectMake(originX + 500, originY + 3, 40, 15)];
-                    break;
-            }
-            //Go to new line
+            //Go to a new line
             originY += 20;
+            contentSize += 20;
         }
-        originY += 20;
-        contentSize += 20;
+
         //Get preDefinedComments from current module and organize them so that they are in order
         NSArray * preDefinedComments = [currentModule.preDefinedComments allObjects];
         valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"comment" ascending:YES];
@@ -204,9 +189,8 @@
         {
             if(!(contentSize < pageSize)){
                 UIGraphicsBeginPDFPage();
-                contentSize = 0;
-                originX = 20;
-                originY = 15;
+                contentSize = 20;
+                originY = 20;
             }
             
             //Current PreDefinedComment to Print
@@ -221,12 +205,11 @@
         
         //Go to a new line and bring indention inward
         originY += 25;
-        originX -= 15;
+        originX -= 20;
         contentSize += 25;
     }
     
-    [[NSString stringWithFormat:@"Additional Comments: \n%@",self.currentStudentSpeech.comments] drawInRect:CGRectMake(originX+10, originY, 550, 80) withAttributes:attributes];
-    originY += 80;
+    originY +=30;
     
     //Draw penalty points
     [[NSString stringWithFormat:@"Points Earned: %@",self.currentStudentSpeech.pointsEarned] drawInRect:CGRectMake(originX, originY, 150, 20) withAttributes:attributes];
@@ -244,8 +227,15 @@
     
     //Draw total points
     [[NSString stringWithFormat:@"Total Points: %@",self.currentStudentSpeech.totalPoints] drawInRect:CGRectMake(originX, originY, 150, 20) withAttributes:attributes];
+    originY += 20;
     
+    int minutes = ([self.currentStudentSpeech.duration intValue] / 60.0);
+    // We calculate the seconds.
+    int seconds = ([self.currentStudentSpeech.duration intValue] - (minutes * 60));
     
+    [[NSString stringWithFormat:@"Duration: %u:%02u",minutes, seconds]drawInRect:CGRectMake(originX, originY, 150, 20) withAttributes:attributes];
+    originY += 40;
+    [[NSString stringWithFormat:@"Additional Comments: \n%@",self.currentStudentSpeech.comments] drawInRect:CGRectMake(originX+10, originY, 550, 250) withAttributes:attributes];
     //close and save pdf context
     UIGraphicsEndPDFContext();
     

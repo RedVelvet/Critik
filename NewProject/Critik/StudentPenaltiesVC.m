@@ -33,7 +33,7 @@
     
     // We update our Label with the current time.
     self.duration.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
-    
+
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
     
@@ -115,8 +115,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    //Save duration, comments and penalty points to core data
-    self.currentStudentSpeech.duration = [NSNumber numberWithInt:[self.penaltyPoints.text intValue]];
+    
 //    self.currentStudentSpeech.comments = self.additionalComments.text;
     self.currentStudentSpeech.penaltyPoints = [NSNumber numberWithInt: [self.penaltyPoints.text intValue]];
     

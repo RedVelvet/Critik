@@ -45,6 +45,15 @@
     [self.ModuleTable selectRowAtIndexPath: [NSIndexPath indexPathForRow:self.currentIndex inSection:0] animated:NO scrollPosition: UITableViewScrollPositionNone];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    NSError * error;
+    if(![self.managedObjectContext save:&error])
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: @"Presentation could not be saved."delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -137,15 +146,6 @@
     [self.rightQuickGradeTable reloadData];
     [self.ModuleTable reloadData];
     
-}
-
--(void) viewWillDisappear:(BOOL)animated{
-    NSError * error;
-    if(![self.managedObjectContext save:&error])
-    {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle: @"Warning!" message: @"Presentation could not be saved."delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
 }
 
 //Splits QuickGrades Arrays in between 2 different columns
@@ -518,9 +518,6 @@
         // We update our Label with the current time.
         self.timerLabel.text = [NSString stringWithFormat:@"%u:%02u", minutes, seconds];
         
-        
-//        // We recursively call update to get the new time.
-//        [self performSelector:@selector(update) withObject:self afterDelay:0.1];
     }
 }
 @end
