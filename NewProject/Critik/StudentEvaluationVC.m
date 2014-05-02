@@ -46,6 +46,16 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    
+    if(startTimer){
+        // Since it is false we need to reset it back to false.
+        [self.timer invalidate];
+        self.timer = nil;
+        startTimer = false;
+        
+        // Changes the title of the button back to Start.
+        [self.timerButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+    }
     NSError * error;
     if(![self.managedObjectContext save:&error])
     {
@@ -281,6 +291,8 @@
         commentSwitch.tag = 3;
         
         [commentSwitch setOn: [temp.isSelected boolValue] animated:NO];
+        [commentSwitch setTintColor:[UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0]];
+        [commentSwitch setOnTintColor:[UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0]];
         
         objc_setAssociatedObject(commentSwitch, "obj", temp, OBJC_ASSOCIATION_ASSIGN);
         [commentSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];

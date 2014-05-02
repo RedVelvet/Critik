@@ -461,6 +461,8 @@
         UISwitch *switchView = [[UISwitch alloc]initWithFrame:CGRectZero];
         cell.accessoryView = switchView;
         [switchView setOn:[tempQuickGrade.isActive boolValue]animated:NO];
+        [switchView setTintColor:[UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0]];
+        [switchView setOnTintColor:[UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0]];
         
         // associate table tag and object with button for later use in updating isActive
         switchView.tag = leftTableTag;
@@ -495,6 +497,8 @@
         UISwitch *switchView = [[UISwitch alloc]initWithFrame:CGRectZero];
         cell.accessoryView = switchView;
         [switchView setOn:[tempQuickGrade.isActive boolValue]animated:NO];
+        [switchView setTintColor:[UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0]];
+        [switchView setOnTintColor:[UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0]];
         
         // associate table tag and object with button for later use in updating isActive
         switchView.tag = leftTableTag;
@@ -526,6 +530,8 @@
         UISwitch *switchView = [[UISwitch alloc]initWithFrame:CGRectZero];
         cell.accessoryView = switchView;
         [switchView setOn:[tempPredef.isActive boolValue] animated:NO];
+        [switchView setTintColor:[UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0]];
+        [switchView setOnTintColor:[UIColor colorWithRed:38.0/355.0 green:38.0/255.0 blue:38.0/255.0 alpha:1.0]];
         
         // associate table tag and object with button for later use in updating isActive
         switchView.tag = commentsTableTag;
