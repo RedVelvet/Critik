@@ -137,10 +137,10 @@
 		6F26384F18EB4F4200E8CB54 /* minusQuickGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minusQuickGrade.png; sourceTree = "<group>"; };
 		6F332B9518F3779F00547116 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		6F332B9618F3779F00547116 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
-		6F332BA818F4B10800547116 /* NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBar.png; sourceTree = "<group>"; };
+		6F332BA818F4B10800547116 /* NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NavBar.png; path = Home/NavBar.png; sourceTree = "<group>"; };
 		6F451196190C3B2A0083541B /* Critik.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Critik.sqlite; sourceTree = "<group>"; };
 		6F451197190C3B2A0083541B /* Critik.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Critik.sqlite-shm"; sourceTree = "<group>"; };
-		6F451198190C3B2A0083541B /* Critik.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Critik.sqlite-wal"; sourceTree = "<group>"; };
+		6F451198190C3B2A0083541B /* Critik.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Critik.sqlite-wal"; sourceTree = "<group>"; };
 		6F4511A5190C45920083541B /* StudentOrderPopoverVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentOrderPopoverVC.h; sourceTree = "<group>"; };
 		6F4511A6190C45920083541B /* StudentOrderPopoverVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentOrderPopoverVC.m; sourceTree = "<group>"; };
 		6F4511A8190DA4890083541B /* QuickGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickGrade.h; sourceTree = "<group>"; };
@@ -161,8 +161,8 @@
 		6F4EE03118ABF69F00FABCF2 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		6F4EE08718ADAEAC00FABCF2 /* CritikNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CritikNavController.h; sourceTree = "<group>"; };
 		6F4EE08818ADAEAC00FABCF2 /* CritikNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CritikNavController.m; sourceTree = "<group>"; };
-		6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NavButton-Selected.png"; sourceTree = "<group>"; };
-		6F4EE0E718B1721B00FABCF2 /* NavButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavButton.png; sourceTree = "<group>"; };
+		6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NavButton-Selected.png"; path = "Home/NavButton-Selected.png"; sourceTree = "<group>"; };
+		6F4EE0E718B1721B00FABCF2 /* NavButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NavButton.png; path = Home/NavButton.png; sourceTree = "<group>"; };
 		6F4EE0E918B1721B00FABCF2 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		6F4EE0EB18B1721B00FABCF2 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		6F4EE0ED18B1721B00FABCF2 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
@@ -181,10 +181,10 @@
 		6F4EE0FA18B1721B00FABCF2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		6F4EE0FB18B1721B00FABCF2 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		6F4EE0FC18B1721B00FABCF2 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
-		6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home@2x-Landscape.png"; sourceTree = "<group>"; };
+		6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Home@2x-Landscape.png"; path = "Home/Home@2x-Landscape.png"; sourceTree = "<group>"; };
 		6F5479F918BD2F1400353383 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		6F9E011D18D8BCA900F509B7 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		6FAD860818B83632001C8F54 /* PopOverNavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PopOverNavBar.png; sourceTree = "<group>"; };
+		6FAD860818B83632001C8F54 /* PopOverNavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PopOverNavBar.png; path = Home/PopOverNavBar.png; sourceTree = "<group>"; };
 		6FC0223318C44EDF0022B854 /* StudentPenaltiesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentPenaltiesVC.h; sourceTree = "<group>"; };
 		6FC0223418C44EDF0022B854 /* StudentPenaltiesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentPenaltiesVC.m; sourceTree = "<group>"; };
 		6FC0223618C4D6C90022B854 /* SpeechFinalizeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechFinalizeVC.h; sourceTree = "<group>"; };
@@ -271,11 +271,8 @@
 				6F4EE03018ABF69F00FABCF2 /* HomeVC.h */,
 				6F4EE03118ABF69F00FABCF2 /* HomeVC.m */,
 				6FED858018BFF1620084A96A /* Edit View Controllers */,
-				6FAD861018B83C00001C8F54 /* Evaluate View Controllers */,
-				6F12E3611892FEE40030AE4C /* Images.xcassets */,
-				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
-				6F45118F190C37800083541B /* InitialDatabaseData */,
-				6F4EE13918B2968500FABCF2 /* Core Data Classes */,
+				6FAD861018B83C00001C8F54 /* Evaluation View Controllers */,
+				6F45118F190C37800083541B /* Core Data */,
 				6F4EE02F18ABEF3300FABCF2 /* Images */,
 				6F12E34A1892FEE40030AE4C /* Supporting Files */,
 			);
@@ -321,19 +318,23 @@
 			name = PDFQuickGradeScale;
 			sourceTree = "<group>";
 		};
-		6F45118F190C37800083541B /* InitialDatabaseData */ = {
+		6F45118F190C37800083541B /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				6F12E3581892FEE40030AE4C /* Critik.xcdatamodeld */,
 				6F451196190C3B2A0083541B /* Critik.sqlite */,
 				6F451197190C3B2A0083541B /* Critik.sqlite-shm */,
 				6F451198190C3B2A0083541B /* Critik.sqlite-wal */,
+				6F4EE13918B2968500FABCF2 /* Classes */,
 			);
-			name = InitialDatabaseData;
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		6F45119C190C3E340083541B /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				6F4EE0E718B1721B00FABCF2 /* NavButton.png */,
+				6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */,
 				6F4511CD190E08640083541B /* options.png */,
 				6F4511CE190E08640083541B /* pause.png */,
 				6F4511CF190E08640083541B /* play.png */,
@@ -346,25 +347,16 @@
 		6F4EE02F18ABEF3300FABCF2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6F12E3611892FEE40030AE4C /* Images.xcassets */,
+				6F332BA818F4B10800547116 /* NavBar.png */,
+				6FAD860818B83632001C8F54 /* PopOverNavBar.png */,
+				6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */,
 				6F45119C190C3E340083541B /* Buttons */,
 				6F26385318EB4F4D00E8CB54 /* PDFQuickGradeScale */,
-				6F4EE0E418B1721B00FABCF2 /* Home */,
 				6F4EE0E818B1721B00FABCF2 /* Splash */,
 				6F4EE0EA18B1721B00FABCF2 /* Icon */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		6F4EE0E418B1721B00FABCF2 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				6F332BA818F4B10800547116 /* NavBar.png */,
-				6FAD860818B83632001C8F54 /* PopOverNavBar.png */,
-				6F4EE11218B1791300FABCF2 /* Home@2x-Landscape.png */,
-				6F4EE0E618B1721B00FABCF2 /* NavButton-Selected.png */,
-				6F4EE0E718B1721B00FABCF2 /* NavButton.png */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		6F4EE0E818B1721B00FABCF2 /* Splash */ = {
@@ -407,7 +399,7 @@
 			path = ios7;
 			sourceTree = "<group>";
 		};
-		6F4EE13918B2968500FABCF2 /* Core Data Classes */ = {
+		6F4EE13918B2968500FABCF2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				1F57CD8518C126C400DE2B50 /* Section.h */,
@@ -425,11 +417,11 @@
 				6F4511A8190DA4890083541B /* QuickGrade.h */,
 				6F4511A9190DA4890083541B /* QuickGrade.m */,
 			);
-			name = "Core Data Classes";
+			name = Classes;
 			path = ..;
 			sourceTree = "<group>";
 		};
-		6FAD861018B83C00001C8F54 /* Evaluate View Controllers */ = {
+		6FAD861018B83C00001C8F54 /* Evaluation View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				6FED858718C2493F0084A96A /* SpeechSelectionVC.h */,
@@ -447,7 +439,7 @@
 				6F4511B4190DBDE10083541B /* AdditionalCommentsPopoverVC.h */,
 				6F4511B5190DBDE10083541B /* AdditionalCommentsPopoverVC.m */,
 			);
-			name = "Evaluate View Controllers";
+			name = "Evaluation View Controllers";
 			sourceTree = "<group>";
 		};
 		6FED858018BFF1620084A96A /* Edit View Controllers */ = {
